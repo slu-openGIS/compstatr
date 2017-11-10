@@ -1,3 +1,8 @@
+#'Replace 0
+
+
+
+
 replace0 <- function(.data, variable){
 
   paramList <- as.list(match.call())
