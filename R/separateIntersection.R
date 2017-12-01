@@ -1,3 +1,9 @@
+#''Seperate Interection
+#'Takes a column that contains street addresses and seperates the addresses into two columns
+#'@param .data a data frame
+#'@param variable the column containing street adresses
+#'@return returns two columns containing street addresses and removes the input column
+
 separateIntersection <- function(.data,variable){#Seperates ILEADSStreet into two columns and removes input column. ileadsStreetOne contains street address and ileadsStreetTwo contains street address if ILEADSStreet is an intersection. Replaces blank cells with NA
   paramList <- as.list(match.call())
   varN <- rlang::quo_name(rlang::enquo(variable))
