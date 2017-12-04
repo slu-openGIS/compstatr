@@ -1,3 +1,7 @@
+#' Is Intersection
+#' @param .data a
+#' @param variable
+
 isIntersection <- function(.data,variable){
   paramList <- as.list(match.call())
 
@@ -8,6 +12,5 @@ isIntersection <- function(.data,variable){
   } else if (is.character(paramList$variable)) {
     var <- rlang::quo(!! rlang::sym(variable))
   }
-  .data %>%
-    dplyr::mutate(iLeadIntersection = ifelse((!!var) == 0,"TRUE","FALSE"))
+ ifelse(.data[,varN] == 0,"TRUE","FALSE")
 }
