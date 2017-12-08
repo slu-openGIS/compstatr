@@ -1,6 +1,7 @@
 #' Is Intersection
-#' @param .data a
-#' @param variable
+#' @param .data a data frame
+#' @param variable the column containing ILEADSAddress
+#' @return a logical vector that displays "TRUE" where the column is a intersection and displays "FALSE" when the column isn't an intersection
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
