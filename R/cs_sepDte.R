@@ -3,6 +3,11 @@
 #'@param .data a data frame
 #'@param variable a column containing month, day, year, and time seperated by "|"
 #'@return returns 4 different columns containing, month, day, year, and time
+#'@importFrom dplyr %>%
+#'@importFrom tidyr separate
+#'@importFrom rlang quo
+#'@importFrom rlang enquo
+#'@importFrom rlang quo_name
 
 separateDateOccur <- function(.data,variable){#Seperates DateOccur into four columns and removes input column
   paramList <- as.list(match.call())

@@ -1,6 +1,10 @@
 #' Is Intersection
 #' @param .data a
 #' @param variable
+#' @importFrom rlang quo
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#'
 
 isIntersection <- function(.data,variable){
   paramList <- as.list(match.call())
