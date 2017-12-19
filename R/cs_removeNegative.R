@@ -1,5 +1,5 @@
 #'' Remove Negative Counts
-#'Removes values of -1 from a column
+#'Removes the row that contains -1 in a specified column
 #'@param .data a data frame
 #'@param variable the name of the column
 #'@return returns the data frame with the rows containing -1 removed
