@@ -6,7 +6,7 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @export
-
+isIntersection <- function(.data,variable){
 # check for missing parameters
 if (missing(.data)) {
   stop('A existing data frame with data to be seperated must be specified for .data')
@@ -16,7 +16,6 @@ if (missing(variable)) {
   stop('The column containing the data to be separated must be specified for variable')
 }
 
-isIntersection <- function(.data,variable){
 
   # save parameters to list
   paramList <- as.list(match.call())
