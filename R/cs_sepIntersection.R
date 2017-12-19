@@ -8,9 +8,23 @@
 #'@importFrom rlang quo
 #'@importFrom rlang enquo
 #'@importFrom rlang quo_name
-separateIntersection <- function(.data,variable){#Seperates ILEADSStreet into two columns and removes input column. ileadsStreetOne contains street address and ileadsStreetTwo contains street address if ILEADSStreet is an intersection. Replaces blank cells with NA
+#'@export
+separateIntersection <- function(.data,variable){
+   # save parameters to list
   paramList <- as.list(match.call())
+
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
+  if (missing(variable)) {
+    stop('The column containing the data to be separated must be specified for variable')
+  }
+
+  #quote input variables
   varN <- rlang::quo_name(rlang::enquo(variable))
+
   if (!is.character(paramList$variable)) {
     var <- rlang::enquo(variable)
   } else if (is.character(paramList$variable)) {
