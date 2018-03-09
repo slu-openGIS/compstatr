@@ -58,7 +58,41 @@ The first step in working with the SLMPD data is to import it. Our approach with
 data2008 <- cs_load_year(here("data", "rawData", "csv", "2008"))
 ```
 
-The `cs_load_year()` function requires that all 12 months of data are present. It will load data into a single list object containing a tibble for each month. Months are ordered alphabetically, not numerically.
+The `cs_load_year()` function requires that all 12 months of data are present. It will load data into a single list object containing a tibble for each month. Months are ordered alphabetically, not numerically (see Fixing Validation Errors below).
+
+Once loaded as a list, the `cs_validate_year()` function can be used to determine what issues exist in a given year's data. The validation function will check to make sure that:
+
+1.  `oneMonth` - each object in the list contains one month worth of data,
+2.  `valMonth` - each object in the list is appropriately positioned alphabetically,
+3.  `varCount` - each object in the list has 20 variables,
+4.  `valVars` - if there are 20 variables, that they are named correctly, and
+5.  `valClasses` - that each of the 20 variables is the proper class.
+
+The `cs_validate_year()` function returns a tibble that summarizes these results. A `TRUE` value indicates that the given month meets the given condition, and a `FALSE` value means it does not. An `NA` value is reported for `valVars` and `valClasses` if there are not 20 variables in the object.
+
+``` r
+cs_validate_year(data2008, year = "2008")
+```
+
+### Fixing Valiation Errors - Number of Variables
+
+The simplest validation errors to fix are instances when there are not 20 variables. The `cs_standardize()` function is designed to fix two scenarios - the common instance for pre-2014 data where there are only 18 variables, and a less common instance (only May 2017) where there are 26 variables. This function can be used on an entire list of objects:
+
+``` r
+data2008 <- cs_standardize(data2008, config = 18)
+```
+
+The `cs_standardize()` function can also be used on a specific month:
+
+``` r
+data2017 <- cs_standardize(data2017, month = "May", config = 26)
+```
+
+In both cases, it returns a full list of the year's data objects.
+
+### Fixing Validation Errors - Variable Classes
+
+If there are more specific errors, such as mis-formatted columns, a specific month can be extracted using the `cs_extract_month()` function:
 
 Code of Conduct
 ---------------
