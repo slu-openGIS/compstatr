@@ -11,6 +11,8 @@ cs_crime(.data, var, newVar, crime)
 
 \item{var}{Name of variable with 5 or 6 digit crime codes}
 
+\item{newVar}{Name of output variable to be created with logical data}
+
 \item{crime}{A string describing the crime type to be identified}
 }
 \value{
