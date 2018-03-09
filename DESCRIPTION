@@ -9,6 +9,7 @@ Authors@R: c(
 Description: This package contains a set of tools for accessing and editing 
     St. Louis Metropolitan Police Department (SLMPD) crime data, which is
     available on their website in csv form.
+Depends: R (>= 3.3)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true

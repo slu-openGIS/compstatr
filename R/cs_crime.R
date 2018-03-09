@@ -7,6 +7,7 @@
 #'
 #' @param .data A tbl
 #' @param var Name of variable with 5 or 6 digit crime codes
+#' @param newVar Name of output variable to be created with logical data
 #' @param crime A string describing the crime type to be identified
 #'
 #' @return A tibble with a logical vector that is \code{TRUE} if the given crime matches
