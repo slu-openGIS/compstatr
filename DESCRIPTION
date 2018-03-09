@@ -4,7 +4,8 @@ Title: Tools for St. Louis Crime Data
 Version: 0.1.0
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre")),
-    person("Cree", "Foeller", ,"foellerca@slu.edu", c("aut"))
+    person("Cree", "Foeller", ,"foellerca@slu.edu", c("aut")),
+    person("Taylor", "Braswell", , , c("com"))
     )
 Description: This package contains a set of tools for accessing and editing 
     St. Louis Metropolitan Police Department (SLMPD) crime data, which is

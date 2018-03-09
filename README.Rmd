@@ -124,7 +124,10 @@ If there are more specific errors, such as mis-formatted columns, a specific mon
 * `cs_filter_count()`
 
 ## Sample Data
-The `compstatr` package contains a single month that can be used for practicing some of the built-in functions
+The `compstatr` package contains a single month that can be used for practicing some of the built-in functions. This file, `january2018` contains all crimes reported that month in St. Louis. It is formatted to match validated data that has been created using `cs_collapse()` (though, in practice, the result of `cs_collapse()` should be a full year of data). Any functions for working with dates and times, spatial data, and crime codes can be practiced using these data.
+
+## Acknowledgements
+We wish to thank Taylor Braswell for his significant efforts compiling Stata code early in this project. Taylor's code was used as a reference when developing this package, and many of the functions reflect issues that he worked to identify.
 
 ## Code of Conduct
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
