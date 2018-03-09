@@ -27,6 +27,9 @@
 #' @export
 cs_validate_year <- function(.data, year){
 
+  # undefined global variables
+  month = oneMonth = valClasses = valMonth = valVars = varCount = x = y = NULL
+
   val <- c(5, 4, 8, 1, 9, 7, 6, 2, 12, 11, 10, 3)
   valStr <- c("-01", "-02", "-03", "-04", "-05", "-06", "-07", "-08", "-09", "-10", "-11", "-12")
 

@@ -28,6 +28,19 @@
 #' @export
 cs_standardize <- function(.data, month, config = 18){
 
+  # undefined global variables
+  AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
+  CADAddress = CADStreet = `Coded Month` = CodedMonth = Complaint = Count =
+  Crime = `Date Crime Coded` = `Date Occur` = DateOccur = DateOccured =
+  Description = District = `Flag Cleanup` = `Flag-Administrative` =
+  `Flag-Crime` = `Flag-Unfounded` = FlagAdministrative = FlagCleanup =
+  FlagCrime = FlagUnfounded = `ILEADS-Address` = `ILEADS-Street` =
+  ILEADSAddress = ILEADSStreet = `ILeads Add` = `ILeads Approve` =
+  `ILeads Asg` = `ILeads Type` = `Location Comment` = `Location Name` =
+  LocationComment = LocationName = MonthReportedtoMSHP = Neighborhood =
+  NewCrimeIndicator = UnfoundedCrimeIndicator = `X-Coord` = XCoord =
+  `Y-Coord` = YCoord = NULL
+
   if (missing(month)) {
 
     if (config == 18){

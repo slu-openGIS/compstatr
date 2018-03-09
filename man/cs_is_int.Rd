@@ -4,7 +4,7 @@
 \alias{cs_is_int}
 \title{Is A Location An Intersection?}
 \usage{
-cs_isIntersection(.data, variable)
+cs_is_int(.data, variable)
 }
 \arguments{
 \item{.data}{A tbl}

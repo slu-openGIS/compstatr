@@ -4,7 +4,7 @@
 #'     as incidents located at a single street address. This function can be
 #'     used to identify intersections for specific operations.
 #'
-#' @usage cs_isIntersection(.data, variable)
+#' @usage cs_is_int(.data, variable)
 #'
 #' @param .data A tbl
 #'
