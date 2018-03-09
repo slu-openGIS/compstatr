@@ -1,15 +1,21 @@
-#''Seperate Interection
-#'Takes a column that contains street addresses and seperates the addresses into two columns
-#'@param .data a data frame
-#'@param variable the column containing street adresses
-#'@return returns two columns containing street addresses and removes the input column
-#'@importFrom dplyr %>%
-#'@importFrom tidyr separate
-#'@importFrom rlang quo
-#'@importFrom rlang enquo
-#'@importFrom rlang quo_name
-#'@export
-separateIntersection <- function(.data,variable){
+#' Seperate Interection
+#'
+#' @description  Takes a column that contains street addresses and seperates
+#'     the addresses into two columns
+#'
+#' @param .data a data frame
+#' @param variable the column containing street adresses
+#'
+#' @return returns two columns containing street addresses and removes the input column
+#'
+#' @importFrom dplyr %>%
+#' @importFrom tidyr separate
+#' @importFrom rlang quo
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#'
+#' @export
+cs_parse_int <- function(.data,variable){
    # save parameters to list
   paramList <- as.list(match.call())
 

@@ -1,15 +1,21 @@
-#''Seperate Coded Month
-#'Seperates a column containing coded year and coded month seperated by "-" into two columns and removes the input column
-#'@param .data a data frame
-#'@param variable the variable containing coded month and coded year
-#'@return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
-#'@importFrom dplyr %>%
-#'@importFrom tidyr separate
-#'@importFrom rlang quo
-#'@importFrom rlang enquo
-#'@importFrom rlang quo_name
-#'@export
-separateCodedMonth <- function(.data,variable){ #Seperates CodedMonth into two columns and removes input column
+#' Seperate Coded Month
+#'
+#' @description Seperates a column containing coded year and coded month
+#'     seperated by "-" into two columns and removes the input column
+#'
+#' @param .data a data frame
+#' @param variable the variable containing coded month and coded year
+#'
+#' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
+#'
+#' @importFrom dplyr %>%
+#' @importFrom tidyr separate
+#' @importFrom rlang quo
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#'
+#' @export
+cs_parse_month <- function(.data,variable){
 
   # check for missing parameters
   if (missing(.data)) {
