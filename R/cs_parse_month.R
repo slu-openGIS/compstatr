@@ -1,25 +1,21 @@
-#' Is A Location An Intersection?
+#' Seperate Coded Month
 #'
-#' @description The \code{ILEADSAddress} field contains intersections as well
-#'     as incidents located at a single street address. This function can be
-#'     used to identify intersections for specific operations.
+#' @description Seperates a column containing coded year and coded month
+#'     seperated by "-" into two columns and removes the input column
 #'
-#' @usage cs_isIntersection(.data, variable)
+#' @param .data a data frame
+#' @param variable the variable containing coded month and coded year
 #'
-#' @param .data A tbl
+#' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
 #'
-#' @param variable A column containing \code{ILEADSAddress} data
-#'
-#' @return a logical vector that displays \code{TRUE} where the column is a
-#'     intersection and displays \code{FALSE} when the column isn't an
-#'     intersection.
-#'
+#' @importFrom dplyr %>%
+#' @importFrom tidyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #'
 #' @export
-cs_isIntersection <- function(.data, variable){
+cs_parse_month <- function(.data,variable){
 
   # check for missing parameters
   if (missing(.data)) {
@@ -35,12 +31,13 @@ cs_isIntersection <- function(.data, variable){
 
   #quote input variables
   varN <- rlang::quo_name(rlang::enquo(variable))
-
   if (!is.character(paramList$variable)) {
     var <- rlang::enquo(variable)
   } else if (is.character(paramList$variable)) {
     var <- rlang::quo(!! rlang::sym(variable))
   }
 
-  ifelse(.data[,varN] == 0,"TRUE","FALSE")
+  .data %>%
+    tidyr::separate((!var), c("codedYear","codedMonth"), "-", remove = TRUE)
 }
+

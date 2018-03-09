@@ -1,12 +1,29 @@
+#' Extract Month from Year List Object
 #'
+#' @description This function replaces a single month worth of crime data that
+#'   has previously been extracted from a year list object.
+#'
+#' @usage cs_replace_month(.data, month, monthData)
+#'
+#' @param .data A year list object
+#'
+#' @param month A string name or abbreviation of a month, or its numeric value.
+#'    Acceptable inputs include, for example, "January", "january", "Jan",
+#'    "jan", and 1.
+#'
+#' @param monthData A tibble containing a single month worth of crime data.
+#'
+#' @return A tibble containing a single month worth of crime data.
+#'
+#' @export
 cs_replace_month <- function(.data, month, monthData){
-  
+
   if (month == "January" | month == "Jan" | month == "january" | month == "jan" | month == 1){
     val <- 5
   } else if (month == "February" | month == "Feb" | month == "february" | month == "feb" | month == 2){
     val <- 4
   } else if (month == "March" | month == "Mar" | month == "march" | month == "mar" | month == 3){
-    val <- 8 
+    val <- 8
   } else if (month == "April" | month == "Apr" | month == "april" | month == "apr" | month == 4){
     val <- 1
   } else if (month == "May" | month == "may" | month == 5){
@@ -26,9 +43,9 @@ cs_replace_month <- function(.data, month, monthData){
   } else if (month == "December" | month == "Dec" | month == "december" | month == "dec" | month == 12){
     val <- 3
   }
-  
+
   .data[[val]] <- monthData
-  
+
   return(.data)
-  
+
 }
