@@ -18,3 +18,9 @@ returns the data frame with the 0's in the specified column changed
 This function a specified column from the data frame and
     replaces cells that ahve the value 0 with NA
 }
+\examples{
+testData <- january2018
+testData <- cs_replace_na(testData, XCoord)
+testData <- cs_replace_na(testData, YCoord)
+
+}

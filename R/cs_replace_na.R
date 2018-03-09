@@ -11,6 +11,11 @@
 #'
 #' @return returns the data frame with the 0's in the specified column changed
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_replace_na(testData, XCoord)
+#' testData <- cs_replace_na(testData, YCoord)
+#'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
