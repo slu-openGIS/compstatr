@@ -2,9 +2,9 @@
 % Please edit documentation in R/cs_crime.R
 \name{cs_crime}
 \alias{cs_crime}
-\title{Identify Violent Crimes}
+\title{Identify Crimes}
 \usage{
-cs_crime(.data, var, crime)
+cs_crime(.data, var, newVar, crime)
 }
 \arguments{
 \item{.data}{A tbl}
@@ -14,12 +14,10 @@ cs_crime(.data, var, crime)
 \item{crime}{A string describing the crime type to be identified}
 }
 \value{
-A logical vector
+A tibble with a logical vector that is \code{TRUE} if the given crime matches
+    the category given in the function.
 }
 \description{
-Violent crimes, as defined by the U.S. Federal Bureau of
-    Investigation, are murder, rape, aggrevated assault, and burglary.
-    \code{cs_crime_violent} can be used to identify specific single
-    UCR categories or common groupings for purposes of variable
-    creation or subsettings.
+\code{cs_crime} can be used to easily identify
+    crimes based on a specific single UCR categories or common groupings.
 }
