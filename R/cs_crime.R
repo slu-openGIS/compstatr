@@ -1,25 +1,25 @@
-#' Identify Violent Crimes
+#' Identify Crimes
 #'
-#' @description Violent crimes, as defined by the U.S. Federal Bureau of
-#'     Investigation, are murder, rape, aggrevated assault, and burglary.
-#'     \code{cs_crime_violent} can be used to identify specific single
-#'     UCR categories or common groupings for purposes of variable
-#'     creation or subsettings.
+#' @description \code{cs_crime} can be used to easily identify
+#'     crimes based on a specific single UCR categories or common groupings.
 #'
-#' @usage cs_crime(.data, var, crime)
+#' @usage cs_crime(.data, var, newVar, crime)
 #'
 #' @param .data A tbl
 #' @param var Name of variable with 5 or 6 digit crime codes
 #' @param crime A string describing the crime type to be identified
 #'
-#' @return A logical vector
+#' @return A tibble with a logical vector that is \code{TRUE} if the given crime matches
+#'     the category given in the function.
 #'
+#' @importFrom dplyr filter
+#' @importFrom rlang :=
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom rlang sym
 #'
 #' @export
-cs_crime <- function(.data, var, crime){
+cs_crime <- function(.data, var, newVar, crime){
 
   # save parameters to list
   paramList <- as.list(match.call())
@@ -31,18 +31,22 @@ cs_crime <- function(.data, var, crime){
     var <- rlang::quo(!! rlang::sym(var))
   }
 
-  varN <- rlang::quo_name(rlang::enquo(var))
+  newVarN <- rlang::quo_name(rlang::enquo(newVar))
 
   if (crime == "violent"){
 
-    output <- ifelse(.data[,varN] <= 50000, TRUE, FALSE)
+    cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 50000, TRUE, FALSE))
 
   } else if (crime == "part 1" | crime == "Part 1"){
 
-    output <- ifelse(.data[,varN] <= 90000, TRUE, FALSE)
+    cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 90000, TRUE, FALSE))
+
+  } else if (crime == "Homicide" | crime == "homicide" | crime == "Murder" | crime == "murder" | crime == 1){
+
+    cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 10000 & !!var < 20000, TRUE, FALSE))
 
   }
 
-  return(output)
+  return(cleanData)
 
 }
