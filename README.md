@@ -25,19 +25,21 @@ devtools::install_github("slu-openGIS/compStatR")
 Opionated Data Preparation
 --------------------------
 
-As of March 2018, the City's data is downloaded with an `.html` file extension. For our research purposes, we save the raw files by year into a folder called `data/rawData/html`. We then use a bash script called from an `R` notebook to copy all of these to a folder called `data/rawData/csv` and then loop through each year of the folder, removing the redundent file extension created when `January2008.csv.html` is downloaded. We then use a second loop to change the extension itself to `.csv`.
+As of March 2018, the City's data is downloaded with an `.html` file extension appended to the filename. The downloaded files look like either `January2008.csv.html` or `January2008.CSV.html`. For our research purposes, we save the raw files by year into a folder called `data/raw/html`. The `html/` folder will therefore have dedicated subfolders like `2008/`, `2009/`, etc.
+
+We then use a bash script called from an `R` notebook to copy all of these to a folder called `data/raw/csv` and then loop through each year's folder, removing the redundent file extension created when `January2008.csv.html` is downloaded. We then use a second loop to change the extension itself to `.csv`.
 
 ``` bash
 # copy html files new directory for csv
-cp -r data/rawData/html/* data/rawData/csv
+cp -r data/raw/html/* data/raw/csv
 
 # change file extensions
-for file in data/rawData/csv/2008/*.html
+for file in data/raw/csv/2008/*.html
 do
   mv "$file" "${file%%.*}.${file##*.}"
 done
 
-for file in data/rawData/csv/2008/*.html
+for file in data/raw/csv/2008/*.html
 do
  mv "$file" "${file%.html}.csv"
 done
