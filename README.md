@@ -19,7 +19,7 @@ You can install compstatr from Github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("slu-openGIS/compStatR")
+devtools::install_github("slu-openGIS/compstatr")
 ```
 
 Opionated Data Preparation
