@@ -47,7 +47,7 @@ done
 
 for file in data/raw/csv/2008/*.html
 do
- mv "$file" "${file%.html}.csv"
+  mv "$file" "${file%.html}.csv"
 done
 ```
 
@@ -61,9 +61,9 @@ The first step in working with the SLMPD data is to import it. Our approach with
 data2008 <- cs_load_year(here("data", "rawData", "csv", "2008"))
 ```
 
-The `cs_load_year()` function requires that all 12 months of data are present. It will load data into a single list object containing a tibble for each month. Months are ordered alphabetically, not numerically (see Fixing Validation Errors below).
+The `cs_load_year()` function requires that all 12 months of data are present. It will load data into a single list object containing a tibble for each month. Months are ordered alphabetically, not numerically (see Fixing Validation Errors below). These are referred to as "year list objects" in the `compstatr` documentation.
 
-Once loaded as a list, the `cs_validate_year()` function can be used to determine what issues exist in a given year's data. The validation function will check to make sure that: 
+Once a year list object has been created, the `cs_validate_year()` function can be used to determine what issues exist in a given year's data. The validation function will check to make sure that: 
 
 (1) `oneMonth` - each object in the list contains one month worth of data, 
 (2) `valMonth` - each object in the list is appropriately positioned alphabetically, 
@@ -78,24 +78,53 @@ cs_validate_year(data2008, year = "2008")
 ```
 
 ### Fixing Valiation Errors - Number of Variables
-The simplest validation errors to fix are instances when there are not 20 variables. The `cs_standardize()` function is designed to fix two scenarios - the common instance for pre-2014 data where there are only 18 variables, and a less common instance (only May 2017) where there are 26 variables. This function can be used on an entire list of objects:
+The simplest validation errors to fix are instances when there are not 20 variables. The `cs_standardize()` function is designed to fix two scenarios - the common instance for pre-2014 data where there are only 18 variables, and a less common instance (only May 2017) where there are 26 variables. This function can be used on an entire year list object:
 
 ```r
 data2008 <- cs_standardize(data2008, config = 18)
 ```
 
-The `cs_standardize()` function can also be used on a specific month:
+The `cs_standardize()` function can also be used on a specific month within the year list object:
 
 ```r
 data2017 <- cs_standardize(data2017, month = "May", config = 26)
 ```
 
-In both cases, it returns a full list of the year's data objects.
+In both cases, it returns a copy of the year list object
 
 ### Fixing Validation Errors - Variable Classes
+
+* `cs_validate_month()`
+
 If there are more specific errors, such as mis-formatted columns, a specific month can be extracted using the `cs_extract_month()` function:
 
+* `cs_replace_month()`
 
+### Collapsing Year List Objects
+
+* `cs_collapse()`
+
+### Working with Dates and Times
+
+* `cs_parse_date()`
+* `cs_parse_month()`
+
+### Working with Spatial Data
+
+* `cs_is_int()`
+* `cs_missing_xy()`
+* `cs_parse_int()`
+* `cs_replace_na()`
+
+### Working with Crime Codes
+
+* `cs_crime()`
+* `cs_crime_cat()`
+* `cs_crime_filter()`
+* `cs_filter_count()`
+
+## Sample Data
+The `compstatr` package contains a single month that can be used for practicing some of the built-in functions
 
 ## Code of Conduct
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
