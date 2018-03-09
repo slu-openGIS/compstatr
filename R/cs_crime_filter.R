@@ -41,6 +41,10 @@ cs_crime_filter <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 10000 & !!var < 20000)
 
+  } else if (crime == "Arson" | crime == "arson" | crime == 8){
+
+    subsetData <- dplyr::filter(.data, !!var >= 80000 & !!var < 90000)
+
   }
 
   return(subsetData)

@@ -46,6 +46,10 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 10000 & !!var < 20000, TRUE, FALSE))
 
+  } else if (crime == "Arson" | crime == "arson" | crime == 8){
+
+    cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 80000 & !!var < 90000, TRUE, FALSE))
+
   }
 
   return(cleanData)
