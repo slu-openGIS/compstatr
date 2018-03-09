@@ -16,6 +16,11 @@
 #' @export
 cs_collapse <- function(.data){
 
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
   # extract each month to an individual object
   jan <- cs_extract_month(.data, month = 1)
   feb <- cs_extract_month(.data, month = 2)
