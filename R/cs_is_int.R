@@ -42,5 +42,6 @@ cs_is_int <- function(.data, variable){
     var <- rlang::quo(!! rlang::sym(variable))
   }
 
-  ifelse(.data[,varN] == 0,"TRUE","FALSE")
+  .data %>%
+    mutate(is_int = (ifelse((!!var) == 0,"TRUE","FALSE")))
 }
