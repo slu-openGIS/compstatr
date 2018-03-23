@@ -13,7 +13,7 @@
 #' @return A tibble with a logical vector that is \code{TRUE} if the given crime matches
 #'     the category given in the function.
 #'
-#' @importFrom dplyr filter
+#' @importFrom dplyr mutate
 #' @importFrom rlang :=
 #' @importFrom rlang quo
 #' @importFrom rlang enquo

@@ -5,7 +5,7 @@
 #'     into either string, factor, or simplified numeric categories
 #'     like "murder" or "aggrevated assault".
 #'
-#' @details The categories used here are dervied from the U.S. Federal
+#' @details The categories used here are derived from the U.S. Federal
 #'     Bureau of Investigation's Uniform Crime Reporting codes.
 #'
 #' @param .data A tbl
@@ -21,6 +21,7 @@
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
+#' @importFrom rlang sym
 #'
 #' @export
 cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "numeric")){
@@ -48,7 +49,7 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
   if (output == "string" | output == "factor"){
 
     cleanData <- .data %>%
-      mutate(!!newVarN := case_when(
+      dplyr::mutate(!!newVarN := case_when(
         !!var >= 10000 & !!var < 20000 ~ "Homicide",
         !!var >= 20000 & !!var < 30000 ~ "Forcible Rape",
         !!var >= 30000 & !!var < 40000 ~ "Robbery",
@@ -80,14 +81,14 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
 
     if (output == "factor"){
 
-      cleanData <- mutate(cleanData, !!newVarN := as.factor(!!varN))
+      cleanData <- dplyr::mutate(cleanData, !!newVarN := as.factor(!!varN))
 
     }
 
   } else if (output == "numeric"){
 
     cleanData <- .data %>%
-      mutate(!!newVarN := case_when(
+      dplyr::mutate(!!newVarN := case_when(
         !!var >= 10000 & !!var < 20000 ~ 1,
         !!var >= 20000 & !!var < 30000 ~ 2,
         !!var >= 30000 & !!var < 40000 ~ 3,

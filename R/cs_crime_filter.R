@@ -49,7 +49,7 @@ cs_crime_filter <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 30000 & !!var < 40000)
 
-  } else if (crime == "aggravated Assault" | crime == "Aggravated Assault" | crime == 4){
+  } else if (crime == "aggravated assault" | crime == "Aggravated Assault" | crime == 4){
 
     subsetData <- dplyr::filter(.data, !!var >= 40000 & !!var < 50000)
 
@@ -61,7 +61,7 @@ cs_crime_filter <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 60000 & !!var < 70000)
 
-  } else if (crime == "Arson" | crime == "arson" | crime == 7){
+  } else if (crime == "motor vehicle theft" | crime == "Motor Vehicle Theft" | crime == 7){
 
     subsetData <- dplyr::filter(.data, !!var >= 70000 & !!var < 80000)
 
