@@ -157,11 +157,11 @@ cs_crime <- function(.data, var, newVar, crime){
 
   cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 270000 & !!var < 280000, TRUE, FALSE))
 
-} else if (crime == "curfew and loitering laws" | crime == "Curfew and Loitering Laws" | crime == 28){
+} else if (crime == "curfew and loitering laws--persons under 18" | crime == "Curfew and Loitering Laws-Persons under 18" | crime == 28){
 
   cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 280000 & !!var < 290000, TRUE, FALSE))
 
-} else if (crime == "runaways" | crime == "Runaways" | crime == 29){
+} else if (crime == "runaways-persons under 18" | crime == "Runaways-Persons under 18" | crime == 29){
 
   cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 290000 & !!var < 300000, TRUE, FALSE))
 

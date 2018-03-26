@@ -157,11 +157,11 @@ cs_crime_filter <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 270000 & !!var < 280000)
 
-  } else if (crime == "curfew and loitering laws" | crime == "Curfew and Loitering Laws" | crime == 28){
+  } else if (crime == "curfew and loitering laws-persons under 18" | crime == "Curfew and Loitering Laws-Persons under 18" | crime == 28){
 
     subsetData <- dplyr::filter(.data, !!var >= 280000 & !!var < 290000)
 
-  } else if (crime == "runaways" | crime == "Runaways" | crime == 29){
+  } else if (crime == "runaways-persons under 18" | crime == "Runaways-Persons under 18" | crime == 29){
 
     subsetData <- dplyr::filter(.data, !!var >= 290000)
 
