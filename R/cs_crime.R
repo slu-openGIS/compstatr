@@ -56,7 +56,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
 } else if (crime == "robbery" | crime == "Robbery" | crime == 3){
 
-  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 20000  & !!var < 40000, TRUE, FALSE))
+  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 30000  & !!var < 40000, TRUE, FALSE))
 
 } else if (crime == "aggravated Assault" | crime == "Aggravated Assault" | crime == 4){
 
@@ -68,7 +68,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
 } else if (crime == "larceny-theft" | crime == "Larceny-theft" | crime == 6){
 
-  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 60000  & !!var < 70000, TRUE, FALSE))
+  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 60000  & !!var < 70000, TRUE, FALSE))
 
 } else if (crime == "motor vehicle theft" | crime == "Motor Vehicle Theft" | crime == 7){
 
@@ -92,7 +92,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
 } else if (crime == "Fraud" | crime == "fraud" | crime == 11){
 
-  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 110000 & !!var < 120000, TRUE, FALSE))
+  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 110000 & !!var < 120000, TRUE, FALSE))
 
 } else if (crime == "Embezzlement" | crime == "embezzlement" | crime == 12){
 
@@ -103,7 +103,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
 } else if (crime == "Vandalism" | crime == "vandalism" | crime == 14){
 
-  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 140000 & !!var < 150000, TRUE, FALSE))
+  cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 140000 & !!var < 150000, TRUE, FALSE))
 
 } else if (crime == "weapons" | crime == "Weapons" | crime == 15){
 
