@@ -10,6 +10,8 @@
 #'
 #' @param variable A column containing \code{ILEADSAddress} data
 #'
+#' @param newVar the name of the column to be created
+#'
 #' @return a logical vector that displays \code{TRUE} where the column is a
 #'     intersection and displays \code{FALSE} when the column isn't an
 #'     intersection.
@@ -17,9 +19,11 @@
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
+#' @importFrom rlang sym
+#' @importFrom dplyr mutate
 #'
 #' @export
-cs_is_int <- function(.data, variable){
+cs_is_int <- function(.data, variable, newVar){
 
   # check for missing parameters
   if (missing(.data)) {
@@ -43,5 +47,5 @@ cs_is_int <- function(.data, variable){
   }
 
   .data %>%
-    mutate(is_int = (ifelse((!!var) == 0,"TRUE","FALSE")))
+    dplyr::mutate(newVar = (ifelse((!!var) == 0,"TRUE","FALSE")))
 }

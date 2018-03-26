@@ -29,9 +29,13 @@ cs_crime_filter <- function(.data, var, crime){
     var <- rlang::quo(!! rlang::sym(var))
   }
 
-  if (crime == "violent"){
+  if (crime == "violent" | crime == "Violent"){
 
     subsetData <- dplyr::filter(.data, !!var <= 50000)
+
+  } else if (crime == "property" | crime == "Property")
+
+    subsetData <- dplyr::filter(.data, !!var >= 50000 & !!var < 90000)
 
   } else if (crime == "part 1" | crime == "Part 1" | crime == "part I" | crime == "Part I"){
 
