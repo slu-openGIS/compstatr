@@ -148,15 +148,15 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$FlagUnfounded == "logical") {
+      if (classes$FlagUnfounded == "character") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$FlagUnfounded != "logical"){
+      } else if (classes$FlagUnfounded != "character"){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$FlagAdministrative == "logical") {
+      if (classes$FlagAdministrative == "character") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$FlagAdministrative != "logical"){
+      } else if (classes$FlagAdministrative != "character"){
         classResult <- c(classResult, FALSE)
       }
 
@@ -166,9 +166,9 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$FlagCleanup == "logical") {
+      if (classes$FlagCleanup == "character") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$FlagCleanup != "logical"){
+      } else if (classes$FlagCleanup != "character"){
         classResult <- c(classResult, FALSE)
       }
 
