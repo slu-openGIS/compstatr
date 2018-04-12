@@ -46,18 +46,18 @@ cs_standardize <- function(.data, month, config = 18){
     if (config == 18){
 
       .data %>%
-        cs_std18(.[[1]]) %>%
-        cs_std18(.[[2]]) %>%
-        cs_std18(.[[3]]) %>%
-        cs_std18(.[[4]]) %>%
-        cs_std18(.[[5]]) %>%
-        cs_std18(.[[6]]) %>%
-        cs_std18(.[[7]]) %>%
-        cs_std18(.[[8]]) %>%
-        cs_std18(.[[9]]) %>%
-        cs_std18(.[[10]]) %>%
-        cs_std18(.[[11]]) %>%
-        cs_std18(.[[12]]) -> cleanData
+        cs_std18(.data[[1]]) %>%
+        cs_std18(.data[[2]]) %>%
+        cs_std18(.data[[3]]) %>%
+        cs_std18(.data[[4]]) %>%
+        cs_std18(.data[[5]]) %>%
+        cs_std18(.data[[6]]) %>%
+        cs_std18(.data[[7]]) %>%
+        cs_std18(.data[[8]]) %>%
+        cs_std18(.data[[9]]) %>%
+        cs_std18(.data[[10]]) %>%
+        cs_std18(.data[[11]]) %>%
+        cs_std18(.data[[12]]) -> cleanData
 
       return(cleanData)
 
