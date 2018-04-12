@@ -4,12 +4,14 @@
 \alias{cs_is_int}
 \title{Is A Location An Intersection?}
 \usage{
-cs_is_int(.data, variable)
+cs_is_int(.data, variable, newVar)
 }
 \arguments{
 \item{.data}{A tbl}
 
 \item{variable}{A column containing \code{ILEADSAddress} data}
+
+\item{newVar}{the name of the column to be created}
 }
 \value{
 a logical vector that displays \code{TRUE} where the column is a
