@@ -115,7 +115,7 @@ cs_std18 <- function(.data){
     rename(FlagAdministrative = AdministrativeAdjustmentIndicator) %>%
     rename(DateOccur = DateOccured) %>%
     mutate(Complaint = as.character(NA)) %>%
-    mutate(FlagCleanup = as.logical(NA)) %>%
+    mutate(FlagCleanup = as.character(NA)) %>%
     select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded, FlagAdministrative, Count,
            FlagCleanup, Crime, District, Description, ILEADSAddress, ILEADSStreet, Neighborhood,
            LocationName, LocationComment, CADAddress, CADStreet, XCoord, YCoord) -> .data
