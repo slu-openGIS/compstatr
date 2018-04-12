@@ -160,9 +160,9 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$Count == "numeric") {
+      if (classes$Count == "integer") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$Count != "numeric"){
+      } else if (classes$Count != "integer"){
         classResult <- c(classResult, FALSE)
       }
 
@@ -172,15 +172,15 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$Crime == "numeric") {
+      if (classes$Crime == "integer") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$Crime != "numeric"){
+      } else if (classes$Crime != "integer"){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$District == "numeric") {
+      if (classes$District == "integer") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$District != "numeric"){
+      } else if (classes$District != "integer"){
         classResult <- c(classResult, FALSE)
       }
 
@@ -190,9 +190,9 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$ILEADSAddress == "numeric") {
+      if (classes$ILEADSAddress == "integer") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$ILEADSAddress != "numeric"){
+      } else if (classes$ILEADSAddress != "integer"){
         classResult <- c(classResult, FALSE)
       }
 
@@ -202,9 +202,9 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$Neighborhood == "numeric") {
+      if (classes$Neighborhood == "integer") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$Neighborhood != "numeric"){
+      } else if (classes$Neighborhood != "integer"){
         classResult <- c(classResult, FALSE)
       }
 
@@ -220,9 +220,9 @@ cs_validate_year <- function(.data, year){
         classResult <- c(classResult, FALSE)
       }
 
-      if (classes$CADAddress == "numeric") {
+      if (classes$CADAddress == "integer") {
         classResult <- c(classResult, TRUE)
-      } else if (classes$CADAddress != "numeric"){
+      } else if (classes$CADAddress != "integer"){
         classResult <- c(classResult, FALSE)
       }
 
