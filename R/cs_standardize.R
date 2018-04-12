@@ -41,7 +41,9 @@ cs_standardize <- function(.data, month, config = 18){
   NewCrimeIndicator = UnfoundedCrimeIndicator = `X-Coord` = XCoord =
   `Y-Coord` = YCoord = NULL
 
+
   if (missing(month)) {
+    # we only need to clean full years of 18 variables
 
     if (config == 18){
 
@@ -65,6 +67,7 @@ cs_standardize <- function(.data, month, config = 18){
     }
 
   } else if (!missing(month)) {
+    # for cleaning inidivudal months, we need to pull a single month out for cleaning
 
     val <- cs_selectMonth(month)
 
@@ -88,9 +91,23 @@ cs_standardize <- function(.data, month, config = 18){
 
 }
 
-#'
+# standardize month with 18 variables
 cs_std18 <- function(.data){
 
+  # undefined global variables
+  AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
+    CADAddress = CADStreet = `Coded Month` = CodedMonth = Complaint = Count =
+    Crime = `Date Crime Coded` = `Date Occur` = DateOccur = DateOccured =
+    Description = District = `Flag Cleanup` = `Flag-Administrative` =
+    `Flag-Crime` = `Flag-Unfounded` = FlagAdministrative = FlagCleanup =
+    FlagCrime = FlagUnfounded = `ILEADS-Address` = `ILEADS-Street` =
+    ILEADSAddress = ILEADSStreet = `ILeads Add` = `ILeads Approve` =
+    `ILeads Asg` = `ILeads Type` = `Location Comment` = `Location Name` =
+    LocationComment = LocationName = MonthReportedtoMSHP = Neighborhood =
+    NewCrimeIndicator = UnfoundedCrimeIndicator = `X-Coord` = XCoord =
+    `Y-Coord` = YCoord = NULL
+
+  # clean month
   .data %>%
     rename(CodedMonth = MonthReportedtoMSHP) %>%
     rename(FlagCrime = NewCrimeIndicator) %>%
@@ -107,9 +124,23 @@ cs_std18 <- function(.data){
 
 }
 
-#'
+# standardize month with 26 variables
 cs_std26 <- function(.data){
 
+  # undefined global variables
+  AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
+    CADAddress = CADStreet = `Coded Month` = CodedMonth = Complaint = Count =
+    Crime = `Date Crime Coded` = `Date Occur` = DateOccur = DateOccured =
+    Description = District = `Flag Cleanup` = `Flag-Administrative` =
+    `Flag-Crime` = `Flag-Unfounded` = FlagAdministrative = FlagCleanup =
+    FlagCrime = FlagUnfounded = `ILEADS-Address` = `ILEADS-Street` =
+    ILEADSAddress = ILEADSStreet = `ILeads Add` = `ILeads Approve` =
+    `ILeads Asg` = `ILeads Type` = `Location Comment` = `Location Name` =
+    LocationComment = LocationName = MonthReportedtoMSHP = Neighborhood =
+    NewCrimeIndicator = UnfoundedCrimeIndicator = `X-Coord` = XCoord =
+    `Y-Coord` = YCoord = NULL
+
+  # clean month
   .data %>%
     select(-`ILeads Add`, -`ILeads Approve`, -Beat, -`ILeads Asg`,
            -`ILeads Type`, -`Date Crime Coded`) %>%
@@ -137,7 +168,7 @@ cs_std26 <- function(.data){
 
 }
 
-#'
+# select month for standardization
 cs_selectMonth <- function(month){
 
   if (month == "January" | month == "Jan" | month == "january" | month == "jan" | month == 1){
