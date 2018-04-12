@@ -4,7 +4,7 @@
 \alias{cs_missing_xy}
 \title{Missing Coordinates}
 \usage{
-cs_missing_xy(.data, x, y)
+cs_missing_xy(.data, x, y, newVar)
 }
 \arguments{
 \item{.data}{a data frame}
@@ -12,6 +12,8 @@ cs_missing_xy(.data, x, y)
 \item{x}{the column from the data frame containing the x coordinates}
 
 \item{y}{the column from the data frame containg the y coordinates}
+
+\item{newVar}{the name of the new column}
 }
 \value{
 returns a logical vector that displays TRUE when the coordinates are

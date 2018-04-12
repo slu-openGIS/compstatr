@@ -25,6 +25,6 @@ The SLMPD data contains 5 or 6 digit codes to refer to
     like "murder" or "aggrevated assault".
 }
 \details{
-The categories used here are dervied from the U.S. Federal
+The categories used here are derived from the U.S. Federal
     Bureau of Investigation's Uniform Crime Reporting codes.
 }

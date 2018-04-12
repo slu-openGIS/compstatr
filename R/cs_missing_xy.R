@@ -4,12 +4,12 @@
 #'     TRUE/FALSE column that states which rows are missing coordinate
 #'     data.
 #'
-#' @usage cs_missing_xy(.data, x, y)
+#' @usage cs_missing_xy(.data, x, y, newVar)
 #'
 #' @param .data a data frame
 #' @param x the column from the data frame containing the x coordinates
 #' @param y the column from the data frame containg the y coordinates
-#' @param newVar the name of the new of the new column
+#' @param newVar the name of the new column
 #'
 #' @return returns a logical vector that displays TRUE when the coordinates are
 #'     missing and FALSE if the coordinates are not missing

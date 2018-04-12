@@ -33,7 +33,7 @@ cs_crime_filter <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var <= 50000)
 
-  } else if (crime == "property" | crime == "Property")
+  } else if (crime == "property" | crime == "Property"){
 
     subsetData <- dplyr::filter(.data, !!var >= 50000 & !!var < 90000)
 
