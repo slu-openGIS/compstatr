@@ -4,7 +4,7 @@
 #'     columns and removes the input column.
 #'
 #' @param .data a data frame
-#' @param variable a column containing month, day, year, and time seperated by "/"
+#' @param var a column containing month, day, year, and time seperated by "/"
 #'
 #' @return returns 4 different columns containing, month, day, year, and time
 #'
@@ -15,14 +15,14 @@
 #' @importFrom rlang quo_name
 #'
 #'@export
-cs_parse_date <- function(.data,variable){#Seperates DateOccur into four columns and removes input column
+cs_parse_date <- function(.data,var){#Seperates DateOccur into four columns and removes input column
 
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
   }
 
-  if (missing(variable)) {
+  if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
 
@@ -30,10 +30,10 @@ cs_parse_date <- function(.data,variable){#Seperates DateOccur into four columns
   paramList <- as.list(match.call())
 
   #quote input variables
-  if (!is.character(paramList$variable)) {
-    var <- rlang::enquo(variable)
-  } else if (is.character(paramList$variable)) {
-    var <- rlang::quo(!! rlang::sym(variable))
+  if (!is.character(paramList$var)) {
+    var <- rlang::enquo(var)
+  } else if (is.character(paramList$var)) {
+    var <- rlang::quo(!! rlang::sym(var))
   }
 
   .data %>%

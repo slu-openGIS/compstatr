@@ -4,7 +4,7 @@
 #'     seperated by "-" into two columns and removes the input column
 #'
 #' @param .data a data frame
-#' @param variable the variable containing coded month and coded year
+#' @param var the variable containing coded month and coded year
 #'
 #' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
 #'
@@ -15,14 +15,14 @@
 #' @importFrom rlang quo_name
 #'
 #' @export
-cs_parse_month <- function(.data,variable){
+cs_parse_month <- function(.data,var){
 
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
   }
 
-  if (missing(variable)) {
+  if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
 
@@ -30,11 +30,11 @@ cs_parse_month <- function(.data,variable){
   paramList <- as.list(match.call())
 
   #quote input variables
-  varN <- rlang::quo_name(rlang::enquo(variable))
-  if (!is.character(paramList$variable)) {
-    var <- rlang::enquo(variable)
-  } else if (is.character(paramList$variable)) {
-    var <- rlang::quo(!! rlang::sym(variable))
+  varN <- rlang::quo_name(rlang::enquo(var))
+  if (!is.character(paramList$var)) {
+    var <- rlang::enquo(var)
+  } else if (is.character(paramList$var)) {
+    var <- rlang::quo(!! rlang::sym(var))
   }
 
   .data %>%

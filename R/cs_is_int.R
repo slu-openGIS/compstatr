@@ -23,14 +23,14 @@
 #' @importFrom dplyr mutate
 #'
 #' @export
-cs_is_int <- function(.data, variable, newVar){
+cs_is_int <- function(.data, var, newVar){
 
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
   }
 
-  if (missing(variable)) {
+  if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
 
@@ -38,12 +38,12 @@ cs_is_int <- function(.data, variable, newVar){
   paramList <- as.list(match.call())
 
   #quote input variables
-  varN <- rlang::quo_name(rlang::enquo(variable))
+  varN <- rlang::quo_name(rlang::enquo(var))
 
-  if (!is.character(paramList$variable)) {
-    var <- rlang::enquo(variable)
-  } else if (is.character(paramList$variable)) {
-    var <- rlang::quo(!! rlang::sym(variable))
+  if (!is.character(paramList$var)) {
+    var <- rlang::enquo(var)
+  } else if (is.character(paramList$var)) {
+    var <- rlang::quo(!! rlang::sym(var))
   }
 
   .data %>%
