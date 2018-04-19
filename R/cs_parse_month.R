@@ -1,7 +1,7 @@
 #' Seperate Coded Month
 #'
 #' @description Seperates a column containing coded year and coded month
-#'     seperated by "-" into two columns and removes the input column
+#'     separated by "-" into two columns and removes the input column
 #'
 #' @param .data a data frame
 #' @param var the variable containing coded month and coded year
@@ -15,7 +15,7 @@
 #' @importFrom rlang quo_name
 #'
 #' @export
-cs_parse_month <- function(.data,var){
+cs_parse_month <- function(.data,var,newVar1,newVar2){
 
   # check for missing parameters
   if (missing(.data)) {
@@ -24,6 +24,13 @@ cs_parse_month <- function(.data,var){
 
   if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
+  }
+  if (missing(newVar1)) {
+    stop('The name of the output column containing the month must be specified for newVar1')
+  }
+
+  if (missing(newVar2)) {
+    stop('The name of the output column containing the year must be specified for newVar2')
   }
 
   # save parameters to list
@@ -36,8 +43,8 @@ cs_parse_month <- function(.data,var){
   } else if (is.character(paramList$var)) {
     var <- rlang::quo(!! rlang::sym(var))
   }
-
+#Separates coded month and year
   .data %>%
-    tidyr::separate((!var), c("codedYear","codedMonth"), "-", remove = TRUE)
+    tidyr::separate((!var), c(NewVar1, newVar2), "-", remove = TRUE)
 }
 

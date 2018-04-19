@@ -26,6 +26,23 @@
 #' @export
 cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "numeric")){
 
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
+  if (missing(var)) {
+    stop('The column containing the data to be separated must be specified for variable')
+  }
+
+  if (missing(newVar)) {
+    stop('The name of the output variable to be created by the function must be specified for newVar')
+  }
+
+  if (missing(output)) {
+    stop('The type of output must be defined - either string, factor, or numeric')
+  }
+
   # save parameters to list
   paramList <- as.list(match.call())
 
@@ -46,6 +63,7 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
 
   newVarN <- rlang::quo_name(rlang::enquo(newVar))
 
+#Adds a new column with the numeric, string, or factor name
   if (output == "string" | output == "factor"){
 
     cleanData <- .data %>%

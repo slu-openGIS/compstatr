@@ -6,12 +6,10 @@
 #' @usage cs_replace_month(.data, month, monthData)
 #'
 #' @param .data A year list object
-#'
 #' @param month A string name or abbreviation of a month, or its numeric value.
 #'    Acceptable inputs include, for example, "January", "january", "Jan",
 #'    "jan", and 1.
-#'
-#' @param monthData A tibble containing a single month worth of crime data.
+#'@param monthData A tibble containing a single month worth of crime data.
 #'
 #' @return A tibble containing a single month worth of crime data.
 #'

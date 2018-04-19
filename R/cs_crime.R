@@ -22,7 +22,24 @@
 #' @export
 cs_crime <- function(.data, var, newVar, crime){
 
-  # save parameters to list
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
+  if (missing(var)) {
+    stop('The column containing the data to be separated must be specified for variable')
+  }
+
+  if (missing(newVar)) {
+    stop('The name of the output variable to be created by the function must be specified for newVar')
+  }
+
+  if (missing(crime)) {
+    stop('A string describing the crime type to be identified must be specified for crime')
+  }
+
+  #save parameters to list
   paramList <- as.list(match.call())
 
   #quote input variables
@@ -33,6 +50,8 @@ cs_crime <- function(.data, var, newVar, crime){
   }
 
   newVarN <- rlang::quo_name(rlang::enquo(newVar))
+
+  #Appends the column with the proper crime code
 
   if (crime == "violent"){
 
