@@ -3,6 +3,9 @@
 #' @description \code{cs_crime_filter} can be used to subset based on
 #'     specific single UCR categories or common groupings.
 #'
+#' @details The categories used here are derived from the U.S. Federal
+#'     Bureau of Investigation's Uniform Crime Reporting codes.
+#'
 #' @usage cs_crime_filter(.data, var, crime)
 #'
 #' @param .data A tbl

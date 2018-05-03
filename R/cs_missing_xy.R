@@ -4,7 +4,7 @@
 #'     TRUE/FALSE column that states which rows are missing coordinate
 #'     data.
 #'
-#' @usage cs_missing_xy(.data, x, y, newVar)
+#' @usage cs_missing_xy(.data, varx, vary, newVar)
 #'
 #' @param .data a data frame
 #' @param varx the column from the data frame containing the x coordinates

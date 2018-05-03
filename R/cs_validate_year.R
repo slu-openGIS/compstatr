@@ -13,6 +13,8 @@
 #'     with 26 variables. Finally, it makes sure that all variables are being
 #'     imported with the correct formatting.
 #'
+#' @usage cs_validate_year(.data,year)
+#'
 #' @param .data A tbl
 #' @param year A string representing the year being checked, e.g. \code{"2008" }
 #'

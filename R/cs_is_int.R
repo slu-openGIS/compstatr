@@ -7,9 +7,7 @@
 #' @usage cs_is_int(.data, variable, newVar)
 #'
 #' @param .data A tbl
-#'
 #' @param variable A column containing \code{ILEADSAddress} data
-#'
 #' @param newVar the name of the column to be created
 #'
 #' @return a logical vector that displays \code{TRUE} where the column is a

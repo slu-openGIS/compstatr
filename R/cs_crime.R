@@ -3,6 +3,9 @@
 #' @description \code{cs_crime} can be used to easily identify
 #'     crimes based on a specific single UCR categories or common groupings.
 #'
+#' @details The categories used here are derived from the U.S. Federal
+#'     Bureau of Investigation's Uniform Crime Reporting codes.
+#'
 #' @usage cs_crime(.data, var, newVar, crime)
 #'
 #' @param .data A tbl

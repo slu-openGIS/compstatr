@@ -3,6 +3,8 @@
 #' @description Seperates a column containing month, day, year, and time into 4 different
 #'     columns and removes the input column.
 #'
+#' @usage cs_parse_date(.data, var)
+#'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"
 #'

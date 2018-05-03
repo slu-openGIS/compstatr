@@ -3,10 +3,9 @@
 #' @description This function a specified column from the data frame and
 #'     replaces cells that ahve the value 0 with NA
 #'
-#' @usage cs_replace_na(.data, variable)
+#' @usage cs_replace_na(.data, var)
 #'
 #' @param .data A tbl
-#'
 #' @param var a column from the data frame
 #'
 #' @return returns the data frame with the 0's in the specified column changed

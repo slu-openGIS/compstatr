@@ -8,6 +8,8 @@
 #' @details The categories used here are derived from the U.S. Federal
 #'     Bureau of Investigation's Uniform Crime Reporting codes.
 #'
+#' @usage cs_crime_cat(.data, var, newVar, output)
+#'
 #' @param .data A tbl
 #' @param var Name of variable with 5 or 6 digit crime codes
 #' @param newVar Name of output variable to be created with simplified categories

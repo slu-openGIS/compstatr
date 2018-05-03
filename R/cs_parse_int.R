@@ -3,6 +3,8 @@
 #' @description  Takes a column that contains street addresses and seperates
 #'     the addresses into two columns if it is an intersection
 #'
+#' @usage cs_parse_int(.data, var)
+#'
 #' @param .data a data frame
 #' @param var the column containing street adresses
 #'

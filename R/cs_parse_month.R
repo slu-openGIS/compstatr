@@ -1,7 +1,9 @@
 #' Seperate Coded Month
 #'
-#' @description Seperates a column containing coded year and coded month
+#' @description Separates a column containing coded year and coded month
 #'     separated by "-" into two columns and removes the input column
+#'
+#' @usage  cs_parse_month
 #'
 #' @param .data a data frame
 #' @param var the variable containing coded month and coded year

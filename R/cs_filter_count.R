@@ -2,10 +2,11 @@
 #'
 #' @description Removes the row that contains -1 in a specified column
 #'
+#' @details Crimes with a count of -1 are crimes that were determined to be unfounded
+#'
 #' @usage cs_filter_count(.data, variable)
 #'
 #' @param .data A tbl
-#'
 #' @param var the name of the column
 #'
 #' @return returns the data frame with the rows containing -1 removed
