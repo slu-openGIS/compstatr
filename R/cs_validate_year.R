@@ -20,7 +20,6 @@
 #'
 #' @return A tibble with validation results
 #'
-#' @importFrom dplyr %>%
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename

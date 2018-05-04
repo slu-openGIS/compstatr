@@ -7,17 +7,20 @@
 #'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"
+#' @param newVar
+#' @param newVar2
+#' @param newVar3
 #'
-#' @return returns 4 different columns containing, month, day, year, and time
+#' @return
 #'
-#' @importFrom dplyr %>%
+#' @importFrom dplyr mutate
 #' @importFrom tidyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #'
 #'@export
-cs_parse_date <- function(.data,var){#Seperates DateOccur into four columns and removes input column
+cs_parse_date <- function(.data,var, newVar, newVar2, newVar3){#Seperates DateOccur into four columns and removes input column
 
   # check for missing parameters
   if (missing(.data)) {
@@ -39,6 +42,7 @@ cs_parse_date <- function(.data,var){#Seperates DateOccur into four columns and 
   }
 
   .data %>%
-    tidyr::separate((!!var), c("monthOccur","dayOccur","yearOccur","timeOccur"), "/|\\ ", remove = TRUE)
+    mutate(newVar = mdy_hm((!!var))) %>%
+    separate(DateOccur, c("newVar2","newVar3"), sep = " ")
 
 }
