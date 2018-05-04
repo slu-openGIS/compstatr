@@ -18,6 +18,7 @@
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #' @importFrom dplyr mutate
+#' @importFrom dplyr %>%
 #'
 #' @export
 cs_missing_xy <- function(.data, varx, varyy, newVar){

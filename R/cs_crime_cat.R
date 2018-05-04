@@ -18,6 +18,7 @@
 #' @return A copy of the data frame with the new output variable appended to it.
 #'
 #' @importFrom dplyr case_when
+#' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
 #' @importFrom rlang quo

@@ -15,6 +15,7 @@
 #' @return A subset tibble with only the specified crimes
 #'
 #' @importFrom dplyr filter
+#' @importFrom dplyr %>%
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang sym

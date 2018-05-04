@@ -24,6 +24,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
 #' @importFrom dplyr select
+#' @importFrom dplyr %>%
 #'
 #' @export
 cs_validate_year <- function(.data, year){

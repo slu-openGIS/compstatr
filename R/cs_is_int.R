@@ -19,6 +19,7 @@
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #' @importFrom dplyr mutate
+#' @importFrom dplyr %>%
 #'
 #' @export
 cs_is_int <- function(.data, var, newVar){

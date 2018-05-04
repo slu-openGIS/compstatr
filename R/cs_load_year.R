@@ -13,6 +13,7 @@
 #'
 #' @importFrom purrr map
 #' @importFrom readr read_csv
+#' @importFrom dplyr %>%
 #'
 #' @export
 cs_load_year <- function(path){
