@@ -1,15 +1,14 @@
 #' Seperate Date Occur
 #'
-#' @description Seperates a column containing month, day, year, and time into 4 different
-#'     columns and removes the input column.
+#' @description Creates a column containing hour month
 #'
 #' @usage cs_parse_date(.data, var)
 #'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"
-#' @param newVar
-#' @param newVar2
-#' @param newVar3
+#' @param newVar column containing month, day, year, hour, and minute
+#' @param newVar2 column containing month, day, and year
+#' @param newVar3 column containing hour and minute
 #'
 #' @return
 #'
@@ -20,7 +19,7 @@
 #' @importFrom rlang quo_name
 #'
 #'@export
-cs_parse_date <- function(.data,var, newVar, newVar2, newVar3){#Seperates DateOccur into four columns and removes input column
+cs_parse_date <- function(.data,var){#Seperates DateOccur into four columns and removes input column
 
   # check for missing parameters
   if (missing(.data)) {
@@ -43,6 +42,8 @@ cs_parse_date <- function(.data,var, newVar, newVar2, newVar3){#Seperates DateOc
 
   .data %>%
     mutate(newVar = mdy_hm((!!var))) %>%
-    separate(DateOccur, c("newVar2","newVar3"), sep = " ")
+    separate(DateOccur, c("newVar2","newVar3"), sep = " ") %>%
+    select(-newVar)
+
 
 }
