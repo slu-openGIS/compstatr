@@ -1,25 +1,26 @@
 #' Seperate Date Occur
 #'
-#' @description Creates a column containing hour month
+#' @description Creates two columns. One contains month, day, and year and the other contains hour, and minute.
 #'
 #' @usage cs_parse_date(.data, var)
 #'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"
-#' @param newVar column containing month, day, year, hour, and minute
 #' @param newVar2 column containing month, day, and year
 #' @param newVar3 column containing hour and minute
 #'
 #' @return
 #'
 #' @importFrom dplyr mutate
-#' @importFrom tidyr separate
+#' @importFrom dplyr %>%
+#' @importFrom tidyr select
+#' @importFrom dplyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #'
 #'@export
-cs_parse_date <- function(.data,var){#Seperates DateOccur into four columns and removes input column
+cs_parse_date <- function(.data,var, newVar2,newVar3){#Seperates DateOccur into four columns and removes input column
 
   # check for missing parameters
   if (missing(.data)) {
@@ -41,9 +42,10 @@ cs_parse_date <- function(.data,var){#Seperates DateOccur into four columns and 
   }
 
   .data %>%
-    mutate(newVar = mdy_hm((!!var))) %>%
-    separate(DateOccur, c("newVar2","newVar3"), sep = " ") %>%
-    select(-newVar)
+    dplyr::mutate(newVar = mdy_hm((!!var))) %>%
+    tidyr::separate(DateOccur, c(newVar2,newVar3), sep = " ") %>%
+    dplyr::select(-newVar)
 
 
 }
+
