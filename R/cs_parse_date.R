@@ -20,6 +20,10 @@
 #' @importFrom rlang sym
 #' @importFrom lubridate mdy_hm
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_parse_date(testData,DateOccur,Date,Time)
+#'
 #'@export
 cs_parse_date <- function(.data,var, newDate,newTime){#Separates DateOccur into four columns and removes input column
 

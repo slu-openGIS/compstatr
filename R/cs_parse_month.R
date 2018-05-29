@@ -7,6 +7,8 @@
 #'
 #' @param .data a data frame
 #' @param var the variable containing coded month and coded year
+#' @param newYear the name of the column to contain the year data
+#' @param newMonth the name of the column to contain month data
 #'
 #' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
 #'
@@ -15,9 +17,15 @@
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
+#' @importFrom rlang sym
+#'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_parse_month(testData,CodedMonth,Year,Month)
+#'
 #'
 #' @export
-cs_parse_month <- function(.data,var,newVar1,newVar2){
+cs_parse_month <- function(.data,var,newYear,newMonth){
 
   # check for missing parameters
   if (missing(.data)) {
@@ -27,7 +35,7 @@ cs_parse_month <- function(.data,var,newVar1,newVar2){
   if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
-  if (missing(newVar1)) {
+  if (missing(newYear)) {
     stop('The name of the output column containing the month must be specified for newVar1')
   }
 
@@ -39,7 +47,8 @@ cs_parse_month <- function(.data,var,newVar1,newVar2){
   paramList <- as.list(match.call())
 
   #quote input variables
-  varN <- rlang::quo_name(rlang::enquo(var))
+  newYear <- rlang::quo_name(rlang::enquo(newYear))
+  newMonth <- rlang::quo_name(rlang::enquo(newMonth))
   if (!is.character(paramList$var)) {
     var <- rlang::enquo(var)
   } else if (is.character(paramList$var)) {
@@ -47,6 +56,6 @@ cs_parse_month <- function(.data,var,newVar1,newVar2){
   }
 #Separates coded month and year
   .data %>%
-    tidyr::separate((!var), c(NewVar1, newVar2), "-", remove = TRUE)
+    tidyr::separate((!var), c(newYear, newMonth), "-", remove = TRUE)
 }
 

@@ -22,6 +22,10 @@
 #' @importFrom dplyr %>%
 #' @importFrom rlang :=
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_is_int(testData,ILEADSStreet,Intersection)
+#'
 #' @export
 cs_is_int <- function(.data, var, newVar){
 

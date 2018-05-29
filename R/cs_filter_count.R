@@ -18,6 +18,10 @@
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_filter_count(testData,FlagCount)
+#'
 #' @export
 cs_filter_count <- function(.data,var){
 

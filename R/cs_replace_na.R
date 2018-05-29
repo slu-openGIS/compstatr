@@ -18,6 +18,7 @@
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
+#' @importFrom rlang sym
 #'
 #' @export
 cs_replace_na <- function(.data, var){
