@@ -9,18 +9,19 @@
 #' @param newDate column containing month, day, and year
 #' @param newTime column containing hour and minute
 #'
-#' @return
+#' @return Appends two columns to the data frame. One is the time data and the other is the date data
 #'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
 #' @importFrom tidyr select
-#' @importFrom dplyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
+#' @importFrom rlang sym
+#' @importFrom lubridate mdy_hm
 #'
 #'@export
-cs_parse_date <- function(.data,var, newDate,newTime){#Seperates DateOccur into four columns and removes input column
+cs_parse_date <- function(.data,var, newDate,newTime){#Separates DateOccur into four columns and removes input column
 
   # check for missing parameters
   if (missing(.data)) {
@@ -28,7 +29,14 @@ cs_parse_date <- function(.data,var, newDate,newTime){#Seperates DateOccur into 
   }
 
   if (missing(var)) {
-    stop('The column containing the data to be separated must be specified for variable')
+    stop('The column containing the data to be separated must be specified for var')
+  }
+  if (missing(newDate)) {
+    stop('The name of the column to be made containing the date information must be specified for newDate')
+  }
+
+  if (missing(newTime)) {
+    stop('The name of the column to be made containing the time information must be specified for newTime')
   }
 
   # save parameters to list
@@ -41,21 +49,14 @@ cs_parse_date <- function(.data,var, newDate,newTime){#Seperates DateOccur into 
     var <- rlang::quo(!! rlang::sym(var))
   }
 
-  if (!is.character(paramList$newDate)) {
-    newDate <- rlang::enquo(newDate)
-  } else if (is.character(paramList$newDate)) {
-    newDate <- rlang::quo(!! rlang::sym(newDate))
-  }
+ newDate <- rlang::quo_name(rlang::enquo(newDate))
+ newTime <- rlang::quo_name(rlang::enquo(newTime))
 
-  if (!is.character(paramList$newTime)) {
-    newTime <- rlang::enquo(newTime)
-  } else if (is.character(paramList$newTime)) {
-    newTime <- rlang::quo(!! rlang::sym(newTime))
-  }
+ #Separates the column by the spacing in the data and returns two columns
 
   .data %>%
-    dplyr::mutate(newVar = mdy_hm((!!var))) %>%
-    tidyr::separate((!!var), c((!!newDate),(!!newTime)), sep = " ")
+    dplyr::mutate(newVar = lubridate::mdy_hm((!!var))) %>%
+    tidyr::separate((!!var), c(newDate,newTime), sep = " ")
 
 
 }

@@ -4,10 +4,10 @@
 #'     as incidents located at a single street address. This function can be
 #'     used to identify intersections for specific operations.
 #'
-#' @usage cs_is_int(.data, variable, newVar)
+#' @usage cs_is_int(.data, var, newVar)
 #'
 #' @param .data A tbl
-#' @param variable A column containing \code{ILEADSAddress} data
+#' @param var A column containing \code{ILEADSAddress} data
 #' @param newVar the name of the column to be created
 #'
 #' @return a logical vector that displays \code{TRUE} where the column is a
@@ -20,6 +20,7 @@
 #' @importFrom rlang sym
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
+#' @importFrom rlang :=
 #'
 #' @export
 cs_is_int <- function(.data, var, newVar){
@@ -37,7 +38,7 @@ cs_is_int <- function(.data, var, newVar){
   paramList <- as.list(match.call())
 
   #quote input variables
-  varN <- rlang::quo_name(rlang::enquo(var))
+  newVar <- rlang::quo_name(rlang::enquo(newVar))
 
   if (!is.character(paramList$var)) {
     var <- rlang::enquo(var)
@@ -45,6 +46,7 @@ cs_is_int <- function(.data, var, newVar){
     var <- rlang::quo(!! rlang::sym(var))
   }
 
+#creates new column with TRUE and FALSE
   .data %>%
-    dplyr::mutate(newVar = (ifelse((!!var) == 0,"TRUE","FALSE")))
+    dplyr::mutate(!!newVar := (ifelse((!!var) == 0,"TRUE","FALSE")))
 }
