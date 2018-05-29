@@ -58,7 +58,13 @@ cs_missing_xy <- function(.data, varx, varyy, newVar){
     vary <- rlang::quo(!! rlang::sym(vary))
   }
 
+  if (!is.character(paramList$newVar)) {
+    newVar <- rlang::enquo(newVar)
+  } else if (is.character(paramList$newVar)) {
+    newVar <- rlang::quo(!! rlang::sym(newVar))
+  }
+
 #create logical vector that is appended to data frame
 .data %>%
-  dplyr::mutate(newVar = ifelse((!!varx) == 0 & (!!vary) == 0,"TRUE","FALSE"))
+  dplyr::mutate((!!newVar) = ifelse((!!varx) == 0 & (!!vary) == 0,"TRUE","FALSE"))
 }

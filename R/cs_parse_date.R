@@ -2,12 +2,12 @@
 #'
 #' @description Creates two columns. One contains month, day, and year and the other contains hour, and minute.
 #'
-#' @usage cs_parse_date(.data, var)
+#' @usage cs_parse_date(.data, var, newDate, newTime)
 #'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"
-#' @param newVar2 column containing month, day, and year
-#' @param newVar3 column containing hour and minute
+#' @param newDate column containing month, day, and year
+#' @param newTime column containing hour and minute
 #'
 #' @return
 #'
@@ -20,11 +20,11 @@
 #' @importFrom rlang quo_name
 #'
 #'@export
-cs_parse_date <- function(.data,var, newVar2,newVar3){#Seperates DateOccur into four columns and removes input column
+cs_parse_date <- function(.data,var, newDate,newTime){#Seperates DateOccur into four columns and removes input column
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be seperated must be specified for .data')
+    stop('A existing data frame with data to be separated must be specified for .data')
   }
 
   if (missing(var)) {
@@ -41,10 +41,21 @@ cs_parse_date <- function(.data,var, newVar2,newVar3){#Seperates DateOccur into 
     var <- rlang::quo(!! rlang::sym(var))
   }
 
+  if (!is.character(paramList$newDate)) {
+    newDate <- rlang::enquo(newDate)
+  } else if (is.character(paramList$newDate)) {
+    newDate <- rlang::quo(!! rlang::sym(newDate))
+  }
+
+  if (!is.character(paramList$newTime)) {
+    newTime <- rlang::enquo(newTime)
+  } else if (is.character(paramList$newTime)) {
+    newTime <- rlang::quo(!! rlang::sym(newTime))
+  }
+
   .data %>%
     dplyr::mutate(newVar = mdy_hm((!!var))) %>%
-    tidyr::separate(DateOccur, c(newVar2,newVar3), sep = " ") %>%
-    dplyr::select(-newVar)
+    tidyr::separate((!!var), c((!!newDate),(!!newTime)), sep = " ")
 
 
 }
