@@ -26,6 +26,10 @@
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #'
+#' @examples
+#' testData <- january2018
+#' cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
+#'
 #' @export
 cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "numeric")){
 
