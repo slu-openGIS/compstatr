@@ -13,7 +13,8 @@
 #'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
-#' @importFrom tidyr select
+#' @importFrom dplyr select
+#' @importFrom tidyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
