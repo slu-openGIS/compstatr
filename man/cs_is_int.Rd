@@ -4,12 +4,12 @@
 \alias{cs_is_int}
 \title{Is A Location An Intersection?}
 \usage{
-cs_is_int(.data, variable, newVar)
+cs_is_int(.data, var, newVar)
 }
 \arguments{
 \item{.data}{A tbl}
 
-\item{variable}{A column containing \code{ILEADSAddress} data}
+\item{var}{A column containing \code{ILEADSAddress} data}
 
 \item{newVar}{the name of the column to be created}
 }
@@ -22,4 +22,9 @@ a logical vector that displays \code{TRUE} where the column is a
 The \code{ILEADSAddress} field contains intersections as well
     as incidents located at a single street address. This function can be
     used to identify intersections for specific operations.
+}
+\examples{
+testData <- january2018
+testData <- cs_is_int(testData,ILEADSStreet,Intersection)
+
 }

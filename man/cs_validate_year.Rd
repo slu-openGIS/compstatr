@@ -4,7 +4,7 @@
 \alias{cs_validate_year}
 \title{Validate Year List Object}
 \usage{
-cs_validate_year(.data, year)
+cs_validate_year(.data,year)
 }
 \arguments{
 \item{.data}{A tbl}

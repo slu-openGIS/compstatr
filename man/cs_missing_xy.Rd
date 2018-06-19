@@ -4,16 +4,16 @@
 \alias{cs_missing_xy}
 \title{Missing Coordinates}
 \usage{
-cs_missing_xy(.data, x, y, newVar)
+cs_missing_xy(.data, varx, vary, newVar)
 }
 \arguments{
 \item{.data}{a data frame}
 
-\item{x}{the column from the data frame containing the x coordinates}
-
-\item{y}{the column from the data frame containg the y coordinates}
+\item{varx}{the column from the data frame containing the x coordinates}
 
 \item{newVar}{the name of the new column}
+
+\item{vary}{the column from the data frame containg the y coordinates}
 }
 \value{
 returns a logical vector that displays TRUE when the coordinates are
@@ -23,4 +23,8 @@ returns a logical vector that displays TRUE when the coordinates are
 \code{cs_missingCoords} compares X and Y coordinates and adds a
     TRUE/FALSE column that states which rows are missing coordinate
     data.
+}
+\examples{
+cs_filter_crime(january2018,XCoord,Ycoord,IsMissing)
+
 }

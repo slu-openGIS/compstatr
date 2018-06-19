@@ -4,17 +4,27 @@
 \alias{cs_parse_month}
 \title{Seperate Coded Month}
 \usage{
-cs_parse_month(.data, variable)
+cs_parse_month
 }
 \arguments{
 \item{.data}{a data frame}
 
-\item{variable}{the variable containing coded month and coded year}
+\item{var}{the variable containing coded month and coded year}
+
+\item{newYear}{the name of the column to contain the year data}
+
+\item{newMonth}{the name of the column to contain month data}
 }
 \value{
 returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
 }
 \description{
-Seperates a column containing coded year and coded month
-    seperated by "-" into two columns and removes the input column
+Separates a column containing coded year and coded month
+    separated by "-" into two columns and removes the input column
+}
+\examples{
+testData <- january2018
+testData <- cs_parse_month(testData,CodedMonth,Year,Month)
+
+
 }
