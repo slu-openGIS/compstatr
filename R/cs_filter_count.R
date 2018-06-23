@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' testData <- january2018
-#' testData <- cs_filter_count(testData,FlagCount)
+#' testData <- cs_filter_count(testData,Count)
 #'
 #' @export
 cs_filter_count <- function(.data,var){
