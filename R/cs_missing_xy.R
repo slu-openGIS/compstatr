@@ -25,7 +25,7 @@
 #' cs_filter_crime(january2018,XCoord,Ycoord,IsMissing)
 #'
 #' @export
-cs_missing_xy <- function(.data, varx, varyy, newVar){
+cs_missing_xy <- function(.data, varx, vary, newVar){
 
   # check for missing parameters
   if (missing(.data)) {
@@ -48,7 +48,7 @@ cs_missing_xy <- function(.data, varx, varyy, newVar){
 
   #quote input variables
   xN <- rlang::quo_name(rlang::enquo(varx))
-  yN <- rlang::quo_name(rlang::enquo(varyy))
+  yN <- rlang::quo_name(rlang::enquo(vary))
 
   if (!is.character(paramList$varx)) {
     varx <- rlang::enquo(varx)

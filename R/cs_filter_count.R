@@ -4,7 +4,7 @@
 #'
 #' @details Crimes with a count of -1 are crimes that were determined to be unfounded
 #'
-#' @usage cs_filter_count(.data, variable)
+#' @usage cs_filter_count(.data, var)
 #'
 #' @param .data A tbl
 #' @param var the name of the column
