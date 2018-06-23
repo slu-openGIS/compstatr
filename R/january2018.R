@@ -14,7 +14,7 @@
 #'   \item{FlagCrime}{Returns a Y when a crime occured}
 #'   \item{FlagUnfounded}{Reported crime was investigated and determined to be unfounded}
 #'   \item{FlagAdministrative}{Reported crime had a change in classification}
-#'   \item{FlagCount}{Returns a 1 or -1 for counting purposes}
+#'   \item{Count}{Returns a 1 or -1 for counting purposes}
 #'   \item{FlagCleanup}{Returns information if administrative cleanup occured}
 #'   \item{Crime}{Uniform Crime Reporting code}
 #'   \item{District}{Number corresponding to the police determined district}

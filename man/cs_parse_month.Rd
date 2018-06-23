@@ -4,7 +4,7 @@
 \alias{cs_parse_month}
 \title{Seperate Coded Month}
 \usage{
-cs_parse_month
+cs_parse_month(.data,var,newYear,newMonth)
 }
 \arguments{
 \item{.data}{a data frame}
