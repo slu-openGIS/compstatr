@@ -3,7 +3,7 @@
 #' @description Separates a column containing coded year and coded month
 #'     separated by "-" into two columns and removes the input column
 #'
-#' @usage  cs_parse_month
+#' @usage  cs_parse_month(.data,var,newYear,newMonth)
 #'
 #' @param .data a data frame
 #' @param var the variable containing coded month and coded year
