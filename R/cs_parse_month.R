@@ -35,11 +35,11 @@ cs_parse_month <- function(.data,var,newYear,newMonth){
   if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
-  if (missing(newYear)) {
+  if (missing(newMonth)) {
     stop('The name of the output column containing the month must be specified for newVar1')
   }
 
-  if (missing(newVar2)) {
+  if (missing(newYear)) {
     stop('The name of the output column containing the year must be specified for newVar2')
   }
 

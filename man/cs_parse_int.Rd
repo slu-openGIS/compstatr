@@ -4,7 +4,7 @@
 \alias{cs_parse_int}
 \title{Seperate Interection}
 \usage{
-cs_parse_int(.data, var)
+cs_parse_int(.data, var,newStreet1,newStreet2)
 }
 \arguments{
 \item{.data}{a data frame}

@@ -11,9 +11,9 @@ cs_missing_xy(.data, varx, vary, newVar)
 
 \item{varx}{the column from the data frame containing the x coordinates}
 
-\item{newVar}{the name of the new column}
-
 \item{vary}{the column from the data frame containg the y coordinates}
+
+\item{newVar}{the name of the new column}
 }
 \value{
 returns a logical vector that displays TRUE when the coordinates are

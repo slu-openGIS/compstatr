@@ -4,7 +4,7 @@
 \alias{cs_filter_count}
 \title{Remove Negative Counts}
 \usage{
-cs_filter_count(.data, variable)
+cs_filter_count(.data, var)
 }
 \arguments{
 \item{.data}{A tbl}
