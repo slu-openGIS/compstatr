@@ -26,6 +26,6 @@ The categories used here are derived from the U.S. Federal
 }
 \examples{
 testData <- january2018
-testData <- cs_filter_crime(testData,Crime,violent)
+testData <- cs_filter_crime(testData,Crime,"violent")
 
 }

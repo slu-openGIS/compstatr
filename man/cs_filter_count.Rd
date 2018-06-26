@@ -22,6 +22,6 @@ Crimes with a count of -1 are crimes that were determined to be unfounded
 }
 \examples{
 testData <- january2018
-testData <- cs_filter_count(testData,FlagCount)
+testData <- cs_filter_count(testData,Count)
 
 }

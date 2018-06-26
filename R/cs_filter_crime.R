@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' testData <- january2018
-#' testData <- cs_filter_crime(testData,Crime,violent)
+#' testData <- cs_filter_crime(testData,Crime,"violent")
 #'
 #' @export
 cs_filter_crime <- function(.data, var, crime){
