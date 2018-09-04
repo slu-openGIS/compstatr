@@ -109,14 +109,14 @@ cs_std18 <- function(.data){
 
   # clean month
   .data %>%
-    rename(CodedMonth = MonthReportedtoMSHP) %>%
-    rename(FlagCrime = NewCrimeIndicator) %>%
-    rename(FlagUnfounded = UnfoundedCrimeIndicator) %>%
-    rename(FlagAdministrative = AdministrativeAdjustmentIndicator) %>%
-    rename(DateOccur = DateOccured) %>%
-    mutate(Complaint = as.character(NA)) %>%
-    mutate(FlagCleanup = as.character(NA)) %>%
-    select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded, FlagAdministrative, Count,
+    dplyr::rename(CodedMonth = MonthReportedtoMSHP) %>%
+    dplyr::rename(FlagCrime = NewCrimeIndicator) %>%
+    dplyr::rename(FlagUnfounded = UnfoundedCrimeIndicator) %>%
+    dplyr::rename(FlagAdministrative = AdministrativeAdjustmentIndicator) %>%
+    dplyr::rename(DateOccur = DateOccured) %>%
+    dplyr::mutate(Complaint = as.character(NA)) %>%
+    dplyr::mutate(FlagCleanup = as.character(NA)) %>%
+    dplyr::select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded, FlagAdministrative, Count,
            FlagCleanup, Crime, District, Description, ILEADSAddress, ILEADSStreet, Neighborhood,
            LocationName, LocationComment, CADAddress, CADStreet, XCoord, YCoord) -> .data
 
@@ -142,23 +142,23 @@ cs_std26 <- function(.data){
 
   # clean month
   .data %>%
-    select(-`ILeads Add`, -`ILeads Approve`, -Beat, -`ILeads Asg`,
+    dplyr::select(-`ILeads Add`, -`ILeads Approve`, -Beat, -`ILeads Asg`,
            -`ILeads Type`, -`Date Crime Coded`) %>%
-    rename(CodedMonth = `Coded Month`) %>%
-    rename(DateOccur = `Date Occur`) %>%
-    rename(FlagCrime = `Flag-Crime`) %>%
-    rename(FlagUnfounded = `Flag-Unfounded`) %>%
-    rename(FlagAdministrative = `Flag-Administrative`) %>%
-    rename(FlagCleanup = `Flag Cleanup`) %>%
-    rename(ILEADSAddress = `ILEADS-Address`) %>%
-    rename(ILEADSStreet = `ILEADS-Street`) %>%
-    rename(LocationName = `Location Name`) %>%
-    rename(LocationComment = `Location Comment`) %>%
-    rename(CADAddress = `CAD-Address`) %>%
-    rename(CADStreet = `CAD-Street`) %>%
-    rename(XCoord = `X-Coord`) %>%
-    rename(YCoord = `Y-Coord`) %>%
-    select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded,
+    dplyr::rename(CodedMonth = `Coded Month`) %>%
+    dplyr::rename(DateOccur = `Date Occur`) %>%
+    dplyr::rename(FlagCrime = `Flag-Crime`) %>%
+    dplyr::rename(FlagUnfounded = `Flag-Unfounded`) %>%
+    dplyr::rename(FlagAdministrative = `Flag-Administrative`) %>%
+    dplyr::rename(FlagCleanup = `Flag Cleanup`) %>%
+    dplyr::rename(ILEADSAddress = `ILEADS-Address`) %>%
+    dplyr::rename(ILEADSStreet = `ILEADS-Street`) %>%
+    dplyr::rename(LocationName = `Location Name`) %>%
+    dplyr::rename(LocationComment = `Location Comment`) %>%
+    dplyr::rename(CADAddress = `CAD-Address`) %>%
+    dplyr::rename(CADStreet = `CAD-Street`) %>%
+    dplyr::rename(XCoord = `X-Coord`) %>%
+    dplyr::rename(YCoord = `Y-Coord`) %>%
+    dplyr::select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded,
            FlagAdministrative, Count, FlagCleanup, Crime, District,
            Description, ILEADSAddress, ILEADSStreet, Neighborhood,
            LocationName, LocationComment, CADAddress, CADStreet,

@@ -4,12 +4,12 @@
 \alias{cs_replace_na}
 \title{Replace Zeros with NA}
 \usage{
-cs_replace_na(.data, variable)
+cs_replace_na(.data, var)
 }
 \arguments{
 \item{.data}{A tbl}
 
-\item{variable}{a column from the data frame}
+\item{var}{a column from the data frame}
 }
 \value{
 returns the data frame with the 0's in the specified column changed

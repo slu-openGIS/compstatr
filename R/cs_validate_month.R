@@ -16,10 +16,21 @@
 #'    Acceptable inputs include, for example, "January", "january", "Jan",
 #'    "jan", and 1.
 #'
+#'@return
+#'
 #' @seealso cs_validate_year
 #'
 #' @export
 cs_validate_month <- function(.data, month){
+
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
+  if (missing(month)) {
+    stop('An option string name or abbreviation of a month, or its numeric value must be specified for month')
+  }
 
   val <- cs_selectMonth(month)
 
@@ -28,6 +39,8 @@ cs_validate_month <- function(.data, month){
   classes <- lapply(monthData, class)
 
   probVar <- NULL
+
+  #validates variables in .data
 
   if (classes$Complaint == "character") {
     classResult <- TRUE

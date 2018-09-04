@@ -13,16 +13,18 @@
 #'     with 26 variables. Finally, it makes sure that all variables are being
 #'     imported with the correct formatting.
 #'
+#' @usage cs_validate_year(.data,year)
+#'
 #' @param .data A tbl
 #' @param year A string representing the year being checked, e.g. \code{"2008" }
 #'
 #' @return A tibble with validation results
 #'
-#' @importFrom dplyr %>%
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
 #' @importFrom dplyr select
+#' @importFrom dplyr %>%
 #'
 #' @export
 cs_validate_year <- function(.data, year){
@@ -254,15 +256,15 @@ cs_validate_year <- function(.data, year){
     }
 
     # write results
-    results <- mutate(results, varCount = ifelse(i == month, colCount, varCount))
-    results <- mutate(results, oneMonth = ifelse(i == month, singleMonth, oneMonth))
-    results <- mutate(results, valMonth = ifelse(i == month, correctMonth, valMonth))
-    results <- mutate(results, valVars = ifelse(i == month, colNames, valVars))
-    results <- mutate(results, valClasses = ifelse(i == month, colClasses, valClasses))
+    results <- dplyr::mutate(results, varCount = ifelse(i == month, colCount, varCount))
+    results <- dplyr::mutate(results, oneMonth = ifelse(i == month, singleMonth, oneMonth))
+    results <- dplyr::mutate(results, valMonth = ifelse(i == month, correctMonth, valMonth))
+    results <- dplyr::mutate(results, valVars = ifelse(i == month, colNames, valVars))
+    results <- dplyr::mutate(results, valClasses = ifelse(i == month, colClasses, valClasses))
 
   }
 
-  results <- as_tibble(results)
+  results <- dplyr::as_tibble(results)
 
   # check results
   if (all(results$varCount) != TRUE){
@@ -277,10 +279,10 @@ cs_validate_year <- function(.data, year){
 
   if (skipCols == FALSE){
     results %>%
-      mutate(x = valVars) %>%
-      mutate(y = valClasses) %>%
-      mutate(valVars = ifelse(is.na(valVars) == TRUE, FALSE, valVars)) %>%
-      mutate(valClasses = ifelse(is.na(valClasses) == TRUE, FALSE, valClasses)) -> results
+      dplyr::mutate(x = valVars) %>%
+      dplyr::mutate(y = valClasses) %>%
+      dplyr::mutate(valVars = ifelse(is.na(valVars) == TRUE, FALSE, valVars)) %>%
+      dplyr::mutate(valClasses = ifelse(is.na(valClasses) == TRUE, FALSE, valClasses)) -> results
 
     if (all(results$valVars) != TRUE){
       warning('Validation warning - not all data tables contain the expected variable names.')
@@ -290,9 +292,9 @@ cs_validate_year <- function(.data, year){
     }
 
     results %>%
-      select(-valVars, -valClasses) %>%
-      rename(valVars = x) %>%
-      rename(valClasses = y) -> results
+      dplyr::select(-valVars, -valClasses) %>%
+      dplyr::rename(valVars = x) %>%
+      dplyr::rename(valClasses = y) -> results
   }
 
   return(results)

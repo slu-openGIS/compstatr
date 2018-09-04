@@ -4,7 +4,7 @@
 \alias{cs_crime_cat}
 \title{Categorize Crime}
 \usage{
-cs_crime_cat(.data, var, newVar, output = c("string", "factor", "numeric"))
+cs_crime_cat(.data, var, newVar, output)
 }
 \arguments{
 \item{.data}{A tbl}
@@ -27,4 +27,9 @@ The SLMPD data contains 5 or 6 digit codes to refer to
 \details{
 The categories used here are derived from the U.S. Federal
     Bureau of Investigation's Uniform Crime Reporting codes.
+}
+\examples{
+testData <- january2018
+cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
+
 }

@@ -4,17 +4,26 @@
 \alias{cs_parse_int}
 \title{Seperate Interection}
 \usage{
-cs_parse_int(.data, variable)
+cs_parse_int(.data, var,newStreet1,newStreet2)
 }
 \arguments{
 \item{.data}{a data frame}
 
-\item{variable}{the column containing street adresses}
+\item{var}{the column containing street adresses}
+
+\item{newStreet1}{the column containing roads that were marked as intersections and not marked as intersections}
+
+\item{newStreet2}{the column containing roads that are only in an intersection}
 }
 \value{
 returns two columns containing street addresses and removes the input column
 }
 \description{
 Takes a column that contains street addresses and seperates
-    the addresses into two columns
+    the addresses into two columns if it is an intersection
+}
+\examples{
+testData <- january2018
+testData <- cs_parse_int(testData,ILEADSStreet,Intersection1,Intersection2)
+
 }

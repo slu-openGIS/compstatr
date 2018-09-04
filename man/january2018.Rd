@@ -9,23 +9,23 @@
   \item{Complaint}{complaint record number}
   \item{CodedMonth}{year and month crime reported}
   \item{DateOccur}{date and time of crime}
-  \item{FlagCrime}{}
-  \item{FlagUnfounded}{}
-  \item{FlagAdministrative}{}
-  \item{FlagCount}{}
-  \item{FlagCleanup}{}
-  \item{Crime}{}
-  \item{District}{}
-  \item{Description}{}
-  \item{ILEADSAddress}{}
-  \item{ILEADSStreet}{}
-  \item{Neighborhood}{}
-  \item{LocationName}{}
-  \item{LocationComment}{}
-  \item{CADAddress}{}
-  \item{CADStreet}{}
-  \item{XCoord}{}
-  \item{YCoord}{}
+  \item{FlagCrime}{Returns a Y when a crime occured}
+  \item{FlagUnfounded}{Reported crime was investigated and determined to be unfounded}
+  \item{FlagAdministrative}{Reported crime had a change in classification}
+  \item{Count}{Returns a 1 or -1 for counting purposes}
+  \item{FlagCleanup}{Returns information if administrative cleanup occured}
+  \item{Crime}{Uniform Crime Reporting code}
+  \item{District}{Number corresponding to the police determined district}
+  \item{Description}{Name of the crime}
+  \item{ILEADSAddress}{I/Leads system address}
+  \item{ILEADSStreet}{I/Leads system street}
+  \item{Neighborhood}{Number corresponding to a neighborhood}
+  \item{LocationName}{Common “Location Name” (i.e. Zoo, Scottrade Center, etc.)}
+  \item{LocationComment}{Information to provide context to the location (i.e. Alley, Restaraunt Name)}
+  \item{CADAddress}{The Computer-Aided Dispatch address is the reported address by the 911 caller}
+  \item{CADStreet}{The Computer-Aided Dispatch street is the reported street by the 911 caller}
+  \item{XCoord}{X-coordinates in the NAD83 format}
+  \item{YCoord}{Y-coordinates in the NAD83 format}
   }}
 \source{
 \href{http://www.slmpd.org}{St. Louis Metropolitan Police Department}

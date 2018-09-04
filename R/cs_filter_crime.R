@@ -1,9 +1,12 @@
 #' Filter Crimes
 #'
-#' @description \code{cs_crime_filter} can be used to subset based on
+#' @description \code{cs_filter_crime} can be used to subset based on
 #'     specific single UCR categories or common groupings.
 #'
-#' @usage cs_crime_filter(.data, var, crime)
+#' @details The categories used here are derived from the U.S. Federal
+#'     Bureau of Investigation's Uniform Crime Reporting codes.
+#'
+#' @usage cs_filter_crime(.data, var, crime)
 #'
 #' @param .data A tbl
 #' @param var Name of variable with 5 or 6 digit crime codes
@@ -12,12 +15,17 @@
 #' @return A subset tibble with only the specified crimes
 #'
 #' @importFrom dplyr filter
+#' @importFrom dplyr %>%
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang sym
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_filter_crime(testData,Crime,"violent")
+#'
 #' @export
-cs_crime_filter <- function(.data, var, crime){
+cs_filter_crime <- function(.data, var, crime){
 
   # save parameters to list
   paramList <- as.list(match.call())

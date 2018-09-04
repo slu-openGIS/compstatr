@@ -3,11 +3,10 @@
 #' @description This function a specified column from the data frame and
 #'     replaces cells that ahve the value 0 with NA
 #'
-#' @usage cs_replace_na(.data, variable)
+#' @usage cs_replace_na(.data, var)
 #'
 #' @param .data A tbl
-#'
-#' @param variable a column from the data frame
+#' @param var a column from the data frame
 #'
 #' @return returns the data frame with the 0's in the specified column changed
 #'
@@ -19,9 +18,10 @@
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
+#' @importFrom rlang sym
 #'
 #' @export
-cs_replace_na <- function(.data, variable){
+cs_replace_na <- function(.data, var){
 
   # save parameters to lis
   paramList <- as.list(match.call())
@@ -31,17 +31,17 @@ cs_replace_na <- function(.data, variable){
     stop('A existing data frame with data to be seperated must be specified for .data')
   }
 
-  if (missing(variable)) {
+  if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
 
   #quote input variables
-  varN <- rlang::quo_name(rlang::enquo(variable))
+  varN <- rlang::quo_name(rlang::enquo(var))
 
-  if (!is.character(paramList$variable)) {
-    var <- rlang::enquo(variable)
-  } else if (is.character(paramList$variable)) {
-    var <- rlang::quo(!! rlang::sym(variable))
+  if (!is.character(paramList$var)) {
+    var <- rlang::enquo(var)
+  } else if (is.character(paramList$var)) {
+    var <- rlang::quo(!! rlang::sym(var))
   }
 
   .data %>%

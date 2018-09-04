@@ -4,17 +4,25 @@
 \alias{cs_parse_date}
 \title{Seperate Date Occur}
 \usage{
-cs_parse_date(.data, variable)
+cs_parse_date(.data, var, newDate, newTime)
 }
 \arguments{
 \item{.data}{a data frame}
 
-\item{variable}{a column containing month, day, year, and time seperated by "/"}
+\item{var}{a column containing month, day, year, and time seperated by "/"}
+
+\item{newDate}{column containing month, day, and year}
+
+\item{newTime}{column containing hour and minute}
 }
 \value{
-returns 4 different columns containing, month, day, year, and time
+Appends two columns to the data frame. One is the time data and the other is the date data
 }
 \description{
-Seperates a column containing month, day, year, and time into 4 different
-    columns and removes the input column.
+Creates two columns. One contains month, day, and year and the other contains hour, and minute.
+}
+\examples{
+testData <- january2018
+testData <- cs_parse_date(testData,DateOccur,Date,Time)
+
 }

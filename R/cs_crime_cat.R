@@ -8,6 +8,8 @@
 #' @details The categories used here are derived from the U.S. Federal
 #'     Bureau of Investigation's Uniform Crime Reporting codes.
 #'
+#' @usage cs_crime_cat(.data, var, newVar, output)
+#'
 #' @param .data A tbl
 #' @param var Name of variable with 5 or 6 digit crime codes
 #' @param newVar Name of output variable to be created with simplified categories
@@ -16,6 +18,7 @@
 #' @return A copy of the data frame with the new output variable appended to it.
 #'
 #' @importFrom dplyr case_when
+#' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
 #' @importFrom rlang quo
@@ -23,8 +26,29 @@
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #'
+#' @examples
+#' testData <- january2018
+#' cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
+#'
 #' @export
 cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "numeric")){
+
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
+  if (missing(var)) {
+    stop('The column containing the data to be separated must be specified for variable')
+  }
+
+  if (missing(newVar)) {
+    stop('The name of the output variable to be created by the function must be specified for newVar')
+  }
+
+  if (missing(output)) {
+    stop('The type of output must be defined - either string, factor, or numeric')
+  }
 
   # save parameters to list
   paramList <- as.list(match.call())
@@ -46,6 +70,7 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
 
   newVarN <- rlang::quo_name(rlang::enquo(newVar))
 
+#Adds a new column with the numeric, string, or factor name
   if (output == "string" | output == "factor"){
 
     cleanData <- .data %>%

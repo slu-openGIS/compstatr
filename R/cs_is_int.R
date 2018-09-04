@@ -4,12 +4,10 @@
 #'     as incidents located at a single street address. This function can be
 #'     used to identify intersections for specific operations.
 #'
-#' @usage cs_is_int(.data, variable, newVar)
+#' @usage cs_is_int(.data, var, newVar)
 #'
 #' @param .data A tbl
-#'
-#' @param variable A column containing \code{ILEADSAddress} data
-#'
+#' @param var A column containing \code{ILEADSAddress} data
 #' @param newVar the name of the column to be created
 #'
 #' @return a logical vector that displays \code{TRUE} where the column is a
@@ -21,16 +19,22 @@
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #' @importFrom dplyr mutate
+#' @importFrom dplyr %>%
+#' @importFrom rlang :=
+#'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_is_int(testData,ILEADSStreet,Intersection)
 #'
 #' @export
-cs_is_int <- function(.data, variable, newVar){
+cs_is_int <- function(.data, var, newVar){
 
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
   }
 
-  if (missing(variable)) {
+  if (missing(var)) {
     stop('The column containing the data to be separated must be specified for variable')
   }
 
@@ -38,14 +42,15 @@ cs_is_int <- function(.data, variable, newVar){
   paramList <- as.list(match.call())
 
   #quote input variables
-  varN <- rlang::quo_name(rlang::enquo(variable))
+  newVar <- rlang::quo_name(rlang::enquo(newVar))
 
-  if (!is.character(paramList$variable)) {
-    var <- rlang::enquo(variable)
-  } else if (is.character(paramList$variable)) {
-    var <- rlang::quo(!! rlang::sym(variable))
+  if (!is.character(paramList$var)) {
+    var <- rlang::enquo(var)
+  } else if (is.character(paramList$var)) {
+    var <- rlang::quo(!! rlang::sym(var))
   }
 
+#creates new column with TRUE and FALSE
   .data %>%
-    dplyr::mutate(newVar = (ifelse((!!var) == 0,"TRUE","FALSE")))
+    dplyr::mutate(!!newVar := (ifelse((!!var) == 0,"TRUE","FALSE")))
 }
