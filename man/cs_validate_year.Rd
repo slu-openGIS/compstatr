@@ -4,12 +4,15 @@
 \alias{cs_validate_year}
 \title{Validate Year List Object}
 \usage{
-cs_validate_year(.data,year)
+cs_validate_year(.data, year, verbose)
 }
 \arguments{
 \item{.data}{A tbl}
 
 \item{year}{A string representing the year being checked, e.g. \code{"2008" }}
+
+\item{verbose}{A logical scalar. If \code{TRUE}, a full validation report summarizing
+results will be returned. If \code{FALSE}, a single value will be returned.}
 }
 \value{
 A tibble with validation results

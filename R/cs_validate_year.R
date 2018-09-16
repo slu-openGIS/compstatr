@@ -13,10 +13,12 @@
 #'     with 26 variables. Finally, it makes sure that all variables are being
 #'     imported with the correct formatting.
 #'
-#' @usage cs_validate_year(.data,year)
+#' @usage cs_validate_year(.data, year, verbose)
 #'
 #' @param .data A tbl
 #' @param year A string representing the year being checked, e.g. \code{"2008" }
+#' @param verbose A logical scalar. If \code{TRUE}, a full validation report summarizing
+#'     results will be returned. If \code{FALSE}, a single value will be returned.
 #'
 #' @return A tibble with validation results
 #'
@@ -27,7 +29,7 @@
 #' @importFrom dplyr %>%
 #'
 #' @export
-cs_validate_year <- function(.data, year){
+cs_validate_year <- function(.data, year, verbose = FALSE){
 
   # undefined global variables
   month = oneMonth = valClasses = valMonth = valVars = varCount = x = y = NULL
@@ -297,7 +299,29 @@ cs_validate_year <- function(.data, year){
       dplyr::rename(valClasses = y) -> results
   }
 
-  return(results)
+  if (verbose == TRUE){
+
+    return(results)
+
+  } else if (verbose == FALSE){
+
+    if (all(results$oneMonth) == FALSE | all(results$valMonth) == FALSE |
+        all(results$varCount) == FALSE | all(results$valVars) == FALSE |
+        all(results$valClasses) == FALSE){
+
+      summary <- FALSE
+
+    } else if (all(results$oneMonth) == TRUE & all(results$valMonth) == TRUE &
+               all(results$varCount) == TRUE & all(results$valVars) == TRUE &
+               all(results$valClasses) == TRUE){
+
+      summary <- TRUE
+
+    }
+
+      return(summary)
+
+  }
 
 }
 
