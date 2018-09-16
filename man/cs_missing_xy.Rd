@@ -25,6 +25,6 @@ returns a logical vector that displays TRUE when the coordinates are
     data.
 }
 \examples{
-cs_filter_crime(january2018,XCoord,Ycoord,IsMissing)
+cs_missing_xy(january2018, varx = XCoord, vary = YCoord, newVar = missingXY)
 
 }

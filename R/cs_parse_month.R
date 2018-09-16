@@ -56,6 +56,6 @@ cs_parse_month <- function(.data,var,newYear,newMonth){
   }
 #Separates coded month and year
   .data %>%
-    tidyr::separate((!var), c(newYear, newMonth), "-", remove = TRUE)
+    tidyr::separate((!!var), c(newYear, newMonth), "-", remove = TRUE)
 }
 

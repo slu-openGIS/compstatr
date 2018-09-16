@@ -13,9 +13,6 @@ cs_validate_month(.data, month)
 Acceptable inputs include, for example, "January", "january", "Jan",
 "jan", and 1.}
 }
-\value{
-
-}
 \description{
 This function can be applied to a single month within a year
     list object to identify problematic variables that are non-standard classes.

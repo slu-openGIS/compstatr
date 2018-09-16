@@ -22,7 +22,7 @@
 #' @importFrom rlang :=
 #'
 #' @examples
-#' cs_filter_crime(january2018,XCoord,Ycoord,IsMissing)
+#' cs_missing_xy(january2018, varx = XCoord, vary = YCoord, newVar = missingXY)
 #'
 #' @export
 cs_missing_xy <- function(.data, varx, vary, newVar){

@@ -16,8 +16,6 @@
 #'    Acceptable inputs include, for example, "January", "january", "Jan",
 #'    "jan", and 1.
 #'
-#'@return
-#'
 #' @seealso cs_validate_year
 #'
 #' @export

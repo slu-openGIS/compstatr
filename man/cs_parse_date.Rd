@@ -4,16 +4,20 @@
 \alias{cs_parse_date}
 \title{Seperate Date Occur}
 \usage{
-cs_parse_date(.data, var, newDate, newTime)
+cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 }
 \arguments{
 \item{.data}{a data frame}
 
 \item{var}{a column containing month, day, year, and time seperated by "/"}
 
-\item{newDate}{column containing month, day, and year}
+\item{dateVar}{Name of variable containing date data}
 
-\item{newTime}{column containing hour and minute}
+\item{timeVar}{Name of variable containing time data}
+
+\item{tz}{String name of timezone, defaults to system's timezone}
+
+\item{keepDateTime}{A logical scalar. Keep an intermediate dateTime variable if \code{TRUE}.}
 }
 \value{
 Appends two columns to the data frame. One is the time data and the other is the date data
@@ -23,6 +27,6 @@ Creates two columns. One contains month, day, and year and the other contains ho
 }
 \examples{
 testData <- january2018
-testData <- cs_parse_date(testData,DateOccur,Date,Time)
+testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
 
 }
