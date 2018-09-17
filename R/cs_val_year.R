@@ -45,7 +45,7 @@ cs_val_year <- function(.data, year, verbose = FALSE){
 #'
 cs_checkMonth <- function(monthItem){
 
-  monthStr <- name(monthItem)
+  monthStr <- names(monthItem)
   monthVal <- cs_matchMonthNum(monthStr)
 
 }
