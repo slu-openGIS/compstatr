@@ -20,6 +20,7 @@ Imports: dplyr,
     rlang,
     readr,
     purrr,
-    lubridate
+    lubridate,
+    stringr
 Suggests: 
     testthat
