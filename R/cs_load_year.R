@@ -21,6 +21,17 @@ cs_load_year <- function(path){
   # create list of all files at path that are csv
   files <- dir(path = path, pattern = "*.csv")
 
+  # check number of files
+  if (length(files) > 12){
+
+    stop('There are too many files in the specified folder. Load crime files in yearly batches of 12 monthly files.')
+
+  } else if (length(files) < 12){
+
+    warning('There are fewer than 12 files in the specified folder. You are only loading a partial year.')
+
+  }
+
   # read csv files into year list objects
   files %>%
     map(~ suppressMessages(suppressWarnings(read_csv(file.path(path, .))))) -> data
@@ -34,6 +45,9 @@ cs_load_year <- function(path){
 
   # apply vector to data
   names(data) <- nameVector
+
+  # add new class
+  class(data) <- append(class(data), "cs_year_list")
 
   # return year list object
   return(data)
@@ -52,25 +66,30 @@ cs_load_year <- function(path){
 #'
 cs_identifyMonth <- function(.data){
 
+  # depending on number of columns, the CodedMonth variable is named differently
+  # the if elseif statements pull the first value from CodedMonth
+
   if (length(.data) == 18){
 
-    x <- .data$MonthReportedtoMSHP[1]
+    monthVal <- .data$MonthReportedtoMSHP[1]
 
   } else if (length(.data) == 20){
 
-    x <- .data$CodedMonth[1]
+    monthVal <- .data$CodedMonth[1]
 
   } else if (length(.data) == 26){
 
-    x <- .data$`Coded Month`[1]
+    monthVal <- .data$`Coded Month`[1]
 
   }
 
-  x <- stringr::str_sub(x, start = -2)
+  # extract the last two digits from the coded month value
+  monthLastTwo <- stringr::str_sub(monthVal, start = -2)
 
-  x <- cs_matchMonth(x)
+  # convert those last two digits into a string month name
+  monthString <- cs_matchMonth(monthLastTwo)
 
-  return(x)
+  return(monthString)
 
 }
 
@@ -84,6 +103,9 @@ cs_identifyMonth <- function(.data){
 #' @param x The last two characters of the first observation's coded month value
 #'
 cs_matchMonth <- function(x){
+
+  # the last two digits from two digits from the coded month value are passed to this function as x
+  # depending on the value, the correct month string name is returned
 
   if (x == "01") {
 
