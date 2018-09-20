@@ -8,6 +8,9 @@ cs_identifyMonth(.data, read = TRUE)
 }
 \arguments{
 \item{.data}{A year list object name}
+
+\item{read}{A logical scalar; if \code{TRUE}, return output structured for initial reading of
+data into R. If \code{FALSE}, use for data validation.}
 }
 \description{
 This uses the value of the first observation's coded month as the basis for

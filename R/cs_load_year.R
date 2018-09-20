@@ -61,6 +61,8 @@ cs_load_year <- function(path){
 #' @keywords internal
 #'
 #' @param .data A year list object name
+#' @param read A logical scalar; if \code{TRUE}, return output structured for initial reading of
+#'    data into R. If \code{FALSE}, use for data validation.
 #'
 #' @importFrom stringr str_sub
 #'
