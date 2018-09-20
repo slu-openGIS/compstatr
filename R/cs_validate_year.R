@@ -60,9 +60,7 @@ cs_validate_year <- function(.data, year, verbose = FALSE){
 
     # iterate over year list object to produce logic check results
     .data %>%
-      purrr::map(cs_checkMonth) -> x
-
-    return(x)
+      purrr::map(cs_checkMonth) -> result
 
     # add month name as observation
     for (i in 1:length(result)){
@@ -488,8 +486,8 @@ cs_cleanResults <- function(.data){
     dplyr::rename(varCount = X3) %>%
     dplyr::rename(valVars = X4) %>%
     dplyr::rename(valClasses = X5) %>%
-    dplyr::rename(namedMonth = X6) %>%
-    dplyr::rename(codedYear = X7) -> out
+    dplyr::rename(namedMonth = X7) %>%
+    dplyr::rename(codedYear = X6) -> out
 
   # clean data
   out %>%
