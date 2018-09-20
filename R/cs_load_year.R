@@ -64,7 +64,7 @@ cs_load_year <- function(path){
 #'
 #' @importFrom stringr str_sub
 #'
-cs_identifyMonth <- function(.data){
+cs_identifyMonth <- function(.data, read = TRUE){
 
   # depending on number of columns, the CodedMonth variable is named differently
   # the if elseif statements pull the first value from CodedMonth
@@ -84,12 +84,20 @@ cs_identifyMonth <- function(.data){
   }
 
   # extract the last two digits from the coded month value
-  monthLastTwo <- stringr::str_sub(monthVal, start = -2)
+  monthString <- stringr::str_sub(monthVal, start = -2)
 
-  # convert those last two digits into a string month name
-  monthString <- cs_matchMonth(monthLastTwo)
+  if (read == TRUE){
 
-  return(monthString)
+    # convert those last two digits into a string month name
+    out <- cs_matchMonth(monthString)
+
+  } else if (read == FALSE){
+
+    out <- as.numeric(monthString)
+
+  }
+
+  return(out)
 
 }
 

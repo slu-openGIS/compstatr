@@ -27,13 +27,151 @@
 #' @export
 cs_val_year <- function(.data, year, verbose = FALSE){
 
-  # create list of months associated with year list object items
-  .data %>%
-    purrr::map(cs_checkMonth) -> result
+  monthVal <- cs_checkNames(.data)
+
+  # initial logic checks
+  if (monthVal == "january"){
+
+    warning('The given year list object does not include January.')
+    result <- FALSE
+
+  } else if (monthVal == "duplicates"){
+
+    warning('The given year list object has a duplicate entry for at least one month.')
+    result <- FALSE
+
+  } else if (monthVal == "missing"){
+
+    warning('The given year list object does not contain all consecutive months between January and the last given month.')
+    result <- FALSE
+
+  } else if (monthVal == "valid"){
+
+    result <- TRUE
+
+  }
+
+  # check internal characteristics of each month in year list object
+  if (result == TRUE){
+
+    # iterate over year list object to produce logic check results
+    .data %>%
+      purrr::map(cs_checkMonth) -> result
+
+    # add month name as observation
+    for (i in 1:length(result)){
+
+      result[[i]] <- c(result[[i]], names(result[i]))
+
+    }
+
+    # convert results to tibble
+    result <- dplyr::as_tibble(data.frame(matrix(unlist(result),
+                                                 nrow = length(result),
+                                                 byrow = TRUE),
+                                          stringsAsFactors=FALSE))
+
+    # clean results tibble
+    result <- cs_cleanResults(result)
+
+    # validate months
+    result <- cs_matchMonths(result)
+
+  }
 
   return(result)
 
 }
+
+#' Validate Number of Months
+#'
+#' @description This checks the list of months to make sure that there are either
+#'     12 unique month entries or, if there are fewer than 12, that there are no
+#'     missing missing months between January and the last month loaded.
+#'
+#' @details For year list objects with fewer than 12 months, this confirms that
+#'     data for January are present. It then ensures that there are no months
+#'     between January and the last month entered. For example, if the first six
+#'     months of data were loaded - i.e. through June - this function would
+#'     ensure that there were no months missing between January and June.
+#'
+#' @keywords internal
+#'
+#' @param .data A yaer list object
+#'
+cs_checkNames <- function(.data){
+
+  # create list of months present in year list object
+  months <- names(.data)
+
+  # ensure that January is present
+  jan <- ("January" %in% months)
+
+  # ensure that January is present
+  if (jan == FALSE) {
+
+    result <- "january"
+
+  } else if (jan == TRUE){
+
+    # ensure that there are no duplicates
+    uniqueMonths <- unique(months)
+    uniqueTest <- (length(months) == length(uniqueMonths))
+
+    if (uniqueTest == FALSE){
+
+      result <- "duplicates"
+
+    } else if (uniqueTest == TRUE){
+
+      # check that all necessary months are present
+      correctMonths <- cs_validateNames(names = months)
+
+      if (correctMonths == FALSE){
+
+        result <- "missing"
+
+      } else if (correctMonths == TRUE){
+
+        result <- "valid"
+
+      }
+    }
+  }
+
+  return(result)
+
+}
+
+#' Validate Names of Months
+#'
+#' @description Given the names of months in the year list object,
+#'     are all months that should be present included?
+#'
+#' @keywords internal
+#'
+#' @param names Vector of names of months from year list object
+#'
+cs_validateNames <- function(names){
+
+  # create master list of all months
+  allNames <- c("January", "February", "March", "April", "May", "June", "July", "August", "September",
+                "October", "November", "December")
+
+  # get number of months from year list object
+  num <- length(names)
+
+  # cut master list down to number of months in year list object
+  testNames <- allNames[1:num]
+
+  # test whether master list and year list object months are identical
+  testResult <- identical(sort(names),sort(testNames))
+
+  # return result
+  return(testResult)
+
+}
+
 
 #' Check Month of Year List Object for Correct Properties
 #'
@@ -45,71 +183,341 @@ cs_val_year <- function(.data, year, verbose = FALSE){
 #'
 cs_checkMonth <- function(monthItem){
 
-  monthStr <- names(monthItem)
-  monthVal <- cs_matchMonthNum(monthStr)
+  a <- as.character(cs_checkCodedMonth(monthItem))
+  b <- as.character(cs_identifyMonth(monthItem, read = FALSE))
 
-}
 
-#' Match List Name with Numeric Value
-#'
-#' @description .
-#'
-#' @keywords internal
-#'
-#' @param x The last two characters of the first observation's coded month value
-#'
-cs_matchMonthNum <- function(x){
+  if (ncol(monthItem) == 20){
 
-  if (x == "January") {
+    c <- "TRUE"
 
-    val <- 1
+  } else if (ncol(monthItem) == 18 | ncol(monthItem) == 26){
 
-  } else if (x == "February") {
+    c <- "FALSE"
 
-    val <- 2
+  } else {
 
-  } else if (x == "March") {
-
-    val <- 3
-
-  } else if (x == "April") {
-
-    val <- 4
-
-  } else if (x == "May") {
-
-    val <- 5
-
-  } else if (x == "June") {
-
-    val <- 6
-
-  } else if (x == "July") {
-
-    val <- 7
-
-  } else if (x == "August") {
-
-    val <- 8
-
-  } else if (x == "September") {
-
-    val <- 9
-
-  } else if (x == "October") {
-
-    val <- 10
-
-  } else if (x == "November") {
-
-    val <- 11
-
-  } else if (x == "December") {
-
-    val <- 12
+    c <- "ERROR"
 
   }
 
-  return(val)
+  d <- cs_checkVarNames(monthItem)
+  e <- cs_checkVarClasses(monthItem)
+
+  out <- c(a,b,c,d,e)
+
+  return(out)
+
+}
+
+
+#' Check Month for Single Coded Month Value
+#'
+#' @description Ensure that there is only one coded month value per year list object item
+#'
+#' @keywords internal
+#'
+#' @param monthItem A single item in a year list object
+#'
+cs_checkCodedMonth <- function(monthItem){
+
+  # check to see if coded month values are identical
+  if (length(monthItem) == 18){
+
+    monthVal <- length(unique(monthItem$MonthReportedtoMSHP))
+
+  } else if (length(monthItem) == 20){
+
+    monthVal <- length(unique(monthItem$CodedMonth))
+
+  } else if (length(monthItem) == 26){
+
+    monthVal <- length(unique(monthItem$`Coded Month`))
+
+  }
+
+  # construct result
+  if (monthVal == 1){
+
+    result <- TRUE
+
+  } else if (monthVal > 1){
+
+    result <- FALSE
+
+  }
+
+  return(result)
+
+}
+
+
+#' Check Variable Names
+#'
+#' @description Checks to make sure variable names are correct if there are 20 variables in month
+#'
+#' @keywords internal
+#'
+#' @param monthItem A single item in a year list object
+#'
+cs_checkVarNames <- function(monthItem){
+
+  if (ncol(monthItem) == 20){
+
+    validVars <- c("Complaint", "CodedMonth", "DateOccur", "FlagCrime", "FlagUnfounded",
+                   "FlagAdministrative", "Count", "FlagCleanup", "Crime", "District",
+                   "Description", "ILEADSAddress", "ILEADSStreet", "Neighborhood", "LocationName",
+                   "LocationComment", "CADAddress", "CADStreet", "XCoord", "YCoord")
+
+    testVars <- colnames(monthItem)
+
+    if (all(testVars == validVars) == TRUE) {
+
+      result <- "TRUE"
+
+    } else if (all(testVars == validVars) == FALSE) {
+
+      result <- "FALSE"
+
+    }
+
+  } else if (ncol(monthItem) != 20){
+
+    result <- "NA"
+
+  }
+
+  return(result)
+
+}
+
+
+#' Check Variable Classes
+#'
+#' @description Checks to make sure variable classes are correct
+#'
+#' @keywords internal
+#'
+#' @param monthItem A single item in a year list object
+#'
+cs_checkVarClasses <- function(monthItem){
+
+  if (ncol(monthItem) == 20){
+
+    monthItem %>%
+      purrr::map(class) -> classes
+
+    if (classes$Complaint == "character") {
+      classResult <- TRUE
+    } else if (classes$Complaint != "character"){
+      classResult <- FALSE
+    }
+
+    if (classes$CodedMonth == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$CodedMonth != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$DateOccur == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$DateOccur != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$FlagCrime == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$FlagCrime != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$FlagUnfounded == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$FlagUnfounded != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$FlagAdministrative == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$FlagAdministrative != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$Count == "integer") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$Count != "integer"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$FlagCleanup == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$FlagCleanup != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$Crime == "integer") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$Crime != "integer"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$District == "integer") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$District != "integer"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$Description == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$Description != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$ILEADSAddress == "integer") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$ILEADSAddress != "integer"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$ILEADSStreet == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$ILEADSStreet != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$Neighborhood == "integer") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$Neighborhood != "integer"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$LocationName == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$LocationName != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$LocationComment == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$LocationComment != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$CADAddress == "integer") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$CADAddress != "integer"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$CADStreet == "character") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$CADStreet != "character"){
+      classResult <- c(classResult, FALSE)
+    }
+
+    if (classes$XCoord == "numeric") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$XCoord != "numeric"){
+      classResult <- c(classResult, FALSE)
+      probVar <- c(probVar, "XCoord")
+    }
+
+    if (classes$YCoord == "numeric") {
+      classResult <- c(classResult, TRUE)
+    } else if (classes$YCoord != "numeric"){
+      classResult <- c(classResult, FALSE)
+      probVar <- c(probVar, "YCoord")
+    }
+
+    result <- as.character(all(classResult))
+
+  } else if (ncol(monthItem) != 20){
+
+    result <- "NA"
+
+  }
+
+  return(result)
+
+}
+
+#' Clean Results Tibble
+#'
+#' @description Converts messy results output to clean output
+#'
+#' @keywords internal
+#'
+#' @param .data A result tibble
+#'
+cs_cleanResults <- function(.data){
+
+  # undefined global variables
+  X1 = X2 = X3 = X4 = X5 = X6 = oneMonth = monthNum = varCount = valVars = valClasses = namedMonth = NULL
+
+  # rename variables
+  .data %>%
+    dplyr::rename(oneMonth = X1) %>%
+    dplyr::rename(monthNum = X2) %>%
+    dplyr::rename(varCount = X3) %>%
+    dplyr::rename(valVars = X4) %>%
+    dplyr::rename(valClasses = X5) %>%
+    dplyr::rename(namedMonth = X6) -> out
+
+  # clean data
+  out %>%
+    dplyr::mutate(oneMonth = as.logical(oneMonth)) %>%
+    dplyr::mutate(monthNum = as.integer(monthNum)) %>%
+    dplyr::mutate(varCount = ifelse(varCount == "ERROR", NA, varCount)) %>%
+    dplyr::mutate(varCount = as.logical(varCount)) %>%
+    dplyr::mutate(valVars = ifelse(valVars == "NA", NA, valVars)) %>%
+    dplyr::mutate(valVars = as.logical(valVars)) %>%
+    dplyr::mutate(valClasses = ifelse(valClasses == "NA", NA, valClasses)) %>%
+    dplyr::mutate(valClasses = as.logical(valClasses)) -> out
+
+  # limit variables returned
+  out <- dplyr::select(out, namedMonth, monthNum, oneMonth, varCount, valVars, valClasses)
+
+  # return output
+  return(out)
+
+}
+
+#' Logic Check for Named and Coded Month
+#'
+#' @description Updates test result tibble with results of logic check that compares the
+#'     data from the named month with the data from the coded month.
+#'
+#' @keywords internal
+#'
+#' @param .data A result tibble
+#'
+cs_matchMonths <- function(.data){
+
+  # undefined global variables
+  namedMonth = codedMonth = valMonth = monthNum = NULL
+
+  # clean data and perform logic check
+  .data %>%
+    dplyr::mutate(codedMonth = dplyr::case_when(
+      monthNum == 1 ~ "January",
+      monthNum == 2 ~ "February",
+      monthNum == 3 ~ "March",
+      monthNum == 4 ~ "April",
+      monthNum == 5 ~ "May",
+      monthNum == 6 ~ "June",
+      monthNum == 7 ~ "July",
+      monthNum == 8 ~ "August",
+      monthNum == 9 ~ "September",
+      monthNum == 10 ~ "October",
+      monthNum == 11 ~ "November",
+      monthNum == 12 ~ "December"
+    )) %>%
+    dplyr::mutate(valMonth = ifelse(namedMonth == codedMonth, TRUE, FALSE)) %>%
+    dplyr::select(namedMonth, codedMonth, valMonth, dplyr::everything()) %>%
+    dplyr::arrange(monthNum) %>%
+    dplyr::select(-monthNum) -> out
+
+  # return output
+  return(out)
 
 }

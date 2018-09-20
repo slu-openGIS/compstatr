@@ -4,7 +4,7 @@
 \alias{cs_identifyMonth}
 \title{Extract Month of a Given Year List Object Item}
 \usage{
-cs_identifyMonth(.data)
+cs_identifyMonth(.data, read = TRUE)
 }
 \arguments{
 \item{.data}{A year list object name}
