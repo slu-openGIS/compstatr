@@ -477,8 +477,7 @@ cs_checkVarClasses <- function(monthItem){
 cs_cleanResults <- function(.data){
 
   # undefined global variables
-  X1 = X2 = X3 = X4 = X5 = X6 = X7 = oneMonth = monthNum = varCount =
-    valVars = valClasses = namedMonth = codedYear = NULL
+  X1 = X2 = X3 = X4 = X5 = X6 = X7 = oneMonth = monthNum = varCount = valVars = valClasses = namedMonth = codedYear = NULL
 
   # rename variables
   .data %>%
