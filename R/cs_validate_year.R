@@ -556,26 +556,26 @@ cs_matchMonths <- function(.data){
 #'
 #' @keywords internal
 #'
-#' @param .data A year list object name
+#' @param monthItem A single month from a year list object
 #'
 #' @importFrom stringr str_sub
 #'
-cs_identifyYear <- function(.data){
+cs_identifyYear <- function(monthItem){
 
   # depending on number of columns, the CodedMonth variable is named differently
   # the if elseif statements pull the first value from CodedMonth
 
-  if (length(.data) == 18){
+  if (length(monthItem) == 18){
 
-    yearVal <- .data$MonthReportedtoMSHP[1]
+    yearVal <- monthItem$MonthReportedtoMSHP[1]
 
-  } else if (length(.data) == 20){
+  } else if (length(monthItem) == 20){
 
-    yearVal <- .data$CodedMonth[1]
+    yearVal <- monthItem$CodedMonth[1]
 
-  } else if (length(.data) == 26){
+  } else if (length(monthItem) == 26){
 
-    yearVal <- .data$`Coded Month`[1]
+    yearVal <- monthItem$`Coded Month`[1]
 
   }
 

@@ -4,10 +4,10 @@
 \alias{cs_identifyYear}
 \title{Extract Year of a Given Year List Object Item}
 \usage{
-cs_identifyYear(.data)
+cs_identifyYear(monthItem)
 }
 \arguments{
-\item{.data}{A year list object name}
+\item{monthItem}{A single month from a year list object}
 }
 \description{
 This uses the value of the first observation's coded month as the basis for
