@@ -77,6 +77,23 @@ cs_val_year <- function(.data, year, verbose = FALSE){
     # validate months
     result <- cs_matchMonths(result)
 
+    # structure returned results
+    if (verbose == FALSE){
+
+      if (all(result$oneMonth) == FALSE | all(result$valMonth) == FALSE |
+          all(result$varCount) == FALSE | all(result$valVars) == FALSE |
+          all(result$valClasses) == FALSE){
+
+        result <- FALSE
+
+      } else if (all(result$oneMonth) == TRUE & all(result$valMonth) == TRUE &
+                 all(result$varCount) == TRUE & all(result$valVars) == TRUE &
+                 all(result$valClasses) == TRUE){
+
+        result <- TRUE
+
+      }
+    }
   }
 
   return(result)
