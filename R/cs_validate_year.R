@@ -60,7 +60,7 @@ cs_validate_year <- function(.data, year, verbose = FALSE){
 
     # iterate over year list object to produce logic check results
     .data %>%
-      purrr::map(cs_checkMonth) -> result
+      purrr::map(cs_checkMonth) -> x
 
     # add month name as observation
     for (i in 1:length(result)){
@@ -103,7 +103,7 @@ cs_validate_year <- function(.data, year, verbose = FALSE){
     }
   }
 
-  return(result)
+  return(x)
 
 }
 
