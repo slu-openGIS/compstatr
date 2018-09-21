@@ -30,7 +30,7 @@
 #' testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
 #'
 #'@export
-cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE, reorder = TRUE){
+cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE){
 
   # undefined global variables
   dateTime = NULL
@@ -72,9 +72,9 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
     dplyr::mutate(!!newTime := base::strftime(dateTime, format = "%H:%M:%S")) -> out
 
   # optionally reorder variables
-  if (reorder == TRUE){
-    .data <- select(.data, Complaint, CodedMonth, DateOccur, dateTime, newDate, newTime, dplyr::everything())
-  }
+  # if (reorder == TRUE){
+  #  .data <- select(.data, Complaint, CodedMonth, DateOccur, dateTime, !!newDate, !!newTime, dplyr::everything())
+  # }
 
   # optionally remove variables
   if (keepDateTime == FALSE){
