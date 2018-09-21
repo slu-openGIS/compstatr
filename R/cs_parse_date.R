@@ -66,7 +66,7 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
  #Separates the column by the spacing in the data and returns two columns
 
   .data %>%
-    dplyr::mutate(dateTime := lubridate::parse_date_time(!!var, orders = c("mdy HM"), tz = tz)) %>%
+    dplyr::mutate(dateTime := lubridate::parse_date_time(!!var, orders = c("mdy HM"))) %>%
     dplyr::mutate(!!newDate := lubridate::date(dateTime)) %>%
     dplyr::mutate(!!newTime := base::strftime(dateTime, format = "%H:%M:%S")) -> out
 
