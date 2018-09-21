@@ -73,7 +73,7 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
 
   # optionally reorder variables
   if (reorder == TRUE){
-    .data <- select(.data, Complaint, CodedMonth, DateOccur, dateTime, !!newDate, !!newTime, dplyr::everything())
+    .data <- select(.data, Complaint, CodedMonth, DateOccur, dateTime, newDate, newTime, dplyr::everything())
   }
 
   # optionally remove variables
