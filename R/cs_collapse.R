@@ -24,9 +24,12 @@ cs_collapse <- function(.data){
   }
 
   # extract each month, collapse, and re-order
-  purrr::map(.data, as.data.frame) %>%
+  purrr::map(.data, dplyr::as_tibble) %>%
     dplyr::bind_rows() %>%
     dplyr::arrange(CodedMonth, DateOccur) -> year
+
+  # add new class
+  class(data) <- append(class(data), "cs_collapsed_year")
 
   # return combined object
   return(year)
