@@ -2,7 +2,7 @@
 #'
 #' @description Creates two columns. One contains month, day, and year and the other contains hour, and minute.
 #'
-#' @usage cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
+#' @usage cs_parse_date(.data, var, dateVar, timeVar, keepDateTime = TRUE)
 #'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"
@@ -16,6 +16,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
 #' @importFrom dplyr select
+#' @importFrom dplyr everything
 #' @importFrom lubridate date
 #' @importFrom lubridate parse_date_time
 #' @importFrom rlang :=
@@ -29,7 +30,7 @@
 #' testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
 #'
 #'@export
-cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE){
+cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE, reorder = TRUE){
 
   # undefined global variables
   dateTime = NULL
@@ -70,7 +71,12 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
     dplyr::mutate(!!newDate := lubridate::date(dateTime)) %>%
     dplyr::mutate(!!newTime := base::strftime(dateTime, format = "%H:%M:%S")) -> out
 
-  # selectively remove variables
+  # optionally reorder variables
+  if (reorder == TRUE){
+    .data <- select(.data, Complaint, CodedMonth, DateOccur, dateTime, date, time, dplyr::everything())
+  }
+
+  # optionally remove variables
   if (keepDateTime == FALSE){
     .data <- dplyr::select(.data, -c(dateTime))
   }
