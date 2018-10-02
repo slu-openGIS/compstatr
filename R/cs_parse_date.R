@@ -2,7 +2,7 @@
 #'
 #' @description Creates two columns. One contains month, day, and year and the other contains hour, and minute.
 #'
-#' @usage cs_parse_date(.data, var, dateVar, timeVar, keepDateTime = TRUE)
+#' @usage cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 #'
 #' @param .data a data frame
 #' @param var a column containing month, day, year, and time seperated by "/"

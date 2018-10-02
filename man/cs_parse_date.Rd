@@ -4,7 +4,7 @@
 \alias{cs_parse_date}
 \title{Seperate Date Occur}
 \usage{
-cs_parse_date(.data, var, dateVar, timeVar, keepDateTime = TRUE)
+cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 }
 \arguments{
 \item{.data}{a data frame}

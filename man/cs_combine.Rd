@@ -4,17 +4,19 @@
 \alias{cs_combine}
 \title{Combine Multiple Years of Data}
 \usage{
-cs_collapse(.data)
+cs_combine(type, date, ...)
 }
 \arguments{
-\item{.data}{A list containing monthly crime data}
+\item{type}{One of either "year" or "ytd"}
+
+\item{date}{For \code{type = "year"}, this should be the year of data to be returned.
+For \code{type = "ytd"}, this should be the last month to be included in each estimate.}
+
+\item{...}{An unquoted list of objects}
 }
 \value{
-A tibble containing a year worth of crime data.
+A tibble containing a selection of combined crime data for a given time period.
 }
 \description{
-This function takes a list containing 12 tibbles - one per
-   month - that have been validated and collapses them into a single tibble.
-   This is preferable for working with the data post validation, but cannot
-   be done until there is parity in terms of variable names and classes.
+This function...
 }

@@ -1,15 +1,15 @@
 #' Combine Multiple Years of Data
 #'
-#' @description This function takes a list containing 12 tibbles - one per
-#'    month - that have been validated and collapses them into a single tibble.
-#'    This is preferable for working with the data post validation, but cannot
-#'    be done until there is parity in terms of variable names and classes.
+#' @description This function...
 #'
-#' @usage cs_collapse(.data)
+#' @usage cs_combine(type, date, ...)
 #'
-#' @param .data A list containing monthly crime data
+#' @param type One of either "year" or "ytd"
+#' @param date For \code{type = "year"}, this should be the year of data to be returned.
+#'     For \code{type = "ytd"}, this should be the last month to be included in each estimate.
+#' @param ... An unquoted list of objects
 #'
-#' @return A tibble containing a year worth of crime data.
+#' @return A tibble containing a selection of combined crime data for a given time period.
 #'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr arrange
@@ -23,6 +23,9 @@
 #'
 #' @export
 cs_combine <- function(type, date, ...){
+
+  # undefined global variables
+  DateOccur = time = dateTime = NULL
 
   # save parameters to list
   paramList <- as.list(match.call())

@@ -18,6 +18,9 @@
 #' @export
 cs_collapse <- function(.data){
 
+  # undefined global variables
+  CodedMonth = DateOccur = NULL
+
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
