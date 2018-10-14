@@ -28,7 +28,7 @@ cs_replace_na <- function(.data, var){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be seperated must be specified for .data')
+    stop('A existing data frame with data to be separated must be specified for .data')
   }
 
   if (missing(var)) {

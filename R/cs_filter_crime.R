@@ -27,15 +27,31 @@
 #' @export
 cs_filter_crime <- function(.data, var, crime){
 
+
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be seperated must be specified for .data')
+  }
+
+  if (missing(var)) {
+    stop('The column containing the crime data for var must be specified')
+  }
+
+  if (missing(crime)) {
+    stop('The crime to be extracted must be specified.')
+  }
   # save parameters to list
   paramList <- as.list(match.call())
-
   #quote input variables
   if (!is.character(paramList$var)) {
     var <- rlang::enquo(var)
   } else if (is.character(paramList$var)) {
     var <- rlang::quo(!! rlang::sym(var))
   }
+
+  crime <- rlang::quo_name(rlang::enquo(crime))
+
+  #identify input crime
 
   if (crime == "violent" | crime == "Violent"){
 
@@ -172,8 +188,9 @@ cs_filter_crime <- function(.data, var, crime){
   } else if (crime == "runaways-persons under 18" | crime == "Runaways-Persons under 18" | crime == 29){
 
     subsetData <- dplyr::filter(.data, !!var >= 290000)
+  }else {
 
-
+    stop("The given argument for crime does not match an acceptible input.")
 
   }
 

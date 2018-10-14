@@ -19,6 +19,7 @@
 #' @export
 cs_extract_month <- function(.data, month){
 
+
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
@@ -27,6 +28,9 @@ cs_extract_month <- function(.data, month){
   if (missing(month)) {
     stop('The month to be extracted must be specified.')
   }
+
+  #quote input variables
+month <- rlang::quo_name(rlang::enquo(month))
 
   # identify input month
   if (month == "January" | month == "Jan" | month == "january" | month == "jan" | month == 1){
