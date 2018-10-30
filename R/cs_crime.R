@@ -22,6 +22,9 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang sym
 #'
+#' @example
+#' testData <- january2018
+#'testData <- cs_crime(testData, Crime, sorted_crime, violent)
 #' @export
 cs_crime <- function(.data, var, newVar, crime){
 

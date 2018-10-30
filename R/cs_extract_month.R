@@ -16,6 +16,13 @@
 #'
 #' @return A tibble containing a single month worth of crime data.
 #'
+#' @importFrom rlang quo
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#'
+#' testData <- january2018
+#' testData <- cs_extract_month(testData, January)
+#'
 #' @export
 cs_extract_month <- function(.data, month){
 
