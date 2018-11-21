@@ -7,7 +7,7 @@
 cs_project(.data, varX, varY, crs)
 }
 \arguments{
-\item{.data}{A tibble with raw CSB data}
+\item{.data}{A tibble with crime data}
 
 \item{area}{One of either "city" or "county"}
 

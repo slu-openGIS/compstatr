@@ -14,7 +14,7 @@
 #'
 #' @usage cs_project(.data, varX, varY, crs)
 #'
-#' @param .data A tibble with raw CSB data
+#' @param .data A tibble with crime data
 #' @param area One of either "city" or "county"
 #' @param varX Name of column containing x coordinate data
 #' @param varY Name of column containing y coordinate data
