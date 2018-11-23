@@ -4,7 +4,7 @@
 \alias{cs_project}
 \title{Project Data}
 \usage{
-cs_project(.data, varX, varY, crs)
+cs_project(.data, area, varX, varY, crs)
 }
 \arguments{
 \item{.data}{A tibble with crime data}
@@ -14,18 +14,13 @@ cs_project(.data, varX, varY, crs)
 \item{varX}{Name of column containing x coordinate data}
 
 \item{varY}{Name of column containing y coordinate data}
+
+\item{crs}{integer with the EPSG code, or character with proj4string representing the
+coordinate reference system}
 }
 \description{
 \code{cs_project} converts STLMPD or St. Louis County data into a simple
     features object. For STLMPD data, this is done using the \code{XCoord} and
     \code{YCoord} columns. For St. Louis county data, this is done using the
     \code{X} and \code{Y} columns.
-}
-\details{
-Simple features objects are a means for storing and representing spatial data
-    in \code{R}. It is implemented using the package \code{\link{sf}}, which is not a
-    package that is automatically installed when you install \code{compstatr} since it
-    has some complicated dependencies. To use this function, first install the
-    \code{\link{sf}} package and its dependencies (see
-    \url{https://github.com/r-spatial/sf}).
 }

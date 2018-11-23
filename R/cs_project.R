@@ -5,29 +5,17 @@
 #'     \code{YCoord} columns. For St. Louis county data, this is done using the
 #'     \code{X} and \code{Y} columns.
 #'
-#' @details Simple features objects are a means for storing and representing spatial data
-#'     in \code{R}. It is implemented using the package \code{\link{sf}}, which is not a
-#'     package that is automatically installed when you install \code{compstatr} since it
-#'     has some complicated dependencies. To use this function, first install the
-#'     \code{\link{sf}} package and its dependencies (see
-#'     \url{https://github.com/r-spatial/sf}).
-#'
-#' @usage cs_project(.data, varX, varY, crs)
+#' @usage cs_project(.data, area, varX, varY, crs)
 #'
 #' @param .data A tibble with crime data
 #' @param area One of either "city" or "county"
 #' @param varX Name of column containing x coordinate data
 #' @param varY Name of column containing y coordinate data
+#' @param crs integer with the EPSG code, or character with proj4string representing the
+#'     coordinate reference system
 #'
 #' @export
 cs_project <- function(.data, area, varX, varY, crs){
-
-  # this function relies on sf to be present, but given dependencies it is not
-  # a required part of the package, only suggested
-  if (!requireNamespace("sf", quietly = TRUE)) {
-    stop("Package \"sf\" needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
 
   ## check for missing parameters
   if (missing(.data)) {
