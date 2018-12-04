@@ -22,5 +22,8 @@ Imports: dplyr,
     purrr,
     lubridate,
     stringr
-Suggests: 
-    testthat
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
