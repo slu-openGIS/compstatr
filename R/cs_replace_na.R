@@ -1,7 +1,7 @@
 #' Replace Zeros with NA
 #'
 #' @description This function a specified column from the data frame and
-#'     replaces cells that ahve the value 0 with NA
+#'     replaces cells that have the value 0 with NA
 #'
 #' @usage cs_replace_na(.data, var)
 #'

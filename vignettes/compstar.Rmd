@@ -4,62 +4,93 @@ author: "Vignette Author"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{compstatr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+## Overview
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+## Getting Started with `R`
+
+## Packages
+In addition to `driftR`, you will also want to install and load other packages:
+
+* [`dplyr`](http://dplyr.tidyverse.org) - a set of common verbs for cleaning and wrangling data
+* [`readr`](http://readr.tidyverse.org) - tools for reading and writing plain-text data files
+* [`tidyr`](http://tidyr.tidyverse.org) - 
+* [`purrr`](http://purrr.tidyverse.org) - tools for working with functions and vectors
+* [`lubridate`](http://lubridate.tidyverse.org) - tools for managing dates
+* [`rlang`](https://rlang.r-lib.org/) - tools for working with core language features of R and tidyverse
+
+these packages can be installed with the `install.packages()` function
+
+## Using `Compastatr`
+`cs_collapse()` - collapses multiple tibbles into one
+`cs_combine()`- combines multiple data sets into one
+`cs_crime()` - changes names of crimes to U.S. Federal Bureau of Investigation's Uniform Crime Reporting codes
+`cs_crime_cat()` - Converts crime codes into strings
+`cs_extract_month()`- Returns selected month
+`cs_filter_count()`
+`cs_filter_crime()`
+`cs_is_int()`
+`cs_load_year()`
+`cs_missing_xy()`
+`cs_parse_date()`
+`cs_parse_int()`
+`cs_parse_month()`
+`cs_replace_na()`
+`cs_standardize()`
+`cs_validate_month()`
+`cs_validate_year()`
+
+
+### Importing Data
+To import a year of crime data, `cs_load_year()`function is used. 
+
+To use the package without importing your own data, you can load sample data in the package using:
+
+```{r, eval=FALSE}
+january2018 <- data("january2018")
+```
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+### Function examples
+This returns a logical vector containing TRUE in rows with violent crime
+```{r, eval=FALSE}
+violentCrimeSorted <- cs_crime(.data = january2018, var = Crime, newVar = ViolentCrime, crime = "violent"")
+```
+This returns a column containing the names, according to FBI crime codes, of crimes as a string
+```{r, eval=FALSE}
+crimeNames <- cs_crime_cat(.data = january2018, var = Crime, newVar = NamedCrime, output = string)
+```
+The data shows reported crimes and when multiple reports occur for the same indicent, the count is -1. This removes counts of -1. 
+```{r, eval=FALSE}
+january2018filteredCount <- cs_filter_count(.data = january2018, var = Count)
+```
+This returns a tibble containing only violent crime from the data set. 
+```{r, eval=FALSE}
+january2018violentCrimeFiltered <- cs_filter_crime(.data = january2018, var = Crime, crime = "violent")
+```
+Intersections are often reported in the same ILEADSStreet column and this creates a new column identifying if a crime was reported at an intersection. 
+```{r, eval=FALSE}
+january2018Intersections <- cs_filter_crime(.data = january2018, var = ILEADSStreet, newVar = "IsIntersection")
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+Some reported crimes present missing coordinates and this returns a logical vector with TRUE if a coordinate has no X and Y coordinates. 
+```{r, eval=FALSE}
+january2018MissingXY <- cs_missing_xy(.data = january2018, varx = XCoord, vary = YCoord, newVar = "IsMissingXandY")
+```
+This takes the reported and time and splits it into unique columns named "Date" and "Crime" while keeping the input Date and time
+```{r, eval=FALSE}
+january2018ParsedDate <- cs_parse_date(.data = january2018, var = DateOccur, dateVar = Date, timeVa = Time, tz = Null, keepDateTime = TRUE)
+```
+This takes a clumn containing the month and a year and split it into two columns Year and Month
+```{r, eval=FALSE}
+january2018ParsedMonth <- cs_parse_month(.data = january2018, var = CodedMonth, newYear = Year, newMonth = Month)
+```
+In this example, missing X coordinates were inputted as 0 and the function replaces the missing coordinates with NA
+```{r, eval=FALSE}
+january2018XNA <- cs_replace_na(.data = january2018, var = XCoord)
 ```
 
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+### Cleaning one set of data example

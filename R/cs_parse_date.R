@@ -5,9 +5,9 @@
 #' @usage cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 #'
 #' @param .data a data frame
-#' @param var a column containing month, day, year, and time seperated by "/"
-#' @param dateVar Name of variable containing date data
-#' @param timeVar Name of variable containing time data
+#' @param var a column containing month, day, year, and time seprated by "/"
+#' @param dateVar Name of new column containing date data
+#' @param timeVar Name of new column containing time data
 #' @param tz String name of timezone, defaults to system's timezone
 #' @param keepDateTime A logical scalar. Keep an intermediate dateTime variable if \code{TRUE}.
 #'
