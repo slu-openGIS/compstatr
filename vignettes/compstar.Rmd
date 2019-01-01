@@ -29,19 +29,20 @@ these packages can be installed with the `install.packages()` function
 `cs_combine()`- combines multiple data sets into one
 `cs_crime()` - changes names of crimes to U.S. Federal Bureau of Investigation's Uniform Crime Reporting codes
 `cs_crime_cat()` - Converts crime codes into strings
-`cs_extract_month()`- Returns selected month
-`cs_filter_count()`
-`cs_filter_crime()`
-`cs_is_int()`
-`cs_load_year()`
-`cs_missing_xy()`
-`cs_parse_date()`
-`cs_parse_int()`
-`cs_parse_month()`
-`cs_replace_na()`
-`cs_standardize()`
-`cs_validate_month()`
-`cs_validate_year()`
+`cs_extract_month()`- Returns crime data of a selected month
+`cs_filter_count()` - Removes counts of -1 from crime data
+`cs_filter_crime()` - Returns crime data of a selected type of crime
+`cs_is_int()` - Returns a logical vector stating if the reported address is an intersection
+`cs_load_year()` - Loads the csv containing a year of crime data
+`cs_missing_xy()` - Returns a logical vector stating if the reported address is missing coordinates
+`cs_parse_date()` - Separates reported date and time into two columns 
+`cs_parse_int()` - Separates intersections into two columns 
+`cs_parse_month()`- Separates reported month and year into two columns 
+`cs_replace_na()`- Replaces 0's with NA
+`cs_standardize()` - Reformats nonstandard SLMPD time points into a 20 variable standard
+`cs_validate_month()` - Identifies nonstandard variables within a month
+`cs_validate_year()` - Ensures items are imported in the correct order, contain one month worth of data, and counts the numbers of variables. 
+`january2018` - Contains SLMPD January 2018 crime data
 
 
 ### Importing Data
@@ -80,11 +81,11 @@ Some reported crimes present missing coordinates and this returns a logical vect
 ```{r, eval=FALSE}
 january2018MissingXY <- cs_missing_xy(.data = january2018, varx = XCoord, vary = YCoord, newVar = "IsMissingXandY")
 ```
-This takes the reported and time and splits it into unique columns named "Date" and "Crime" while keeping the input Date and time
+This takes the reported and time and splits it into unique columns named "Date" and "Time" while keeping the input Date and time
 ```{r, eval=FALSE}
-january2018ParsedDate <- cs_parse_date(.data = january2018, var = DateOccur, dateVar = Date, timeVa = Time, tz = Null, keepDateTime = TRUE)
+january2018ParsedDate <- cs_parse_date(.data = january2018, var = DateOccur, dateVar = Date, timeVar = Time, tz = Null, keepDateTime = TRUE)
 ```
-This takes a clumn containing the month and a year and split it into two columns Year and Month
+This takes a column containing the month and a year and split it into two columns Year and Month
 ```{r, eval=FALSE}
 january2018ParsedMonth <- cs_parse_month(.data = january2018, var = CodedMonth, newYear = Year, newMonth = Month)
 ```
