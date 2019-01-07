@@ -23,7 +23,7 @@ cs_collapse <- function(.data){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be seperated must be specified for .data')
+    stop('A existing data frame with data to be separated must be specified for .data')
   }
 
   # extract each month, collapse, and re-order

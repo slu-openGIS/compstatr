@@ -24,7 +24,7 @@
 #'
 #' @examples
 #' testData <- january2018
-#' testData <- cs_is_int(testData,ILEADSStreet,Intersection)
+#' testData <- cs_is_int(testData,ILEADSAddress,Intersection)
 #'
 #' @export
 cs_is_int <- function(.data, var, newVar){
