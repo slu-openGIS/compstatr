@@ -27,11 +27,17 @@
 #' @importFrom dplyr rename
 #' @importFrom dplyr select
 #' @importFrom dplyr %>%
+#' @importFrom rlang quo_name
+#' @importFrom RLANG enquo
 #'
 #' @export
 cs_validate_year <- function(.data, year, verbose = FALSE){
 
   monthVal <- cs_checkNames(.data)
+
+  #quote input variables
+
+  year <- rlang::quo_name(rlang::enquo(year))
 
   # initial logic checks
   if (monthVal == "january"){

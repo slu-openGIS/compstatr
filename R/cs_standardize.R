@@ -28,6 +28,23 @@
 #' @export
 cs_standardize <- function(.data, month, config = 18){
 
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be separated must be specified for .data')
+  }
+
+  if (missing(month)) {
+    stop('The column containing the data to be separated must be specified for month')
+  }
+  if (missing(config)) {
+    stop('The non-standard configuration, either 18 or 26 must be specified')
+  }
+
+  #quote input variables
+
+  month <- rlang::quo_name(rlang::enquo(month))
+
+
   # undefined global variables
   AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
   CADAddress = CADStreet = `Coded Month` = CodedMonth = Complaint = Count =
@@ -80,6 +97,10 @@ cs_standardize <- function(.data, month, config = 18){
     } else if (config == 26){
 
       cleanData <- cs_std26(monthData)
+
+    }else {
+
+      stop("The given argument for month does not match an acceptible input of 18 or 26.")
 
     }
 
@@ -196,6 +217,10 @@ cs_selectMonth <- function(month){
     val <- "November"
   } else if (month == "December" | month == "Dec" | month == "december" | month == "dec" | month == 12){
     val <- "December"
+  }else {
+
+    stop("The given argument for month does not match an acceptible input.")
+
   }
 
   return(val)

@@ -16,8 +16,16 @@
 #'
 #' @return A tibble containing a single month worth of crime data.
 #'
+#' @importFrom rlang quo
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#'
+#' testData <- january2018
+#' testData <- cs_extract_month(testData, January)
+#'
 #' @export
 cs_extract_month <- function(.data, month){
+
 
   # check for missing parameters
   if (missing(.data)) {
@@ -27,6 +35,9 @@ cs_extract_month <- function(.data, month){
   if (missing(month)) {
     stop('The month to be extracted must be specified.')
   }
+
+  #quote input variables
+month <- rlang::quo_name(rlang::enquo(month))
 
   # identify input month
   if (month == "January" | month == "Jan" | month == "january" | month == "jan" | month == 1){

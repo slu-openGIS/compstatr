@@ -13,6 +13,10 @@
 #'
 #' @return A tibble containing a single month worth of crime data.
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_replace_month(testData, "January", sortedMonth)
+#'
 #' @export
 cs_replace_month <- function(.data, month, monthData){
 

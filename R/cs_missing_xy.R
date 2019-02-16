@@ -67,5 +67,5 @@ cs_missing_xy <- function(.data, varx, vary, newVar){
 
 #create logical vector that is appended to data frame
 .data %>%
-  dplyr::mutate((!!newVar) := (ifelse((!!varx) == 0 & (!!vary) == 0,"TRUE","FALSE")))
+  dplyr::mutate((!!newVar) := (ifelse((!!varx) == 0 & (!!vary) == 0 |is.na(!!varx) == TRUE & is.na(!!vary) == TRUE ,"TRUE","FALSE")))
 }

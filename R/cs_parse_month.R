@@ -29,18 +29,18 @@ cs_parse_month <- function(.data,var,newYear,newMonth){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be seperated must be specified for .data')
+    stop('A existing data frame with data to be separated must be specified for .data')
   }
 
   if (missing(var)) {
-    stop('The column containing the data to be separated must be specified for variable')
+    stop('The column containing the data to be separated must be specified for var')
   }
   if (missing(newMonth)) {
-    stop('The name of the output column containing the month must be specified for newVar1')
+    stop('The name of the output column containing the month must be specified for newMonth')
   }
 
   if (missing(newYear)) {
-    stop('The name of the output column containing the year must be specified for newVar2')
+    stop('The name of the output column containing the year must be specified for newYear')
   }
 
   # save parameters to list

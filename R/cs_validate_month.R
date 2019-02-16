@@ -21,6 +21,10 @@
 #' @export
 cs_validate_month <- function(.data, month){
 
+  #quote input variables
+
+  month <- rlang::quo_name(rlang::enquo(month))
+
   # check for missing parameters
   if (missing(.data)) {
     stop('A existing data frame with data to be seperated must be specified for .data')
