@@ -14,15 +14,15 @@
 #'
 #' @return A subset tibble with only the specified crimes
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_filter_crime(testData,Crime,"violent")
+#'
 #' @importFrom dplyr filter
 #' @importFrom dplyr %>%
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang sym
-#'
-#' @examples
-#' testData <- january2018
-#' testData <- cs_filter_crime(testData,Crime,"violent")
 #'
 #' @export
 cs_filter_crime <- function(.data, var, crime){

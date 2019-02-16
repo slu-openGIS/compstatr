@@ -12,16 +12,16 @@
 #'
 #' @return returns two columns containing street addresses and removes the input column
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_parse_int(testData,ILEADSStreet,Intersection1,Intersection2)
+#'
 #' @importFrom dplyr %>%
 #' @importFrom tidyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
-#'
-#' @examples
-#' testData <- january2018
-#' testData <- cs_parse_int(testData,ILEADSStreet,Intersection1,Intersection2)
 #'
 #' @export
 cs_parse_int <- function(.data,var,newStreet1,newStreet2){

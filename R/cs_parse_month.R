@@ -12,17 +12,16 @@
 #'
 #' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_parse_month(testData,CodedMonth,Year,Month)
+#'
 #' @importFrom dplyr %>%
 #' @importFrom tidyr separate
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
-#'
-#' @examples
-#' testData <- january2018
-#' testData <- cs_parse_month(testData,CodedMonth,Year,Month)
-#'
 #'
 #' @export
 cs_parse_month <- function(.data,var,newYear,newMonth){

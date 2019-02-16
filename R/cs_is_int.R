@@ -14,6 +14,10 @@
 #'     intersection and displays \code{FALSE} when the column isn't an
 #'     intersection.
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_is_int(testData,ILEADSAddress,Intersection)
+#'
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
@@ -21,10 +25,6 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
 #' @importFrom rlang :=
-#'
-#' @examples
-#' testData <- january2018
-#' testData <- cs_is_int(testData,ILEADSAddress,Intersection)
 #'
 #' @export
 cs_is_int <- function(.data, var, newVar){

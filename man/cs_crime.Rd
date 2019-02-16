@@ -27,3 +27,8 @@ A tibble with a logical vector that is \code{TRUE} if the given crime matches
 The categories used here are derived from the U.S. Federal
     Bureau of Investigation's Uniform Crime Reporting codes.
 }
+\examples{
+testData <- january2018
+testData <- cs_crime(testData, Crime, sorted_crime, violent)
+
+}

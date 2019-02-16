@@ -26,5 +26,4 @@ Separates a column containing coded year and coded month
 testData <- january2018
 testData <- cs_parse_month(testData,CodedMonth,Year,Month)
 
-
 }

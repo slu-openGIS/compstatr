@@ -9,11 +9,11 @@ cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 \arguments{
 \item{.data}{a data frame}
 
-\item{var}{a column containing month, day, year, and time seperated by "/"}
+\item{var}{a column containing month, day, year, and time seprated by "/"}
 
-\item{dateVar}{Name of variable containing date data}
+\item{dateVar}{Name of new column containing date data}
 
-\item{timeVar}{Name of variable containing time data}
+\item{timeVar}{Name of new column containing time data}
 
 \item{tz}{String name of timezone, defaults to system's timezone}
 

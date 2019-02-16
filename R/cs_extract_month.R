@@ -20,9 +20,6 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #'
-#' testData <- january2018
-#' testData <- cs_extract_month(testData, January)
-#'
 #' @export
 cs_extract_month <- function(.data, month){
 

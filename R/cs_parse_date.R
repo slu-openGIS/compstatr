@@ -13,6 +13,10 @@
 #'
 #' @return Appends two columns to the data frame. One is the time data and the other is the date data
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
+#'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
 #' @importFrom dplyr select
@@ -24,10 +28,6 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
-#'
-#' @examples
-#' testData <- january2018
-#' testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
 #'
 #'@export
 cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE){

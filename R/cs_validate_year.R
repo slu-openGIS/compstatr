@@ -28,7 +28,7 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr %>%
 #' @importFrom rlang quo_name
-#' @importFrom RLANG enquo
+#' @importFrom rlang enquo
 #'
 #' @export
 cs_validate_year <- function(.data, year, verbose = FALSE){

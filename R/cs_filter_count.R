@@ -11,16 +11,16 @@
 #'
 #' @return returns the data frame with the rows containing -1 removed
 #'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_filter_count(testData,Count)
+#'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr filter
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
-#'
-#' @examples
-#' testData <- january2018
-#' testData <- cs_filter_count(testData,Count)
 #'
 #' @export
 cs_filter_count <- function(.data,var){

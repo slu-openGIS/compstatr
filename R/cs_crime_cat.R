@@ -17,6 +17,10 @@
 #'
 #' @return A copy of the data frame with the new output variable appended to it.
 #'
+#' @examples
+#' testData <- january2018
+#' cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
+#'
 #' @importFrom dplyr case_when
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
@@ -25,10 +29,6 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
-#'
-#' @examples
-#' testData <- january2018
-#' cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
 #'
 #' @export
 cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "numeric")){

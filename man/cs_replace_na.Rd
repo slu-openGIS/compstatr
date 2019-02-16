@@ -16,7 +16,7 @@ returns the data frame with the 0's in the specified column changed
 }
 \description{
 This function a specified column from the data frame and
-    replaces cells that ahve the value 0 with NA
+    replaces cells that have the value 0 with NA
 }
 \examples{
 testData <- january2018

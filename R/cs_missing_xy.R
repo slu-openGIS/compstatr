@@ -14,15 +14,15 @@
 #' @return returns a logical vector that displays TRUE when the coordinates are
 #'     missing and FALSE if the coordinates are not missing
 #'
+#' @examples
+#' cs_missing_xy(january2018, varx = XCoord, vary = YCoord, newVar = missingXY)
+#'
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang sym
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%
 #' @importFrom rlang :=
-#'
-#' @examples
-#' cs_missing_xy(january2018, varx = XCoord, vary = YCoord, newVar = missingXY)
 #'
 #' @export
 cs_missing_xy <- function(.data, varx, vary, newVar){
