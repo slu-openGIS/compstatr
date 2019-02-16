@@ -14,14 +14,17 @@ Depends: R (>= 3.3)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
-Imports: dplyr,
-    tidyr,
+RoxygenNote: 6.1.1
+Imports: 
+    dplyr,
+    fs,
+    lubridate,
+    purrr,
     rlang,
     readr,
-    purrr,
-    lubridate,
-    stringr
+    stringr,
+    tibble,
+    tidyr
 Suggests:
     testthat,
     knitr,
