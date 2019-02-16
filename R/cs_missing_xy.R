@@ -49,9 +49,6 @@ cs_missing_xy <- function(.data, varx, vary, newVar){
   #quote input variables
   newVar <- rlang::quo_name(rlang::enquo(newVar))
 
-  xN <- rlang::quo_name(rlang::enquo(varx))
-  yN <- rlang::quo_name(rlang::enquo(vary))
-
   if (!is.character(paramList$varx)) {
     varx <- rlang::enquo(varx)
   } else if (is.character(paramList$varx)) {
