@@ -20,7 +20,7 @@ Data downloaded from the St. Louis Metropolitan Police Department
    \code{january2008.csv}.
 }
 \examples{
-\\notrun{
+\dontrun{
     cs_prep_year(path = "data/raw/2008")
 }
 

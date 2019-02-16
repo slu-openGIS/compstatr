@@ -4,12 +4,10 @@
 \alias{cs_project}
 \title{Project Data}
 \usage{
-cs_project(.data, area, varX, varY, crs)
+cs_project(.data, varX, varY, crs)
 }
 \arguments{
 \item{.data}{A tibble with crime data}
-
-\item{area}{One of either "city" or "county"}
 
 \item{varX}{Name of column containing x coordinate data}
 
@@ -19,8 +17,6 @@ cs_project(.data, area, varX, varY, crs)
 coordinate reference system}
 }
 \description{
-\code{cs_project} converts STLMPD or St. Louis County data into a simple
-    features object. For STLMPD data, this is done using the \code{XCoord} and
-    \code{YCoord} columns. For St. Louis county data, this is done using the
-    \code{X} and \code{Y} columns.
+\code{cs_project} converts STLMPD data into a simple
+    features object using the \code{XCoord} and \code{YCoord} columns.
 }

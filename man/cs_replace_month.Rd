@@ -22,8 +22,3 @@ A tibble containing a single month worth of crime data.
 This function replaces a single month worth of crime data that
   has previously been extracted from a year list object.
 }
-\examples{
-testData <- january2018
-testData <- cs_replace_month(testData, "January", sortedMonth)
-
-}

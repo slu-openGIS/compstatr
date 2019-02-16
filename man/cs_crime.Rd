@@ -29,6 +29,6 @@ The categories used here are derived from the U.S. Federal
 }
 \examples{
 testData <- january2018
-testData <- cs_crime(testData, Crime, sorted_crime, violent)
+testData <- cs_crime(testData, var = Crime, newVar = sorted_crime, crime = "violent")
 
 }

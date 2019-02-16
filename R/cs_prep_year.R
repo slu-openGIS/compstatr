@@ -11,7 +11,7 @@
 #' @return A list containing old file names and new file names for reference.
 #'
 #' @examples
-#' \notrun{
+#' \dontrun{
 #'     cs_prep_year(path = "data/raw/2008")
 #' }
 #'
