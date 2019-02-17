@@ -14,6 +14,7 @@
 #' @importFrom dplyr %>%
 #' @importFrom purrr map
 #' @importFrom readr read_csv
+#' @importFrom stringr str_sub
 #'
 #' @export
 cs_load_year <- function(path){
@@ -61,8 +62,6 @@ cs_load_year <- function(path){
 # @param .data A year list object name
 # @param read A logical scalar; if \code{TRUE}, return output structured for initial reading of
 #    data into R. If \code{FALSE}, use for data validation.
-#
-# @importFrom stringr str_sub
 #
 cs_identifyMonth <- function(.data, read = TRUE){
 
