@@ -103,15 +103,13 @@ cs_identifyMonth <- function(.data, read = TRUE){
 
 }
 
-#' Match Extract Month with Month Name
-#'
-#' @description Based on the result of cs_identifyMonth, this function returns the
-#'     appropriate string name.
-#'
-#' @keywords internal
-#'
-#' @param x The last two characters of the first observation's coded month value
-#'
+# Match Extract Month with Month Name
+#
+# @description Based on the result of cs_identifyMonth, this function returns the
+#     appropriate string name.
+#
+# @param x The last two characters of the first observation's coded month value
+#
 cs_matchMonth <- function(x){
 
   # the last two digits from two digits from the coded month value are passed to this function as x
