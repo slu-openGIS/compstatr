@@ -24,14 +24,16 @@
 #' @export
 cs_prep_year <- function(path){
 
-  files <- as.vector(list.files(path))
+  # create vector of filenames
+  files <- list.files(path)
 
+  # iterate over each filename, renaming it and coverting to lowercase
   files %>%
     split(files) %>%
-    purrr::map(~cs_edit_filename(path = path, file = .x))
+    purrr::map(~edit_filename(path = path, file = .x))
 
-  # new contents
-  newFiles <- as.vector(list.files(path))
+  # create vector of new filenames
+  newFiles <- list.files(path)
 
   # create output
   out <- list(
@@ -47,13 +49,26 @@ cs_prep_year <- function(path){
 # edit an individual file name
 cs_edit_filename <- function(path, file){
 
-  if (stringr::str_detect(file, pattern = ".html") == TRUE){
+  # only edit files that end with .html
+  if (stringr::str_detect(file, pattern = ".html$") == TRUE){
 
-    newFile <- tolower(stringr::str_replace(file, pattern = ".html", replacement = ""))
+    # construct a new file name that is all lower case, removes .html from end
+    newFile <- tolower(stringr::str_replace(file, pattern = ".html$", replacement = ""))
 
-    filePath <- stringr::str_c(path, "/", file)
-    newPath <- stringr::str_c(path, "/", newFile)
+    # create new file paths, adding a forward slash between path and filename if necessary
+    if (stringr::str_detect(path, pattern = "/$") == FALSE){
 
+      filePath <- stringr::str_c(path, "/", file)
+      newPath <- stringr::str_c(path, "/", newFile)
+
+    } else {
+
+      filePath <- stringr::str_c(path, file)
+      newPath <- stringr::str_c(path, newFile)
+
+    }
+
+    # rename file
     fs::file_move(filePath, newPath)
 
   }
