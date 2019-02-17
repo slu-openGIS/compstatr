@@ -11,9 +11,9 @@
 #' @return A year list object containing 12 tibbles - one per month - worth
 #'    of crime data.
 #'
+#' @importFrom dplyr %>%
 #' @importFrom purrr map
 #' @importFrom readr read_csv
-#' @importFrom dplyr %>%
 #'
 #' @export
 cs_load_year <- function(path){
@@ -34,7 +34,7 @@ cs_load_year <- function(path){
 
   # read csv files into year list objects
   files %>%
-    map(~ suppressMessages(suppressWarnings(read_csv(file.path(path, .))))) -> data
+    purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .))))) -> data
 
   # create list of months associated with year list object items
   data %>%
@@ -53,19 +53,17 @@ cs_load_year <- function(path){
   return(data)
 }
 
-#' Extract Month of a Given Year List Object Item
-#'
-#' @description  This uses the value of the first observation's coded month as the basis for
-#'     identifying which month the data are from.
-#'
-#' @keywords internal
-#'
-#' @param .data A year list object name
-#' @param read A logical scalar; if \code{TRUE}, return output structured for initial reading of
-#'    data into R. If \code{FALSE}, use for data validation.
-#'
-#' @importFrom stringr str_sub
-#'
+# Extract Month of a Given Year List Object Item
+#
+# @description  This uses the value of the first observation's coded month as the basis for
+#     identifying which month the data are from.
+#
+# @param .data A year list object name
+# @param read A logical scalar; if \code{TRUE}, return output structured for initial reading of
+#    data into R. If \code{FALSE}, use for data validation.
+#
+# @importFrom stringr str_sub
+#
 cs_identifyMonth <- function(.data, read = TRUE){
 
   # depending on number of columns, the CodedMonth variable is named differently
