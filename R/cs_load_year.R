@@ -35,23 +35,24 @@ cs_load_year <- function(path){
 
   # read csv files into year list objects
   files %>%
-    purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .))))) -> data
+    purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .))))) -> out
 
   # create list of months associated with year list object items
-  data %>%
+  out %>%
     purrr::map(cs_identifyMonth) -> nameList
 
   # convert list of months to vector
   nameVector <- unlist(nameList, recursive = TRUE, use.names = TRUE)
 
   # apply vector to data
-  names(data) <- nameVector
+  names(out) <- nameVector
 
   # add new class
-  class(data) <- append(class(data), "cs_year_list")
+  class(out) <- append(class(out), "cs_year_list")
 
   # return year list object
-  return(data)
+  return(out)
+
 }
 
 # Extract Month of a Given Year List Object Item

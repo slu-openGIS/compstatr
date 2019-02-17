@@ -29,6 +29,7 @@
 #' @importFrom dplyr %>%
 #' @importFrom rlang quo_name
 #' @importFrom rlang enquo
+#' @importFrom stringr str_sub
 #'
 #' @export
 cs_validate_year <- function(.data, year, verbose = FALSE){
@@ -113,22 +114,20 @@ cs_validate_year <- function(.data, year, verbose = FALSE){
 
 }
 
-#' Validate Number of Months
-#'
-#' @description This checks the list of months to make sure that there are either
-#'     12 unique month entries or, if there are fewer than 12, that there are no
-#'     missing missing months between January and the last month loaded.
-#'
-#' @details For year list objects with fewer than 12 months, this confirms that
-#'     data for January are present. It then ensures that there are no months
-#'     between January and the last month entered. For example, if the first six
-#'     months of data were loaded - i.e. through June - this function would
-#'     ensure that there were no months missing between January and June.
-#'
-#' @keywords internal
-#'
-#' @param .data A yaer list object
-#'
+# Validate Number of Months
+#
+# @description This checks the list of months to make sure that there are either
+#     12 unique month entries or, if there are fewer than 12, that there are no
+#     missing missing months between January and the last month loaded.
+#
+# @details For year list objects with fewer than 12 months, this confirms that
+#     data for January are present. It then ensures that there are no months
+#     between January and the last month entered. For example, if the first six
+#     months of data were loaded - i.e. through June - this function would
+#     ensure that there were no months missing between January and June.
+#
+# @param .data A yaer list object
+#
 cs_checkNames <- function(.data){
 
   # create list of months present in year list object
@@ -173,15 +172,13 @@ cs_checkNames <- function(.data){
 
 }
 
-#' Validate Names of Months
-#'
-#' @description Given the names of months in the year list object,
-#'     are all months that should be present included?
-#'
-#' @keywords internal
-#'
-#' @param names Vector of names of months from year list object
-#'
+# Validate Names of Months
+#
+# @description Given the names of months in the year list object,
+#     are all months that should be present included?
+#
+# @param names Vector of names of months from year list object
+#
 cs_validateNames <- function(names){
 
   # create master list of all months
@@ -203,14 +200,12 @@ cs_validateNames <- function(names){
 }
 
 
-#' Check Month of Year List Object for Correct Properties
-#'
-#' @description  This checks a single month for the correct properties
-#'
-#' @keywords internal
-#'
-#' @param monthItem A single item in a year list object
-#'
+# Check Month of Year List Object for Correct Properties
+#
+# @description  This checks a single month for the correct properties
+#
+# @param monthItem A single item in a year list object
+#
 cs_checkMonth <- function(monthItem){
 
   a <- as.character(cs_checkCodedMonth(monthItem))
@@ -232,24 +227,21 @@ cs_checkMonth <- function(monthItem){
   }
 
   d <- cs_checkVarNames(monthItem)
-  e <- cs_checkVarClasses(monthItem)
-  f <- cs_identifyYear(monthItem)
+  e <- cs_identifyYear(monthItem)
 
-  out <- c(a,b,c,d,e,f)
+  out <- c(a,b,c,d,e)
 
   return(out)
 
 }
 
 
-#' Check Month for Single Coded Month Value
-#'
-#' @description Ensure that there is only one coded month value per year list object item
-#'
-#' @keywords internal
-#'
-#' @param monthItem A single item in a year list object
-#'
+# Check Month for Single Coded Month Value
+#
+# @description Ensure that there is only one coded month value per year list object item
+#
+# @param monthItem A single item in a year list object
+#
 cs_checkCodedMonth <- function(monthItem){
 
   # check to see if coded month values are identical
@@ -283,14 +275,12 @@ cs_checkCodedMonth <- function(monthItem){
 }
 
 
-#' Check Variable Names
-#'
-#' @description Checks to make sure variable names are correct if there are 20 variables in month
-#'
-#' @keywords internal
-#'
-#' @param monthItem A single item in a year list object
-#'
+# Check Variable Names
+#
+# @description Checks to make sure variable names are correct if there are 20 variables in month
+#
+# @param monthItem A single item in a year list object
+#
 cs_checkVarNames <- function(monthItem){
 
   if (ncol(monthItem) == 20){
@@ -322,168 +312,16 @@ cs_checkVarNames <- function(monthItem){
 
 }
 
-
-#' Check Variable Classes
-#'
-#' @description Checks to make sure variable classes are correct
-#'
-#' @keywords internal
-#'
-#' @param monthItem A single item in a year list object
-#'
-cs_checkVarClasses <- function(monthItem){
-
-  if (ncol(monthItem) == 20){
-
-    monthItem %>%
-      purrr::map(class) -> classes
-
-    if (classes$Complaint == "character") {
-      classResult <- TRUE
-    } else if (classes$Complaint != "character"){
-      classResult <- FALSE
-    }
-
-    if (classes$CodedMonth == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$CodedMonth != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$DateOccur == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$DateOccur != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$FlagCrime == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$FlagCrime != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$FlagUnfounded == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$FlagUnfounded != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$FlagAdministrative == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$FlagAdministrative != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$Count == "integer") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$Count != "integer"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$FlagCleanup == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$FlagCleanup != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$Crime == "integer") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$Crime != "integer"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$District == "integer") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$District != "integer"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$Description == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$Description != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$ILEADSAddress == "integer") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$ILEADSAddress != "integer"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$ILEADSStreet == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$ILEADSStreet != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$Neighborhood == "integer") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$Neighborhood != "integer"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$LocationName == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$LocationName != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$LocationComment == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$LocationComment != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$CADAddress == "integer") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$CADAddress != "integer"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$CADStreet == "character") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$CADStreet != "character"){
-      classResult <- c(classResult, FALSE)
-    }
-
-    if (classes$XCoord == "numeric") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$XCoord != "numeric"){
-      classResult <- c(classResult, FALSE)
-      probVar <- c(probVar, "XCoord")
-    }
-
-    if (classes$YCoord == "numeric") {
-      classResult <- c(classResult, TRUE)
-    } else if (classes$YCoord != "numeric"){
-      classResult <- c(classResult, FALSE)
-      probVar <- c(probVar, "YCoord")
-    }
-
-    result <- as.character(all(classResult))
-
-  } else if (ncol(monthItem) != 20){
-
-    result <- "NA"
-
-  }
-
-  return(result)
-
-}
-
-#' Clean Results Tibble
-#'
-#' @description Converts messy results output to clean output
-#'
-#' @keywords internal
-#'
-#' @param .data A result tibble
-#'
+# Clean Results Tibble
+#
+# @description Converts messy results output to clean output
+#
+# @param .data A result tibble
+#
 cs_cleanResults <- function(.data){
 
   # undefined global variables
-  X1 = X2 = X3 = X4 = X5 = X6 = X7 = oneMonth = monthNum = varCount = valVars = valClasses = namedMonth = codedYear = NULL
+  X1 = X2 = X3 = X4 = X5 = X6 = oneMonth = monthNum = varCount = valVars = namedMonth = codedYear = NULL
 
   # rename variables
   .data %>%
@@ -491,9 +329,8 @@ cs_cleanResults <- function(.data){
     dplyr::rename(monthNum = X2) %>%
     dplyr::rename(varCount = X3) %>%
     dplyr::rename(valVars = X4) %>%
-    dplyr::rename(valClasses = X5) %>%
-    dplyr::rename(namedMonth = X7) %>%
-    dplyr::rename(codedYear = X6) -> out
+    dplyr::rename(namedMonth = X6) %>%
+    dplyr::rename(codedYear = X5) -> out
 
   # clean data
   out %>%
@@ -502,27 +339,23 @@ cs_cleanResults <- function(.data){
     dplyr::mutate(varCount = ifelse(varCount == "ERROR", NA, varCount)) %>%
     dplyr::mutate(varCount = as.logical(varCount)) %>%
     dplyr::mutate(valVars = ifelse(valVars == "NA", NA, valVars)) %>%
-    dplyr::mutate(valVars = as.logical(valVars)) %>%
-    dplyr::mutate(valClasses = ifelse(valClasses == "NA", NA, valClasses)) %>%
-    dplyr::mutate(valClasses = as.logical(valClasses)) -> out
+    dplyr::mutate(valVars = as.logical(valVars)) -> out
 
   # limit variables returned
-  out <- dplyr::select(out, namedMonth, monthNum, oneMonth, codedYear, varCount, valVars, valClasses)
+  out <- dplyr::select(out, namedMonth, monthNum, oneMonth, codedYear, varCount, valVars)
 
   # return output
   return(out)
 
 }
 
-#' Logic Check for Named and Coded Month
-#'
-#' @description Updates test result tibble with results of logic check that compares the
-#'     data from the named month with the data from the coded month.
-#'
-#' @keywords internal
-#'
-#' @param .data A result tibble
-#'
+# Logic Check for Named and Coded Month
+#
+# @description Updates test result tibble with results of logic check that compares the
+#     data from the named month with the data from the coded month.
+#
+# @param .data A result tibble
+#
 cs_matchMonths <- function(.data){
 
   # undefined global variables
@@ -554,17 +387,13 @@ cs_matchMonths <- function(.data){
 
 }
 
-#' Extract Year of a Given Year List Object Item
-#'
-#' @description  This uses the value of the first observation's coded month as the basis for
-#'     identifying which month the data are from.
-#'
-#' @keywords internal
-#'
-#' @param monthItem A single month from a year list object
-#'
-#' @importFrom stringr str_sub
-#'
+# Extract Year of a Given Year List Object Item
+#
+# @description  This uses the value of the first observation's coded month as the basis for
+#     identifying which month the data are from.
+#
+# @param monthItem A single month from a year list object
+#
 cs_identifyYear <- function(monthItem){
 
   # depending on number of columns, the CodedMonth variable is named differently
@@ -592,15 +421,13 @@ cs_identifyYear <- function(monthItem){
 
 }
 
-#' Logic Check for Named and Coded Month
-#'
-#' @description Updates test result tibble with results of logic check that compares the
-#'     data from the given year argument with the data from the coded year.
-#'
-#' @keywords internal
-#'
-#' @param .data A result tibble
-#'
+# Logic Check for Named and Coded Month
+#
+# @description Updates test result tibble with results of logic check that compares the
+#     data from the given year argument with the data from the coded year.
+#
+# @param .data A result tibble
+#
 cs_matchYear <- function(.data, year){
 
   # undefined global variables
