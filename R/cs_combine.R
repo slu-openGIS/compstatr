@@ -49,7 +49,8 @@ cs_combine <- function(type, date, ...){
       dplyr::filter(year(date) == !!dateF) %>%
       dplyr::arrange(dateTime) %>%
       dplyr::mutate(cs_year = lubridate::year(dateTime)) %>%
-      dplyr::select(-date, -time, -dateTime, cs_year, dplyr::everything()) -> results
+      dplyr::select(-date, -time, -dateTime) %>%
+      dplyr::select(cs_year, dplyr::everything()) -> results
 
   } else if (type == "ytd"){
 
