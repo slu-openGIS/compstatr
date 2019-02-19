@@ -14,6 +14,7 @@
 #' @importFrom dplyr %>%
 #' @importFrom dplyr arrange
 #' @importFrom dplyr bind_rows
+#' @importFrom dplyr everything
 #' @importFrom dplyr filter
 #' @importFrom dplyr select
 #' @importFrom lubridate year
@@ -47,7 +48,12 @@ cs_combine <- function(type, date, ...){
       cs_parse_date(var = DateOccur, dateVar = date, timeVar = time, keepDateTime = TRUE) %>%
       dplyr::filter(year(date) == !!dateF) %>%
       dplyr::arrange(dateTime) %>%
-      dplyr::select(-date, -time, -dateTime) -> results
+      dplyr::mutate(cs_year = lubridate::year(dateTime)) %>%
+      dplyr::select(-date, -time, -dateTime, cs_year, dplyr::everything()) -> results
+
+  } else if (type == "ytd"){
+
+    stop("This functionality is still in progress.")
 
   }
 
