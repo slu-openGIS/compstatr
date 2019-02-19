@@ -96,13 +96,13 @@ cs_validate_year <- function(.data, year, verbose = FALSE){
 
       if (all(result$oneMonth) == FALSE | all(result$valMonth) == FALSE |
           all(result$valYear) == FALSE | all(result$varCount) == FALSE |
-          all(result$valVars) == FALSE | all(result$valClasses) == FALSE){
+          all(result$valVars) == FALSE){
 
         result <- FALSE
 
       } else if (all(result$oneMonth) == TRUE & all(result$valMonth) == TRUE &
                  all(result$valYear) == TRUE & all(result$varCount) == TRUE &
-                 all(result$valVars) == TRUE & all(result$valClasses) == TRUE){
+                 all(result$valVars) == TRUE){
 
         result <- TRUE
 
