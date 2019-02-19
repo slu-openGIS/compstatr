@@ -51,7 +51,7 @@ cs_prep_year <- function(path){
   # iterate over each filename, renaming it and coverting to lowercase
   problemFiles %>%
     split(problemFiles) %>%
-    purrr::map(~ cs_edit_filename(path = path, file = .x))
+    purrr::map_chr(~ cs_edit_filename(path = path, file = .x)) -> out
 
   # create vector of new filenames
   # newFiles <- list.files(path)
@@ -88,5 +88,8 @@ cs_edit_filename <- function(path, file){
 
   # rename file
   fs::file_move(filePath, newPath)
+
+  # return output
+  return(newFile)
 
 }
