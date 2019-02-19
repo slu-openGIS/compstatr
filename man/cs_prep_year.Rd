@@ -10,7 +10,7 @@ cs_prep_year(path)
 \item{path}{File path where raw STLMPD data are located}
 }
 \value{
-A list containing old file names and new file names for reference.
+A tibble containing old file names and new file names for reference.
 }
 \description{
 Data downloaded from the St. Louis Metropolitan Police Department
@@ -21,7 +21,7 @@ Data downloaded from the St. Louis Metropolitan Police Department
 }
 \examples{
 \dontrun{
-    cs_prep_year(path = "data/raw/2008")
+cs_prep_year(path = "data/raw/2008")
 }
 
 }

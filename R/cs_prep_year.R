@@ -8,15 +8,17 @@
 #'
 #' @param path File path where raw STLMPD data are located
 #'
-#' @return A list containing old file names and new file names for reference.
+#' @return A tibble containing old file names and new file names for reference.
 #'
 #' @examples
 #' \dontrun{
-#'     cs_prep_year(path = "data/raw/2008")
+#' cs_prep_year(path = "data/raw/2008")
 #' }
 #'
+#' @importFrom dplyr as_tibble
+#' @importFrom dplyr filter
 #' @importFrom fs file_move
-#' @importFrom purrr map
+#' @importFrom purrr map_chr
 #' @importFrom stringr str_c
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_replace
