@@ -51,16 +51,18 @@ cs_prep_year <- function(path){
   # iterate over each filename, renaming it and coverting to lowercase
   problemFiles %>%
     split(problemFiles) %>%
-    purrr::map_chr(~ cs_edit_filename(path = path, file = .x)) -> out
+    purrr::map_chr(~ cs_edit_filename(path = path, file = .x)) -> changes
 
   # create vector of new filenames
-  # newFiles <- list.files(path)
+  orignal <- names(changes)
+  names(changes) <- NULL
 
   # create output
-  # out <- list(
-  #  original = files,
-  #  new = newFiles
-  # )
+  out <- dplyr::as_tibble(data.frame(
+    original = orignal,
+    new = changes,
+    stringsAsFactors = FALSE
+  ))
 
   # return output
   return(out)
