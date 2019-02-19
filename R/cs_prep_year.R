@@ -38,19 +38,29 @@ cs_prep_year <- function(path){
 
   }
 
+  # detect html in file extensions
+  html <- stringr::str_detect(files, pattern = ".html$")
+
+  # create data frame of files and file extensions
+  data <- data.frame(files = files, html = html, stringsAsFactors = FALSE)
+
+  # subset data frame and convert to vector
+  data <- dplyr::filter(data, html == TRUE)
+  problemFiles <- as.vector(data$files)
+
   # iterate over each filename, renaming it and coverting to lowercase
-  files %>%
-    split(files) %>%
+  problemFiles %>%
+    split(problemFiles) %>%
     purrr::map(~ cs_edit_filename(path = path, file = .x))
 
   # create vector of new filenames
-  newFiles <- list.files(path)
+  # newFiles <- list.files(path)
 
   # create output
-  out <- list(
-    original = files,
-    new = newFiles
-  )
+  # out <- list(
+  #  original = files,
+  #  new = newFiles
+  # )
 
   # return output
   return(out)
@@ -60,28 +70,23 @@ cs_prep_year <- function(path){
 # edit an individual file name
 cs_edit_filename <- function(path, file){
 
-  # only edit files that end with .html
-  if (stringr::str_detect(file, pattern = ".html$") == TRUE){
+  # construct a new file name that is all lower case, removes .html from end
+  newFile <- tolower(stringr::str_replace(file, pattern = ".html$", replacement = ""))
 
-    # construct a new file name that is all lower case, removes .html from end
-    newFile <- tolower(stringr::str_replace(file, pattern = ".html$", replacement = ""))
+  # create new file paths, adding a forward slash between path and filename if necessary
+  if (stringr::str_detect(path, pattern = "/$") == FALSE){
 
-    # create new file paths, adding a forward slash between path and filename if necessary
-    if (stringr::str_detect(path, pattern = "/$") == FALSE){
+    filePath <- stringr::str_c(path, "/", file)
+    newPath <- stringr::str_c(path, "/", newFile)
 
-      filePath <- stringr::str_c(path, "/", file)
-      newPath <- stringr::str_c(path, "/", newFile)
+  } else {
 
-    } else {
-
-      filePath <- stringr::str_c(path, file)
-      newPath <- stringr::str_c(path, newFile)
-
-    }
-
-    # rename file
-    fs::file_move(filePath, newPath)
+    filePath <- stringr::str_c(path, file)
+    newPath <- stringr::str_c(path, newFile)
 
   }
+
+  # rename file
+  fs::file_move(filePath, newPath)
 
 }
