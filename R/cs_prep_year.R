@@ -57,42 +57,6 @@ cs_prep_year <- function(path){
 
 }
 
-#' @export
-cs_prep_year2 <- function(path){
-
-  # create vector of filenames
-  files <- list.files(path)
-
-  # check number of files
-  if (length(files) > 12){
-
-    stop('There are too many files in the specified folder. Load crime files in yearly batches of 12 monthly files.')
-
-  } else if (length(files) < 12){
-
-    warning('There are fewer than 12 files in the specified folder. You are only loading a partial year.')
-
-  }
-
-  # iterate over each filename, renaming it and coverting to lowercase
-  files %>%
-    split(files) %>%
-    purrr::map(~ cs_edit_filename(path = path, file = .x))
-
-  # create vector of new filenames
-  newFiles <- list.files(path)
-
-  # create output
-  out <- list(
-    original = files,
-    new = newFiles
-  )
-
-  # return output
-  return(out)
-
-}
-
 # edit an individual file name
 cs_edit_filename <- function(path, file){
 
