@@ -81,7 +81,7 @@ cs_prep_year <- function(path, verbose = FALSE){
     # iterate over each filename, renaming it and coverting to lowercase
     problemFiles %>%
       split(problemFiles) %>%
-      purrr::map(~ cs_edit_filename(path = path, file = .x))
+      purrr::map(~ cs_edit_filename(path = path, file = .x)) -> out
 
   }
 
