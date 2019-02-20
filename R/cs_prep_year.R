@@ -21,6 +21,7 @@
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr filter
 #' @importFrom fs file_move
+#' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom stringr str_c
 #' @importFrom stringr str_detect
@@ -53,12 +54,13 @@ cs_prep_year <- function(path, verbose = FALSE){
   data <- dplyr::filter(data, html == TRUE)
   problemFiles <- as.vector(data$files)
 
-  # iterate over each filename, renaming it and coverting to lowercase
-  problemFiles %>%
-    split(problemFiles) %>%
-    purrr::map_chr(~ cs_edit_filename(path = path, file = .x)) -> changes
-
+  # iterate and produce optional output
   if (verbose == TRUE){
+
+    # iterate over each filename, renaming it and coverting to lowercase
+    problemFiles %>%
+      split(problemFiles) %>%
+      purrr::map_chr(~ cs_edit_filename(path = path, file = .x)) -> changes
 
     # create vector of new filenames
     orignal <- names(changes)
@@ -73,6 +75,13 @@ cs_prep_year <- function(path, verbose = FALSE){
 
     # return output
     return(out)
+
+  } else if (verbose == FALSE){
+
+    # iterate over each filename, renaming it and coverting to lowercase
+    problemFiles %>%
+      split(problemFiles) %>%
+      purrr::map(~ cs_edit_filename(path = path, file = .x))
 
   }
 
