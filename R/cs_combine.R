@@ -26,7 +26,7 @@
 cs_combine <- function(type, date, ...){
 
   # undefined global variables
-  DateOccur = time = dateTime = NULL
+  DateOccur = time = dateTime = cs_year = NULL
 
   # save parameters to list
   paramList <- as.list(match.call())

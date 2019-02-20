@@ -6,9 +6,12 @@
 #'    file extensions. Thus \code{January2008.CSV.html} will be replaced by
 #'    \code{january2008.csv}.
 #'
-#' @param path File path where raw STLMPD data are located
+#' @usage cs_prep_year(path, verbose = FALSE)
 #'
-#' @return A tibble containing old file names and new file names for reference.
+#' @param path File path where raw STLMPD data are
+#' @param verbose If \code{TRUE}, returns a tibble with results; otherwise returns no output.
+#'
+#' @return A tibble containing old file names and new file names for reference is \code{verbose = TRUE}.
 #'
 #' @examples
 #' \dontrun{
@@ -24,7 +27,7 @@
 #' @importFrom stringr str_replace
 #'
 #' @export
-cs_prep_year <- function(path){
+cs_prep_year <- function(path, verbose = FALSE){
 
   # create vector of filenames
   files <- list.files(path)
@@ -55,19 +58,23 @@ cs_prep_year <- function(path){
     split(problemFiles) %>%
     purrr::map_chr(~ cs_edit_filename(path = path, file = .x)) -> changes
 
-  # create vector of new filenames
-  orignal <- names(changes)
-  names(changes) <- NULL
+  if (verbose == TRUE){
 
-  # create output
-  out <- dplyr::as_tibble(data.frame(
-    original = orignal,
-    new = changes,
-    stringsAsFactors = FALSE
-  ))
+    # create vector of new filenames
+    orignal <- names(changes)
+    names(changes) <- NULL
 
-  # return output
-  return(out)
+    # create output
+    out <- dplyr::as_tibble(data.frame(
+      original = orignal,
+      new = changes,
+      stringsAsFactors = FALSE
+    ))
+
+    # return output
+    return(out)
+
+  }
 
 }
 

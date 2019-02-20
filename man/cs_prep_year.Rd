@@ -4,13 +4,15 @@
 \alias{cs_prep_year}
 \title{Prepare Raw Data}
 \usage{
-cs_prep_year(path)
+cs_prep_year(path, verbose = FALSE)
 }
 \arguments{
-\item{path}{File path where raw STLMPD data are located}
+\item{path}{File path where raw STLMPD data are}
+
+\item{verbose}{If \code{TRUE}, returns a tibble with results; otherwise returns no output.}
 }
 \value{
-A tibble containing old file names and new file names for reference.
+A tibble containing old file names and new file names for reference is \code{verbose = TRUE}.
 }
 \description{
 Data downloaded from the St. Louis Metropolitan Police Department
