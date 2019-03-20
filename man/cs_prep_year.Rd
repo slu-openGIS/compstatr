@@ -9,10 +9,13 @@ cs_prep_year(path, verbose = FALSE)
 \arguments{
 \item{path}{File path where raw STLMPD data are}
 
-\item{verbose}{If \code{TRUE}, returns a tibble with results; otherwise returns no output.}
+\item{verbose}{If \code{TRUE}, returns a tibble with results; otherwise if \code{FALSE}, no
+output is returned.}
 }
 \value{
 A tibble containing old file names and new file names for reference is \code{verbose = TRUE}.
+    Otherwise, no output is returned. This function will change all problematic filenames in the
+    specified path.
 }
 \description{
 Data downloaded from the St. Louis Metropolitan Police Department

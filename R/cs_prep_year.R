@@ -9,9 +9,12 @@
 #' @usage cs_prep_year(path, verbose = FALSE)
 #'
 #' @param path File path where raw STLMPD data are
-#' @param verbose If \code{TRUE}, returns a tibble with results; otherwise returns no output.
+#' @param verbose If \code{TRUE}, returns a tibble with results; otherwise if \code{FALSE}, no
+#'     output is returned.
 #'
 #' @return A tibble containing old file names and new file names for reference is \code{verbose = TRUE}.
+#'     Otherwise, no output is returned. This function will change all problematic filenames in the
+#'     specified path.
 #'
 #' @examples
 #' \dontrun{
@@ -30,6 +33,11 @@
 #' @export
 cs_prep_year <- function(path, verbose = FALSE){
 
+  # check parameters
+  if (is.logical(verbose) == FALSE){
+    stop("The 'verbose' parameter only accepts 'TRUE' or 'FALSE' as valid arguments.")
+  }
+
   # create vector of filenames
   files <- list.files(path)
 
@@ -40,7 +48,7 @@ cs_prep_year <- function(path, verbose = FALSE){
 
   } else if (length(files) < 12){
 
-    warning('There are fewer than 12 files in the specified folder. You are only loading a partial year.')
+    warning('There are fewer than 12 files in the specified folder. You are only editing a partial year.')
 
   }
 
