@@ -1,3 +1,7 @@
+^\.travis\.yml$
+^\.travis
+^appveyor\.yml$
+^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^CONDUCT\.md$
