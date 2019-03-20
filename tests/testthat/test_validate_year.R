@@ -57,3 +57,13 @@ test_that("duplicate is detected", {
   expect_warning(cs_validate_year(yearList18_prob, year = 2018),
                  "The given year list object does not contain all consecutive months between January and the last given month.")
 })
+
+# test result ------------------------------------------------
+
+result13 <- cs_validate_year(yearList13, year = 2013, verbose = TRUE)
+result17 <- cs_validate_year(yearList17, year = 2013, verbose = TRUE)
+
+test_that("problems with variables are identified", {
+  expect_equal(all(result13$varCount), FALSE)
+  expect_equal(all(result17$varCount), FALSE)
+})
