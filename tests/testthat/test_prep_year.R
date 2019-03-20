@@ -82,7 +82,7 @@ readr::write_csv(dec17, path = paste0(tmpdir,"/data/december2018.CSV.html"))
 
 test_that("too many files trigger error", {
   expect_error(cs_prep_year(path = paste0(tmpdir,"/data")),
-               "There are too many files in the specified folder. Load crime files in yearly batches of 12 monthly files.")
+               "There are too many files in the specified folder. Edit crime files in yearly batches of 12 monthly files.")
 })
 
 ## delete files

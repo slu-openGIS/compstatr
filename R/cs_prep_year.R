@@ -44,7 +44,7 @@ cs_prep_year <- function(path, verbose = FALSE){
   # check number of files
   if (length(files) > 12){
 
-    stop('There are too many files in the specified folder. Load crime files in yearly batches of 12 monthly files.')
+    stop('There are too many files in the specified folder. Edit crime files in yearly batches of 12 monthly files.')
 
   } else if (length(files) < 12){
 
