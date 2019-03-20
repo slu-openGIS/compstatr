@@ -4,10 +4,11 @@
 \alias{cs_combine}
 \title{Combine Multiple Years of Data}
 \usage{
-cs_combine(type, date, ...)
+cs_combine(type = "year", date, ...)
 }
 \arguments{
-\item{type}{One of either "year" or "ytd"}
+\item{type}{"year" is the only valid input currenty; year to date functionality
+is planned for a later update}
 
 \item{date}{For \code{type = "year"}, this should be the year of data to be returned.
 For \code{type = "ytd"}, this should be the last month to be included in each estimate.}

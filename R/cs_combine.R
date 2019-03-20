@@ -2,9 +2,10 @@
 #'
 #' @description This function...
 #'
-#' @usage cs_combine(type, date, ...)
+#' @usage cs_combine(type = "year", date, ...)
 #'
-#' @param type One of either "year" or "ytd"
+#' @param type "year" is the only valid input currenty; year to date functionality
+#'     is planned for a later update
 #' @param date For \code{type = "year"}, this should be the year of data to be returned.
 #'     For \code{type = "ytd"}, this should be the last month to be included in each estimate.
 #' @param ... An unquoted list of objects
@@ -23,7 +24,7 @@
 #' @importFrom rlang sym
 #'
 #' @export
-cs_combine <- function(type, date, ...){
+cs_combine <- function(type = "year", date, ...){
 
   # undefined global variables
   DateOccur = time = dateTime = cs_year = NULL
