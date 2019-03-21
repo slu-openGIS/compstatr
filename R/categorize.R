@@ -310,15 +310,16 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
 
     if (output == "factor"){
 
-      cleanData <- dplyr::mutate(cleanData, !!newVarN := as.factor(!!varN,
-                                 levels = c("Homicide", "Rape", "Robbery", "Aggravated Assault", "Burgalry",
-                                            "Larceny", "Motor Vehicle Theft",  "Arson", "Other Assaults",
-                                            "Forgery and Counterfeiting", "Fraud", "Embezzlement", "Stolen Property",
-                                            "Vandalism", "Weapons", "Prostitution and Commercialized Vice", "Sex Offenses",
-                                            "Drug Abuse Violations", "Gambling", "Offenses Against the Family and Children",
-                                            "Liquor Laws", "Drunkeness", "Drunkeness", "Disorderly Conduct", "Vagrancy",
-                                            "All Other Offenses", "Suspicion", "Curfew and Loitering Laws-Persons under 18",
-                                            "Runaways-Persons under 18")))
+      cleanData %>%
+        dplyr::mutate(!!newVarN := as.factor(!!varN)) %>%
+        dplyr::mutate(!!newVarN := factor(!!varN, levels = c("Homicide", "Rape", "Robbery", "Aggravated Assault", "Burgalry",
+                                                             "Larceny", "Motor Vehicle Theft",  "Arson", "Other Assaults",
+                                                             "Forgery and Counterfeiting", "Fraud", "Embezzlement", "Stolen Property",
+                                                             "Vandalism", "Weapons", "Prostitution and Commercialized Vice", "Sex Offenses",
+                                                             "Drug Abuse Violations", "Gambling", "Offenses Against the Family and Children",
+                                                             "Liquor Laws", "Drunkeness", "Drunkeness", "Disorderly Conduct", "Vagrancy",
+                                                             "All Other Offenses", "Suspicion", "Curfew and Loitering Laws-Persons under 18",
+                                                             "Runaways-Persons under 18"))) -> cleanData
 
     }
 
