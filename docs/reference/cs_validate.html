@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Year List Object — cs_load_year • compstatr</title>
+<title>Validate Year List Object — cs_validate • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,15 +30,10 @@
 
 
 
-<meta property="og:title" content="Create Year List Object — cs_load_year" />
+<meta property="og:title" content="Validate Year List Object — cs_validate" />
 
-<meta property="og:description" content="cs_load_year is used to load a set of .csv files
-   contained in the given directory. This should be used to load a full
-   year worth of data or a partial year. There should be no more than 12
-   files in a given path, and all should correspond to the same year. All
-   columns will be read in as character data in order to address inconsistencies
-   in how the data are created. When cs_collapse is executed, variables
-   will be converted numeric when doing so is applicable." />
+<meta property="og:description" content="Data from SLMPD are released with a number of problems that
+    cs_validate_year is designed to identify." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -110,43 +105,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create Year List Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_load_year.R'><code>R/cs_load_year.R</code></a></small>
-    <div class="hidden name"><code>cs_load_year.Rd</code></div>
+    <h1>Validate Year List Object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_validate.R'><code>R/cs_validate.R</code></a></small>
+    <div class="hidden name"><code>cs_validate.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>cs_load_year</code> is used to load a set of <code>.csv</code> files
-   contained in the given directory. This should be used to load a full
-   year worth of data or a partial year. There should be no more than 12
-   files in a given path, and all should correspond to the same year. All
-   columns will be read in as character data in order to address inconsistencies
-   in how the data are created. When <a href='cs_collapse.html'>cs_collapse</a> is executed, variables
-   will be converted numeric when doing so is applicable.</p>
+    <p>Data from SLMPD are released with a number of problems that
+    <code>cs_validate_year</code> is designed to identify.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cs_load_year</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>cs_validate</span>(<span class='no'>.data</span>, <span class='no'>year</span>, <span class='no'>verbose</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>A file path</p></td>
+      <th>.data</th>
+      <td><p>A tbl</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>A string representing the year being checked, e.g. <code>"2008" </code></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>A logical scalar. If <code>TRUE</code>, a full validation report summarizing
+results will be returned. If <code>FALSE</code>, a single value will be returned.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A year-list object containing 12 tibbles - one per month - worth
-   of crime data stored within a list.</p>
+    <p>A tibble with validation results.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Since the data are imported alphabetically, <code>cs_validate_year</code>
+    checks to ensure that items are imported in the correct order. It also
+    checks each month to make sure it contains only one month worth of data.
+    After ensuring that months are being read correctly, the function also
+    counts the number of variables in each object. For all months prior to
+    2013 and approximately half of the months during 2013, SLMPD data are
+    released with 18 variables. For one month, May 2017, the data are released
+    with 26 variables.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>yearList08</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_load_year</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"data/raw/2008"</span>)
+<span class='no'>yearList08</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_load_year.html'>cs_load_year</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"data/raw/2008"</span>)
+
+<span class='fu'>cs_validate</span>(<span class='no'>yearList08</span>)
+<span class='fu'>cs_validate</span>(<span class='no'>yearList08</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -156,6 +168,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

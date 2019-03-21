@@ -10,8 +10,7 @@ reference:
     contents:
     - cs_prep_year
     - cs_load_year
-    - cs_validate_year
-    - cs_validate_month
+    - cs_validate
     - cs_extract_month
     - cs_replace_month
     - cs_standardize

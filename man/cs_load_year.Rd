@@ -10,11 +10,21 @@ cs_load_year(path)
 \item{path}{A file path}
 }
 \value{
-A year list object containing 12 tibbles - one per month - worth
-   of crime data.
+A year-list object containing 12 tibbles - one per month - worth
+   of crime data stored within a list.
 }
 \description{
 \code{cs_load_year} is used to load a set of \code{.csv} files
    contained in the given directory. This should be used to load a full
-   year worth of data.
+   year worth of data or a partial year. There should be no more than 12
+   files in a given path, and all should correspond to the same year. All
+   columns will be read in as character data in order to address inconsistencies
+   in how the data are created. When \link{cs_collapse} is executed, variables
+   will be converted numeric when doing so is applicable.
+}
+\examples{
+\dontrun{
+yearList08 <- cs_load_year(path = "data/raw/2008")
+}
+
 }

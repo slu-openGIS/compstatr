@@ -2,17 +2,28 @@
 #'
 #' @description \code{cs_load_year} is used to load a set of \code{.csv} files
 #'    contained in the given directory. This should be used to load a full
-#'    year worth of data.
+#'    year worth of data or a partial year. There should be no more than 12
+#'    files in a given path, and all should correspond to the same year. All
+#'    columns will be read in as character data in order to address inconsistencies
+#'    in how the data are created. When \link{cs_collapse} is executed, variables
+#'    will be converted numeric when doing so is applicable.
 #'
 #' @usage cs_load_year(path)
 #'
 #' @param path A file path
 #'
-#' @return A year list object containing 12 tibbles - one per month - worth
-#'    of crime data.
+#' @return A year-list object containing 12 tibbles - one per month - worth
+#'    of crime data stored within a list.
+#'
+#' @examples
+#' \dontrun{
+#' yearList08 <- cs_load_year(path = "data/raw/2008")
+#' }
 #'
 #' @importFrom dplyr %>%
 #' @importFrom purrr map
+#' @importFrom readr cols
+#' @importFrom readr col_character
 #' @importFrom readr read_csv
 #' @importFrom stringr str_sub
 #'
@@ -35,7 +46,7 @@ cs_load_year <- function(path){
 
   # read csv files into year list objects
   files %>%
-    purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .))))) -> out
+    purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .), col_types = readr::cols(.default = readr::col_character()))))) -> out
 
   # create list of months associated with year list object items
   out %>%

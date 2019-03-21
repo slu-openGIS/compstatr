@@ -22,7 +22,8 @@ Data downloaded from the St. Louis Metropolitan Police Department
    are downloaded with incorrect file paths - e.g. \code{January2008.CSV.html}.
    This function iterates over all files in a given path and replaces their
    file extensions. Thus \code{January2008.CSV.html} will be replaced by
-   \code{january2008.csv}.
+   \code{january2008.csv}. There should be no more than 12 files in a given path,
+   and all should correspond to the same year.
 }
 \examples{
 \dontrun{

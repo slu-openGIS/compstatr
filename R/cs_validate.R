@@ -10,17 +10,24 @@
 #'     counts the number of variables in each object. For all months prior to
 #'     2013 and approximately half of the months during 2013, SLMPD data are
 #'     released with 18 variables. For one month, May 2017, the data are released
-#'     with 26 variables. Finally, it makes sure that all variables are being
-#'     imported with the correct formatting.
+#'     with 26 variables.
 #'
-#' @usage cs_validate_year(.data, year, verbose)
+#' @usage cs_validate(.data, year, verbose)
 #'
 #' @param .data A tbl
 #' @param year A string representing the year being checked, e.g. \code{"2008" }
 #' @param verbose A logical scalar. If \code{TRUE}, a full validation report summarizing
 #'     results will be returned. If \code{FALSE}, a single value will be returned.
 #'
-#' @return A tibble with validation results
+#' @return A tibble with validation results.
+#'
+#' @examples
+#' \dontrun{
+#' yearList08 <- cs_load_year(path = "data/raw/2008")
+#'
+#' cs_validate(yearList08)
+#' cs_validate(yearList08, verbose = TRUE)
+#' }
 #'
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr mutate
@@ -32,7 +39,7 @@
 #' @importFrom stringr str_sub
 #'
 #' @export
-cs_validate_year <- function(.data, year, verbose = FALSE){
+cs_validate <- function(.data, year, verbose = FALSE){
 
   monthVal <- cs_checkNames(.data)
 
