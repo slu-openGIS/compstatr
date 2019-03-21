@@ -1,17 +1,50 @@
 context("test cs_crime_cat function")
 
-# load test data
+# load data ------------------------------------------------
 
+## load january 2018 data
 test_data <- january2018
 
-#
+# test inputs ------------------------------------------------
 
-test_that("input error triggered - no .data", expect_error(cs_crime_cat( ,Crime,Crime_True,"string"), "A existing data frame with data to be seperated must be specified for .data"))
+test_that("misspecified functions return errors", {
+  expect_error(cs_crime_cat(var = Crime, newVar = crimeCat, output = "string"),
+               "An existing data frame with integer crime codes must be specified for .data.")
+  expect_error(cs_crime_cat(test_data, newVar = crimeCat, output = "string"),
+               "The column containing integer crime codes must be specified for 'var'.")
+  expect_error(cs_crime_cat(test_data, var = Crime, output = "string"),
+               "The name of the output variable to be created by the function must be specified for 'newVar'.")
+  expect_error(cs_crime_cat(test_data, var = Crime, newVar = crimeCat),
+               "The type of output must be defined. Options are either 'string', 'factor', or 'numeric'.")
+  expect_error(cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = c("string", "factor")),
+               "The output type must be a character scalar. Select one of 'string', 'factor', or 'numeric'.")
+  expect_error(cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = "ham"),
+               "The output type must be a character scalar. Select one of 'string', 'factor', or 'numeric'.")
+})
 
-test_that("input error triggered - no var", expect_error(cs_crime_cat(test_data,,Crime_True,"string"), "The column containing the data to be separated must be specified for variable"))
+# test function ------------------------------------------------
 
-test_that("input error triggered - no newVar",expect_error(cs_crime_cat(test_data,Crime,,"string"), "The name of the output variable to be created by the function must be specified for newVar"))
+test_that("correctly specified functions execute without error", {
+  expect_error(cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = "string"), NA)
+})
 
-test_that("input error triggered - no output specified", expect_error(cs_crime_cat(test_data,Crime,Crime_True,),"The type of output must be defined - either string, factor, or numeric" ))
+# test results ------------------------------------------------
 
+results <- cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = "string")
+
+test_that("correctly specified functions execute without error", {
+  expect_equal(class(results$crimeCat), "character")
+})
+
+results <- cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = "factor")
+
+test_that("correctly specified functions execute without error", {
+  expect_equal(class(results$crimeCat), "factor")
+})
+
+results <- cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = "numeric")
+
+test_that("correctly specified functions execute without error", {
+  expect_equal(class(results$crimeCat), "numeric")
+})
 

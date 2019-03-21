@@ -9,9 +9,9 @@ test_data <- january2018
 
 test_that("misspecified functions return errors", {
   expect_error(cs_crime(var = Crime, newVar = violent, crime = "violent"),
-               "A existing data frame with data to be seperated must be specified for .data.")
+               "An existing data frame with integer crime codes must be specified for .data.")
   expect_error(cs_crime(test_data, newVar = violent, crime = violent),
-               "The column containing the data to be separated must be specified for 'var'.")
+               "The column containing integer crime codes must be specified for 'var'.")
   expect_error(cs_crime(test_data, var = Crime, crime = violent),
                "The name of the output variable to be created by the function must be specified for 'newVar'.")
   expect_error(cs_crime(test_data, var = Crime, newVar = violent),
