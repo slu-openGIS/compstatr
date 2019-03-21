@@ -1,3 +1,64 @@
+#' Seperate Coded Month
+#'
+#' @description Separates a column containing coded year and coded month
+#'     separated by "-" into two columns and removes the input column
+#'
+#' @usage  cs_parse_month(.data,var,newYear,newMonth)
+#'
+#' @param .data a data frame
+#' @param var the variable containing coded month and coded year
+#' @param newYear the name of the column to contain the year data
+#' @param newMonth the name of the column to contain month data
+#'
+#' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
+#'
+#' @examples
+#' testData <- january2018
+#' testData <- cs_parse_month(testData,CodedMonth,Year,Month)
+#'
+#' @importFrom dplyr %>%
+#' @importFrom tidyr separate
+#' @importFrom rlang quo
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#' @importFrom rlang sym
+#'
+#' @export
+cs_parse_month <- function(.data,var,newYear,newMonth){
+
+  # check for missing parameters
+  if (missing(.data)) {
+    stop('A existing data frame with data to be separated must be specified for .data')
+  }
+
+
+  if (missing(var)) {
+    stop('The column containing the data to be separated must be specified for var')
+  }
+  if (missing(newMonth)) {
+    stop('The name of the output column containing the month must be specified for newMonth')
+  }
+
+  if (missing(newYear)) {
+    stop('The name of the output column containing the year must be specified for newYear')
+  }
+
+  # save parameters to list
+  paramList <- as.list(match.call())
+
+  #quote input variables
+  newYear <- rlang::quo_name(rlang::enquo(newYear))
+  newMonth <- rlang::quo_name(rlang::enquo(newMonth))
+  if (!is.character(paramList$var)) {
+    var <- rlang::enquo(var)
+  } else if (is.character(paramList$var)) {
+    var <- rlang::quo(!! rlang::sym(var))
+  }
+  #Separates coded month and year
+  .data %>%
+    tidyr::separate((!!var), c(newYear, newMonth), "-", remove = TRUE)
+}
+
 #' Seperate Date Occur
 #'
 #' @description Creates two columns. One contains month, day, and year and the other contains hour, and minute.
@@ -61,10 +122,10 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
     var <- rlang::quo(!! rlang::sym(var))
   }
 
- newDate <- rlang::quo_name(rlang::enquo(dateVar))
- newTime <- rlang::quo_name(rlang::enquo(timeVar))
+  newDate <- rlang::quo_name(rlang::enquo(dateVar))
+  newTime <- rlang::quo_name(rlang::enquo(timeVar))
 
- #Separates the column by the spacing in the data and returns two columns
+  #Separates the column by the spacing in the data and returns two columns
 
   .data %>%
     dplyr::mutate(dateTime := lubridate::parse_date_time(!!var, orders = c("mdy HM"))) %>%
@@ -84,4 +145,3 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
   return(out)
 
 }
-

@@ -38,7 +38,7 @@
 cs_collapse <- function(.data){
 
   # undefined global variables
-  CodedMonth = DateOccur = NULL
+  CodedMonth = DateOccur = CADAddress = Count = Crime = District = ILEADSAddress = Neighborhood = XCoord = YCoord = NULL
 
   # check for missing parameters
   if (missing(.data)) {
