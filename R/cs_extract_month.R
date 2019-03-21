@@ -33,7 +33,7 @@ cs_extract_month <- function(.data, month){
     stop('The month to be extracted must be specified.')
   }
 
-  #quote input variables
+  # quote input variables
   month <- rlang::quo_name(rlang::enquo(month))
 
   # convert to lower case
@@ -70,8 +70,10 @@ cs_extract_month <- function(.data, month){
 
   }
 
+  # create output
   monthData <- .data[[val]]
 
+  # return output
   return(monthData)
 
 }
