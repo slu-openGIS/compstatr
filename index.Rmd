@@ -2,13 +2,11 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "index-"
 )
 ```
 
@@ -21,20 +19,23 @@ knitr::opts_chunk$set(
 
 The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis's [Metropolitan Police Department](http://www.slmpd.org).
 
-## Motivation
-Among cities in the United States, St. Louis has the distinction of having the highest or one of the highest violent crime and homicide rates since 2010. It therefore presents an important site for social scientists, public health researchers, and health care providers as well as policy makers to understand the effects of violent crime on urban communities. 
+## Quick Start
+If the `sf` package is already installed, the development version of `compstatr` can be accessed from GitHub with `remotes`:
 
-The City's crime data, however, are diffuclt to work with and present a challenge for researchers. These data are inconsistently organized, with all data before 2013 and some months of 2013 itself having eighteen variables. Beginning during 2013, most (but not all) months have twenty variables, many of which are named differently from their pre-2014 counterparts. These inconsistencies, and the fact that working with their data requires mangaing over 120 spreadsheets that each download with with a `.html` file extension, are the motivating force behind `compstatr`.
-
-We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files.
-
-## Installation
-You can install compstatr from Github with `remotes`:
-
-```{r gh-installation, eval = FALSE}
+```r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/compstatr")
+remotes::install_github("slu-openGIS/stlcsb")
 ```
+
+Additional details, including some tips for installing `sf`, can be found in the [Get started article](articles/compstatr.html#installation).
+
+## Resources
+In addition to instructions for installation, the main [Get started](articles/stlcsb.html) article has:
+
+  * some tips on installing `compstatr` and its dependencies,
+  * a quick overview of data acquisition,
+  * an overview of the functions available in `compstatr`,
+  * and a full example of the `compstatr` workflow along with some basic mapping of these data.
 
 ## Acknowledgements
 We wish to thank Taylor Braswell for his significant efforts compiling Stata code early in this project. Taylor's code was used as a reference when developing this package, and many of the functions reflect issues that he worked to identify.

@@ -8,90 +8,106 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
 ## Overview
+The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis's [Metropolitan Police Department](http://www.slmpd.org).
 
-## Getting Started with `R`
+### Motivation
+Among cities in the United States, St. Louis has the distinction of having the highest or one of the highest violent crime and homicide rates since 2010. It therefore presents an important site for social scientists, public health researchers, and health care providers as well as policy makers to understand the effects of violent crime on urban communities. 
 
-## Packages
-In addition to `driftR`, you will also want to install and load other packages:
+The City's crime data, however, are diffuclt to work with and present a challenge for researchers. These data are inconsistently organized, with all data before 2013 and some months of 2013 itself having eighteen variables. Beginning during 2013, most (but not all) months have twenty variables, many of which are named differently from their pre-2014 counterparts. These inconsistencies, and the fact that working with their data requires mangaing over 120 spreadsheets that each download with with a `.html` file extension, are the motivating force behind `compstatr`.
 
-* [`dplyr`](http://dplyr.tidyverse.org) - a set of common verbs for cleaning and wrangling data
-* [`readr`](http://readr.tidyverse.org) - tools for reading and writing plain-text data files
-* [`tidyr`](http://tidyr.tidyverse.org) - 
-* [`purrr`](http://purrr.tidyverse.org) - tools for working with functions and vectors
-* [`lubridate`](http://lubridate.tidyverse.org) - tools for managing dates
-* [`rlang`](https://rlang.r-lib.org/) - tools for working with core language features of R and tidyverse
+We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files.
 
-these packages can be installed with the `install.packages()` function
+### Installation
+We recommend that users install `sf` before proceeding with the installation of `compstatr`. Windows users should be able to install `sf` without significant issues, but macOS and Linux users will need to install several open source spatial libraries to get `sf` itself up and running. The easiest approach for macOS users is to install the GDAL 2.0 Complete framework from [Kyng Chaos](https://www.kyngchaos.com/software/frameworks/). 
 
-## Using `Compastatr`
-`cs_collapse()` - collapses multiple tibbles into one
-`cs_combine()`- combines multiple data sets into one
-`cs_crime()` - changes names of crimes to U.S. Federal Bureau of Investigation's Uniform Crime Reporting codes
-`cs_crime_cat()` - Converts crime codes into strings
-`cs_extract_month()`- Returns crime data of a selected month
-`cs_filter_count()` - Removes counts of -1 from crime data
-`cs_filter_crime()` - Returns crime data of a selected type of crime
-`cs_is_int()` - Returns a logical vector stating if the reported address is an intersection
-`cs_load_year()` - Loads the csv containing a year of crime data
-`cs_missing_xy()` - Returns a logical vector stating if the reported address is missing coordinates
-`cs_parse_date()` - Separates reported date and time into two columns 
-`cs_parse_int()` - Separates intersections into two columns 
-`cs_parse_month()`- Separates reported month and year into two columns 
-`cs_replace_na()`- Replaces 0's with NA
-`cs_standardize()` - Reformats nonstandard SLMPD time points into a 20 variable standard
-`cs_validate_month()` - Identifies nonstandard variables within a month
-`cs_validate_year()` - Ensures items are imported in the correct order, contain one month worth of data, and counts the numbers of variables. 
-`january2018` - Contains SLMPD January 2018 crime data
+For Linux users, steps will vary based on the flavor being used. Our [configuration file](https://github.com/slu-openGIS/compstatr/blob/master/.travis.yml) for Travis CI and its associated [bash script](https://github.com/slu-openGIS/areal/blob/master/.travis/install.sh) should be useful in determining the necessary components to install.
 
+Once `sf` is installed, the development version of `compstatr` can be accessed from GitHub with `remotes`:
 
-### Importing Data
-To import a year of crime data, `cs_load_year()`function is used. 
-
-To use the package without importing your own data, you can load sample data in the package using:
-
-```{r, eval=FALSE}
-january2018 <- data("january2018")
-```
+```r
+# install.packages("remotes")
+remotes::install_github("slu-openGIS/compstatr")
 ```
 
-### Function examples
-This returns a logical vector containing TRUE in rows with violent crime
-```{r, eval=FALSE}
-violentCrimeSorted <- cs_crime(.data = january2018, var = Crime, newVar = ViolentCrime, crime = "violent"")
-```
-This returns a column containing the names, according to FBI crime codes, of crimes as a string
-```{r, eval=FALSE}
-crimeNames <- cs_crime_cat(.data = january2018, var = Crime, newVar = NamedCrime, output = string)
-```
-The data shows reported crimes and when multiple reports occur for the same indicent, the count is -1. This removes counts of -1. 
-```{r, eval=FALSE}
-january2018filteredCount <- cs_filter_count(.data = january2018, var = Count)
-```
-This returns a tibble containing only violent crime from the data set. 
-```{r, eval=FALSE}
-january2018violentCrimeFiltered <- cs_filter_crime(.data = january2018, var = Crime, crime = "violent")
-```
-Intersections are often reported in the same ILEADSStreet column and this creates a new column identifying if a crime was reported at an intersection. 
-```{r, eval=FALSE}
-january2018Intersections <- cs_filter_crime(.data = january2018, var = ILEADSStreet, newVar = "IsIntersection")
+### Tips
+
+* All functions support non-standard evaluation, meaning you can use either quoted or unquoted inputs for arguments.
+* Use RStudio for its helpful auto completion ability. Type `cs_` to see all of the functions available in this package.
+* All functions return data as a tibble, which is essentially identical to a data.frame, except for its print behavior in the console and in notebooks.
+
+## Downloading SLMPD ata
+
+
+## Sample Data
+The `compstatr` package contains a single month that can be used for practicing some of the built-in functions. This file, `january2018` contains all crimes reported that month in St. Louis. It is formatted to match validated data that has been created using `cs_collapse()` (though, in practice, the result of `cs_collapse()` should be a full year of data). Any functions for working with dates and times, spatial data, and crime codes can be practiced using these data.
+
+## Usage
+### Data Validation
+The first step in working with the SLMPD data is to import it. Our approach with `compstatr` is to read into data a year at a time using `cs_load_year()`:
+
+```r
+data2008 <- cs_load_year(here("data", "rawData", "csv", "2008"))
 ```
 
-Some reported crimes present missing coordinates and this returns a logical vector with TRUE if a coordinate has no X and Y coordinates. 
-```{r, eval=FALSE}
-january2018MissingXY <- cs_missing_xy(.data = january2018, varx = XCoord, vary = YCoord, newVar = "IsMissingXandY")
-```
-This takes the reported and time and splits it into unique columns named "Date" and "Time" while keeping the input Date and time
-```{r, eval=FALSE}
-january2018ParsedDate <- cs_parse_date(.data = january2018, var = DateOccur, dateVar = Date, timeVar = Time, tz = Null, keepDateTime = TRUE)
-```
-This takes a column containing the month and a year and split it into two columns Year and Month
-```{r, eval=FALSE}
-january2018ParsedMonth <- cs_parse_month(.data = january2018, var = CodedMonth, newYear = Year, newMonth = Month)
-```
-In this example, missing X coordinates were inputted as 0 and the function replaces the missing coordinates with NA
-```{r, eval=FALSE}
-january2018XNA <- cs_replace_na(.data = january2018, var = XCoord)
+The `cs_load_year()` function requires that all 12 months of data are present. It will load data into a single list object containing a tibble for each month. Months are ordered alphabetically, not numerically (see Fixing Validation Errors below). These are referred to as "year list objects" in the `compstatr` documentation.
+
+Once a year list object has been created, the `cs_validate_year()` function can be used to determine what issues exist in a given year's data. The validation function will check to make sure that: 
+(1) `oneMonth` - each object in the list contains one month worth of data, 
+(2) `valMonth` - each object in the list is appropriately positioned alphabetically, 
+(3) `varCount` - each object in the list has 20 variables,
+(4) `valVars` - if there are 20 variables, that they are named correctly, and
+(5) `valClasses` - that each of the 20 variables is the proper class.
+
+The `cs_validate_year()` function returns a tibble that summarizes these results. A `TRUE` value indicates that the given month meets the given condition, and a `FALSE` value means it does not. An `NA` value is reported for `valVars` and `valClasses` if there are not 20 variables in the object.
+
+```r
+cs_validate_year(data2008, year = "2008")
 ```
 
-### Cleaning one set of data example
+### Fixing Valiation Errors - Number of Variables
+The simplest validation errors to fix are instances when there are not 20 variables. The `cs_standardize()` function is designed to fix two scenarios - the common instance for pre-2014 data where there are only 18 variables, and a less common instance (only May 2017) where there are 26 variables. This function can be used on an entire year list object:
+
+```r
+data2008 <- cs_standardize(data2008, config = 18)
+```
+
+The `cs_standardize()` function can also be used on a specific month within the year list object:
+
+```r
+data2017 <- cs_standardize(data2017, month = "May", config = 26)
+```
+
+In both cases, it returns a copy of the year list object
+
+### Fixing Validation Errors - Variable Classes
+
+* `cs_validate_month()`
+
+If there are more specific errors, such as mis-formatted columns, a specific month can be extracted using the `cs_extract_month()` function:
+
+* `cs_replace_month()`
+
+### Collapsing Year List Objects
+
+* `cs_collapse()`
+
+### Working with Dates and Times
+
+* `cs_parse_date()`
+* `cs_parse_month()`
+
+### Working with Spatial Data
+
+* `cs_replace0()`
+* `cs_missingXY()`
+* `cs_projectXY()`
+
+### Working with Crime Codes
+
+* `cs_crime()`
+* `cs_crime_cat()`
+* `cs_crime_filter()`
+* `cs_filter_count()`
+

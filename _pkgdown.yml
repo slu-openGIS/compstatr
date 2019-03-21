@@ -1,0 +1,40 @@
+url: https://slu-openGIS.github.io/compstatr/
+
+authors:
+  Christopher Prener:
+    href: https://chris-prener.github.io
+
+reference:
+  - title: "Prepare Data"
+    desc: "Create, Standardize, and Collapse Year-List Objects"
+    contents:
+    - cs_prep_year
+    - cs_load_year
+    - cs_validate_year
+    - cs_validate_month
+    - cs_extract_month
+    - cs_replace_month
+    - cs_standardize
+    - cs_collapse
+    - cs_combine
+
+  - title: "Categorize Crimes"
+    desc: "Work with Crime Data"
+    contents:
+    - cs_crime
+    - cs_crime_cat
+    - cs_filter_crime
+    - cs_filter_count
+
+  - title: "Dates"
+    desc: "Work with Date and Coded Month Data"
+    contents:
+    - cs_parse_date
+    - cs_parse_month
+
+  - title: "Spatial Data"
+    desc: "Wrangle and Project Crimes"
+    contents:
+    - cs_replace0
+    - cs_missingXY
+    - cs_projectXY

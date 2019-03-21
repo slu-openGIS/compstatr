@@ -7,11 +7,19 @@ Authors@R: c(
     person("Cree", "Foeller", ,"cree.foeller@slu.edu", c("aut")),
     person("Taylor", "Braswell", , , c("com"))
     )
-Description: This package contains a set of tools for accessing and editing 
-    St. Louis Metropolitan Police Department (SLMPD) crime data, which is
-    available on their website in csv form.
+Description: Among cities in the United States, St. Louis has the 
+    distinction of having the highest or one of the highest violent crime 
+    and homicide rates since 2010. It therefore presents an important site
+    for social scientists, public health researchers, and health care
+    providers as well as policy makers to understand the effects of violent
+    crime on urban communities. The City's crime data, however, are diffuclt
+    to work with and present a challenge for researchers. We therefore provide
+    a set of tools for accessing and editing St. Louis Metropolitan Police 
+    Department (SLMPD) crime data, which are available on their website in csv form.
 Depends: R (>= 3.3)
 License: GPL-3
+URL: https://github.com/slu-openGIS/compstatr
+BugReports: https://github.com/slu-openGIS/stlcsb/compstatr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
