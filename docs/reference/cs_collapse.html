@@ -32,10 +32,8 @@
 
 <meta property="og:title" content="Combine Months in Year List Object — cs_collapse" />
 
-<meta property="og:description" content="This function takes a list containing 12 tibbles - one per
-   month - that have been validated and collapses them into a single tibble.
-   This is preferable for working with the data post validation, but cannot
-   be done until there is parity in terms of variable names and classes." />
+<meta property="og:description" content="This function takes a year-list containing individual tibbles - one per
+   month - that have been validated and collapses them into a single tibble." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -114,10 +112,8 @@
 
     <div class="ref-description">
     
-    <p>This function takes a list containing 12 tibbles - one per
-   month - that have been validated and collapses them into a single tibble.
-   This is preferable for working with the data post validation, but cannot
-   be done until there is parity in terms of variable names and classes.</p>
+    <p>This function takes a year-list containing individual tibbles - one per
+   month - that have been validated and collapses them into a single tibble.</p>
     
     </div>
 
@@ -134,7 +130,27 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble containing a year worth of crime data.</p>
+    <p>A tibble containing all crime data in a given year-list object.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>cs_collapse</code> applies common sense variable classes to a number
+   of variables. This is motivated by issues that originate with SLMPD <code>.csv</code>
+   files. When they are imported, the <span class="pkg">readr</span> package sometimes applies
+   the incorrect variable classes because of formatting issues in the tables.
+   Since the tables have inconsistent variable names and numbers of variables,
+   all variables are imported as <code>chr</code> data. During <code>cs_collapse</code>'s
+   exectuion, the following changes are made:</p>
+<dl class='dl-horizontal'>
+  <dt>Count</dt><dd><p>Converted to <code>int</code></p></dd>
+  <dt>Crime</dt><dd><p>Converted to <code>int</code></p></dd>
+  <dt>District</dt><dd><p>Converted to <code>int</code></p></dd>
+  <dt>ILEADSAddress</dt><dd><p>Converted to <code>int</code></p></dd>
+  <dt>Neighborhood</dt><dd><p>Converted to <code>int</code></p></dd>
+  <dt>CADAddress</dt><dd><p>Converted to <code>int</code></p></dd>
+  <dt>XCoord</dt><dd><p>Converted to <code>dbl</code></p></dd>
+  <dt>YCoord</dt><dd><p>Converted to <code>dbl</code></p></dd>
+</dl>
     
 
   </div>
@@ -144,6 +160,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>

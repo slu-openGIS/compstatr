@@ -10,11 +10,29 @@ cs_collapse(.data)
 \item{.data}{A list containing monthly crime data}
 }
 \value{
-A tibble containing a year worth of crime data.
+A tibble containing all crime data in a given year-list object.
 }
 \description{
-This function takes a list containing 12 tibbles - one per
+This function takes a year-list containing individual tibbles - one per
    month - that have been validated and collapses them into a single tibble.
-   This is preferable for working with the data post validation, but cannot
-   be done until there is parity in terms of variable names and classes.
+}
+\details{
+\code{cs_collapse} applies common sense variable classes to a number
+   of variables. This is motivated by issues that originate with SLMPD \code{.csv}
+   files. When they are imported, the \pkg{readr} package sometimes applies
+   the incorrect variable classes because of formatting issues in the tables.
+   Since the tables have inconsistent variable names and numbers of variables,
+   all variables are imported as \code{chr} data. During \code{cs_collapse}'s
+   exectuion, the following changes are made:
+
+\describe{
+  \item{Count}{Converted to \code{int}}
+  \item{Crime}{Converted to \code{int}}
+  \item{District}{Converted to \code{int}}
+  \item{ILEADSAddress}{Converted to \code{int}}
+  \item{Neighborhood}{Converted to \code{int}}
+  \item{CADAddress}{Converted to \code{int}}
+  \item{XCoord}{Converted to \code{dbl}}
+  \item{YCoord}{Converted to \code{dbl}}
+}
 }
