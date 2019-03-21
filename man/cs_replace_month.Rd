@@ -2,7 +2,7 @@
 % Please edit documentation in R/cs_replace_month.R
 \name{cs_replace_month}
 \alias{cs_replace_month}
-\title{Extract Month from Year List Object}
+\title{Extract Month from Year-list Object}
 \usage{
 cs_replace_month(.data, month, monthData)
 }
@@ -16,9 +16,9 @@ Acceptable inputs include, for example, "January", "january", "Jan",
 \item{monthData}{A tibble containing a single month worth of crime data.}
 }
 \value{
-A tibble containing a single month worth of crime data.
+An update year-list object.
 }
 \description{
 This function replaces a single month worth of crime data that
-  has previously been extracted from a year list object.
+  has previously been extracted from a year-list object.
 }

@@ -11,7 +11,9 @@ cs_standardize(.data, month, config = 18)
 
 \item{month}{An option string name or abbreviation of a month, or its numeric value.
 Acceptable inputs include, for example, "January", "january", "Jan",
-"jan", and 1.}
+"jan", and 1. If all months in a year-list need to be standardized (this is
+applicable, as of March 2019, to all years from 2008 through 2012), the
+month should be given as \code{"all"} to standardize them en masse.}
 
 \item{config}{The non-standard configuration, either 18 or 26}
 }
