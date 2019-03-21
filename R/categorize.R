@@ -31,19 +31,19 @@ cs_crime <- function(.data, var, newVar, crime){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be seperated must be specified for .data')
+    stop('A existing data frame with data to be seperated must be specified for .data.')
   }
 
   if (missing(var)) {
-    stop('The column containing the data to be separated must be specified for variable')
+    stop("The column containing the data to be separated must be specified for 'var'.")
   }
 
   if (missing(newVar)) {
-    stop('The name of the output variable to be created by the function must be specified for newVar')
+    stop("The name of the output variable to be created by the function must be specified for 'newVar'.")
   }
 
   if (missing(crime)) {
-    stop('A string describing the crime type to be identified must be specified for crime')
+    stop("A string describing the crime type to be identified must be specified for 'crime'.")
   }
 
   #save parameters to list
