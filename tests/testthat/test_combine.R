@@ -13,6 +13,13 @@ yearList18 <- cs_collapse(yearList18)
 
 # test inputs ------------------------------------------------
 
+test_that("misspecified functions return errors", {
+  expect_error(cs_combine(type = "ham", date = 2017, yearList17, yearList18),
+               "The output type must be a character scalar. Select one of 'year' or 'ytd'.")
+  expect_error(cs_combine(type = c("year", "ytd"), date = 2017, yearList17, yearList18),
+               "The output type must be a character scalar. Select one of 'year' or 'ytd'.")
+})
+
 # test function ------------------------------------------------
 
 test_that("correctly specified functions execute without error", {

@@ -9,7 +9,7 @@ yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
 # test inputs ------------------------------------------------
 
 test_that("misspecified functions return errors", {
-  expect_error(cs_replace_month(),
+  expect_error(cs_collapse(),
                "A existing year-list object must be specified for .data.")
 })
 

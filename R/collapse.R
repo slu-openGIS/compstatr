@@ -42,7 +42,7 @@ cs_collapse <- function(.data){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be separated must be specified for .data')
+    stop('A existing year-list object must be specified for .data.')
   }
 
   # extract each month, collapse, and re-order
@@ -102,9 +102,7 @@ cs_collapse <- function(.data){
 #' @importFrom dplyr filter
 #' @importFrom dplyr select
 #' @importFrom lubridate year
-#' @importFrom rlang quo
-#' @importFrom rlang enquo
-#' @importFrom rlang sym
+#' @importFrom rlang is_scalar_character
 #'
 #' @examples
 #' \dontrun{
@@ -123,16 +121,21 @@ cs_combine <- function(type = "year", date, ...){
   # undefined global variables
   DateOccur = time = dateTime = cs_year = NULL
 
-  # save parameters to list
-  paramList <- as.list(match.call())
-
-  #quote input variables
-  if (!is.character(paramList$date)) {
-    dateF <- rlang::enquo(date)
-  } else if (is.character(paramList$date)) {
-    dateF <- rlang::quo(!! rlang::sym(date))
+  # check for missing parameters
+  if (missing(date)){
+    stop("An integer year value must be supplied for 'date'.")
   }
 
+  # check for incorrect parameters
+  if (rlang::is_scalar_character(type) == FALSE){
+    stop("The output type must be a character scalar. Select one of 'year' or 'ytd'.")
+  }
+
+  if (type %in% c("year", "ytd") == FALSE){
+    stop("The output type must be a character scalar. Select one of 'year' or 'ytd'.")
+  }
+
+  # combine
   if (type == "year"){
 
     # combine listed objects
@@ -141,7 +144,7 @@ cs_combine <- function(type = "year", date, ...){
     # create temporary date varible, filter based on supplied year, then arrange
     results %>%
       cs_parse_date(var = DateOccur, dateVar = date, timeVar = time, keepDateTime = TRUE) %>%
-      dplyr::filter(year(date) == !!dateF) %>%
+      dplyr::filter(year(date) == date) %>%
       dplyr::arrange(dateTime) %>%
       dplyr::mutate(cs_year = lubridate::year(dateTime)) %>%
       dplyr::select(-date, -time, -dateTime) %>%
