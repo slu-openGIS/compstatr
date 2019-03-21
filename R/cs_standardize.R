@@ -17,7 +17,9 @@
 #' @param .data A tbl
 #' @param month An option string name or abbreviation of a month, or its numeric value.
 #'    Acceptable inputs include, for example, "January", "january", "Jan",
-#'    "jan", and 1.
+#'    "jan", and 1. If all months in a year-list need to be standardized (this is
+#'    applicable, as of March 2019, to all years from 2008 through 2012), the
+#'    month should be given as \code{"all"} to standardize them en masse.
 #' @param config The non-standard configuration, either 18 or 26
 #'
 #' @importFrom dplyr %>%
@@ -60,7 +62,7 @@ cs_standardize <- function(.data, month, config = 18){
   `Y-Coord` = YCoord = NULL
 
 
-  if (missing(month)) {
+  if (month == "all") {
     # we only need to clean full years of 18 variables
 
     if (config == 18){
@@ -84,7 +86,7 @@ cs_standardize <- function(.data, month, config = 18){
 
     }
 
-  } else if (!missing(month)) {
+  } else if (month != "all") {
     # for cleaning inidivudal months, we need to pull a single month out for cleaning
 
     val <- cs_selectMonth(month)

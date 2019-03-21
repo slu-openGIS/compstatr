@@ -2,6 +2,7 @@ context("test cs_standardize function")
 
 # load data ------------------------------------------------
 
+load(system.file("testdata", "yearList10.rda", package = "compstatr", mustWork = TRUE))
 load(system.file("testdata", "yearList13.rda", package = "compstatr", mustWork = TRUE))
 load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 
@@ -15,6 +16,7 @@ test_that("correctly specified functions execute without error", {
 # test function ------------------------------------------------
 
 test_that("correctly specified functions execute without error", {
+  expect_error(cs_standardize(yearList10, month = "all", config = 18), NA)
   expect_error(cs_standardize(yearList13, month = 1, config = 18), NA)
   expect_error(cs_standardize(yearList13, month = "FEB", config = 18), NA)
   expect_error(cs_standardize(yearList13, month = "March", config = 18), NA)
