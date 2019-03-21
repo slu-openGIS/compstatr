@@ -17,6 +17,7 @@ test_that("correctly specified functions execute without error", {
   expect_error(cs_extract_month(yearList13, month = "SEP"), NA)
   expect_error(cs_extract_month(yearList13, month = "Nov"), NA)
   expect_error(cs_extract_month(yearList13, month = "dec"), NA)
+  expect_error(cs_extract_month(yearList13, "dec"), NA)
 })
 
 # test inputs ------------------------------------------------
