@@ -32,10 +32,16 @@ For all months prior to 2013 and approximately half of the months during
    non-standard.
 }
 \examples{
-\dontrun{
-yearList08 <- cs_standardize(yearList08, config = 18)
-yearList13 <- cs_standardize(yearList08, month = "January", config = 18)
-yearList17 <- cs_standardize(yearList08, month = 5, config = 26)
-}
+# load example object
+load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
+
+# validate
+cs_validate(yearList17)
+
+# standaridze May, which has 26 variables
+yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
+
+# validate again to confirm fix
+cs_validate(yearList17)
 
 }
