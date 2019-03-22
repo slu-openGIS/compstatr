@@ -185,7 +185,8 @@ cs_projectXY <- function(.data, varX, varY, crs){
 
   # city data
   # project data to NAD 1983 StatePlane (feet)
-  out <- sf::st_as_sf(.data, coords = c(x = varXN, y = varYN), crs = 102696)
+  out <- sf::st_as_sf(.data, coords = c(x = varXN, y = varYN),
+                      crs = "+proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.9999333333333333 +x_0=250000 +y_0=0 +datum=NAD83 +units=us-ft +no_defs")
 
   # optionally reproject data
   if(missing(crs) == FALSE){
