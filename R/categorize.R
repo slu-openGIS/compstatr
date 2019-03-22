@@ -197,6 +197,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
   }
 
+  # return output
   return(cleanData)
 
 }
@@ -368,6 +369,7 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
 
   }
 
+  # return output
   return(cleanData)
 
 }

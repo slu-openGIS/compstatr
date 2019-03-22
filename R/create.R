@@ -233,6 +233,7 @@ cs_identifyMonth <- function(.data, read = TRUE){
 
   }
 
+  # return output
   return(out)
 
 }
@@ -299,6 +300,7 @@ cs_matchMonth <- function(x){
 
   }
 
+  # return output
   return(name)
 
 }

@@ -243,7 +243,10 @@ cs_filter_count <- function(.data, var){
     var <- rlang::quo(!! rlang::sym(var))
   }
 
-  #Filters for counts of 1
-  .data %>%
-    dplyr::filter(((!!var)) == 1)
+  # filters for counts of 1
+  .data <- dplyr::filter(.data, !!var == 1)
+
+  # return output
+  return(.data)
+
 }

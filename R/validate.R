@@ -117,6 +117,7 @@ cs_validate <- function(.data, year, verbose = FALSE){
     }
   }
 
+  # return output
   return(result)
 
 }
@@ -175,6 +176,7 @@ cs_checkNames <- function(.data){
     }
   }
 
+  # return output
   return(result)
 
 }
@@ -238,6 +240,7 @@ cs_checkMonth <- function(monthItem){
 
   out <- c(a,b,c,d,e)
 
+  # return output
   return(out)
 
 }
@@ -315,6 +318,7 @@ cs_checkVarNames <- function(monthItem){
 
   }
 
+  # return output
   return(result)
 
 }

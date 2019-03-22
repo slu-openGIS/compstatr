@@ -184,6 +184,7 @@ cs_combine <- function(type = "year", date, ...){
 
   }
 
+  # return output
   return(results)
 
 }

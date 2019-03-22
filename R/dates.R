@@ -121,7 +121,7 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
   # save parameters to list
   paramList <- as.list(match.call())
 
-  #quote input variables
+  # quote input variables
   if (!is.character(paramList$var)) {
     var <- rlang::enquo(var)
   } else if (is.character(paramList$var)) {
@@ -131,21 +131,15 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
   newDate <- rlang::quo_name(rlang::enquo(dateVar))
   newTime <- rlang::quo_name(rlang::enquo(timeVar))
 
-  #Separates the column by the spacing in the data and returns two columns
-
+  # separates the column by the spacing in the data and returns two columns
   .data %>%
     dplyr::mutate(dateTime := lubridate::parse_date_time(!!var, orders = c("mdy HM"))) %>%
     dplyr::mutate(!!newDate := lubridate::date(dateTime)) %>%
     dplyr::mutate(!!newTime := base::strftime(dateTime, format = "%H:%M:%S")) -> out
 
-  # optionally reorder variables
-  # if (reorder == TRUE){
-  #  .data <- select(.data, Complaint, CodedMonth, DateOccur, dateTime, !!newDate, !!newTime, dplyr::everything())
-  # }
-
   # optionally remove variables
   if (keepDateTime == FALSE){
-    .data <- dplyr::select(.data, -c(dateTime))
+    out <- dplyr::select(out, -c(dateTime))
   }
 
   # return output
