@@ -16,6 +16,8 @@
 #'
 #' @return A tibble containing a single month worth of crime data.
 #'
+#' @seealso \code{\link{cs_replace_month}}
+#'
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
@@ -92,6 +94,8 @@ cs_extract_month <- function(.data, month){
 #' @param monthData A tibble containing a single month worth of crime data.
 #'
 #' @return An update year-list object.
+#'
+#' @seealso \code{\link{cs_extract_month}}
 #'
 #' @export
 cs_replace_month <- function(.data, month, monthData){

@@ -22,3 +22,6 @@ An update year-list object.
 This function replaces a single month worth of crime data that
   has previously been extracted from a year-list object.
 }
+\seealso{
+\code{\link{cs_extract_month}}
+}
