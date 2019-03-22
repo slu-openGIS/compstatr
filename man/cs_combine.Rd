@@ -7,7 +7,7 @@
 cs_combine(type = "year", date, ...)
 }
 \arguments{
-\item{type}{"year" is the only valid input currenty; year to date functionality
+\item{type}{"year" is the only valid input currently; year to date functionality
 is planned for a later update}
 
 \item{date}{For \code{type = "year"}, this should be the year of data to be returned.
@@ -19,8 +19,8 @@ For \code{type = "ytd"}, this should be the last month to be included in each es
 A tibble containing a selection of combined crime data for a given time period.
 }
 \description{
-Since crimes are somtimes reported well after they are committed, objects created
-    with \code{cs_collapse} often contain crimes that occured in prior years. The \code{cs_combine}
+Since crimes are sometimes reported well after they are committed, objects created
+    with \code{cs_collapse} often contain crimes that occurred in prior years. The \code{cs_combine}
     function ensures that objects contain only data for a given year, with the ability to add in
     crimes reported for the given year in later years.
 }

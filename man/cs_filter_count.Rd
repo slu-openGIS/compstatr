@@ -17,7 +17,7 @@ A subset object with rows containing \code{-1} removed
 \description{
 Removes the row that contains \code{-1} in a specified column, indicating that the
     charge described in that observation has either been deemed unfounded or has been
-    up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
+    up-coded. For example, a victim of an aggravated assault dies, and the charge is changed
     to homicide.
 }
 \examples{

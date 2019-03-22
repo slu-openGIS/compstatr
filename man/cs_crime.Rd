@@ -31,57 +31,57 @@ The categories used here are derived from the U.S. Federal
     \code{crime} argument are as follows:
 
 \describe{
-    \item{\code{"violent"}}{Violent crimes (homicide, rape, aggrevated assault, and
+    \item{\code{"violent"}}{Violent crimes (homicide, rape, aggravated assault, and
         robbery)}
     \item{\code{"property"}}{Property crimes (burglary, larceny, larceny of a motor
         vehicle, and arson)}
     \item{\code{"part 1"}}{All violent and property crimes}
-    \item{\code{"homicide"}}{\code{"murder"} is also acceptible as input as is UCR
+    \item{\code{"homicide"}}{\code{"murder"} is also acceptable as input as is UCR
         code \code{1}}
-    \item{\code{"rape"}}{\code{"forcible rape"} is also acceptible as input as is
+    \item{\code{"rape"}}{\code{"forcible rape"} is also acceptable as input as is
         UCR code \code{2}}
-    \item{\code{"robbery"}}{UCR code \code{3} is also acceptible input}
-    \item{\code{"agg assualt"}}{\code{"aggrevated assualt"} is also acceptible as
+    \item{\code{"robbery"}}{UCR code \code{3} is also acceptable input}
+    \item{\code{"agg assualt"}}{\code{"aggravated assualt"} is also acceptable as
         input as is UCR code \code{4}}
-    \item{\code{"burglary"}}{UCR code \code{5} is also acceptible input}
+    \item{\code{"burglary"}}{UCR code \code{5} is also acceptable input}
     \item{\code{"larceny-theft"}}{\code{"larceny"} and \code{"theft"} are also
-        acceptible inputs as is UCR code \code{6}}
+        acceptable inputs as is UCR code \code{6}}
     \item{\code{"mv theft"}}{\code{"motor vehicle theft"}, \code{"motor vehicle
-        larceny"}, and \code{"mv larceny"} are also acceptible inputs as input
+        larceny"}, and \code{"mv larceny"} are also acceptable inputs as input
         as is UCR code \code{7}}
-    \item{\code{"arson"}}{UCR code \code{8} is also acceptible input}
+    \item{\code{"arson"}}{UCR code \code{8} is also acceptable input}
     \item{\code{"part 2"}}{All other crimes}
-    \item{\code{"assault"}}{\code{"other assaults"} is also acceptible input as
+    \item{\code{"assault"}}{\code{"other assaults"} is also acceptable input as
         is UCR code \code{9}}
-    \item{\code{"forgery"}}{\code{"forgery and counterfeiting"} is also acceptible
+    \item{\code{"forgery"}}{\code{"forgery and counterfeiting"} is also acceptable
         input as is UCR code \code{10}}
-    \item{\code{"fraud"}}{UCR code \code{11} is also acceptible input}
-    \item{\code{"embezzlement"}}{UCR code \code{12} is also acceptible input}
-    \item{\code{"stolen prop"}}{\code{"stolen property"} is also acceptible input
+    \item{\code{"fraud"}}{UCR code \code{11} is also acceptable input}
+    \item{\code{"embezzlement"}}{UCR code \code{12} is also acceptable input}
+    \item{\code{"stolen prop"}}{\code{"stolen property"} is also acceptable input
         as is UCR code \code{13}}
-    \item{\code{"vandalism"}}{UCR code \code{14} is also acceptible input}
-    \item{\code{"weapons"}}{UCR code \code{15} is also acceptible input}
+    \item{\code{"vandalism"}}{UCR code \code{14} is also acceptable input}
+    \item{\code{"weapons"}}{UCR code \code{15} is also acceptable input}
     \item{\code{"prostitution"}}{\code{"prostitution and commercialized vice"} is
-        also acceptible input as is UCR code \code{16}}
-    \item{\code{"sex offenses"}}{UCR code \code{17} is also acceptible input}
-    \item{\code{"drugs"}}{\code{"drug abuse violations"} is also acceptible input
+        also acceptable input as is UCR code \code{16}}
+    \item{\code{"sex offenses"}}{UCR code \code{17} is also acceptable input}
+    \item{\code{"drugs"}}{\code{"drug abuse violations"} is also acceptable input
         as is UCR code \code{18}}
-    \item{\code{"gambling"}}{UCR code \code{19} is also acceptible input}
+    \item{\code{"gambling"}}{UCR code \code{19} is also acceptable input}
     \item{\code{"family"}}{\code{"offenses against the family and children"} is
-        also acceptible input as is UCR code \code{20}}
-    \item{\code{"dwi"}}{\code{"driving under the influence"} is also acceptible
+        also acceptable input as is UCR code \code{20}}
+    \item{\code{"dwi"}}{\code{"driving under the influence"} is also acceptable
         input as is UCR code \code{21}}
-    \item{\code{"liquor laws"}}{UCR code \code{22} is also acceptible input}
-    \item{\code{"drunkenness"}}{UCR code \code{23} is also acceptible input}
-    \item{\code{"discon"}}{\code{"disorderly conduct"} is also acceptible input
+    \item{\code{"liquor laws"}}{UCR code \code{22} is also acceptable input}
+    \item{\code{"drunkenness"}}{UCR code \code{23} is also acceptable input}
+    \item{\code{"discon"}}{\code{"disorderly conduct"} is also acceptable input
         as is UCR code \code{24}}
-    \item{\code{"vagrancy"}}{UCR code \code{25} is also acceptible input}
-    \item{\code{"other"}}{\code{"all other offenses"} is also acceptible input
+    \item{\code{"vagrancy"}}{UCR code \code{25} is also acceptable input}
+    \item{\code{"other"}}{\code{"all other offenses"} is also acceptable input
         as is UCR code \code{26}}
-    \item{\code{"suspicion"}}{UCR code \code{27} is also acceptible input}
+    \item{\code{"suspicion"}}{UCR code \code{27} is also acceptable input}
     \item{\code{"curfew"}}{\code{"curfew and loitering laws-persons under 18"}
-        is also acceptible input as is UCR code \code{28}}
-    \item{\code{"runaway"}}{\code{"runaways-persons under 18"} is also acceptible
+        is also acceptable input as is UCR code \code{28}}
+    \item{\code{"runaway"}}{\code{"runaways-persons under 18"} is also acceptable
         input as is UCR code \code{29}}
 }
 }

@@ -2,14 +2,14 @@
 % Please edit documentation in R/dates.R
 \name{cs_parse_date}
 \alias{cs_parse_date}
-\title{Seperate Date Occur}
+\title{Separate Date Occur}
 \usage{
 cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 }
 \arguments{
 \item{.data}{A tibble or data frame}
 
-\item{var}{A column containing month, day, year, and time seprated by \code{/}}
+\item{var}{A column containing month, day, year, and time separated by \code{/}}
 
 \item{dateVar}{Name of new column to contain date data}
 

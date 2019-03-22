@@ -2,7 +2,7 @@
 % Please edit documentation in R/dates.R
 \name{cs_parse_month}
 \alias{cs_parse_month}
-\title{Seperate Coded Month}
+\title{Separate Coded Month}
 \usage{
 cs_parse_month(.data, var, yearVar, monthVar)
 }

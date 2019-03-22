@@ -37,7 +37,7 @@ remotes::install_github("slu-openGIS/compstatr")
 * Use RStudio for its helpful auto completion ability. Type `cs_` to see all of the functions available in this package.
 * All functions for data creation and preparation return data as a tibble, which is essentially identical to a data.frame, except for its print behavior in the console and in notebooks.
 
-## Downloading SLMPD ata
+## Downloading SLMPD Data
 `compstatr` uses an opinionated approach for data organization. Data should be downloaded from [SLMPD](http://www.slmpd.org/Crimereports.shtml) into a clear folder hierarchy that approximates this:
 
 ```r

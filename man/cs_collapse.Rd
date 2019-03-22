@@ -23,7 +23,7 @@ This function takes a year-list containing individual tibbles - one per
    the incorrect variable classes because of formatting issues in the tables.
    Since the tables have inconsistent variable names and numbers of variables,
    all variables are imported as \code{chr} data. During \code{cs_collapse}'s
-   exectuion, the following changes are made:
+   execution, the following changes are made:
 
 \describe{
   \item{Count}{Converted to \code{int}}

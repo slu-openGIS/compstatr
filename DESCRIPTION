@@ -12,7 +12,7 @@ Description: Among cities in the United States, St. Louis has the
     and homicide rates since 2010. It therefore presents an important site
     for social scientists, public health researchers, and health care
     providers as well as policy makers to understand the effects of violent
-    crime on urban communities. The City's crime data, however, are diffuclt
+    crime on urban communities. The City's crime data, however, are difficult
     to work with and present a number of challenges for researchers. We therefore provide
     a set of tools for accessing and editing St. Louis Metropolitan Police 
     Department (SLMPD) crime data, which are available on their website in csv form. 

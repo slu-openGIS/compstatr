@@ -11,7 +11,7 @@
 #'   \item{Complaint}{complaint record number}
 #'   \item{CodedMonth}{year and month crime reported}
 #'   \item{DateOccur}{date and time of crime}
-#'   \item{FlagCrime}{Returns a Y when a crime occured}
+#'   \item{FlagCrime}{Returns a Y when a crime occurred}
 #'   \item{FlagUnfounded}{Reported crime was investigated and determined to be unfounded}
 #'   \item{FlagAdministrative}{Reported crime had a change in classification}
 #'   \item{Count}{Returns a 1 or -1 for counting purposes}

@@ -15,7 +15,7 @@ cs_crime_cat(.data, var, newVar, output)
 
 \item{output}{Type of output - either \code{"string"}, \code{"factor"}, or \code{"numeric"}.
 If \code{"numeric"} is selected, the general UCR code will be returned (i.e. \code{1} for
-homicide, \code{3} for aggrevated assault, etc.). Factor output will be returned in order
+homicide, \code{3} for aggravated assault, etc.). Factor output will be returned in order
 of descending UCR code (i.e. beginning with homicide, which has a UCR code of \code{1}).}
 }
 \value{
@@ -25,7 +25,7 @@ A copy of the object with the new output variable appended to it.
 The SLMPD data contains 5 or 6 digit codes to refer to
     specific categories of crime. \code{cs_crime_cat} transforms these
     into either string, factor, or simplified numeric categories
-    like "murder" or "aggrevated assault". This can be used
+    like "murder" or "aggravated assault". This can be used
     on any police department's data where codes like \code{31111} (robbery with a firearm)
     or \code{142320} (malicious destruction of property) are used to identify crimes.
 }

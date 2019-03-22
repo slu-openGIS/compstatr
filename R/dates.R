@@ -1,4 +1,4 @@
-#' Seperate Coded Month
+#' Separate Coded Month
 #'
 #' @description Separates a column containing coded year and coded month
 #'     separated by "-" into two columns and removes the input column.
@@ -70,14 +70,14 @@ cs_parse_month <- function(.data, var, yearVar, monthVar){
 
 }
 
-#' Seperate Date Occur
+#' Separate Date Occur
 #'
 #' @description Creates two columns. One contains month, day, and year and the other contains hour, and minute.
 #'
 #' @usage cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 #'
 #' @param .data A tibble or data frame
-#' @param var A column containing month, day, year, and time seprated by \code{/}
+#' @param var A column containing month, day, year, and time separated by \code{/}
 #' @param dateVar Name of new column to contain date data
 #' @param timeVar Name of new column to contain time data
 #' @param tz String name of timezone, defaults to system's timezone

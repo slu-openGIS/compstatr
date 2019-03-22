@@ -9,7 +9,7 @@
 #'    the incorrect variable classes because of formatting issues in the tables.
 #'    Since the tables have inconsistent variable names and numbers of variables,
 #'    all variables are imported as \code{chr} data. During \code{cs_collapse}'s
-#'    exectuion, the following changes are made:
+#'    execution, the following changes are made:
 #'
 #' \describe{
 #'   \item{Count}{Converted to \code{int}}
@@ -86,8 +86,8 @@ cs_collapse <- function(.data){
 
 #' Ensure Objects Contain Data Only For a Given Year
 #'
-#' @description Since crimes are somtimes reported well after they are committed, objects created
-#'     with \code{cs_collapse} often contain crimes that occured in prior years. The \code{cs_combine}
+#' @description Since crimes are sometimes reported well after they are committed, objects created
+#'     with \code{cs_collapse} often contain crimes that occurred in prior years. The \code{cs_combine}
 #'     function ensures that objects contain only data for a given year, with the ability to add in
 #'     crimes reported for the given year in later years.
 #'
@@ -103,7 +103,7 @@ cs_collapse <- function(.data){
 #'
 #' @usage cs_combine(type = "year", date, ...)
 #'
-#' @param type "year" is the only valid input currenty; year to date functionality
+#' @param type "year" is the only valid input currently; year to date functionality
 #'     is planned for a later update
 #' @param date For \code{type = "year"}, this should be the year of data to be returned.
 #'     For \code{type = "ytd"}, this should be the last month to be included in each estimate.
