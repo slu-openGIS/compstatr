@@ -1,18 +1,27 @@
 #' Validate Year List Object
 #'
 #' @description Data from SLMPD are released with a number of problems that
-#'     \code{cs_validate_year} is designed to identify.
+#'     \code{cs_validate} is designed to identify.
 #'
-#' @details Since the data are imported alphabetically, \code{cs_validate_year}
-#'     checks to ensure that items are imported in the correct order. It also
-#'     checks each month to make sure it contains only one month worth of data.
-#'     After ensuring that months are being read correctly, the function also
-#'     counts the number of variables in each object. For all months prior to
-#'     2013 and approximately half of the months during 2013, SLMPD data are
-#'     released with 18 variables. For one month, May 2017, the data are released
-#'     with 26 variables.
+#' @details \code{cs_validate} performs a total of five checks on the given
+#'     year-list object. Each test is summarized in the \code{verbose = TRUE} output:
 #'
-#' @usage cs_validate(.data, year, verbose)
+#' \describe{
+#'   \item{valMonth}{Each tibble within a year-list is named for the month it represents.
+#'       Does the named month match the month that the data represent?}
+#'   \item{valYear}{Does the year provided for the \code{year} argument match the year
+#'       that the data represent?}
+#'   \item{oneMonth}{Does each tibble represent only one month of data?}
+#'   \item{varCount}{Does each tibble have the correct number of variables (20)?}
+#'   \item{valVars}{Does each tibble have the correct variable names?}
+#' }
+#'
+#'   For all months prior to 2013 and approximately half of the months during 2013,
+#'   SLMPD data are released with 18 variables. For one month, May 2017, the data
+#'   are released with 26 variables. These problems are identified most easily
+#'   by using \code{cs_validate}.
+#'
+#' @usage cs_validate(.data, year, verbose = FALSE)
 #'
 #' @param .data A tbl
 #' @param year A string representing the year being checked, e.g. \code{"2008" }
