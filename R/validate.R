@@ -31,14 +31,14 @@
 #' @return A tibble with validation results.
 #'
 #' @examples
-#' # load example object
+#' # load example year-list object
 #' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 #'
 #' # simple validation
-#' cs_validate(yearList17)
+#' cs_validate(yearList17, year = 2017)
 #'
 #' # verbose validation
-#' cs_validate(yearList17, verbose = TRUE)
+#' cs_validate(yearList17, year = 2017, verbose = TRUE)
 #'
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr mutate

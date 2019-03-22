@@ -1,24 +1,85 @@
 #' Identify Crimes
 #'
 #' @description \code{cs_crime} can be used to easily identify
-#'     crimes based on a specific single UCR categories or common groupings.
-#'
-#' @details The categories used here are derived from the U.S. Federal
-#'     Bureau of Investigation's Uniform Crime Reporting codes.
+#'     crimes based on a specific single UCR categories or common groupings. This can be used
+#'     on any police department's data where codes like \code{31111} (robbery with a firefarm)
+#'     or \code{142320} (malicious destruction of property) are used to identify crimes.
 #'
 #' @usage cs_crime(.data, var, newVar, crime)
 #'
-#' @param .data A tbl
+#' @details The categories used here are derived from the U.S. Federal
+#'     Bureau of Investigation's Uniform Crime Reporting codes. Valid inputs for the
+#'     \code{crime} argument are as follows:
+#'
+#' \describe{
+#'     \item{\code{"violent"}}{Violent crimes (homicide, rape, aggrevated assault, and
+#'         robbery)}
+#'     \item{\code{"property"}}{Property crimes (burglary, larceny, larceny of a motor
+#'         vehicle, and arson)}
+#'     \item{\code{"part 1"}}{All violent and property crimes}
+#'     \item{\code{"homicide"}}{\code{"murder"} is also acceptible as input as is UCR
+#'         code \code{1}}
+#'     \item{\code{"rape"}}{\code{"forcible rape"} is also acceptible as input as is
+#'         UCR code \code{2}}
+#'     \item{\code{"robbery"}}{UCR code \code{3} is also acceptible input}
+#'     \item{\code{"agg assualt"}}{\code{"aggrevated assualt"} is also acceptible as
+#'         input as is UCR code \code{4}}
+#'     \item{\code{"burglary"}}{UCR code \code{5} is also acceptible input}
+#'     \item{\code{"larceny-theft"}}{\code{"larceny"} and \code{"theft"} are also
+#'         acceptible inputs as is UCR code \code{6}}
+#'     \item{\code{"mv theft"}}{\code{"motor vehicle theft"}, \code{"motor vehicle
+#'         larceny"}, and \code{"mv larceny"} are also acceptible inputs as input
+#'         as is UCR code \code{7}}
+#'     \item{\code{"arson"}}{UCR code \code{8} is also acceptible input}
+#'     \item{\code{"part 2"}}{All other crimes}
+#'     \item{\code{"assault"}}{\code{"other assaults"} is also acceptible input as
+#'         is UCR code \code{9}}
+#'     \item{\code{"forgery"}}{\code{"forgery and counterfeiting"} is also acceptible
+#'         input as is UCR code \code{10}}
+#'     \item{\code{"fraud"}}{UCR code \code{11} is also acceptible input}
+#'     \item{\code{"embezzlement"}}{UCR code \code{12} is also acceptible input}
+#'     \item{\code{"stolen prop"}}{\code{"stolen property"} is also acceptible input
+#'         as is UCR code \code{13}}
+#'     \item{\code{"vandalism"}}{UCR code \code{14} is also acceptible input}
+#'     \item{\code{"weapons"}}{UCR code \code{15} is also acceptible input}
+#'     \item{\code{"prostitution"}}{\code{"prostitution and commercialized vice"} is
+#'         also acceptible input as is UCR code \code{16}}
+#'     \item{\code{"sex offenses"}}{UCR code \code{17} is also acceptible input}
+#'     \item{\code{"drugs"}}{\code{"drug abuse violations"} is also acceptible input
+#'         as is UCR code \code{18}}
+#'     \item{\code{"gambling"}}{UCR code \code{19} is also acceptible input}
+#'     \item{\code{"family"}}{\code{"offenses against the family and children"} is
+#'         also acceptible input as is UCR code \code{20}}
+#'     \item{\code{"dwi"}}{\code{"driving under the influence"} is also acceptible
+#'         input as is UCR code \code{21}}
+#'     \item{\code{"liquor laws"}}{UCR code \code{22} is also acceptible input}
+#'     \item{\code{"drunkenness"}}{UCR code \code{23} is also acceptible input}
+#'     \item{\code{"discon"}}{\code{"disorderly conduct"} is also acceptible input
+#'         as is UCR code \code{24}}
+#'     \item{\code{"vagrancy"}}{UCR code \code{25} is also acceptible input}
+#'     \item{\code{"other"}}{\code{"all other offenses"} is also acceptible input
+#'         as is UCR code \code{26}}
+#'     \item{\code{"suspicion"}}{UCR code \code{27} is also acceptible input}
+#'     \item{\code{"curfew"}}{\code{"curfew and loitering laws-persons under 18"}
+#'         is also acceptible input as is UCR code \code{28}}
+#'     \item{\code{"runaway"}}{\code{"runaways-persons under 18"} is also acceptible
+#'         input as is UCR code \code{29}}
+#' }
+#'
+#' @param .data A tibble or data frame
 #' @param var Name of variable with 5 or 6 digit crime codes
 #' @param newVar Name of output variable to be created with logical data
 #' @param crime A string describing the crime type to be identified
 #'
-#' @return A tibble with a logical vector that is \code{TRUE} if the given crime matches
+#' @return A cope of the object with a logical vector that is \code{TRUE} if the given crime matches
 #'     the category given in the function.
 #'
 #' @examples
+#' # load example data
 #' testData <- january2018
-#' testData <- cs_crime(testData, var = Crime, newVar = sorted_crime, crime = "violent")
+#'
+#' # add logical vector for violent crimes
+#' testData <- cs_crime(testData, var = Crime, newVar = violentCrimes, crime = "violent")
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
@@ -87,7 +148,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 30000  & !!var < 40000, TRUE, FALSE))
 
-  } else if (crime == "aggravated assault" | crime == 4){
+  } else if (crime == "aggravated assault" | crime == "agg assault" | crime == 4){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 40000 & !!var < 50000, TRUE, FALSE))
 
@@ -95,11 +156,11 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 50000 & !!var < 60000, TRUE, FALSE))
 
-  } else if (crime == "larceny-theft" | crime == 6){
+  } else if (crime == "larceny-theft" | crime == "larceny" | crime == "theft" | crime == 6){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 60000  & !!var < 70000, TRUE, FALSE))
 
-  } else if (crime == "motor vehicle theft" | crime == 7){
+  } else if (crime == "motor vehicle theft" | crime == "motor vehicle larceny" | crime == "mv theft" | crime == "mv larceny" | crime == 7){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 70000 & !!var < 80000, TRUE, FALSE))
 
@@ -111,11 +172,11 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 90000, TRUE, FALSE))
 
-  } else if (crime == "other assaults" | crime == 9){
+  } else if (crime == "other assaults" | crime == "assault" | crime == 9){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 90000 & !!var < 100000, TRUE, FALSE))
 
-  } else if (crime == "forgery and counterfeiting" | crime == 10){
+  } else if (crime == "forgery and counterfeiting" | crime == "forgery" | crime == 10){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 100000 & !!var < 110000, TRUE, FALSE))
 
@@ -127,7 +188,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 120000 & !!var < 130000, TRUE, FALSE))
 
-  } else if (crime == "stolen property" | crime == 13){
+  } else if (crime == "stolen property" | crime == "stolen prop" | crime == 13){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 130000 & !!var < 140000, TRUE, FALSE))
 
@@ -139,7 +200,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 150000 & !!var < 160000, TRUE, FALSE))
 
-  } else if (crime == "prostitution and commercialized vice" | crime == 16){
+  } else if (crime == "prostitution and commercialized vice" | crime == "prostitution" | crime == 16){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 160000 & !!var < 170000, TRUE, FALSE))
 
@@ -147,7 +208,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 170000 & !!var < 180000, TRUE, FALSE))
 
-  } else if (crime == "drug abuse violations" | crime == 18){
+  } else if (crime == "drug abuse violations" | crime == "drugs" | crime == 18){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 180000 & !!var < 190000, TRUE, FALSE))
 
@@ -155,11 +216,11 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 190000 & !!var < 200000, TRUE, FALSE))
 
-  } else if (crime == "offenses against the family and children" | crime == 20){
+  } else if (crime == "offenses against the family and children" | crime == "family" | crime == 20){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 200000 & !!var < 210000, TRUE, FALSE))
 
-  } else if (crime == "driving under the influence" | crime == 21){
+  } else if (crime == "driving under the influence" | crime == "dwi" | crime == 21){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 210000 & !!var < 220000, TRUE, FALSE))
 
@@ -171,7 +232,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 230000 & !!var < 240000, TRUE, FALSE))
 
-  } else if (crime == "disorderly conduct" | crime == 24){
+  } else if (crime == "disorderly conduct" | crime == "discon" | crime == 24){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 240000 & !!var < 250000, TRUE, FALSE))
 
@@ -179,7 +240,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 250000 & !!var < 260000, TRUE, FALSE))
 
-  } else if (crime == "all other offenses" | crime == 26){
+  } else if (crime == "all other offenses" | crime == "other" | crime == 26){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 260000 & !!var < 270000, TRUE, FALSE))
 
@@ -187,11 +248,11 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 270000 & !!var < 280000, TRUE, FALSE))
 
-  } else if (crime == "curfew and loitering laws-persons under 18" | crime == 28){
+  } else if (crime == "curfew and loitering laws-persons under 18" | crime == "curfew" | crime == 28){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 280000 & !!var < 290000, TRUE, FALSE))
 
-  } else if (crime == "runaways-persons under 18" | crime == 29){
+  } else if (crime == "runaways-persons under 18" | crime == "runaways" | crime == 29){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 290000 & !!var < 300000, TRUE, FALSE))
 
@@ -215,16 +276,37 @@ cs_crime <- function(.data, var, newVar, crime){
 #'
 #' @usage cs_crime_cat(.data, var, newVar, output)
 #'
-#' @param .data A tbl
+#' @param .data A tibble or data frame
 #' @param var Name of variable with 5 or 6 digit crime codes
 #' @param newVar Name of output variable to be created with simplified categories
-#' @param output Type of output - either string, factor, or numeric
+#' @param output Type of output - either \code{"string"}, \code{"factor"}, or \code{"numeric"}.
+#'     If \code{"numeric"} is selected, the general UCR code will be returned (i.e. \code{1} for
+#'     homicide, \code{3} for aggrevated assault, etc.). Factor output will be returned in order
+#'     of descending UCR code (i.e. beginning with homicide, which has a UCR code of \code{1}).
 #'
-#' @return A copy of the data frame with the new output variable appended to it.
+#' @return A copy of the object with the new output variable appended to it.
 #'
 #' @examples
+#' # load example data
 #' testData <- january2018
-#' cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
+#'
+#' # apply categories
+#' testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "numeric")
+#'
+#' # preview categories
+#' table(testData$crimeCat)
+#'
+#' # apply categories
+#' testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "factor")
+#'
+#' # preview categories
+#' table(testData$crimeCat)
+#'
+#' # apply categories
+#' testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "string")
+#'
+#' # preview categories
+#' table(testData$crimeCat)
 #'
 #' @importFrom dplyr case_when
 #' @importFrom dplyr %>%

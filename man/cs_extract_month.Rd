@@ -24,7 +24,7 @@ This function extracts a given month from a list containing 12
    intuitive.
 }
 \examples{
-# load example object
+# load example year-list object
 load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 
 # extract May

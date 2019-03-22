@@ -107,7 +107,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Standardized Variables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_standardize.R'><code>R/cs_standardize.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/standardize.R'><code>R/standardize.R</code></a></small>
     <div class="hidden name"><code>cs_standardize.Rd</code></div>
     </div>
 
@@ -132,7 +132,9 @@
       <th>month</th>
       <td><p>An option string name or abbreviation of a month, or its numeric value.
 Acceptable inputs include, for example, "January", "january", "Jan",
-"jan", and 1.</p></td>
+"jan", and 1. If all months in a year-list need to be standardized (this is
+applicable, as of March 2019, to all years from 2008 through 2012), the
+month should be given as <code>"all"</code> to standardize them en masse.</p></td>
     </tr>
     <tr>
       <th>config</th>
@@ -151,6 +153,18 @@ Acceptable inputs include, for example, "January", "january", "Jan",
    non-standard.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load example year-list object</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+
+<span class='co'># validate</span>
+<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='co'># standaridze May, which has 26 variables</span>
+<span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_standardize</span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>26</span>)
+
+<span class='co'># validate again to confirm fix</span>
+<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -158,7 +172,9 @@ Acceptable inputs include, for example, "January", "january", "Jan",
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -32,16 +32,16 @@ For all months prior to 2013 and approximately half of the months during
    non-standard.
 }
 \examples{
-# load example object
+# load example year-list object
 load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 
 # validate
-cs_validate(yearList17)
+cs_validate(yearList17, year = 2017)
 
 # standaridze May, which has 26 variables
 yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
 
 # validate again to confirm fix
-cs_validate(yearList17)
+cs_validate(yearList17, year = 2017)
 
 }

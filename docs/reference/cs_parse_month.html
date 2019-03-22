@@ -106,7 +106,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Seperate Coded Month</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_parse_month.R'><code>R/cs_parse_month.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/dates.R'><code>R/dates.R</code></a></small>
     <div class="hidden name"><code>cs_parse_month.Rd</code></div>
     </div>
 
@@ -117,7 +117,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cs_parse_month</span>(<span class='no'>.data</span>,<span class='no'>var</span>,<span class='no'>newYear</span>,<span class='no'>newMonth</span>)</pre>
+    <pre class="usage"><span class='fu'>cs_parse_month</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='no'>yearVar</span>, <span class='no'>monthVar</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,11 +131,11 @@
       <td><p>the variable containing coded month and coded year</p></td>
     </tr>
     <tr>
-      <th>newYear</th>
+      <th>yearVar</th>
       <td><p>the name of the column to contain the year data</p></td>
     </tr>
     <tr>
-      <th>newMonth</th>
+      <th>monthVar</th>
       <td><p>the name of the column to contain month data</p></td>
     </tr>
     </table>

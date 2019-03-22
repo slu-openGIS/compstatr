@@ -1,22 +1,83 @@
 #' Filter Crimes
 #'
 #' @description \code{cs_filter_crime} can be used to subset based on
-#'     specific single UCR categories or common groupings.
-#'
-#' @details The categories used here are derived from the U.S. Federal
-#'     Bureau of Investigation's Uniform Crime Reporting codes.
+#'     specific single UCR categories or common groupings. This can be used
+#'     on any police department's data where codes like \code{31111} (robbery with a firefarm)
+#'     or \code{142320} (malicious destruction of property) are used to identify crimes.
 #'
 #' @usage cs_filter_crime(.data, var, crime)
 #'
-#' @param .data A tbl
+#' @details The categories used here are derived from the U.S. Federal
+#'     Bureau of Investigation's Uniform Crime Reporting codes. Valid inputs for the
+#'     \code{crime} argument are as follows:
+#'
+#' \describe{
+#'     \item{\code{"violent"}}{Violent crimes (homicide, rape, aggrevated assault, and
+#'         robbery)}
+#'     \item{\code{"property"}}{Property crimes (burglary, larceny, larceny of a motor
+#'         vehicle, and arson)}
+#'     \item{\code{"part 1"}}{All violent and property crimes}
+#'     \item{\code{"homicide"}}{\code{"murder"} is also acceptible as input as is UCR
+#'         code \code{1}}
+#'     \item{\code{"rape"}}{\code{"forcible rape"} is also acceptible as input as is
+#'         UCR code \code{2}}
+#'     \item{\code{"robbery"}}{UCR code \code{3} is also acceptible input}
+#'     \item{\code{"agg assualt"}}{\code{"aggrevated assualt"} is also acceptible as
+#'         input as is UCR code \code{4}}
+#'     \item{\code{"burglary"}}{UCR code \code{5} is also acceptible input}
+#'     \item{\code{"larceny-theft"}}{\code{"larceny"} and \code{"theft"} are also
+#'         acceptible inputs as is UCR code \code{6}}
+#'     \item{\code{"mv theft"}}{\code{"motor vehicle theft"}, \code{"motor vehicle
+#'         larceny"}, and \code{"mv larceny"} are also acceptible inputs as input
+#'         as is UCR code \code{7}}
+#'     \item{\code{"arson"}}{UCR code \code{8} is also acceptible input}
+#'     \item{\code{"part 2"}}{All other crimes}
+#'     \item{\code{"assault"}}{\code{"other assaults"} is also acceptible input as
+#'         is UCR code \code{9}}
+#'     \item{\code{"forgery"}}{\code{"forgery and counterfeiting"} is also acceptible
+#'         input as is UCR code \code{10}}
+#'     \item{\code{"fraud"}}{UCR code \code{11} is also acceptible input}
+#'     \item{\code{"embezzlement"}}{UCR code \code{12} is also acceptible input}
+#'     \item{\code{"stolen prop"}}{\code{"stolen property"} is also acceptible input
+#'         as is UCR code \code{13}}
+#'     \item{\code{"vandalism"}}{UCR code \code{14} is also acceptible input}
+#'     \item{\code{"weapons"}}{UCR code \code{15} is also acceptible input}
+#'     \item{\code{"prostitution"}}{\code{"prostitution and commercialized vice"} is
+#'         also acceptible input as is UCR code \code{16}}
+#'     \item{\code{"sex offenses"}}{UCR code \code{17} is also acceptible input}
+#'     \item{\code{"drugs"}}{\code{"drug abuse violations"} is also acceptible input
+#'         as is UCR code \code{18}}
+#'     \item{\code{"gambling"}}{UCR code \code{19} is also acceptible input}
+#'     \item{\code{"family"}}{\code{"offenses against the family and children"} is
+#'         also acceptible input as is UCR code \code{20}}
+#'     \item{\code{"dwi"}}{\code{"driving under the influence"} is also acceptible
+#'         input as is UCR code \code{21}}
+#'     \item{\code{"liquor laws"}}{UCR code \code{22} is also acceptible input}
+#'     \item{\code{"drunkenness"}}{UCR code \code{23} is also acceptible input}
+#'     \item{\code{"discon"}}{\code{"disorderly conduct"} is also acceptible input
+#'         as is UCR code \code{24}}
+#'     \item{\code{"vagrancy"}}{UCR code \code{25} is also acceptible input}
+#'     \item{\code{"other"}}{\code{"all other offenses"} is also acceptible input
+#'         as is UCR code \code{26}}
+#'     \item{\code{"suspicion"}}{UCR code \code{27} is also acceptible input}
+#'     \item{\code{"curfew"}}{\code{"curfew and loitering laws-persons under 18"}
+#'         is also acceptible input as is UCR code \code{28}}
+#'     \item{\code{"runaway"}}{\code{"runaways-persons under 18"} is also acceptible
+#'         input as is UCR code \code{29}}
+#' }
+#'
+#' @param .data A tibble or data frame
 #' @param var Name of variable with 5 or 6 digit crime codes
 #' @param crime A string describing the crime type to be identified
 #'
-#' @return A subset tibble with only the specified crimes
+#' @return A subset object with only the specified crimes
 #'
 #' @examples
+#' # load example data
 #' testData <- january2018
-#' testData <- cs_filter_crime(testData,Crime,"violent")
+#'
+#' # subset data to retain only violent crimes
+#' testData <- cs_filter_crime(testData, var = Crime, crime = "violent")
 #'
 #' @importFrom dplyr filter
 #' @importFrom dplyr %>%
@@ -62,7 +123,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 50000 & !!var < 90000)
 
-  } else if (crime == "part 1" | crime == "part i"){
+  } else if (crime == "part 1"){
 
     subsetData <- dplyr::filter(.data, !!var <= 90000)
 
@@ -78,7 +139,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 30000 & !!var < 40000)
 
-  } else if (crime == "aggravated assault" | crime == 4){
+  } else if (crime == "aggravated assault" | crime == "agg assault" | crime == 4){
 
     subsetData <- dplyr::filter(.data, !!var >= 40000 & !!var < 50000)
 
@@ -86,11 +147,11 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 50000 & !!var < 60000)
 
-  } else if (crime == "larceny-theft" | crime == 6){
+  } else if (crime == "larceny-theft" | crime == "larceny" | crime == "theft" | crime == 6){
 
     subsetData <- dplyr::filter(.data, !!var >= 60000 & !!var < 70000)
 
-  } else if (crime == "motor vehicle theft" | crime == 7){
+  } else if (crime == "motor vehicle theft" | crime == "motor vehicle larceny" | crime == "mv theft" | crime == "mv larceny" | crime == 7){
 
     subsetData <- dplyr::filter(.data, !!var >= 70000 & !!var < 80000)
 
@@ -98,15 +159,15 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 80000 & !!var < 90000)
 
-  } else if (crime == "part 2" | crime == "part ii"){
+  } else if (crime == "part 2"){
 
     subsetData <- dplyr::filter(.data, !!var >= 90000)
 
-  } else if (crime == "other assaults" | crime == 9){
+  } else if (crime == "other assaults" | crime == "assault" | crime == 9){
 
     subsetData <- dplyr::filter(.data, !!var >= 90000 & !!var < 100000)
 
-  } else if (crime == "forgery and counterfeiting" | crime == 10){
+  } else if (crime == "forgery and counterfeiting" | crime == "forgery" | crime == 10){
 
     subsetData <- dplyr::filter(.data, !!var >= 100000 & !!var < 110000)
 
@@ -118,7 +179,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 120000 & !!var < 130000)
 
-  } else if (crime == "stolen property" | crime == 13){
+  } else if (crime == "stolen property" | crime == "stolen prop" | crime == 13){
 
     subsetData <- dplyr::filter(.data, !!var >= 130000 & !!var < 140000)
 
@@ -130,7 +191,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 150000 & !!var < 160000)
 
-  } else if (crime == "prostitution and commercialized vice" | crime == 16){
+  } else if (crime == "prostitution and commercialized vice" | crime == "prostitution" | crime == 16){
 
     subsetData <- dplyr::filter(.data, !!var >= 160000 & !!var < 170000)
 
@@ -138,7 +199,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 170000 & !!var < 180000)
 
-  } else if (crime == "drug abuse violations" | crime == 18){
+  } else if (crime == "drug abuse violations" | crime == "drugs" | crime == 18){
 
     subsetData <- dplyr::filter(.data, !!var >= 180000 & !!var < 190000)
 
@@ -146,11 +207,11 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 190000 & !!var < 200000)
 
-  } else if (crime == "offenses against the family and children" | crime == 20){
+  } else if (crime == "offenses against the family and children" | crime == "family" | crime == 20){
 
     subsetData <- dplyr::filter(.data, !!var >= 200000 & !!var < 210000)
 
-  } else if (crime == "driving under the influence" | crime == 21){
+  } else if (crime == "driving under the influence" | crime == "dwi" | crime == 21){
 
     subsetData <- dplyr::filter(.data, !!var >= 210000 & !!var < 220000)
 
@@ -162,7 +223,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 230000 & !!var < 240000)
 
-  } else if (crime == "disorderly conduct" | crime == 24){
+  } else if (crime == "disorderly conduct" | crime == "discon" | crime == 24){
 
     subsetData <- dplyr::filter(.data, !!var >= 240000 & !!var < 250000)
 
@@ -170,7 +231,7 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 250000 & !!var < 260000)
 
-  } else if (crime == "all other offenses" | crime == 26){
+  } else if (crime == "all other offenses" | crime == "other" | crime == 26){
 
     subsetData <- dplyr::filter(.data, !!var >= 260000 & !!var < 270000)
 
@@ -178,11 +239,11 @@ cs_filter_crime <- function(.data, var, crime){
 
     subsetData <- dplyr::filter(.data, !!var >= 270000 & !!var < 280000)
 
-  } else if (crime == "curfew and loitering laws-persons under 18" | crime == 28){
+  } else if (crime == "curfew and loitering laws-persons under 18" | crime == "curfew" | crime == 28){
 
     subsetData <- dplyr::filter(.data, !!var >= 280000 & !!var < 290000)
 
-  } else if (crime == "runaways-persons under 18" | crime == 29){
+  } else if (crime == "runaways-persons under 18" | crime == "runaway" | crime == 29){
 
     subsetData <- dplyr::filter(.data, !!var >= 290000)
 
@@ -199,20 +260,24 @@ cs_filter_crime <- function(.data, var, crime){
 
 #' Remove Negative Counts
 #'
-#' @description Removes the row that contains -1 in a specified column
-#'
-#' @details Crimes with a count of -1 are crimes that were determined to be unfounded
+#' @description Removes the row that contains \code{-1} in a specified column, indicating that the
+#'     charge described in that observation has either been deemed unfounded or has been
+#'     up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
+#'     to homicide.
 #'
 #' @usage cs_filter_count(.data, var)
 #'
-#' @param .data A tbl
+#' @param .data A tibble or data frame
 #' @param var the name of the column
 #'
-#' @return returns the data frame with the rows containing -1 removed
+#' @return A subset object with rows containing \code{-1} removed
 #'
 #' @examples
+#' # load example data
 #' testData <- january2018
-#' testData <- cs_filter_count(testData,Count)
+#'
+#' # subset data to remove negative counts
+#' testData <- cs_filter_count(testData, var = Count)
 #'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr filter

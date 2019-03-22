@@ -33,7 +33,7 @@
 <meta property="og:title" content="Validate Year List Object — cs_validate" />
 
 <meta property="og:description" content="Data from SLMPD are released with a number of problems that
-    cs_validate_year is designed to identify." />
+    cs_validate is designed to identify." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -106,18 +106,18 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Validate Year List Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_validate.R'><code>R/cs_validate.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/validate.R'><code>R/validate.R</code></a></small>
     <div class="hidden name"><code>cs_validate.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Data from SLMPD are released with a number of problems that
-    <code>cs_validate_year</code> is designed to identify.</p>
+    <code>cs_validate</code> is designed to identify.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cs_validate</span>(<span class='no'>.data</span>, <span class='no'>year</span>, <span class='no'>verbose</span>)</pre>
+    <pre class="usage"><span class='fu'>cs_validate</span>(<span class='no'>.data</span>, <span class='no'>year</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,24 +143,46 @@ results will be returned. If <code>FALSE</code>, a single value will be returned
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Since the data are imported alphabetically, <code>cs_validate_year</code>
-    checks to ensure that items are imported in the correct order. It also
-    checks each month to make sure it contains only one month worth of data.
-    After ensuring that months are being read correctly, the function also
-    counts the number of variables in each object. For all months prior to
-    2013 and approximately half of the months during 2013, SLMPD data are
-    released with 18 variables. For one month, May 2017, the data are released
-    with 26 variables.</p>
+    <p><code>cs_validate</code> performs a total of five checks on the given
+    year-list object. Each test is summarized in the <code>verbose = TRUE</code> output:</p>
+<dl class='dl-horizontal'>
+  <dt>valMonth</dt><dd><p>Each tibble within a year-list is named for the month it represents.
+      Does the named month match the month that the data represent?</p></dd>
+  <dt>valYear</dt><dd><p>Does the year provided for the <code>year</code> argument match the year
+      that the data represent?</p></dd>
+  <dt>oneMonth</dt><dd><p>Does each tibble represent only one month of data?</p></dd>
+  <dt>varCount</dt><dd><p>Does each tibble have the correct number of variables (20)?</p></dd>
+  <dt>valVars</dt><dd><p>Does each tibble have the correct variable names?</p></dd>
+</dl>
+    <p>For all months prior to 2013 and approximately half of the months during 2013,
+  SLMPD data are released with 18 variables. For one month, May 2017, the data
+  are released with 26 variables. These problems are identified most easily
+  by using <code>cs_validate</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>yearList08</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_load_year.html'>cs_load_year</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"data/raw/2008"</span>)
+    <pre class="examples"><div class='input'><span class='co'># load example year-list object</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
 
-<span class='fu'>cs_validate</span>(<span class='no'>yearList08</span>)
-<span class='fu'>cs_validate</span>(<span class='no'>yearList08</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='co'># simple validation</span>
+<span class='fu'>cs_validate</span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='co'># verbose validation</span>
+<span class='fu'>cs_validate</span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 12 x 8</span><span>
+#&gt;    namedMonth codedMonth valMonth codedYear valYear oneMonth varCount valVars
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 1</span><span> January    January    TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 2</span><span> February   February   TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 3</span><span> March      March      TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 4</span><span> April      April      TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 5</span><span> May        May        TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     FALSE    </span><span style='color: #BB0000;'>NA</span><span>     
+#&gt; </span><span style='color: #555555;'> 6</span><span> June       June       TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 7</span><span> July       July       TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 8</span><span> August     August     TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'> 9</span><span> September  September  TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'>10</span><span> October    October    TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'>11</span><span> November   November   TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   
+#&gt; </span><span style='color: #555555;'>12</span><span> December   December   TRUE          </span><span style='text-decoration: underline;'>2</span><span>017 TRUE    TRUE     TRUE     TRUE   </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

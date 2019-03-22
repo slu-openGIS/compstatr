@@ -109,7 +109,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extract Month from Year List Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_extract_month.R'><code>R/cs_extract_month.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/month_tools.R'><code>R/month_tools.R</code></a></small>
     <div class="hidden name"><code>cs_extract_month.Rd</code></div>
     </div>
 
@@ -144,7 +144,18 @@ Acceptable inputs include, for example, "January", "january", "Jan",
 
     <p>A tibble containing a single month worth of crime data.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p><code><a href='cs_replace_month.html'>cs_replace_month</a></code></p></div>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load example year-list object</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+
+<span class='co'># extract May</span>
+<span class='no'>may17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_extract_month</span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='no'>may17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_extract_month</span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -152,7 +163,11 @@ Acceptable inputs include, for example, "January", "january", "Jan",
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

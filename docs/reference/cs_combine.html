@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Combine Multiple Years of Data — cs_combine • compstatr</title>
+<title>Ensure Objects Contain Data Only For a Given Year — cs_combine • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,12 @@
 
 
 
-<meta property="og:title" content="Combine Multiple Years of Data — cs_combine" />
+<meta property="og:title" content="Ensure Objects Contain Data Only For a Given Year — cs_combine" />
 
-<meta property="og:description" content="This function..." />
+<meta property="og:description" content="Since crimes are somtimes reported well after they are committed, objects created
+    with cs_collapse often contain crimes that occured in prior years. The cs_combine
+    function ensures that objects contain only data for a given year, with the ability to add in
+    crimes reported for the given year in later years." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,14 +107,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Combine Multiple Years of Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_combine.R'><code>R/cs_combine.R</code></a></small>
+    <h1>Ensure Objects Contain Data Only For a Given Year</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/collapse.R'><code>R/collapse.R</code></a></small>
     <div class="hidden name"><code>cs_combine.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function...</p>
+    <p>Since crimes are somtimes reported well after they are committed, objects created
+    with <code>cs_collapse</code> often contain crimes that occured in prior years. The <code>cs_combine</code>
+    function ensures that objects contain only data for a given year, with the ability to add in
+    crimes reported for the given year in later years.</p>
     
     </div>
 
@@ -140,7 +146,38 @@ For <code>type = "ytd"</code>, this should be the last month to be included in e
 
     <p>A tibble containing a selection of combined crime data for a given time period.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>When applied to a single year's worth of data, <code>cs_combine</code> will subset out
+    any crimes that occured in a year other than the one given for the <code>date</code> argument.</p>
+<p>When applied to a range of objects, such as objects for 2017 and 2018, each object will be
+    subset to identify crimes that occured in the year given for the <code>date</code> argument. This
+    creates a more complete accounting of crime in a given year since it adds in crimes reported
+    in subsequent years to the object. At the same time, crimes that occured prior to the given
+    year will also be subset out to ensure the resulting object only contains crimes
+    that occured in that given year.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load example year-list objects</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList18.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+
+<span class='co'># validate</span>
+<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList18</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'># standaridze May for the 2017 object, which has 26 variables</span>
+<span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_standardize.html'>cs_standardize</a></span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>26</span>)
+
+<span class='co'># validate again to confirm fix</span>
+<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'># collapse now that the data are valid</span>
+<span class='no'>crimeReports17</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_collapse.html'>cs_collapse</a></span>(<span class='no'>yearList17</span>)
+<span class='no'>crimeReports18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_collapse.html'>cs_collapse</a></span>(<span class='no'>yearList18</span>)
+
+<span class='co'># combine to add all sample 2017 crimes reported in 2018 to a single 2017 object</span>
+<span class='co'># and remove from our 2017 object all sample crimes reported in 2017 that occured prior</span>
+<span class='co'># to that year</span>
+<span class='no'>crime17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_combine</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='fl'>2017</span>, <span class='no'>crimeReports17</span>, <span class='no'>crimeReports18</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -148,7 +185,11 @@ For <code>type = "ytd"</code>, this should be the last month to be included in e
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

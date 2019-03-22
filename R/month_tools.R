@@ -19,7 +19,7 @@
 #' @seealso \code{\link{cs_replace_month}}
 #'
 #' @examples
-#' # load example object
+#' # load example year-list object
 #' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 #'
 #' # extract May
@@ -106,15 +106,15 @@ cs_extract_month <- function(.data, month){
 #' @seealso \code{\link{cs_extract_month}}
 #'
 #' @examples
-#' # load example object
+#' # load example year-list object
 #' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 #'
 #' # extract May
 #' may17 <- cs_extract_month(yearList17, month = 5)
 #'
 #' # replace
-#' yearList17 <- cs_replace_month(yearList08, month = 5, monthData = may17)
-#' yearList17 <- cs_replace_month(yearList08, month = "May", monthData = may17)
+#' yearList17 <- cs_replace_month(yearList07, month = 5, monthData = may17)
+#' yearList17 <- cs_replace_month(yearList07, month = "May", monthData = may17)
 #'
 #' @export
 cs_replace_month <- function(.data, month, monthData){

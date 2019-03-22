@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Combine Months in Year List Object — cs_collapse • compstatr</title>
+<title>Collapse Months in Year List Object into Single Tibble — cs_collapse • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Combine Months in Year List Object — cs_collapse" />
+<meta property="og:title" content="Collapse Months in Year List Object into Single Tibble — cs_collapse" />
 
 <meta property="og:description" content="This function takes a year-list containing individual tibbles - one per
    month - that have been validated and collapses them into a single tibble." />
@@ -105,8 +105,8 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Combine Months in Year List Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_collapse.R'><code>R/cs_collapse.R</code></a></small>
+    <h1>Collapse Months in Year List Object into Single Tibble</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/collapse.R'><code>R/collapse.R</code></a></small>
     <div class="hidden name"><code>cs_collapse.Rd</code></div>
     </div>
 
@@ -153,6 +153,19 @@
 </dl>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load example year-list object</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+
+<span class='co'># validate</span>
+<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='co'># standaridze May, which has 26 variables</span>
+<span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_standardize.html'>cs_standardize</a></span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>26</span>)
+
+<span class='co'># validate again to confirm fix</span>
+<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'># collapse now that the data are valid</span>
+<span class='no'>crimeReports17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_collapse</span>(<span class='no'>yearList17</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,7 +175,9 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -29,17 +29,17 @@
 #' @return A tibble containing all crime data in a given year-list object.
 #'
 #' @examples
-#' # load example object
+#' # load example year-list object
 #' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 #'
 #' # validate
-#' cs_validate(yearList17)
+#' cs_validate(yearList17, year = 2017)
 #'
 #' # standaridze May, which has 26 variables
 #' yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
 #'
 #' # validate again to confirm fix
-#' cs_validate(yearList17)
+#' cs_validate(yearList17, year = 2017)
 #'
 #' # collapse now that the data are valid
 #' crimeReports17 <- cs_collapse(yearList17)
@@ -124,19 +124,19 @@ cs_collapse <- function(.data){
 #' @importFrom rlang list2
 #'
 #' @examples
-#' # load example objects
+#' # load example year-list objects
 #' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 #' load(system.file("testdata", "yearList18.rda", package = "compstatr", mustWork = TRUE))
 #'
 #' # validate
-#' cs_validate(yearList17)
-#' cs_validate(yearList18)
+#' cs_validate(yearList17, year = 2017)
+#' cs_validate(yearList18, year = 2018)
 #'
 #' # standaridze May for the 2017 object, which has 26 variables
 #' yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
 #'
 #' # validate again to confirm fix
-#' cs_validate(yearList17)
+#' cs_validate(yearList17, year = 2017)
 #'
 #' # collapse now that the data are valid
 #' crimeReports17 <- cs_collapse(yearList17)

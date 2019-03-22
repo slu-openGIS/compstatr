@@ -7,21 +7,24 @@
 cs_filter_count(.data, var)
 }
 \arguments{
-\item{.data}{A tbl}
+\item{.data}{A tibble or data frame}
 
 \item{var}{the name of the column}
 }
 \value{
-returns the data frame with the rows containing -1 removed
+A subset object with rows containing \code{-1} removed
 }
 \description{
-Removes the row that contains -1 in a specified column
-}
-\details{
-Crimes with a count of -1 are crimes that were determined to be unfounded
+Removes the row that contains \code{-1} in a specified column, indicating that the
+    charge described in that observation has either been deemed unfounded or has been
+    up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
+    to homicide.
 }
 \examples{
+# load example data
 testData <- january2018
-testData <- cs_filter_count(testData,Count)
+
+# subset data to remove negative counts
+testData <- cs_filter_count(testData, var = Count)
 
 }

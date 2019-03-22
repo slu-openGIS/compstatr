@@ -32,7 +32,10 @@
 
 <meta property="og:title" content="Remove Negative Counts — cs_filter_count" />
 
-<meta property="og:description" content="Removes the row that contains -1 in a specified column" />
+<meta property="og:description" content="Removes the row that contains -1 in a specified column, indicating that the
+    charge described in that observation has either been deemed unfounded or has been
+    up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
+    to homicide." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -105,13 +108,16 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Remove Negative Counts</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_filter_count.R'><code>R/cs_filter_count.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/filter.R'><code>R/filter.R</code></a></small>
     <div class="hidden name"><code>cs_filter_count.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Removes the row that contains -1 in a specified column</p>
+    <p>Removes the row that contains <code>-1</code> in a specified column, indicating that the
+    charge described in that observation has either been deemed unfounded or has been
+    up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
+    to homicide.</p>
     
     </div>
 
@@ -122,7 +128,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A tbl</p></td>
+      <td><p>A tibble or data frame</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -132,16 +138,15 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns the data frame with the rows containing -1 removed</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Crimes with a count of -1 are crimes that were determined to be unfounded</p>
+    <p>A subset object with rows containing <code>-1</code> removed</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_filter_count</span>(<span class='no'>testData</span>,<span class='no'>Count</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># load example data</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
+
+<span class='co'># subset data to remove negative counts</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_filter_count</span>(<span class='no'>testData</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Count</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -149,8 +154,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

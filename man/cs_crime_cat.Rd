@@ -7,16 +7,19 @@
 cs_crime_cat(.data, var, newVar, output)
 }
 \arguments{
-\item{.data}{A tbl}
+\item{.data}{A tibble or data frame}
 
 \item{var}{Name of variable with 5 or 6 digit crime codes}
 
 \item{newVar}{Name of output variable to be created with simplified categories}
 
-\item{output}{Type of output - either string, factor, or numeric}
+\item{output}{Type of output - either \code{"string"}, \code{"factor"}, or \code{"numeric"}.
+If \code{"numeric"} is selected, the general UCR code will be returned (i.e. \code{1} for
+homicide, \code{3} for aggrevated assault, etc.). Factor output will be returned in order
+of descending UCR code (i.e. beginning with homicide, which has a UCR code of \code{1}).}
 }
 \value{
-A copy of the data frame with the new output variable appended to it.
+A copy of the object with the new output variable appended to it.
 }
 \description{
 The SLMPD data contains 5 or 6 digit codes to refer to
@@ -29,7 +32,25 @@ The categories used here are derived from the U.S. Federal
     Bureau of Investigation's Uniform Crime Reporting codes.
 }
 \examples{
+# load example data
 testData <- january2018
-cs_crime_cat(testData,Crime,SimpleCrime,output = "numeric")
+
+# apply categories
+testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "numeric")
+
+# preview categories
+table(testData$crimeCat)
+
+# apply categories
+testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "factor")
+
+# preview categories
+table(testData$crimeCat)
+
+# apply categories
+testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "string")
+
+# preview categories
+table(testData$crimeCat)
 
 }

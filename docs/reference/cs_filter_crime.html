@@ -33,7 +33,9 @@
 <meta property="og:title" content="Filter Crimes — cs_filter_crime" />
 
 <meta property="og:description" content="cs_filter_crime can be used to subset based on
-    specific single UCR categories or common groupings." />
+    specific single UCR categories or common groupings. This can be used
+    on any police department's data where codes like 31111 (robbery with a firefarm)
+    or 142320 (malicious destruction of property) are used to identify crimes." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -106,14 +108,16 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Filter Crimes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_filter_crime.R'><code>R/cs_filter_crime.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/filter.R'><code>R/filter.R</code></a></small>
     <div class="hidden name"><code>cs_filter_crime.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p><code>cs_filter_crime</code> can be used to subset based on
-    specific single UCR categories or common groupings.</p>
+    specific single UCR categories or common groupings. This can be used
+    on any police department's data where codes like <code>31111</code> (robbery with a firefarm)
+    or <code>142320</code> (malicious destruction of property) are used to identify crimes.</p>
     
     </div>
 
@@ -124,7 +128,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A tbl</p></td>
+      <td><p>A tibble or data frame</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -138,17 +142,75 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A subset tibble with only the specified crimes</p>
+    <p>A subset object with only the specified crimes</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The categories used here are derived from the U.S. Federal
-    Bureau of Investigation's Uniform Crime Reporting codes.</p>
+    Bureau of Investigation's Uniform Crime Reporting codes. Valid inputs for the
+    <code>crime</code> argument are as follows:</p>
+<dl class='dl-horizontal'>
+    <dt><code>"violent"</code></dt><dd><p>Violent crimes (homicide, rape, aggrevated assault, and
+        robbery)</p></dd>
+    <dt><code>"property"</code></dt><dd><p>Property crimes (burglary, larceny, larceny of a motor
+        vehicle, and arson)</p></dd>
+    <dt><code>"part 1"</code></dt><dd><p>All violent and property crimes</p></dd>
+    <dt><code>"homicide"</code></dt><dd><p><code>"murder"</code> is also acceptible as input as is UCR
+        code <code>1</code></p></dd>
+    <dt><code>"rape"</code></dt><dd><p><code>"forcible rape"</code> is also acceptible as input as is
+        UCR code <code>2</code></p></dd>
+    <dt><code>"robbery"</code></dt><dd><p>UCR code <code>3</code> is also acceptible input</p></dd>
+    <dt><code>"agg assualt"</code></dt><dd><p><code>"aggrevated assualt"</code> is also acceptible as
+        input as is UCR code <code>4</code></p></dd>
+    <dt><code>"burglary"</code></dt><dd><p>UCR code <code>5</code> is also acceptible input</p></dd>
+    <dt><code>"larceny-theft"</code></dt><dd><p><code>"larceny"</code> and <code>"theft"</code> are also
+        acceptible inputs as is UCR code <code>6</code></p></dd>
+    <dt><code>"mv theft"</code></dt><dd><p><code>"motor vehicle theft"</code>, <code>"motor vehicle
+        larceny"</code>, and <code>"mv larceny"</code> are also acceptible inputs as input
+        as is UCR code <code>7</code></p></dd>
+    <dt><code>"arson"</code></dt><dd><p>UCR code <code>8</code> is also acceptible input</p></dd>
+    <dt><code>"part 2"</code></dt><dd><p>All other crimes</p></dd>
+    <dt><code>"assault"</code></dt><dd><p><code>"other assaults"</code> is also acceptible input as
+        is UCR code <code>9</code></p></dd>
+    <dt><code>"forgery"</code></dt><dd><p><code>"forgery and counterfeiting"</code> is also acceptible
+        input as is UCR code <code>10</code></p></dd>
+    <dt><code>"fraud"</code></dt><dd><p>UCR code <code>11</code> is also acceptible input</p></dd>
+    <dt><code>"embezzlement"</code></dt><dd><p>UCR code <code>12</code> is also acceptible input</p></dd>
+    <dt><code>"stolen prop"</code></dt><dd><p><code>"stolen property"</code> is also acceptible input
+        as is UCR code <code>13</code></p></dd>
+    <dt><code>"vandalism"</code></dt><dd><p>UCR code <code>14</code> is also acceptible input</p></dd>
+    <dt><code>"weapons"</code></dt><dd><p>UCR code <code>15</code> is also acceptible input</p></dd>
+    <dt><code>"prostitution"</code></dt><dd><p><code>"prostitution and commercialized vice"</code> is
+        also acceptible input as is UCR code <code>16</code></p></dd>
+    <dt><code>"sex offenses"</code></dt><dd><p>UCR code <code>17</code> is also acceptible input</p></dd>
+    <dt><code>"drugs"</code></dt><dd><p><code>"drug abuse violations"</code> is also acceptible input
+        as is UCR code <code>18</code></p></dd>
+    <dt><code>"gambling"</code></dt><dd><p>UCR code <code>19</code> is also acceptible input</p></dd>
+    <dt><code>"family"</code></dt><dd><p><code>"offenses against the family and children"</code> is
+        also acceptible input as is UCR code <code>20</code></p></dd>
+    <dt><code>"dwi"</code></dt><dd><p><code>"driving under the influence"</code> is also acceptible
+        input as is UCR code <code>21</code></p></dd>
+    <dt><code>"liquor laws"</code></dt><dd><p>UCR code <code>22</code> is also acceptible input</p></dd>
+    <dt><code>"drunkenness"</code></dt><dd><p>UCR code <code>23</code> is also acceptible input</p></dd>
+    <dt><code>"discon"</code></dt><dd><p><code>"disorderly conduct"</code> is also acceptible input
+        as is UCR code <code>24</code></p></dd>
+    <dt><code>"vagrancy"</code></dt><dd><p>UCR code <code>25</code> is also acceptible input</p></dd>
+    <dt><code>"other"</code></dt><dd><p><code>"all other offenses"</code> is also acceptible input
+        as is UCR code <code>26</code></p></dd>
+    <dt><code>"suspicion"</code></dt><dd><p>UCR code <code>27</code> is also acceptible input</p></dd>
+    <dt><code>"curfew"</code></dt><dd><p><code>"curfew and loitering laws-persons under 18"</code>
+        is also acceptible input as is UCR code <code>28</code></p></dd>
+    <dt><code>"runaway"</code></dt><dd><p><code>"runaways-persons under 18"</code> is also acceptible
+        input as is UCR code <code>29</code></p></dd>
+</dl>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_filter_crime</span>(<span class='no'>testData</span>,<span class='no'>Crime</span>,<span class='st'>"violent"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># load example data</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
+
+<span class='co'># subset data to retain only violent crimes</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_filter_crime</span>(<span class='no'>testData</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>crime</span> <span class='kw'>=</span> <span class='st'>"violent"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

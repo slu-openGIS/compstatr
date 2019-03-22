@@ -23,15 +23,15 @@ This function replaces a single month worth of crime data that
   has previously been extracted from a year-list object.
 }
 \examples{
-# load example object
+# load example year-list object
 load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 
 # extract May
 may17 <- cs_extract_month(yearList17, month = 5)
 
 # replace
-yearList17 <- cs_replace_month(yearList08, month = 5, monthData = may17)
-yearList17 <- cs_replace_month(yearList08, month = "May", monthData = may17)
+yearList17 <- cs_replace_month(yearList07, month = 5, monthData = may17)
+yearList17 <- cs_replace_month(yearList07, month = "May", monthData = may17)
 
 }
 \seealso{

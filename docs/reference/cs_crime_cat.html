@@ -108,7 +108,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Categorize Crime</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/cs_crime_cat.R'><code>R/cs_crime_cat.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/categorize.R'><code>R/categorize.R</code></a></small>
     <div class="hidden name"><code>cs_crime_cat.Rd</code></div>
     </div>
 
@@ -128,7 +128,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A tbl</p></td>
+      <td><p>A tibble or data frame</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -140,13 +140,16 @@
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Type of output - either string, factor, or numeric</p></td>
+      <td><p>Type of output - either <code>"string"</code>, <code>"factor"</code>, or <code>"numeric"</code>.
+If <code>"numeric"</code> is selected, the general UCR code will be returned (i.e. <code>1</code> for
+homicide, <code>3</code> for aggrevated assault, etc.). Factor output will be returned in order
+of descending UCR code (i.e. beginning with homicide, which has a UCR code of <code>1</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A copy of the data frame with the new output variable appended to it.</p>
+    <p>A copy of the object with the new output variable appended to it.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -155,26 +158,133 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-<span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='no'>Crime</span>,<span class='no'>SimpleCrime</span>,<span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"numeric"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3,825 x 21</span><span>
-#&gt;    Complaint CodedMonth DateOccur FlagCrime FlagUnfounded FlagAdministrat… Count
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 18-001804 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 2</span><span> 18-002209 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 3</span><span> 18-000063 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 4</span><span> 18-000018 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 5</span><span> 18-000003 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 6</span><span> 18-000132 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 7</span><span> 18-000010 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 8</span><span> 18-000010 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'> 9</span><span> 18-003411 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'>10</span><span> 18-005259 2018-01    01/01/20… Y         </span><span style='color: #BB0000;'>NA</span><span>            </span><span style='color: #BB0000;'>NA</span><span>                   1
-#&gt; </span><span style='color: #555555;'># … with 3,815 more rows, and 14 more variables: FlagCleanup </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,
-#&gt; #   Crime </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, District </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, Description </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ILEADSAddress </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   ILEADSStreet </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Neighborhood </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, LocationName </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
-#&gt; #   LocationComment </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, CADAddress </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, CADStreet </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, XCoord </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   YCoord </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, SimpleCrime </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='co'># load example data</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
+
+<span class='co'># apply categories</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"numeric"</span>)
+
+<span class='co'># preview categories</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>testData</span>$<span class='no'>crimeCat</span>)</div><div class='output co'>#&gt; 
+#&gt;    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+#&gt;   22   18  111  314  232 1110  266   17  196   18   47    7   59  309  121    3 
+#&gt;   17   18   20   21   22   24   25   26 
+#&gt;    9  160    1   15    6   55   50  679 </div><div class='input'>
+<span class='co'># apply categories</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"factor"</span>)
+
+<span class='co'># preview categories</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>testData</span>$<span class='no'>crimeCat</span>)</div><div class='output co'>#&gt; 
+#&gt;                                   Homicide 
+#&gt;                                         22 
+#&gt;                                       Rape 
+#&gt;                                         18 
+#&gt;                                    Robbery 
+#&gt;                                        111 
+#&gt;                         Aggravated Assault 
+#&gt;                                        314 
+#&gt;                                   Burgalry 
+#&gt;                                        232 
+#&gt;                                    Larceny 
+#&gt;                                       1110 
+#&gt;                        Motor Vehicle Theft 
+#&gt;                                        266 
+#&gt;                                      Arson 
+#&gt;                                         17 
+#&gt;                             Other Assaults 
+#&gt;                                        196 
+#&gt;                 Forgery and Counterfeiting 
+#&gt;                                         18 
+#&gt;                                      Fraud 
+#&gt;                                         47 
+#&gt;                               Embezzlement 
+#&gt;                                          7 
+#&gt;                            Stolen Property 
+#&gt;                                         59 
+#&gt;                                  Vandalism 
+#&gt;                                        309 
+#&gt;                                    Weapons 
+#&gt;                                        121 
+#&gt;       Prostitution and Commercialized Vice 
+#&gt;                                          3 
+#&gt;                               Sex Offenses 
+#&gt;                                          9 
+#&gt;                      Drug Abuse Violations 
+#&gt;                                        160 
+#&gt;                                   Gambling 
+#&gt;                                          0 
+#&gt;   Offenses Against the Family and Children 
+#&gt;                                          1 
+#&gt;                                Liquor Laws 
+#&gt;                                         15 
+#&gt;                                 Drunkeness 
+#&gt;                                          6 
+#&gt;                         Disorderly Conduct 
+#&gt;                                          0 
+#&gt;                                   Vagrancy 
+#&gt;                                         55 
+#&gt;                         All Other Offenses 
+#&gt;                                         50 
+#&gt;                                  Suspicion 
+#&gt;                                        679 
+#&gt; Curfew and Loitering Laws-Persons under 18 
+#&gt;                                          0 
+#&gt;                  Runaways-Persons under 18 
+#&gt;                                          0 </div><div class='input'>
+<span class='co'># apply categories</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"string"</span>)
+
+<span class='co'># preview categories</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>testData</span>$<span class='no'>crimeCat</span>)</div><div class='output co'>#&gt; 
+#&gt;                       Aggravated Assault 
+#&gt;                                      314 
+#&gt;                       All Other Offenses 
+#&gt;                                       50 
+#&gt;                                    Arson 
+#&gt;                                       17 
+#&gt;                                 Burgalry 
+#&gt;                                      232 
+#&gt;                    Drug Abuse Violations 
+#&gt;                                      160 
+#&gt;                               Drunkeness 
+#&gt;                                        6 
+#&gt;                             Embezzlement 
+#&gt;                                        7 
+#&gt;               Forgery and Counterfeiting 
+#&gt;                                       18 
+#&gt;                                    Fraud 
+#&gt;                                       47 
+#&gt;                                 Homicide 
+#&gt;                                       22 
+#&gt;                                  Larceny 
+#&gt;                                     1110 
+#&gt;                              Liquor Laws 
+#&gt;                                       15 
+#&gt;                      Motor Vehicle Theft 
+#&gt;                                      266 
+#&gt; Offenses Against the Family and Children 
+#&gt;                                        1 
+#&gt;                           Other Assaults 
+#&gt;                                      196 
+#&gt;     Prostitution and Commercialized Vice 
+#&gt;                                        3 
+#&gt;                                     Rape 
+#&gt;                                       18 
+#&gt;                                  Robbery 
+#&gt;                                      111 
+#&gt;                             Sex Offenses 
+#&gt;                                        9 
+#&gt;                          Stolen Property 
+#&gt;                                       59 
+#&gt;                                Suspicion 
+#&gt;                                      679 
+#&gt;                                 Vagrancy 
+#&gt;                                       55 
+#&gt;                                Vandalism 
+#&gt;                                      309 
+#&gt;                                  Weapons 
+#&gt;                                      121 </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
