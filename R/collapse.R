@@ -125,11 +125,7 @@ cs_combine <- function(type = "year", date, ...){
   DateOccur = time = dateTime = cs_year = NULL
 
   # check missing parameters
-  if (dplyr::is.tbl(type) == FALSE){
-    if (class(type) != "character"){
-      stop("A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
-    }
-  } else if (dplyr::is.tbl(type) == TRUE){
+  if (dplyr::is.tbl(type) == TRUE){
     stop("A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
   }
 
@@ -155,16 +151,16 @@ cs_combine <- function(type = "year", date, ...){
 
   # evaluate result
   if (all(tblCheck) == FALSE){
-    stop("Only collapsed objects may be passed through the dots. Name the 'type' and 'date' arguments.")
+    stop("Only tibbles containing collapsed objects may be passed through the dots as arguments.")
   }
 
   # check for incorrect parameters
   if (rlang::is_scalar_character(type) == FALSE){
-    stop("The output type must be a character scalar. Select one of 'year' or 'ytd'.")
-  }
+    stop("The output type must be a character scalar. At this time, only 'year' is a valid argument.")
+  } # Select one of 'year' or 'ytd'.
 
   if (type %in% c("year", "ytd") == FALSE){
-    stop("The output type must be a character scalar. Select one of 'year' or 'ytd'.")
+    stop("The output type must be a character scalar. At this time, only 'year' is a valid argument.")
   }
 
   # combine
