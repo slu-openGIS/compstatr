@@ -52,7 +52,7 @@ test_that("correctly specified functions execute without error", {
   expect_error(cs_crime(test_data, var = Crime, newVar = test, crime = "vagrancy"), NA)
   expect_error(cs_crime(test_data, var = Crime, newVar = test, crime = "all other offenses"), NA)
   expect_error(cs_crime(test_data, var = Crime, newVar = test, crime = "suspicion"), NA)
-  expect_error(cs_crime(test_data, var = Crime, newVar = test, crime = "curfew and loitering laws--persons under 18"), NA)
+  expect_error(cs_crime(test_data, var = Crime, newVar = test, crime = "curfew and loitering laws-persons under 18"), NA)
   expect_error(cs_crime(test_data, var = Crime, newVar = test, crime = "runaways-persons under 18"), NA)
 })
 

@@ -187,7 +187,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 270000 & !!var < 280000, TRUE, FALSE))
 
-  } else if (crime == "curfew and loitering laws--persons under 18" | crime == 28){
+  } else if (crime == "curfew and loitering laws-persons under 18" | crime == 28){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 280000 & !!var < 290000, TRUE, FALSE))
 
