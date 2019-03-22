@@ -25,7 +25,9 @@ A copy of the object with the new output variable appended to it.
 The SLMPD data contains 5 or 6 digit codes to refer to
     specific categories of crime. \code{cs_crime_cat} transforms these
     into either string, factor, or simplified numeric categories
-    like "murder" or "aggrevated assault".
+    like "murder" or "aggrevated assault". This can be used
+    on any police department's data where codes like \code{31111} (robbery with a firearm)
+    or \code{142320} (malicious destruction of property) are used to identify crimes.
 }
 \details{
 The categories used here are derived from the U.S. Federal

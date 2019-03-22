@@ -2,7 +2,7 @@
 #'
 #' @description \code{cs_filter_crime} can be used to subset based on
 #'     specific single UCR categories or common groupings. This can be used
-#'     on any police department's data where codes like \code{31111} (robbery with a firefarm)
+#'     on any police department's data where codes like \code{31111} (robbery with a firearm)
 #'     or \code{142320} (malicious destruction of property) are used to identify crimes.
 #'
 #' @usage cs_filter_crime(.data, var, crime)

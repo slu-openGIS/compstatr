@@ -22,7 +22,7 @@ A cope of the object with a logical vector that is \code{TRUE} if the given crim
 \description{
 \code{cs_crime} can be used to easily identify
     crimes based on a specific single UCR categories or common groupings. This can be used
-    on any police department's data where codes like \code{31111} (robbery with a firefarm)
+    on any police department's data where codes like \code{31111} (robbery with a firearm)
     or \code{142320} (malicious destruction of property) are used to identify crimes.
 }
 \details{

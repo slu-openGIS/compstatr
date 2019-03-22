@@ -19,7 +19,7 @@ A subset object with only the specified crimes
 \description{
 \code{cs_filter_crime} can be used to subset based on
     specific single UCR categories or common groupings. This can be used
-    on any police department's data where codes like \code{31111} (robbery with a firefarm)
+    on any police department's data where codes like \code{31111} (robbery with a firearm)
     or \code{142320} (malicious destruction of property) are used to identify crimes.
 }
 \details{
