@@ -1,16 +1,26 @@
 context("test cs_parse_month function")
 
-# load test data
+# load data ------------------------------------------------
 
+## load january 2018 data
 test_data <- january2018
 
-#
+# test inputs ------------------------------------------------
 
-test_that("input error triggered - no .data", expect_error(cs_parse_month( ,CodedMonth,Date,Time), "A existing data frame with data to be separated must be specified for .data"))
+test_that("misspecified functions return errors", {
+  expect_error(cs_parse_month(var = CodedMonth, yearVar = YearCoded, monthVar = MonthCoded),
+               "A existing data frame with data to be parsed must be specified for '.data'.")
+  expect_error(cs_parse_month(test_data, yearVar = YearCoded, monthVar = MonthCoded),
+               "The column containing the data to be parsed must be specified for 'var'.")
+  expect_error(cs_parse_month(test_data, var = CodedMonth, monthVar = MonthCoded),
+               "The name of the new column containing the year must be specified for 'yearVar'.")
+  expect_error(cs_parse_month(test_data, var = CodedMonth, yearVar = YearCoded),
+               "The name of the new column containing the month must be specified for 'monthVar'.")
+})
 
-test_that("input error triggered - no var", expect_error(cs_parse_month(test_data,,Date,Time), "The column containing the data to be separated must be specified for var"))
+# test function ------------------------------------------------
 
-test_that("input error triggered - no newMonth", expect_error(cs_parse_month( test_data,CodedMonth,,Year), "The name of the output column containing the year must be specified for newYear"))
-
-test_that("input error triggered - no newYear", expect_error(cs_parse_month(test_data,CodedMonth,Month,),"The name of the output column containing the month must be specified for newMonth" ))
-
+test_that("correctly specified functions execute without error", {
+  expect_error(cs_parse_month(test_data, var = CodedMonth, yearVar = YearCoded, monthVar = MonthCoded), NA)
+  expect_error(cs_parse_month(test_data, var = "CodedMonth", yearVar = "YearCoded", monthVar = "MonthCoded"), NA)
+})

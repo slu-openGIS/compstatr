@@ -24,39 +24,45 @@
 #' @importFrom rlang sym
 #'
 #' @export
-cs_parse_month <- function(.data,var,newYear,newMonth){
+cs_parse_month <- function(.data, var, yearVar, monthVar){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be separated must be specified for .data')
+    stop("A existing data frame with data to be parsed must be specified for '.data'.")
   }
-
 
   if (missing(var)) {
-    stop('The column containing the data to be separated must be specified for var')
-  }
-  if (missing(newMonth)) {
-    stop('The name of the output column containing the month must be specified for newMonth')
+    stop("The column containing the data to be parsed must be specified for 'var'.")
   }
 
-  if (missing(newYear)) {
-    stop('The name of the output column containing the year must be specified for newYear')
+  if (missing(monthVar)) {
+    stop("The name of the new column containing the month must be specified for 'monthVar'.")
+  }
+
+  if (missing(yearVar)) {
+    stop("The name of the new column containing the year must be specified for 'yearVar'.")
   }
 
   # save parameters to list
   paramList <- as.list(match.call())
 
   #quote input variables
-  newYear <- rlang::quo_name(rlang::enquo(newYear))
-  newMonth <- rlang::quo_name(rlang::enquo(newMonth))
+  newYear <- rlang::quo_name(rlang::enquo(yearVar))
+
+  newMonth <- rlang::quo_name(rlang::enquo(monthVar))
+
   if (!is.character(paramList$var)) {
     var <- rlang::enquo(var)
   } else if (is.character(paramList$var)) {
     var <- rlang::quo(!! rlang::sym(var))
   }
-  #Separates coded month and year
-  .data %>%
-    tidyr::separate((!!var), c(newYear, newMonth), "-", remove = TRUE)
+
+  # separates coded month and year
+  .data <- tidyr::separate(.data, (!!var), c(newYear, newMonth), "-", remove = TRUE)
+
+  # return output
+  return(.data)
+
 }
 
 #' Seperate Date Occur
@@ -98,18 +104,18 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be separated must be specified for .data')
+    stop("A existing data frame with data to be parsed must be specified for '.data'.")
   }
 
   if (missing(var)) {
-    stop('The column containing the data to be separated must be specified for var')
+    stop("The column containing the data to be parsed must be specified for 'var'.")
   }
   if (missing(dateVar)) {
-    stop('The name of the column to be made containing the date information must be specified for dateVar')
+    stop("The name of the new column to be made containing the date must be specified for 'dateVar'.")
   }
 
   if (missing(timeVar)) {
-    stop('The name of the column to be made containing the time information must be specified for timeVar')
+    stop("The name of the new column to be made containing the time must be specified for 'timeVar'.")
   }
 
   # save parameters to list
@@ -142,6 +148,7 @@ cs_parse_date <- function(.data, var, dateVar, timeVar, tz = NULL, keepDateTime 
     .data <- dplyr::select(.data, -c(dateTime))
   }
 
+  # return output
   return(out)
 
 }
