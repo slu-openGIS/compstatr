@@ -121,6 +121,9 @@ cs_collapse <- function(.data){
 #' @export
 cs_combine <- function(type = "year", date, ...){
 
+  # global bindings
+  ...date = ...time = NULL
+
   # undefined global variables
   DateOccur = time = dateTime = cs_year = NULL
 
