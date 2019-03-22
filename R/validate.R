@@ -31,12 +31,14 @@
 #' @return A tibble with validation results.
 #'
 #' @examples
-#' \dontrun{
-#' yearList08 <- cs_load_year(path = "data/raw/2008")
+#' # load example object
+#' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
 #'
-#' cs_validate(yearList08)
-#' cs_validate(yearList08, verbose = TRUE)
-#' }
+#' # simple validation
+#' cs_validate(yearList17)
+#'
+#' # verbose validation
+#' cs_validate(yearList17, verbose = TRUE)
 #'
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr mutate

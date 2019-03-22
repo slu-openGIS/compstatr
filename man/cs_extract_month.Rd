@@ -24,10 +24,12 @@ This function extracts a given month from a list containing 12
    intuitive.
 }
 \examples{
-\dontrun{
-jan08 <- cs_extract_month(yearList08, month = 1)
-jan08 <- cs_extract_month(yearList08, month = "January")
-}
+# load example object
+load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
+
+# extract May
+may17 <- cs_extract_month(yearList17, month = 5)
+may17 <- cs_extract_month(yearList17, month = "May")
 
 }
 \seealso{

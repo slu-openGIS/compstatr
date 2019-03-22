@@ -19,10 +19,12 @@
 #' @seealso \code{\link{cs_replace_month}}
 #'
 #' @examples
-#' \dontrun{
-#' jan08 <- cs_extract_month(yearList08, month = 1)
-#' jan08 <- cs_extract_month(yearList08, month = "January")
-#' }
+#' # load example object
+#' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
+#'
+#' # extract May
+#' may17 <- cs_extract_month(yearList17, month = 5)
+#' may17 <- cs_extract_month(yearList17, month = "May")
 #'
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
@@ -103,10 +105,16 @@ cs_extract_month <- function(.data, month){
 #'
 #' @seealso \code{\link{cs_extract_month}}
 #'
-#' \dontrun{
-#' yearList08 <- cs_replace_month(yearList08, month = 1, monthData = jan08)
-#' yearList08 <- cs_replace_month(yearList08, month = "January", monthData = jan08)
-#' }
+#' @examples
+#' # load example object
+#' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
+#'
+#' # extract May
+#' may17 <- cs_extract_month(yearList17, month = 5)
+#'
+#' # replace
+#' yearList17 <- cs_replace_month(yearList08, month = 5, monthData = may17)
+#' yearList17 <- cs_replace_month(yearList08, month = "May", monthData = may17)
 #'
 #' @export
 cs_replace_month <- function(.data, month, monthData){
