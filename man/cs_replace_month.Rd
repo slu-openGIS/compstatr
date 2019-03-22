@@ -16,7 +16,7 @@ Acceptable inputs include, for example, "January", "january", "Jan",
 \item{monthData}{A tibble containing a single month worth of crime data.}
 }
 \value{
-An update year-list object.
+An updated year-list object.
 }
 \description{
 This function replaces a single month worth of crime data that
@@ -24,4 +24,9 @@ This function replaces a single month worth of crime data that
 }
 \seealso{
 \code{\link{cs_extract_month}}
+
+\dontrun{
+yearList08 <- cs_replace_month(yearList08, month = 1, monthData = jan08)
+yearList08 <- cs_replace_month(yearList08, month = "January", monthData = jan08)
+}
 }

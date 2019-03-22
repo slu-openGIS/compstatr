@@ -18,6 +18,12 @@
 #'
 #' @seealso \code{\link{cs_replace_month}}
 #'
+#' @examples
+#' \dontrun{
+#' jan08 <- cs_extract_month(yearList08, month = 1)
+#' jan08 <- cs_extract_month(yearList08, month = "January")
+#' }
+#'
 #' @importFrom rlang quo
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
@@ -93,9 +99,14 @@ cs_extract_month <- function(.data, month){
 #'    "jan", and 1.
 #' @param monthData A tibble containing a single month worth of crime data.
 #'
-#' @return An update year-list object.
+#' @return An updated year-list object.
 #'
 #' @seealso \code{\link{cs_extract_month}}
+#'
+#' \dontrun{
+#' yearList08 <- cs_replace_month(yearList08, month = 1, monthData = jan08)
+#' yearList08 <- cs_replace_month(yearList08, month = "January", monthData = jan08)
+#' }
 #'
 #' @export
 cs_replace_month <- function(.data, month, monthData){

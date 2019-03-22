@@ -23,6 +23,13 @@ This function extracts a given month from a list containing 12
    this function makes the process of extracting a particular month more
    intuitive.
 }
+\examples{
+\dontrun{
+jan08 <- cs_extract_month(yearList08, month = 1)
+jan08 <- cs_extract_month(yearList08, month = "January")
+}
+
+}
 \seealso{
 \code{\link{cs_replace_month}}
 }
