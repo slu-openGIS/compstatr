@@ -223,18 +223,18 @@ cs_filter_crime <- function(.data, var, crime){
 #' @importFrom rlang sym
 #'
 #' @export
-cs_filter_count <- function(.data,var){
+cs_filter_count <- function(.data, var){
 
   # save parameters to list
   paramList <- as.list(match.call())
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be seperated must be specified for .data')
+    stop("A existing data frame with data to be edited must be specified for '.data'.")
   }
 
   if (missing(var)) {
-    stop('The column containing the data to be separated must be specified for variable')
+    stop("The column containing the data to be edited must be specified for 'var'.")
   }
 
   #quote input variables

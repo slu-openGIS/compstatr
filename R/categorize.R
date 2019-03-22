@@ -151,7 +151,7 @@ cs_crime <- function(.data, var, newVar, crime){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 180000 & !!var < 190000, TRUE, FALSE))
 
-  } else if (crime == "Gambling" | crime == "gambling" | crime == 19){
+  } else if (crime == "gambling" | crime == 19){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var >= 190000 & !!var < 200000, TRUE, FALSE))
 

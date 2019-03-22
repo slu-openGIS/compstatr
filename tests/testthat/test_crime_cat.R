@@ -26,6 +26,7 @@ test_that("misspecified functions return errors", {
 
 test_that("correctly specified functions execute without error", {
   expect_error(cs_crime_cat(test_data, var = Crime, newVar = crimeCat, output = "string"), NA)
+  expect_error(cs_crime_cat(test_data, var = "Crime", newVar = "crimeCat", output = "string"), NA)
 })
 
 # test results ------------------------------------------------
