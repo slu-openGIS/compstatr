@@ -37,3 +37,8 @@ reference:
     - cs_replace0
     - cs_missingXY
     - cs_projectXY
+
+  - title: "Sample Data"
+    desc: "Example Data for Practicing Wrangling and Mapping"
+    contents:
+    - january2018

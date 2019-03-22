@@ -30,7 +30,7 @@ remotes::install_github("slu-openGIS/stlcsb")
 Additional details, including some tips for installing `sf`, can be found in the [Get started article](articles/compstatr.html#installation).
 
 ## Resources
-In addition to instructions for installation, the main [Get started](articles/stlcsb.html) article has:
+In addition to instructions for installation, the main [Get started](articles/compstatr.html) article has:
 
   * some tips on installing `compstatr` and its dependencies,
   * a quick overview of data acquisition,

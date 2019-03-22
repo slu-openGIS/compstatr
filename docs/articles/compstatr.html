@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vignette Title • compstatr</title>
+<title>Wrangling Crime Data with R • compstatr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Vignette Title">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Wrangling Crime Data with R">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png">
 <meta name="twitter:card" content="summary">
@@ -69,8 +69,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Vignette Title</h1>
-                        <h4 class="author">Vignette Author</h4>
+      <h1>Wrangling Crime Data with R</h1>
+                        <h4 class="author">Christopher Prener, Ph.D.</h4>
             
             <h4 class="date">2019-03-22</h4>
       
@@ -89,8 +89,8 @@
 <h3 class="hasAnchor">
 <a href="#motivation" class="anchor"></a>Motivation</h3>
 <p>Among cities in the United States, St. Louis has the distinction of having the highest or one of the highest violent crime and homicide rates since 2010. It therefore presents an important site for social scientists, public health researchers, and health care providers as well as policy makers to understand the effects of violent crime on urban communities.</p>
-<p>The City’s crime data, however, are diffuclt to work with and present a challenge for researchers. These data are inconsistently organized, with all data before 2013 and some months of 2013 itself having eighteen variables. Beginning during 2013, most (but not all) months have twenty variables, many of which are named differently from their pre-2014 counterparts. These inconsistencies, and the fact that working with their data requires mangaing over 120 spreadsheets that each download with with a <code>.html</code> file extension, are the motivating force behind <code>compstatr</code>.</p>
-<p>We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis <a href="http://www.slmpd.org">Metropolitan Police Department</a> (SLMPD) crime data, which are available <a href="http://www.slmpd.org/Crimereports.shtml">on their website</a> as <code>.csv</code> files.</p>
+<p>The City’s crime data, however, are difficult to work with and present a challenge for researchers. These data are inconsistently organized, with all data before 2013 and some months of 2013 itself having eighteen variables. Beginning during 2013, most (but not all) months have twenty variables, many of which are named differently from their pre-2014 counterparts. These inconsistencies, and the fact that working with their data requires managing over 120 spreadsheets that each download with with a <code>.html</code> file extension, are the motivating force behind <code>compstatr</code>.</p>
+<p>We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis <a href="http://www.slmpd.org">Metropolitan Police Department</a> (SLMPD) crime data, which are available <a href="http://www.slmpd.org/Crimereports.shtml">on their website</a> as <code>.csv</code> files. The categorization tools that are provided will work with any police department that uses 5 and 6 digit numeric codes to identify specific crimes.</p>
 </div>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
@@ -107,86 +107,149 @@
 <ul>
 <li>All functions support non-standard evaluation, meaning you can use either quoted or unquoted inputs for arguments.</li>
 <li>Use RStudio for its helpful auto completion ability. Type <code>cs_</code> to see all of the functions available in this package.</li>
-<li>All functions return data as a tibble, which is essentially identical to a data.frame, except for its print behavior in the console and in notebooks.</li>
+<li>All functions for data creation and preparation return data as a tibble, which is essentially identical to a data.frame, except for its print behavior in the console and in notebooks.</li>
 </ul>
 </div>
 </div>
 <div id="downloading-slmpd-ata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#downloading-slmpd-ata" class="anchor"></a>Downloading SLMPD ata</h2>
-</div>
-<div id="sample-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sample-data" class="anchor"></a>Sample Data</h2>
-<p>The <code>compstatr</code> package contains a single month that can be used for practicing some of the built-in functions. This file, <code>january2018</code> contains all crimes reported that month in St. Louis. It is formatted to match validated data that has been created using <code><a href="../reference/cs_collapse.html">cs_collapse()</a></code> (though, in practice, the result of <code><a href="../reference/cs_collapse.html">cs_collapse()</a></code> should be a full year of data). Any functions for working with dates and times, spatial data, and crime codes can be practiced using these data.</p>
+<p><code>compstatr</code> uses an opinionated approach for data organization. Data should be downloaded from <a href="http://www.slmpd.org/Crimereports.shtml">SLMPD</a> into a clear folder hierarchy that approximates this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="op">|-</span><span class="st"> </span>data<span class="op">/</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="er">|</span><span class="op">---</span><span class="st"> </span><span class="dv">2017</span><span class="op">/</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="er">|</span><span class="op">------</span><span class="st"> </span>January2017.csv.html</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="op">|------</span><span class="st"> </span>February2017.csv.html</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="op">|------</span><span class="st"> </span>March2017.csv.html</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="op">|------</span><span class="st"> </span>April2017.csv.html</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="op">|------</span><span class="st"> </span>May2017.csv.html</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="op">|------</span><span class="st"> </span>June2017.csv.html</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="op">|------</span><span class="st"> </span>July2017.csv.html</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="op">|------</span><span class="st"> </span>August2017.csv.html</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="op">|------</span><span class="st"> </span>September2017.csv.html</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="op">|------</span><span class="st"> </span>October2017.csv.html</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="op">|------</span><span class="st"> </span>Novemeber2017.csv.html</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="op">|------</span><span class="st"> </span>December2017.csv.html</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="op">|---</span><span class="st"> </span><span class="dv">2018</span><span class="op">/</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="er">|</span><span class="op">------</span><span class="st"> </span>January2018.csv.html</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="op">|------</span><span class="st"> </span>February2018.csv.html</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="op">|------</span><span class="st"> </span>March2018.csv.html</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="op">|------</span><span class="st"> </span>April2018.csv.html</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="op">|------</span><span class="st"> </span>May2018.csv.html</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="op">|------</span><span class="st"> </span>June2018.csv.html</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="op">|------</span><span class="st"> </span>July2018.csv.html</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="op">|------</span><span class="st"> </span>August2018.csv.html</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="op">|------</span><span class="st"> </span>September2018.csv.html</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="op">|------</span><span class="st"> </span>October2018.csv.html</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="op">|------</span><span class="st"> </span>Novemeber2018.csv.html</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="op">|------</span><span class="st"> </span>December2018.csv.html</a></code></pre></div>
+<p>The initial functions <code>cs_prep_data()</code> and <code>cs_load_data()</code> (both of which are described below) assume that there are no more than 12 files per folder containing raw data.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div id="data-validation" class="section level3">
+<div id="data-preparation" class="section level3">
 <h3 class="hasAnchor">
-<a href="#data-validation" class="anchor"></a>Data Validation</h3>
-<p>The first step in working with the SLMPD data is to import it. Our approach with <code>compstatr</code> is to read into data a year at a time using <code><a href="../reference/cs_load_year.html">cs_load_year()</a></code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">data2008 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_load_year.html">cs_load_year</a></span>(<span class="kw">here</span>(<span class="st">"data"</span>, <span class="st">"rawData"</span>, <span class="st">"csv"</span>, <span class="st">"2008"</span>))</a></code></pre></div>
-<p>The <code><a href="../reference/cs_load_year.html">cs_load_year()</a></code> function requires that all 12 months of data are present. It will load data into a single list object containing a tibble for each month. Months are ordered alphabetically, not numerically (see Fixing Validation Errors below). These are referred to as “year list objects” in the <code>compstatr</code> documentation.</p>
-<p>Once a year list object has been created, the <code>cs_validate_year()</code> function can be used to determine what issues exist in a given year’s data. The validation function will check to make sure that: (1) <code>oneMonth</code> - each object in the list contains one month worth of data, (2) <code>valMonth</code> - each object in the list is appropriately positioned alphabetically, (3) <code>varCount</code> - each object in the list has 20 variables, (4) <code>valVars</code> - if there are 20 variables, that they are named correctly, and (5) <code>valClasses</code> - that each of the 20 variables is the proper class.</p>
-<p>The <code>cs_validate_year()</code> function returns a tibble that summarizes these results. A <code>TRUE</code> value indicates that the given month meets the given condition, and a <code>FALSE</code> value means it does not. An <code>NA</code> value is reported for <code>valVars</code> and <code>valClasses</code> if there are not 20 variables in the object.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">cs_validate_year</span>(data2008, <span class="dt">year =</span> <span class="st">"2008"</span>)</a></code></pre></div>
+<a href="#data-preparation" class="anchor"></a>Data Preparation</h3>
+<p>St. Louis data can be downloaded month-by-month from the St. Louis Metropolitan Police Department’s <a href="http://www.slmpd.org/Crimereports.shtml">website</a>. <code>compstatr</code> assumes that only one year of crime data (or less) is included in specific folders within your project. These next examples assume you have downloaded all of the data for 2017 and 2018, and saved them respectively in <code>data/2017</code> and <code>data/2018</code>. We’ll start with loading the <code>compstatr</code> package:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(compstatr)</a></code></pre></div>
+<p>The function <code>cs_prep_data()</code> can be used to rename files, which will be downloaded with the wrong file extension (<code>January2018.csv.html</code>). Once downloaded you can load them into what we call year-list objects:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="../reference/cs_prep_year.html">cs_prep_year</a></span>(<span class="dt">path =</span> <span class="st">"data/2017"</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="er">&gt;</span><span class="st"> </span>yearList17 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_load_year.html">cs_load_year</a></span>(<span class="dt">path =</span> <span class="st">"data/2017"</span>)</a></code></pre></div>
+<p>The SLMPD are inconsistently organized, and problems that need to be addressed prior to collapsing a year-list into a single object can be identified with <code><a href="../reference/cs_validate.html">cs_validate()</a></code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="../reference/cs_validate.html">cs_validate</a></span>(yearList17, <span class="dt">year =</span> <span class="dv">2017</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">FALSE</span></a></code></pre></div>
+<p>If a <code>FALSE</code> value is returned, the <code>vebose = TRUE</code> argument provides additional detail:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="../reference/cs_validate.html">cs_validate</a></span>(yearList17, <span class="dt">year =</span> <span class="dv">2017</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co"># A tibble: 12 x 8</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">   namedMonth codedMonth valMonth codedYear valYear oneMonth varCount valVars</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">   <span class="op">&lt;</span>chr<span class="op">&gt;</span><span class="st">      </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">      </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st">        </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st">   </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st">    </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st">    </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st"> </span><span class="dv">1</span> January    January    <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"> <span class="dv">2</span> February   February   <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"> <span class="dv">3</span> March      March      <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"> <span class="dv">4</span> April      April      <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"> <span class="dv">5</span> May        May        <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">FALSE</span>    <span class="ot">NA</span>     </a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"> <span class="dv">6</span> June       June       <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"> <span class="dv">7</span> July       July       <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"> <span class="dv">8</span> August     August     <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"> <span class="dv">9</span> September  September  <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="dv">10</span> October    October    <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="dv">11</span> November   November   <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="dv">12</span> December   December   <span class="ot">TRUE</span>          <span class="dv">2017</span> <span class="ot">TRUE</span>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   </a></code></pre></div>
+<p>In this case, we have the wrong number of variables for the month of May (in this case there are 26). We can fix this by using <code><a href="../reference/cs_standardize.html">cs_standardize()</a></code> to create the correct number of columns (20) and name them appropriately:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="co"># standardize </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">yearList17 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_standardize.html">cs_standardize</a></span>(yearList17, <span class="dt">month =</span> <span class="st">"May"</span>, <span class="dt">config =</span> <span class="dv">26</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="er">&gt;</span><span class="st"> </span><span class="co"># confirm data are now valid</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="../reference/cs_validate.html">cs_validate</a></span>(yearList17, <span class="dt">year =</span> <span class="dv">2017</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
+<p>For 2013 and prior years, there will be only 18 variables. The 2013 data need to be fixed month by month because there are some correct months, but years 2008 through 2012 can be fixed en masse:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>yearList08 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_standardize.html">cs_standardize</a></span>(yearList08, <span class="dt">config =</span> <span class="dv">18</span>)</a></code></pre></div>
+<p>If there are more significant problems with a given month, <code><a href="../reference/cs_extract_month.html">cs_extract_month()</a></code> can be used to pull a single month out of a year-list object. It can then be edited using <code>dplyr</code> or similar tools, and then replaced into the year-list object with <code><a href="../reference/cs_replace_month.html">cs_replace_month()</a></code>. As of March 2019, there are no months of released data that require this. These functions are therefore provided as cautionary tools.</p>
+<p>Once the data have been standardized, we can collapse them into a single object with <code><a href="../reference/cs_collapse.html">cs_collapse()</a></code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>reports17 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_collapse.html">cs_collapse</a></span>(yearList17)</a></code></pre></div>
+<p>This gives us all of the crimes reported in 2017. However, there will be crimes that were reported that year that occurred in prior years, and there may also be crimes reported in 2018 that took place in our year of interest. We can address both issues (assuming we have the next year’s data) with <code><a href="../reference/cs_combine.html">cs_combine()</a></code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="co"># load and standardize 2018 data</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="../reference/cs_prep_year.html">cs_prep_year</a></span>(<span class="dt">path =</span> <span class="st">"data/raw/2018"</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span>yearList18 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_load_year.html">cs_load_year</a></span>(<span class="dt">path =</span> <span class="st">"data/raw/2018"</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="../reference/cs_validate.html">cs_validate</a></span>(yearList18, <span class="dt">year =</span> <span class="dv">2018</span>)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">[<span class="dv">1</span>] <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="op">&gt;</span><span class="st"> </span>reports18 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_collapse.html">cs_collapse</a></span>(yearList18)</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="er">&gt;</span><span class="st"> </span><span class="co"># combine 2017 and 2018 data</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">crimes17 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_combine.html">cs_combine</a></span>(<span class="dt">type =</span> <span class="st">"year"</span>, <span class="dt">date =</span> <span class="dv">2017</span>, reports17, reports18)</a></code></pre></div>
+<p>We now have a tibble containing all of the known crimes that occurred in 2017 (including those reported in 2018).</p>
 </div>
-<div id="fixing-valiation-errors---number-of-variables" class="section level3">
+<div id="data-wrangling-and-mapping" class="section level3">
 <h3 class="hasAnchor">
-<a href="#fixing-valiation-errors---number-of-variables" class="anchor"></a>Fixing Valiation Errors - Number of Variables</h3>
-<p>The simplest validation errors to fix are instances when there are not 20 variables. The <code><a href="../reference/cs_standardize.html">cs_standardize()</a></code> function is designed to fix two scenarios - the common instance for pre-2014 data where there are only 18 variables, and a less common instance (only May 2017) where there are 26 variables. This function can be used on an entire year list object:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">data2008 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_standardize.html">cs_standardize</a></span>(data2008, <span class="dt">config =</span> <span class="dv">18</span>)</a></code></pre></div>
-<p>The <code><a href="../reference/cs_standardize.html">cs_standardize()</a></code> function can also be used on a specific month within the year list object:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">data2017 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_standardize.html">cs_standardize</a></span>(data2017, <span class="dt">month =</span> <span class="st">"May"</span>, <span class="dt">config =</span> <span class="dv">26</span>)</a></code></pre></div>
-<p>In both cases, it returns a copy of the year list object</p>
+<a href="#data-wrangling-and-mapping" class="anchor"></a>Data Wrangling and Mapping</h3>
+<p>Once we have the data prepared, we can easily pull out a specific set of crimes to inspect further. For example, we could identify homicides. In the next few examples, we’ll use the <code>january2018</code> example data that comes with the package. We’ll start by using <code>cs_filter_crimes()</code> to select only homicides as well as <code><a href="../reference/cs_filter_count.html">cs_filter_count()</a></code> to remove any unfounded incidents:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="co"># load dependencies</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(compstatr)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(mapview)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="er">&gt;</span><span class="st"> </span><span class="co"># subset homicides and removed unfounded incidents</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="er">&gt;</span><span class="st"> </span>janHomicides &lt;-<span class="st"> </span>january2018 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="op">+</span><span class="st">   </span><span class="kw"><a href="../reference/cs_filter_count.html">cs_filter_count</a></span>(<span class="dt">var =</span> Count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="op">+</span><span class="st">   </span><span class="kw"><a href="../reference/cs_filter_crime.html">cs_filter_crime</a></span>(<span class="dt">var =</span> Crime, <span class="dt">crime =</span> <span class="st">"homicide"</span>)</a></code></pre></div>
+<p>There are also options for categorizing crimes, including <code><a href="../reference/cs_crime_cat.html">cs_crime_cat()</a></code>, which creates a numeric, string, or factor variable that summarizes each individual crime by UCR code. Likewise, there is a <code><a href="../reference/cs_crime.html">cs_crime()</a></code> function that creates logical vectors that are <code>TRUE</code> if a given observation fits into the specified UCR code or family of UCR codes (like <code>Part 1</code>, <code>violent</code>, or <code>property</code> crimes).</p>
+<p>Next, we’ll check for missing spatial data with <code><a href="../reference/cs_missingXY.html">cs_missingXY()</a></code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="co"># identify missing spatial data</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="er">&gt;</span><span class="st"> </span>janHomicides &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_missingXY.html">cs_missingXY</a></span>(janHomicides, <span class="dt">varX =</span> XCoord, <span class="dt">varY =</span> YCoord, <span class="dt">newVar =</span> missing)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="er">&gt;</span><span class="st"> </span><span class="co"># check for any TRUE values</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(janHomicides<span class="op">$</span>missing)</a></code></pre></div>
+<p>We don’t have any missing spatial data in this example, but if we did we would need to remove those observations with <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> (or another subsetting tool). The <code>compstatr</code> package also comes with a function, <code><a href="../reference/cs_replace0.html">cs_replace0()</a></code>, that can be used to properly convert coordinates that are given as <code>0</code> to <code>NA</code>.</p>
+<p>Finally, we can project and map our data:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="co"># project data</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="er">&gt;</span><span class="st"> </span>janHomicides_sf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cs_projectXY.html">cs_projectXY</a></span>(janHomicides, <span class="dt">varX =</span> XCoord, <span class="dt">varY =</span> YCoord)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="er">&gt;</span><span class="st"> </span><span class="co"># preview data</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="er">&gt;</span><span class="st"> </span><span class="kw">mapview</span>(janHomicides_sf)</a></code></pre></div>
+<p><img src="../man/figures/homicide_mapview.png" width="100%"></p>
+<p>These data can also be mapped using <code>ggplot2</code> once they have been projected:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="op">+</span><span class="st">   </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> janHomicides_sf, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">.5</span>)</a></code></pre></div>
+<p><img src="../man/figures/homicide_map.png" width="40%"></p>
 </div>
-<div id="fixing-validation-errors---variable-classes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fixing-validation-errors---variable-classes" class="anchor"></a>Fixing Validation Errors - Variable Classes</h3>
+</div>
+<div id="non-st-louis-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#non-st-louis-data" class="anchor"></a>Non St. Louis Data</h2>
+<p>If you work with data from other police departments, the <code><a href="../reference/cs_crime.html">cs_crime()</a></code>, <code><a href="../reference/cs_crime_cat.html">cs_crime_cat()</a></code>, and <code><a href="../reference/cs_filter_crime.html">cs_filter_crime()</a></code> functions may be useful for identifying, grouping, and subsetting by crime so long as they use a standard set of 5 and 6 digit codes based on the UCR system (e.g. <code>31111</code> (robbery with a firearm) or <code>142320</code> (malicious destruction of property)).</p>
+</div>
+<div id="getting-help" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-help" class="anchor"></a>Getting Help</h2>
 <ul>
-<li><code>cs_validate_month()</code></li>
+<li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s <a href="http://r4ds.had.co.nz"><em>R for Data Science</em></a> is an excellent way to get started with data manipulation in the tidyverse, which <code>stlcsb</code> is designed to integrate seamlessly with.</li>
+<li>If you are new to spatial analysis in <code>R</code>, we strongly encourage you check out the excellent new <a href="https://geocompr.robinlovelace.net"><em>Geocomputation in R</em></a> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
+<li>If you have questions about using <code>compstatr</code>, you are encouraged to use the <a href="https://community.rstudio.com">RStudio Community forums</a>. Please create a <a href="http://reprex.tidyverse.org/"><code>reprex</code></a> before posting. Feel free to tag Chris (<code>@chris.prener</code>) in any posts about <code>compstatr</code>.</li>
+<li>If you think you’ve found a bug, please create a <a href="http://reprex.tidyverse.org/"><code>reprex</code></a> and then open an issue on <a href="https://github.com/slu-openGIS/stlcsb/issues/new/choose">GitHub</a>.</li>
 </ul>
-<p>If there are more specific errors, such as mis-formatted columns, a specific month can be extracted using the <code><a href="../reference/cs_extract_month.html">cs_extract_month()</a></code> function:</p>
-<ul>
-<li><code><a href="../reference/cs_replace_month.html">cs_replace_month()</a></code></li>
-</ul>
-</div>
-<div id="collapsing-year-list-objects" class="section level3">
-<h3 class="hasAnchor">
-<a href="#collapsing-year-list-objects" class="anchor"></a>Collapsing Year List Objects</h3>
-<ul>
-<li><code><a href="../reference/cs_collapse.html">cs_collapse()</a></code></li>
-</ul>
-</div>
-<div id="working-with-dates-and-times" class="section level3">
-<h3 class="hasAnchor">
-<a href="#working-with-dates-and-times" class="anchor"></a>Working with Dates and Times</h3>
-<ul>
-<li><code><a href="../reference/cs_parse_date.html">cs_parse_date()</a></code></li>
-<li><code><a href="../reference/cs_parse_month.html">cs_parse_month()</a></code></li>
-</ul>
-</div>
-<div id="working-with-spatial-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#working-with-spatial-data" class="anchor"></a>Working with Spatial Data</h3>
-<ul>
-<li><code><a href="../reference/cs_replace0.html">cs_replace0()</a></code></li>
-<li><code><a href="../reference/cs_missingXY.html">cs_missingXY()</a></code></li>
-<li><code><a href="../reference/cs_projectXY.html">cs_projectXY()</a></code></li>
-</ul>
-</div>
-<div id="working-with-crime-codes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#working-with-crime-codes" class="anchor"></a>Working with Crime Codes</h3>
-<ul>
-<li><code><a href="../reference/cs_crime.html">cs_crime()</a></code></li>
-<li><code><a href="../reference/cs_crime_cat.html">cs_crime_cat()</a></code></li>
-<li><code>cs_crime_filter()</code></li>
-<li><code><a href="../reference/cs_filter_count.html">cs_filter_count()</a></code></li>
-</ul>
-</div>
 </div>
   </div>
 
@@ -197,8 +260,9 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#overview">Overview</a></li>
       <li><a href="#downloading-slmpd-ata">Downloading SLMPD ata</a></li>
-      <li><a href="#sample-data">Sample Data</a></li>
       <li><a href="#usage">Usage</a></li>
+      <li><a href="#non-st-louis-data">Non St. Louis Data</a></li>
+      <li><a href="#getting-help">Getting Help</a></li>
       </ul>
 </div>
       </div>

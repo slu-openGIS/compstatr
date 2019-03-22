@@ -25,13 +25,13 @@ scientists, public health researchers, and health care providers as well
 as policy makers to understand the effects of violent crime on urban
 communities.
 
-The City’s crime data, however, are diffuclt to work with and present a
+The City’s crime data, however, are difficult to work with and present a
 challenge for researchers. These data are inconsistently organized, with
 all data before 2013 and some months of 2013 itself having eighteen
 variables. Beginning during 2013, most (but not all) months have twenty
 variables, many of which are named differently from their pre-2014
 counterparts. These inconsistencies, and the fact that working with
-their data requires mangaing over 120 spreadsheets that each download
+their data requires managing over 120 spreadsheets that each download
 with with a `.html` file extension, are the motivating force behind
 `compstatr`.
 
@@ -54,9 +54,7 @@ remotes::install_github("slu-openGIS/compstatr")
 
 ## Usage
 
-### St. Louis
-
-#### Data Preparation
+### Data Preparation
 
 St. Louis data can be downloaded month-by-month from the St. Louis
 Metropolitan Police Department’s
@@ -142,7 +140,7 @@ object with `cs_collapse()`:
 ```
 
 This gives us all of the crimes reported in 2017. However, there will be
-crimes that were reported that year that occured in prior years, and
+crimes that were reported that year that occurred in prior years, and
 there may also be crimes reported in 2018 that took place in our year of
 interest. We can address both issues (assuming we have the next year’s
 data) with `cs_combine()`:
@@ -159,10 +157,10 @@ data) with `cs_combine()`:
 crimes17 <- cs_combine(type = "year", date = 2017, reports17, reports18)
 ```
 
-We now have a tibble containing all of the known crimes that occured in
+We now have a tibble containing all of the known crimes that occurred in
 2017 (including those reported in 2018).
 
-#### Data Wrangling and Mapping
+### Data Wrangling and Mapping
 
 Once we have the data prepared, we can easily pull out a specific set of
 crimes to inspect further. For example, we could identify homicides. In
@@ -219,7 +217,7 @@ projected:
 
 <img src="man/figures/homicide_map.png" width="40%" />
 
-### Non St. Louis Data
+## Non St. Louis Data
 
 If you work with data from other police departments, the `cs_crime()`,
 `cs_crime_cat()`, and `cs_filter_crime()` functions may be useful for
