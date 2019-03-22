@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove Negative Counts — cs_filter_count • compstatr</title>
+<title>Changelog • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,7 @@
 
 
 
-<meta property="og:title" content="Remove Negative Counts — cs_filter_count" />
-
-<meta property="og:description" content="Removes the row that contains -1 in a specified column, indicating that the
-    charge described in that observation has either been deemed unfounded or has been
-    up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
-    to homicide." />
+<meta property="og:title" content="Changelog" />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -55,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,58 +105,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove Negative Counts</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/filter.R'><code>R/filter.R</code></a></small>
-    <div class="hidden name"><code>cs_filter_count.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    
-    <p>Removes the row that contains <code>-1</code> in a specified column, indicating that the
-    charge described in that observation has either been deemed unfounded or has been
-    up-coded. For example, a victim of an aggrevated assault dies, and the charge is changed
-    to homicide.</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>cs_filter_count</span>(<span class='no'>.data</span>, <span class='no'>var</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>.data</th>
-      <td><p>A tibble or data frame</p></td>
-    </tr>
-    <tr>
-      <th>var</th>
-      <td><p>the name of the column</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A subset object with rows containing <code>-1</code> removed</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># load example data</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-
-<span class='co'># subset data to remove negative counts</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_filter_count</span>(<span class='no'>testData</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Count</span>)</div></pre>
+    <div id="compstatr-0-1-0" class="section level1">
+<h1 class="page-header">
+<a href="#compstatr-0-1-0" class="anchor"></a>compstatr 0.1.0</h1>
+<ul>
+<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
+<li>Initial package development including package infrastructure, functions, and sample data</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#compstatr-0-1-0">0.1.0</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>
