@@ -10,6 +10,7 @@ Status](https://travis-ci.org/slu-openGIS/compstatr.svg?branch=master)](https://
 Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/compstatr?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/compstatr)
 [![Coverage
 status](https://codecov.io/gh/slu-openGIS/compstatr/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/compstatr?branch=master)
+[![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
 The goal of `compstatr` is to provide a suite of tools for working with
