@@ -22,6 +22,13 @@
 #'    month should be given as \code{"all"} to standardize them en masse.
 #' @param config The non-standard configuration, either 18 or 26
 #'
+#' @examples
+#' \dontrun{
+#' yearList08 <- cs_standardize(yearList08, config = 18)
+#' yearList13 <- cs_standardize(yearList08, month = "January", config = 18)
+#' yearList17 <- cs_standardize(yearList08, month = 5, config = 26)
+#' }
+#'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename

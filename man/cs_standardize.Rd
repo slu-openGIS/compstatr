@@ -31,3 +31,11 @@ For all months prior to 2013 and approximately half of the months during
    specification can be used to edit the months in 2013 and 2017 that are
    non-standard.
 }
+\examples{
+\dontrun{
+yearList08 <- cs_standardize(yearList08, config = 18)
+yearList13 <- cs_standardize(yearList08, month = "January", config = 18)
+yearList17 <- cs_standardize(yearList08, month = 5, config = 26)
+}
+
+}
