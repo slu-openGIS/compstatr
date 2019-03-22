@@ -7,26 +7,29 @@
 cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 }
 \arguments{
-\item{.data}{a data frame}
+\item{.data}{A tibble or data frame}
 
-\item{var}{a column containing month, day, year, and time seprated by "/"}
+\item{var}{A column containing month, day, year, and time seprated by \code{/}}
 
-\item{dateVar}{Name of new column containing date data}
+\item{dateVar}{Name of new column to contain date data}
 
-\item{timeVar}{Name of new column containing time data}
+\item{timeVar}{Name of new column to contain time data}
 
 \item{tz}{String name of timezone, defaults to system's timezone}
 
 \item{keepDateTime}{A logical scalar. Keep an intermediate dateTime variable if \code{TRUE}.}
 }
 \value{
-Appends two columns to the data frame. One is the time data and the other is the date data
+A copy of the object with two columns appended. One is the time data and the other is the date data.
 }
 \description{
 Creates two columns. One contains month, day, and year and the other contains hour, and minute.
 }
 \examples{
+# load example data
 testData <- january2018
-testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
+
+# parse date occured
+testData <- cs_parse_date(testData, var = DateOccur, dateVar = dateOcc, timeVar = timeOcc)
 
 }

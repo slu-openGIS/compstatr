@@ -1,20 +1,25 @@
 #' Seperate Coded Month
 #'
 #' @description Separates a column containing coded year and coded month
-#'     separated by "-" into two columns and removes the input column
+#'     separated by "-" into two columns and removes the input column.
 #'
-#' @usage  cs_parse_month(.data, var, yearVar, monthVar)
+#' @usage cs_parse_month(.data, var, yearVar, monthVar)
 #'
-#' @param .data a data frame
+#' @param .data A tibble or data frame
 #' @param var the variable containing coded month and coded year
 #' @param yearVar the name of the column to contain the year data
 #' @param monthVar the name of the column to contain month data
 #'
-#' @return returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
+#' @return Returns a copy of the object with two new columns for the coded year
+#'     and coded month appended to it.
 #'
 #' @examples
+#' # load example data
 #' testData <- january2018
-#' testData <- cs_parse_month(testData,CodedMonth,Year,Month)
+#'
+#' # parse CodedMonth
+#' testData <- cs_parse_month(testData, var = CodedMonth, yearVar = reportYear,
+#'     monthVar = reportMonth)
 #'
 #' @importFrom dplyr %>%
 #' @importFrom tidyr separate
@@ -71,18 +76,21 @@ cs_parse_month <- function(.data, var, yearVar, monthVar){
 #'
 #' @usage cs_parse_date(.data, var, dateVar, timeVar, tz = NULL, keepDateTime = TRUE)
 #'
-#' @param .data a data frame
-#' @param var a column containing month, day, year, and time seprated by "/"
-#' @param dateVar Name of new column containing date data
-#' @param timeVar Name of new column containing time data
+#' @param .data A tibble or data frame
+#' @param var A column containing month, day, year, and time seprated by \code{/}
+#' @param dateVar Name of new column to contain date data
+#' @param timeVar Name of new column to contain time data
 #' @param tz String name of timezone, defaults to system's timezone
 #' @param keepDateTime A logical scalar. Keep an intermediate dateTime variable if \code{TRUE}.
 #'
-#' @return Appends two columns to the data frame. One is the time data and the other is the date data
+#' @return A copy of the object with two columns appended. One is the time data and the other is the date data.
 #'
 #' @examples
+#' # load example data
 #' testData <- january2018
-#' testData <- cs_parse_date(testData, var = DateOccur, dateVar = Date, timeVar = Time)
+#'
+#' # parse date occured
+#' testData <- cs_parse_date(testData, var = DateOccur, dateVar = dateOcc, timeVar = timeOcc)
 #'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%

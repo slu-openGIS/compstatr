@@ -113,8 +113,8 @@ cs_extract_month <- function(.data, month){
 #' may17 <- cs_extract_month(yearList17, month = 5)
 #'
 #' # replace
-#' yearList17 <- cs_replace_month(yearList07, month = 5, monthData = may17)
-#' yearList17 <- cs_replace_month(yearList07, month = "May", monthData = may17)
+#' yearList17 <- cs_replace_month(yearList17, month = 5, monthData = may17)
+#' yearList17 <- cs_replace_month(yearList17, month = "May", monthData = may17)
 #'
 #' @export
 cs_replace_month <- function(.data, month, monthData){

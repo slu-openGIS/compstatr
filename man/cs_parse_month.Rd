@@ -7,7 +7,7 @@
 cs_parse_month(.data, var, yearVar, monthVar)
 }
 \arguments{
-\item{.data}{a data frame}
+\item{.data}{A tibble or data frame}
 
 \item{var}{the variable containing coded month and coded year}
 
@@ -16,14 +16,19 @@ cs_parse_month(.data, var, yearVar, monthVar)
 \item{monthVar}{the name of the column to contain month data}
 }
 \value{
-returns the data frame with two new columns named "codedYear" and "codedMonth" and the input column removed
+Returns a copy of the object with two new columns for the coded year
+    and coded month appended to it.
 }
 \description{
 Separates a column containing coded year and coded month
-    separated by "-" into two columns and removes the input column
+    separated by "-" into two columns and removes the input column.
 }
 \examples{
+# load example data
 testData <- january2018
-testData <- cs_parse_month(testData,CodedMonth,Year,Month)
+
+# parse CodedMonth
+testData <- cs_parse_month(testData, var = CodedMonth, yearVar = reportYear,
+    monthVar = reportMonth)
 
 }

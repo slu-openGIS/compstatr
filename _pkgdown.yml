@@ -18,7 +18,7 @@ reference:
     - cs_combine
 
   - title: "Categorize Crimes"
-    desc: "Work with Crime Data"
+    desc: "Work with Crime Data, including non-SLMPD Data"
     contents:
     - cs_crime
     - cs_crime_cat
