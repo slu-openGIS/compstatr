@@ -1,11 +1,32 @@
 context("test cs_replace0 function")
 
-# load test data
+# load data ------------------------------------------------
 
+## load january 2018 data
 test_data <- january2018
 
-#
+# test inputs ------------------------------------------------
 
-test_that("input error triggered - no .data", expect_error(cs_replace0(,XCoord), "A existing data frame with data to be separated must be specified for .data."))
+test_that("misspecified functions return errors", {
+  expect_error(cs_replace0(var = XCoord),
+               "An existing data frame with data to be edited must be specified for '.data'.")
+  expect_error(cs_replace0(test_data),
+               "The column containing coordinate data must be specified for 'var'.")
+})
 
-test_that("input error triggered - no var", expect_error(cs_replace0(test_data,), "The column containing coordinate data must be specified."))
+# test function ------------------------------------------------
+
+test_that("correctly specified functions execute without error", {
+  expect_error(cs_replace0(test_data, var = XCoord), NA)
+  expect_error(cs_replace0(test_data, var = "YCoord"), NA)
+})
+
+# test results ------------------------------------------------
+
+results <- cs_replace0(test_data, var = XCoord)
+results <- cs_replace0(results, var = YCoord)
+
+test_that("correct output is returned on sample data", {
+  expect_equal(sum(is.na(results$XCoord)), 98)
+  expect_equal(sum(is.na(results$YCoord)), 98)
+})

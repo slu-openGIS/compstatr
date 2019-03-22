@@ -29,11 +29,11 @@ cs_replace0 <- function(.data, var){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be separated must be specified for .data.')
+    stop("An existing data frame with data to be edited must be specified for '.data'.")
   }
 
   if (missing(var)) {
-    stop('The column containing coordinate data must be specified.')
+    stop("The column containing coordinate data must be specified for 'var'.")
   }
 
   #quote input variables
@@ -82,18 +82,18 @@ cs_missingXY <- function(.data, varX, varY, newVar){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('A existing data frame with data to be separated must be specified for .data')
+    stop("An existing data frame with data to be analyzed must be specified for '.data'.")
   }
 
   if (missing(varX)) {
-    stop('The column containing the data to be separated must be specified for varx')
+    stop("The column containing the x coordinate must be specified for 'varX'.")
   }
 
   if (missing(varY)) {
-    stop('The column containing the data to be separated must be specified for vary')
+    stop("The column containing the y coordinate must be specified for 'varY'.")
   }
   if (missing(newVar)) {
-    stop('The output column name must be specified for newVar')
+    stop("The output column name must be specified for 'newVar'.")
   }
 
   # save parameters to list
@@ -146,15 +146,15 @@ cs_projectXY <- function(.data, varX, varY, crs){
 
   ## check for missing parameters
   if (missing(.data)) {
-    stop('Please provide an argument for .data')
+    stop("An existing data frame with data to be projected must be specified for '.data'.")
   }
 
   if (missing(varX)) {
-    stop('Please provide an argument for varX, the x coordinate for your data.')
+    stop("The column containing the x coordinate must be specified for 'varX'.")
   }
 
   if (missing(varY)) {
-    stop('Please provide an argument for varY, the y coordinate for your data.')
+    stop("The column containing the y coordinate must be specified for 'varY'.")
   }
 
   ## quote inputs
@@ -166,7 +166,7 @@ cs_projectXY <- function(.data, varX, varY, crs){
   out <- sf::st_as_sf(.data, coords = c(x = varXN, y = varYN), crs = 102696)
 
   # optionally reproject data
-  if(!is.null(crs)){
+  if(missing(crs) == FALSE){
 
     out <- sf::st_transform(out, crs = crs)
 
