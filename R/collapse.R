@@ -100,9 +100,12 @@ cs_collapse <- function(.data){
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr everything
 #' @importFrom dplyr filter
+#' @importFrom dplyr is.tbl
 #' @importFrom dplyr select
 #' @importFrom lubridate year
+#' @importFrom purrr map_lgl
 #' @importFrom rlang is_scalar_character
+#' @importFrom rlang list2
 #'
 #' @examples
 #' \dontrun{
@@ -121,9 +124,38 @@ cs_combine <- function(type = "year", date, ...){
   # undefined global variables
   DateOccur = time = dateTime = cs_year = NULL
 
-  # check for missing parameters
-  if (missing(date)){
-    stop("An integer year value must be supplied for 'date'.")
+  # check missing parameters
+  if (dplyr::is.tbl(type) == FALSE){
+    if (class(type) != "character"){
+      stop("A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
+    }
+  } else if (dplyr::is.tbl(type) == TRUE){
+    stop("A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
+  }
+
+  if (dplyr::is.tbl(date) == FALSE){
+    if (class(date) != "numeric"){
+      stop("An integer year must be given for 'date'.")
+    }
+  } else if (dplyr::is.tbl(date) == TRUE){
+    stop("An integer year must be given for 'date'.")
+  }
+
+  # capture dots
+  list <- rlang::list2(...)
+
+  # check for missing tibble
+  if (length(list) == 0){
+    stop("At least one tibble must be supplied after the 'type' and 'date' arguments.")
+  }
+
+  # check dots
+  list %>%
+    purrr::map_lgl(.f = dplyr::is.tbl) -> tblCheck
+
+  # evaluate result
+  if (all(tblCheck) == FALSE){
+    stop("Only collapsed objects may be passed through the dots. Name the 'type' and 'date' arguments.")
   }
 
   # check for incorrect parameters
@@ -143,11 +175,11 @@ cs_combine <- function(type = "year", date, ...){
 
     # create temporary date varible, filter based on supplied year, then arrange
     results %>%
-      cs_parse_date(var = DateOccur, dateVar = date, timeVar = time, keepDateTime = TRUE) %>%
-      dplyr::filter(year(date) == date) %>%
+      cs_parse_date(var = DateOccur, dateVar = ...date, timeVar = ...time, keepDateTime = TRUE) %>%
+      dplyr::filter(year(...date) == date) %>%
       dplyr::arrange(dateTime) %>%
       dplyr::mutate(cs_year = lubridate::year(dateTime)) %>%
-      dplyr::select(-date, -time, -dateTime) %>%
+      dplyr::select(-...date, -...time, -dateTime) %>%
       dplyr::select(cs_year, dplyr::everything()) -> results
 
   } else if (type == "ytd"){

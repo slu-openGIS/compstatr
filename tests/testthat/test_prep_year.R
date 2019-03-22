@@ -28,6 +28,24 @@ test_that("correctly specified functions execute without error", {
   expect_error(cs_prep_year(path = paste0(tmpdir,"/data")), NA)
 })
 
+## rename files again
+fs::file_move(paste0(tmpdir,"/data/january2017.csv"), paste0(tmpdir,"/data/january2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/february2017.csv"), paste0(tmpdir,"/data/february2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/march2017.csv"), paste0(tmpdir,"/data/march2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/april2017.csv"), paste0(tmpdir,"/data/april2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/may2017.csv"), paste0(tmpdir,"/data/may2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/june2017.csv"), paste0(tmpdir,"/data/june2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/july2017.csv"), paste0(tmpdir,"/data/july2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/august2017.csv"), paste0(tmpdir,"/data/august2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/september2017.csv"), paste0(tmpdir,"/data/september2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/october2017.csv"), paste0(tmpdir,"/data/october2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/november2017.csv"), paste0(tmpdir,"/data/november2017.CSV.html"))
+fs::file_move(paste0(tmpdir,"/data/december2017.csv"), paste0(tmpdir,"/data/december2017.CSV.html"))
+
+test_that("correctly specified functions execute without error", {
+  expect_error(cs_prep_year(path = paste0(tmpdir,"/data/")), NA)
+})
+
 # test output ------------------------------------------------
 
 ## load data

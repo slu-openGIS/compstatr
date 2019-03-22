@@ -25,6 +25,7 @@ test_that("misspecified functions return errors", {
 
 test_that("correctly specified functions execute without error", {
   expect_error(cs_replace_month(yearList13, month = 1, monthData = month), NA)
+  expect_error(cs_replace_month(yearList13, month = "February", monthData = month), NA)
   expect_error(cs_replace_month(yearList13, month = "MARCH", monthData = month), NA)
   expect_error(cs_replace_month(yearList13, month = "april", monthData = month), NA)
   expect_error(cs_replace_month(yearList13, month = "May", monthData = month), NA)

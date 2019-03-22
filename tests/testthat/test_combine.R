@@ -18,10 +18,24 @@ test_that("misspecified functions return errors", {
                "The output type must be a character scalar. Select one of 'year' or 'ytd'.")
   expect_error(cs_combine(type = c("year", "ytd"), date = 2017, yearList17, yearList18),
                "The output type must be a character scalar. Select one of 'year' or 'ytd'.")
+  expect_error(cs_combine(date = 2017, yearList17, yearList18),
+               "A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
+  expect_error(cs_combine(type = "year", yearList17, yearList18),
+               "An integer year must be given for 'date'.")
+  expect_error(cs_combine(yearList17, yearList18),
+               "A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
+  expect_error(cs_combine(yearList17),
+               "A timeframe must be given for 'type'. At this time, only 'year' is a valid argument.")
+})
+
+test_that("ytd returns error", {
+  expect_error(cs_combine(type = "ytd", date = 2017, yearList17, yearList18),
+               "This functionality is still in progress.")
 })
 
 # test function ------------------------------------------------
 
 test_that("correctly specified functions execute without error", {
   expect_error(cs_combine(type = "year", date = 2017, yearList17, yearList18), NA)
+  expect_error(cs_combine("year", 2017, yearList17, yearList18), NA)
 })
