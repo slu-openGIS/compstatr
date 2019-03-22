@@ -26,14 +26,14 @@ as policy makers to understand the effects of violent crime on urban
 communities.
 
 The City’s crime data, however, are difficult to work with and present a
-challenge for researchers. These data are inconsistently organized, with
-all data before 2013 and some months of 2013 itself having eighteen
-variables. Beginning during 2013, most (but not all) months have twenty
-variables, many of which are named differently from their pre-2014
-counterparts. These inconsistencies, and the fact that working with
-their data requires managing over 120 spreadsheets that each download
-with with a `.html` file extension, are the motivating force behind
-`compstatr`.
+number of challenges for researchers. These data are inconsistently
+organized, with all data before 2013 and some months of 2013 itself
+having eighteen variables. Beginning during 2013, most (but not all)
+months have twenty variables, many of which are named differently from
+their pre-2014 counterparts. These inconsistencies, and the fact that
+working with their data requires managing over 120 spreadsheets that
+each download with with a `.html` file extension, are the motivating
+force behind `compstatr`.
 
 We therefore provide a set of tools for accessing, preparing, editing,
 and mapping St. Louis [Metropolitan Police
