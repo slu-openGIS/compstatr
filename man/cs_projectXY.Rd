@@ -7,7 +7,7 @@
 cs_projectXY(.data, varX, varY, crs)
 }
 \arguments{
-\item{.data}{A tibble with crime data}
+\item{.data}{A tibble or data frame}
 
 \item{varX}{Name of column containing x coordinate data}
 
@@ -18,6 +18,21 @@ coordinate reference system}
 }
 \value{
 A \code{sf} object with the crime data projected for mapping.
+
+# load example data
+testData <- january2018
+
+# identify missing x and y coordinates
+testData <- cs_missingXY(testData, varX = XCoord, varY = YCoord, newVar = missingXY)
+
+# subset to remove missing data
+testData <- dplyr::filter(testData, missingXY == FALSE)
+
+# project data
+testData_sf <- cs_projectXY(testData, varX = XCoord, varY = YCoord)
+
+# project data and transform to new CRS
+testData_sf <- cs_projectXY(testData, varX = XCoord, varY = YCoord, crs = 4269)
 }
 \description{
 \code{cs_projectXY} converts STLMPD data into a simple

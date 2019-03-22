@@ -24,6 +24,10 @@ A tibble or data frame with a logical vector appended to it.
     logical column that identifies observations that are missing coordinate data.
 }
 \examples{
-cs_missingXY(january2018, varX = XCoord, varY = YCoord, newVar = missingXY)
+# load example data
+testData <- january2018
+
+# identify missing x and y coordinates
+testData <- cs_missingXY(testData, varX = XCoord, varY = YCoord, newVar = missingXY)
 
 }

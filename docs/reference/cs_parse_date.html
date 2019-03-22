@@ -122,19 +122,19 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>a data frame</p></td>
+      <td><p>A tibble or data frame</p></td>
     </tr>
     <tr>
       <th>var</th>
-      <td><p>a column containing month, day, year, and time seprated by "/"</p></td>
+      <td><p>A column containing month, day, year, and time seprated by <code>/</code></p></td>
     </tr>
     <tr>
       <th>dateVar</th>
-      <td><p>Name of new column containing date data</p></td>
+      <td><p>Name of new column to contain date data</p></td>
     </tr>
     <tr>
       <th>timeVar</th>
-      <td><p>Name of new column containing time data</p></td>
+      <td><p>Name of new column to contain time data</p></td>
     </tr>
     <tr>
       <th>tz</th>
@@ -148,12 +148,15 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Appends two columns to the data frame. One is the time data and the other is the date data</p>
+    <p>A copy of the object with two columns appended. One is the time data and the other is the date data.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_parse_date</span>(<span class='no'>testData</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>DateOccur</span>, <span class='kw'>dateVar</span> <span class='kw'>=</span> <span class='no'>Date</span>, <span class='kw'>timeVar</span> <span class='kw'>=</span> <span class='no'>Time</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># load example data</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
+
+<span class='co'># parse date occured</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_parse_date</span>(<span class='no'>testData</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>DateOccur</span>, <span class='kw'>dateVar</span> <span class='kw'>=</span> <span class='no'>dateOcc</span>, <span class='kw'>timeVar</span> <span class='kw'>=</span> <span class='no'>timeOcc</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

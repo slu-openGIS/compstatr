@@ -124,7 +124,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A tibble with crime data</p></td>
+      <td><p>A tibble or data frame</p></td>
     </tr>
     <tr>
       <th>varX</th>
@@ -144,6 +144,16 @@ coordinate reference system</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>sf</code> object with the crime data projected for mapping.</p>
+<p># load example data
+testData &lt;- january2018</p>
+<p># identify missing x and y coordinates
+testData &lt;- cs_missingXY(testData, varX = XCoord, varY = YCoord, newVar = missingXY)</p>
+<p># subset to remove missing data
+testData &lt;- dplyr::filter(testData, missingXY == FALSE)</p>
+<p># project data
+testData_sf &lt;- cs_projectXY(testData, varX = XCoord, varY = YCoord)</p>
+<p># project data and transform to new CRS
+testData_sf &lt;- cs_projectXY(testData, varX = XCoord, varY = YCoord, crs = 4269)</p>
     
 
   </div>

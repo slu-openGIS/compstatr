@@ -19,7 +19,10 @@ This function a specified column from the data frame and
     replaces cells that have the value 0 with NA
 }
 \examples{
+# load example data
 testData <- january2018
+
+# replace 0s in the x and y coordinate variables
 testData <- cs_replace0(testData, var = XCoord)
 testData <- cs_replace0(testData, var = YCoord)
 
