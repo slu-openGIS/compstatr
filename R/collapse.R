@@ -28,6 +28,22 @@
 #'
 #' @return A tibble containing all crime data in a given year-list object.
 #'
+#' @examples
+#' # load example object
+#' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
+#'
+#' # validate
+#' cs_validate(yearList17)
+#'
+#' # standaridze May, which has 26 variables
+#' yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
+#'
+#' # validate again to confirm fix
+#' cs_validate(yearList17)
+#'
+#' # collapse now that the data are valid
+#' crimeReports17 <- cs_collapse(yearList17)
+#'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr arrange
 #' @importFrom dplyr bind_rows
@@ -108,15 +124,28 @@ cs_collapse <- function(.data){
 #' @importFrom rlang list2
 #'
 #' @examples
-#' \dontrun{
-#' # remove crimes prior to 2018
-#' crimes18 <- cs_combine(type = "year", date = 2018, reported18)
+#' # load example objects
+#' load(system.file("testdata", "yearList17.rda", package = "compstatr", mustWork = TRUE))
+#' load(system.file("testdata", "yearList18.rda", package = "compstatr", mustWork = TRUE))
 #'
-#' # add in crimes reported in 2018 but that occured in 2017 while also
-#' # removing from the reported17 object any crimes that were reported
-#' # that year but occured in a prior year
-#' crimes17 <- cs_combine(type = "year", date = 2017, reported17, reported18)
-#' }
+#' # validate
+#' cs_validate(yearList17)
+#' cs_validate(yearList18)
+#'
+#' # standaridze May for the 2017 object, which has 26 variables
+#' yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
+#'
+#' # validate again to confirm fix
+#' cs_validate(yearList17)
+#'
+#' # collapse now that the data are valid
+#' crimeReports17 <- cs_collapse(yearList17)
+#' crimeReports18 <- cs_collapse(yearList18)
+#'
+#' # combine to add all sample 2017 crimes reported in 2018 to a single 2017 object
+#' # and remove from our 2017 object all sample crimes reported in 2017 that occured prior
+#' # to that year
+#' crime17 <- cs_combine(type = "year", date = 2017, crimeReports17, crimeReports18)
 #'
 #' @export
 cs_combine <- function(type = "year", date, ...){
