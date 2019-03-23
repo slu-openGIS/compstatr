@@ -9,6 +9,13 @@
 #' @param overwrite Overwrite files if they exist. If this is FALSE and the file exists
 #'     an error will be thrown.
 #'
+#' @examples
+#' # create temporary directory
+#' tmpdir <- tempdir()
+#'
+#' # load files into temporary directory
+#' cs_example(path = tmpdir)
+#'
 #' @importFrom fs file_copy
 #'
 #' @export
