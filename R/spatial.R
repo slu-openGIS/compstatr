@@ -145,6 +145,7 @@ cs_missingXY <- function(.data, varX, varY, newVar){
 #'
 #' @return A \code{sf} object with the crime data projected for mapping.
 #'
+#' @examples
 #' # load example data
 #' testData <- january2018
 #'
