@@ -18,3 +18,11 @@ Adds a sample set of twelve files, one for each month of 2017,
     observations. They can be used to practice preparing, loading, standardizing,
     and collapsing data.
 }
+\examples{
+# create temporary directory
+tmpdir <- tempdir()
+
+# load files into temporary directory
+cs_example(path = tmpdir)
+
+}
