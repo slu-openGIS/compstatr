@@ -7,17 +7,16 @@ Authors@R: c(
     person("Cree", "Foeller", ,"cree.foeller@slu.edu", c("aut")),
     person("Taylor", "Braswell", , , c("com"))
     )
-Description: Among cities in the United States, St. Louis has the 
-    distinction of having the highest or one of the highest violent crime 
-    and homicide rates since 2010. It therefore presents an important site
-    for social scientists, public health researchers, and health care
-    providers as well as policy makers to understand the effects of violent
-    crime on urban communities. The City's crime data, however, are difficult
-    to work with and present a number of challenges for researchers. We therefore provide
-    a set of tools for accessing and editing St. Louis Metropolitan Police 
-    Department (SLMPD) crime data, which are available on their website in csv form. 
-    The categorization tools that are provided will work with any police department 
-    that uses 5 and 6 digit numeric codes to identify specific crimes.
+Description: Provides a set of tools for creating yearly data sets of St. Louis 
+    Metropolitan Police Department (SLMPD) crime data, which are available from
+    January 2008 onward as monthly CSV releases on their website. Once validated
+    and created (monthly data releases have varying numbers of columns as well as 
+    different column names and formats), 'compstatr' also provides functions for 
+    categorizing and mapping crimes in St. Louis. The categorization tools that 
+    are provided will also work with any police department that uses 5 and 6 digit 
+    numeric codes to identify specific crimes. These data provide researchers
+    and policy makers detailed data for St. Louis, which in the last several years 
+    has had some of the highest or the highest violent crime rates in the United States.
 Depends: R (>= 3.3)
 License: GPL-3
 URL: https://github.com/slu-openGIS/compstatr
