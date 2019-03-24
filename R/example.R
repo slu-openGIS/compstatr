@@ -11,13 +11,16 @@
 #'
 #' @examples
 #' # create temporary directory
-#' tmpdir <- tempdir()
+#' fs::dir_create("data/")
 #'
-#' # load files into temporary directory
-#' cs_example(path = tmpdir)
+#' # load sample files into temporary directory
+#' cs_example(path = "data/")
 #'
-#' # remove temporary directory
-#' unlink(tmpdir, recursive = TRUE)
+#' # list files
+#' list.files("data/")
+#'
+#' # delete temporary folder
+#' fs::dir_delete("data/")
 #'
 #' @importFrom fs file_copy
 #'

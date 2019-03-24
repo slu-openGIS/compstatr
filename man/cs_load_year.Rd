@@ -38,4 +38,7 @@ yearList17 <- cs_load_year(path = "data/")
 # delete temporary folder
 fs::dir_delete("data/")
 
+# print year-list object
+yearList17
+
 }

@@ -41,4 +41,5 @@ reference:
   - title: "Sample Data"
     desc: "Example Data for Practicing Wrangling and Mapping"
     contents:
+    - cs_example
     - january2018

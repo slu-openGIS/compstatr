@@ -32,8 +32,26 @@ fs::dir_create("data/")
 # load sample files into temporary directory
 cs_example(path = "data/")
 
+# list files
+list.files("data/")
+
 # prep sample files
 cs_prep_year(path = "data/")
+
+# list files again
+list.files("data/")
+
+# delete temporary folder
+fs::dir_delete("data/")
+
+# create temporary directory
+fs::dir_create("data/")
+
+# load sample files into temporary directory
+cs_example(path = "data/")
+
+# prep sample files
+cs_prep_year(path = "data/", verbose = TRUE)
 
 # delete temporary folder
 fs::dir_delete("data/")
