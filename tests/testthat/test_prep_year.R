@@ -84,7 +84,7 @@ test_that("too many files trigger error", {
 })
 
 ## delete files
-fs::file_delete(paste0(tmpdir,"/data/december2017.CSV.html"))
+fs::file_delete(paste0(tmpdir,"/data/December2017.CSV.html"))
 fs::file_delete(paste0(tmpdir,"/data/december2018.CSV.html"))
 
 test_that("too few files triggers warning", {
