@@ -26,8 +26,16 @@ Data downloaded from the St. Louis Metropolitan Police Department
    and all should correspond to the same year.
 }
 \examples{
-\dontrun{
-cs_prep_year(path = "data/raw/2008")
-}
+# create temporary directory
+fs::dir_create("data/")
+
+# load sample files into temporary directory
+cs_example(path = "data/")
+
+# prep sample files
+cs_prep_year(path = "data/")
+
+# delete temporary folder
+fs::dir_delete("data/")
 
 }

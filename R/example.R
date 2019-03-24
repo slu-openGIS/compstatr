@@ -16,6 +16,9 @@
 #' # load files into temporary directory
 #' cs_example(path = tmpdir)
 #'
+#' # remove temporary directory
+#' unlink(tmpdir, recursive = TRUE)
+#'
 #' @importFrom fs file_copy
 #'
 #' @export
