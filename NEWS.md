@@ -4,6 +4,10 @@
 * add Zenodo release badge to `README`
 * update installation instructions on `README` and on the `pkgdown` site
 * add `cran-comments.md`
+* in response to initial feedback from Matthias Sterrer (CRAN):
+    * add `cs_example()` function for creating a sample year worth of `.csv` files 
+    * add executable examples for `cs_prep_year()`, `cs_load_year()`, and `cs_projectXY`
+    * clarify `DESCRIPTION` for package
 
 # compstatr 0.1.0
 
