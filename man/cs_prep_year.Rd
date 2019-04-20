@@ -27,33 +27,34 @@ Data downloaded from the St. Louis Metropolitan Police Department
 }
 \examples{
 # create temporary directory
-fs::dir_create("data/")
+tmpdir <- tempdir()
+fs::dir_create(paste0(tmpdir,"/data/"))
 
 # load sample files into temporary directory
-cs_example(path = "data/")
+cs_example(path = paste0(tmpdir,"/data/"))
 
 # list files
-list.files("data/")
+list.files(paste0(tmpdir,"/data/"))
 
 # prep sample files
-cs_prep_year(path = "data/")
+cs_prep_year(path = paste0(tmpdir,"/data/"))
 
 # list files again
-list.files("data/")
+list.files(paste0(tmpdir,"/data/"))
 
 # delete temporary folder
-fs::dir_delete("data/")
+fs::dir_delete(paste0(tmpdir,"/data/"))
 
 # create temporary directory
-fs::dir_create("data/")
+fs::dir_create(paste0(tmpdir,"/data/"))
 
 # load sample files into temporary directory
-cs_example(path = "data/")
+cs_example(path = paste0(tmpdir,"/data/"))
 
 # prep sample files
-cs_prep_year(path = "data/", verbose = TRUE)
+cs_prep_year(path = paste0(tmpdir,"/data/"), verbose = TRUE)
 
 # delete temporary folder
-fs::dir_delete("data/")
+unlink(tmpdir, recursive = TRUE)
 
 }

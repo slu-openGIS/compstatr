@@ -16,7 +16,7 @@ cs_crime(.data, var, newVar, crime)
 \item{crime}{A string describing the crime type to be identified}
 }
 \value{
-A cope of the object with a logical vector that is \code{TRUE} if the given crime matches
+A copy of the object with a logical vector that is \code{TRUE} if the given crime matches
     the category given in the function.
 }
 \description{

@@ -20,15 +20,16 @@ Adds a sample set of twelve files, one for each month of 2017,
 }
 \examples{
 # create temporary directory
-fs::dir_create("data/")
+tmpdir <- tempdir()
+fs::dir_create(paste0(tmpdir,"/data/"))
 
 # load sample files into temporary directory
-cs_example(path = "data/")
+cs_example(path = paste0(tmpdir,"/data/"))
 
 # list files
-list.files("data/")
+list.files(paste0(tmpdir,"/data/"))
 
 # delete temporary folder
-fs::dir_delete("data/")
+unlink(tmpdir, recursive = TRUE)
 
 }
