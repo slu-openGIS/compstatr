@@ -5,6 +5,8 @@
 #'     columns. In order to faciliate geocoding, this function combines the fields and
 #'     removes inappropriate characters in the address fields.
 #'
+#' @usage cs_address(.data, address, street, newVar)
+#'
 #' @param .data A tibble or data frame
 #' @param address Name of address number variable (typically either \code{ILEADSAddress}
 #'     or \code{CADAddress})
@@ -14,6 +16,13 @@
 #'
 #' @return A copy of the object with a character vector that contains the concatenated
 #'     street address data.
+#'
+#' @examples
+#' # load example data
+#' testData <- january2018
+#'
+#' # add concatenated address variable
+#' testData <- cs_address(testData, address = ILEADSAddress, street = ILEADSStreet, newVar = address)
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
@@ -25,6 +34,7 @@
 #' @importFrom stringr str_replace
 #' @importFrom stringr str_trim
 #'
+#' @export
 cs_address <- function(.data, address, street, newVar){
 
   # check for missing parameters

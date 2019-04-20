@@ -27,3 +27,11 @@ The street address data in SLMPD releases (either \code{ILEADSAddress} and
     columns. In order to faciliate geocoding, this function combines the fields and
     removes inappropriate characters in the address fields.
 }
+\examples{
+# load example data
+testData <- january2018
+
+# add concatenated address variable
+testData <- cs_address(testData, address = ILEADSAddress, street = ILEADSStreet, newVar = address)
+
+}

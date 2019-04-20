@@ -155,6 +155,12 @@ or <code>CADStreet</code>)</p></td>
     street address data.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load example data</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
+
+<span class='co'># add concatenated address variable</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_address</span>(<span class='no'>testData</span>, <span class='kw'>address</span> <span class='kw'>=</span> <span class='no'>ILEADSAddress</span>, <span class='kw'>street</span> <span class='kw'>=</span> <span class='no'>ILEADSStreet</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>address</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,7 +168,9 @@ or <code>CADStreet</code>)</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
