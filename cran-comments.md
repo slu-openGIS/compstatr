@@ -1,7 +1,13 @@
 ## Release summary
-This is the first re-submission of our initial CRAN submission based on feedback from Matthias Sterrer. 
+This is the second re-submission of our initial CRAN submission based on feedback from Matthias Sterrer and then Swetlana Herbrandt.
 
-We have made the following changes:
+The second resubmission made the following changes:
+
+1. Added a link to the `DESCRIPTION` file to the data source
+2. Ensured that the examples in `example.R` and `create.R` read from and write to a temporary directory
+3. add a function `cs_address()` to facilitate concatenation of street addresses prior to geocoding
+
+The first resubmission made the following changes:
 
 1. add executable examples for `cs_prep_year()`, `cs_load_year()`, and `cs_projectXY`
 2. in order to facilitate (1), we have added a `cs_example()` function for creating a sample year worth of `.csv` files
