@@ -34,7 +34,7 @@
 #' # list files again
 #' list.files(paste0(tmpdir,"/data/"))
 #'
-#' # delete temporary folder
+#' # delete data
 #' fs::dir_delete(paste0(tmpdir,"/data/"))
 #'
 #' # create temporary directory
@@ -46,8 +46,8 @@
 #' # prep sample files
 #' cs_prep_year(path = paste0(tmpdir,"/data/"), verbose = TRUE)
 #'
-#' # delete temporary folder
-#' unlink(tmpdir, recursive = TRUE)
+#' # delete data again
+#' fs::dir_delete(paste0(tmpdir,"/data/"))
 #'
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr filter
@@ -181,8 +181,8 @@ cs_edit_filename <- function(path, file){
 #' # load sample files
 #' yearList17 <- cs_load_year(path = paste0(tmpdir,"/data/"))
 #'
-#' # delete temporary folder
-#' unlink(tmpdir, recursive = TRUE)
+#' # delete data
+#' fs::dir_delete(paste0(tmpdir,"/data/"))
 #'
 #' # print year-list object
 #' yearList17

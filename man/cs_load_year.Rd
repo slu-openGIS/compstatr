@@ -36,8 +36,8 @@ cs_prep_year(path = paste0(tmpdir,"/data/"))
 # load sample files
 yearList17 <- cs_load_year(path = paste0(tmpdir,"/data/"))
 
-# delete temporary folder
-unlink(tmpdir, recursive = TRUE)
+# delete data
+fs::dir_delete(paste0(tmpdir,"/data/"))
 
 # print year-list object
 yearList17

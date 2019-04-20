@@ -34,6 +34,7 @@ reference:
   - title: "Spatial Data"
     desc: "Wrangle and Project Crimes"
     contents:
+    - cs_address
     - cs_replace0
     - cs_missingXY
     - cs_projectXY

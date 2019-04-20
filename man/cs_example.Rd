@@ -29,7 +29,7 @@ cs_example(path = paste0(tmpdir,"/data/"))
 # list files
 list.files(paste0(tmpdir,"/data/"))
 
-# delete temporary folder
-unlink(tmpdir, recursive = TRUE)
+# delete data
+fs::dir_delete(paste0(tmpdir,"/data/"))
 
 }

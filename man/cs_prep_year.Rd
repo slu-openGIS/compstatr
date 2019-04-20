@@ -42,7 +42,7 @@ cs_prep_year(path = paste0(tmpdir,"/data/"))
 # list files again
 list.files(paste0(tmpdir,"/data/"))
 
-# delete temporary folder
+# delete data
 fs::dir_delete(paste0(tmpdir,"/data/"))
 
 # create temporary directory
@@ -54,7 +54,7 @@ cs_example(path = paste0(tmpdir,"/data/"))
 # prep sample files
 cs_prep_year(path = paste0(tmpdir,"/data/"), verbose = TRUE)
 
-# delete temporary folder
-unlink(tmpdir, recursive = TRUE)
+# delete data again
+fs::dir_delete(paste0(tmpdir,"/data/"))
 
 }
