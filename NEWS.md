@@ -9,7 +9,7 @@
     * add executable examples for `cs_prep_year()`, `cs_load_year()`, and `cs_projectXY`
     * clarify `DESCRIPTION` for package
 * in response to additional feedback from Swetlana Herbrandt (CRAN):
-    * added a link to the `DESCRIPTION` file to the STLMPD data source
+    * added a link to the `DESCRIPTION` file to the SLMPD data source
     * ensured that the examples in `example.R` and `create.R` read from and write to a temporary directory
 * add a function `cs_address()` to facilitate concatenation of street addresses prior to geocoding
 
