@@ -29,7 +29,7 @@ cs_address <- function(.data, address, street, newVar){
 
   # check for missing parameters
   if (missing(.data)) {
-    stop('An existing data frame with crime data must be specified for .data.')
+    stop("An existing data frame with crime data must be specified for '.data'.")
   }
 
   if (missing(address)) {
