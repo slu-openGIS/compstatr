@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Collapse Months in Year List Object into Single Tibble — cs_collapse • compstatr</title>
+<title>Create a Single Address Field — cs_address • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,12 @@
 
 
 
-<meta property="og:title" content="Collapse Months in Year List Object into Single Tibble — cs_collapse" />
+<meta property="og:title" content="Create a Single Address Field — cs_address" />
 
-<meta property="og:description" content="This function takes a year-list containing individual tibbles - one per
-   month - that have been validated and collapses them into a single tibble." />
+<meta property="og:description" content="The street address data in SLMPD releases (either ILEADSAddress and
+    ILEADSStreet or CADAddress and CADStreet) are stored in separate
+    columns. In order to faciliate geocoding, this function combines the fields and
+    removes inappropriate characters in the address fields." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -108,67 +110,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Collapse Months in Year List Object into Single Tibble</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/collapse.R'><code>R/collapse.R</code></a></small>
-    <div class="hidden name"><code>cs_collapse.Rd</code></div>
+    <h1>Create a Single Address Field</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/address.R'><code>R/address.R</code></a></small>
+    <div class="hidden name"><code>cs_address.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function takes a year-list containing individual tibbles - one per
-   month - that have been validated and collapses them into a single tibble.</p>
+    <p>The street address data in SLMPD releases (either <code>ILEADSAddress</code> and
+    <code>ILEADSStreet</code> or <code>CADAddress</code> and <code>CADStreet</code>) are stored in separate
+    columns. In order to faciliate geocoding, this function combines the fields and
+    removes inappropriate characters in the address fields.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cs_collapse</span>(<span class='no'>.data</span>)</pre>
+    <pre class="usage"><span class='fu'>cs_address</span>(<span class='no'>.data</span>, <span class='no'>address</span>, <span class='no'>street</span>, <span class='no'>newVar</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A list containing monthly crime data</p></td>
+      <td><p>A tibble or data frame</p></td>
+    </tr>
+    <tr>
+      <th>address</th>
+      <td><p>Name of address number variable (typically either <code>ILEADSAddress</code>
+or <code>CADAddress</code>)</p></td>
+    </tr>
+    <tr>
+      <th>street</th>
+      <td><p>Name of street name variable (typically either <code>ILEADSStreet</code>
+or <code>CADStreet</code>)</p></td>
+    </tr>
+    <tr>
+      <th>newVar</th>
+      <td><p>Name of new variable to store concatenated address</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble containing all crime data in a given year-list object.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>cs_collapse</code> applies common sense variable classes to a number
-   of variables. This is motivated by issues that originate with SLMPD <code>.csv</code>
-   files. When they are imported, the <span class="pkg">readr</span> package sometimes applies
-   the incorrect variable classes because of formatting issues in the tables.
-   Since the tables have inconsistent variable names and numbers of variables,
-   all variables are imported as <code>chr</code> data. During <code>cs_collapse</code>'s
-   execution, the following changes are made:</p>
-<dl class='dl-horizontal'>
-  <dt>Count</dt><dd><p>Converted to <code>int</code></p></dd>
-  <dt>Crime</dt><dd><p>Converted to <code>int</code></p></dd>
-  <dt>District</dt><dd><p>Converted to <code>int</code></p></dd>
-  <dt>ILEADSAddress</dt><dd><p>Converted to <code>int</code></p></dd>
-  <dt>Neighborhood</dt><dd><p>Converted to <code>int</code></p></dd>
-  <dt>CADAddress</dt><dd><p>Converted to <code>int</code></p></dd>
-  <dt>XCoord</dt><dd><p>Converted to <code>dbl</code></p></dd>
-  <dt>YCoord</dt><dd><p>Converted to <code>dbl</code></p></dd>
-</dl>
+    <p>A copy of the object with a character vector that contains the concatenated
+    street address data.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># load example year-list object</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+    <pre class="examples"><div class='input'><span class='co'># load example data</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
 
-<span class='co'># validate</span>
-<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-<span class='co'># standaridze May, which has 26 variables</span>
-<span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_standardize.html'>cs_standardize</a></span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>26</span>)
-
-<span class='co'># validate again to confirm fix</span>
-<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='co'># collapse now that the data are valid</span>
-<span class='no'>crimeReports17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_collapse</span>(<span class='no'>yearList17</span>)</div></pre>
+<span class='co'># add concatenated address variable</span>
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_address</span>(<span class='no'>testData</span>, <span class='kw'>address</span> <span class='kw'>=</span> <span class='no'>ILEADSAddress</span>, <span class='kw'>street</span> <span class='kw'>=</span> <span class='no'>ILEADSStreet</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>address</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -176,8 +168,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

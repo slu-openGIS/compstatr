@@ -18,9 +18,36 @@
 #'     specified path.
 #'
 #' @examples
-#' \dontrun{
-#' cs_prep_year(path = "data/raw/2008")
-#' }
+#' # create temporary directory
+#' tmpdir <- tempdir()
+#' fs::dir_create(paste0(tmpdir,"/data/"))
+#'
+#' # load sample files into temporary directory
+#' cs_example(path = paste0(tmpdir,"/data/"))
+#'
+#' # list files
+#' list.files(paste0(tmpdir,"/data/"))
+#'
+#' # prep sample files
+#' cs_prep_year(path = paste0(tmpdir,"/data/"))
+#'
+#' # list files again
+#' list.files(paste0(tmpdir,"/data/"))
+#'
+#' # delete data
+#' fs::dir_delete(paste0(tmpdir,"/data/"))
+#'
+#' # create temporary directory
+#' fs::dir_create(paste0(tmpdir,"/data/"))
+#'
+#' # load sample files into temporary directory
+#' cs_example(path = paste0(tmpdir,"/data/"))
+#'
+#' # prep sample files
+#' cs_prep_year(path = paste0(tmpdir,"/data/"), verbose = TRUE)
+#'
+#' # delete data again
+#' fs::dir_delete(paste0(tmpdir,"/data/"))
 #'
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr filter
@@ -141,9 +168,24 @@ cs_edit_filename <- function(path, file){
 #'    of crime data stored within a list.
 #'
 #' @examples
-#' \dontrun{
-#' yearList08 <- cs_load_year(path = "data/raw/2008")
-#' }
+#' # create temporary directory
+#' tmpdir <- tempdir()
+#' fs::dir_create(paste0(tmpdir,"/data/"))
+#'
+#' # load sample files into temporary directory
+#' cs_example(path = paste0(tmpdir,"/data/"))
+#'
+#' # prep sample files
+#' cs_prep_year(path = paste0(tmpdir,"/data/"))
+#'
+#' # load sample files
+#' yearList17 <- cs_load_year(path = paste0(tmpdir,"/data/"))
+#'
+#' # delete data
+#' fs::dir_delete(paste0(tmpdir,"/data/"))
+#'
+#' # print year-list object
+#' yearList17
 #'
 #' @importFrom dplyr %>%
 #' @importFrom purrr map

@@ -1,59 +1,31 @@
 context("test cs_load_year function")
 
+## clean-up temp directories
+tmpdir <- tempdir()
+unlink(tmpdir, recursive = TRUE)
+
 # load data and save items to temp directory ------------------------------------------------
-## load data
-load(system.file("testdata", "year17.rda", package = "compstatr", mustWork = TRUE))
 
 ## create temp directory with data subdir
 tmpdir <- tempdir()
-fs::dir_create(paste0(tmpdir,"/data2/"))
+fs::dir_create(paste0(tmpdir,"/data/"))
 
 ## write files
-readr::write_csv(jan17, path = paste0(tmpdir,"/data2/january2017.csv"))
-readr::write_csv(feb17, path = paste0(tmpdir,"/data2/february2017.csv"))
-readr::write_csv(mar17, path = paste0(tmpdir,"/data2/march2017.csv"))
-readr::write_csv(apr17, path = paste0(tmpdir,"/data2/april2017.csv"))
-readr::write_csv(may17, path = paste0(tmpdir,"/data2/may2017.csv"))
-readr::write_csv(jun17, path = paste0(tmpdir,"/data2/june2017.csv"))
-readr::write_csv(jul17, path = paste0(tmpdir,"/data2/july2017.csv"))
-readr::write_csv(aug17, path = paste0(tmpdir,"/data2/august2017.csv"))
-readr::write_csv(sep17, path = paste0(tmpdir,"/data2/september2017.csv"))
-readr::write_csv(oct17, path = paste0(tmpdir,"/data2/october2017.csv"))
-readr::write_csv(nov17, path = paste0(tmpdir,"/data2/november2017.csv"))
-readr::write_csv(dec17, path = paste0(tmpdir,"/data2/december2017.csv"))
+cs_example(path = paste0(tmpdir, "/data/"))
+
+## prep files
+cs_prep_year(path = paste0(tmpdir, "/data/"))
 
 # test function ------------------------------------------------
 
 test_that("correctly specified functions execute without error", {
-  expect_error(cs_load_year(path = paste0(tmpdir,"/data2")), NA)
-})
-
-# test parameters ------------------------------------------------
-
-## add additional files
-readr::write_csv(dec17, path = paste0(tmpdir,"/data2/december2018.csv"))
-
-test_that("too many files trigger error", {
-  expect_error(cs_load_year(path = paste0(tmpdir,"/data2")),
-               "There are too many files in the specified folder. Load crime files in yearly batches of 12 monthly files.")
-})
-
-## delete files
-fs::file_delete(paste0(tmpdir,"/data2/december2017.csv"))
-fs::file_delete(paste0(tmpdir,"/data2/december2018.csv"))
-
-test_that("too few files triggers warning", {
-  expect_warning(cs_load_year(path = paste0(tmpdir,"/data2")),
-                 "There are fewer than 12 files in the specified folder. You are only loading a partial year.")
+  expect_error(cs_load_year(path = paste0(tmpdir, "/data/")), NA)
 })
 
 # test output ------------------------------------------------
 
-## add additional file back in
-readr::write_csv(dec17, path = paste0(tmpdir,"/data2/december2017.csv"))
-
 ## create result
-result <- cs_load_year(path = paste0(tmpdir,"/data2"))
+result <- cs_load_year(path = paste0(tmpdir,"/data"))
 
 ## create master and result for object names
 names_master <- month.name
@@ -68,3 +40,26 @@ test_that("output is correct", {
   expect_equal("list" %in% class(result), TRUE)
   expect_equal(names_master, names_result)
 })
+
+# test parameters ------------------------------------------------
+
+## add additional files
+readr::write_csv(january2018, path = paste0(tmpdir,"/data/january2018.csv"))
+
+test_that("too many files trigger error", {
+  expect_error(cs_load_year(path = paste0(tmpdir,"/data")),
+               "There are too many files in the specified folder. Load crime files in yearly batches of 12 monthly files.")
+})
+
+## delete files
+fs::file_delete(paste0(tmpdir,"/data/december2017.csv"))
+fs::file_delete(paste0(tmpdir,"/data/january2018.csv"))
+
+test_that("too few files triggers warning", {
+  expect_warning(cs_load_year(path = paste0(tmpdir,"/data")),
+                 "There are fewer than 12 files in the specified folder. You are only loading a partial year.")
+})
+
+# final options ------------------------------------------------
+
+unlink(tmpdir, recursive = TRUE)

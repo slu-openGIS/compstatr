@@ -30,9 +30,15 @@ The City's crime data, however, are difficult to work with and present a number 
 We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files. The categorization tools that are provided will work with any police department that uses 5 and 6 digit numeric codes to identify specific crimes.
 
 ## Installation
-You can install compstatr from Github with `remotes`:
+The easiest way to get `compstatr` is to install it from CRAN:
 
-```{r gh-installation, eval = FALSE}
+``` r
+install.packages("compstatr")
+```
+
+The development version of `compstatr` can be accessed from GitHub with `remotes`:
+
+```r
 # install.packages("remotes")
 remotes::install_github("slu-openGIS/compstatr")
 ```

@@ -23,8 +23,23 @@ A year-list object containing 12 tibbles - one per month - worth
    will be converted numeric when doing so is applicable.
 }
 \examples{
-\dontrun{
-yearList08 <- cs_load_year(path = "data/raw/2008")
-}
+# create temporary directory
+tmpdir <- tempdir()
+fs::dir_create(paste0(tmpdir,"/data/"))
+
+# load sample files into temporary directory
+cs_example(path = paste0(tmpdir,"/data/"))
+
+# prep sample files
+cs_prep_year(path = paste0(tmpdir,"/data/"))
+
+# load sample files
+yearList17 <- cs_load_year(path = paste0(tmpdir,"/data/"))
+
+# delete data
+fs::dir_delete(paste0(tmpdir,"/data/"))
+
+# print year-list object
+yearList17
 
 }

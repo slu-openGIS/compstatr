@@ -10,17 +10,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Tools for St. Louis Crime Data">
-<meta property="og:description" content="Among cities in the United States, St. Louis has the 
-    distinction of having the highest or one of the highest violent crime 
-    and homicide rates since 2010. It therefore presents an important site
-    for social scientists, public health researchers, and health care
-    providers as well as policy makers to understand the effects of violent
-    crime on urban communities. The City's crime data, however, are difficult
-    to work with and present a number of challenges for researchers. We therefore provide
-    a set of tools for accessing and editing St. Louis Metropolitan Police 
-    Department (SLMPD) crime data, which are available on their website in csv form. 
-    The categorization tools that are provided will work with any police department 
-    that uses 5 and 6 digit numeric codes to identify specific crimes.">
+<meta property="og:description" content="Provides a set of tools for creating yearly data sets of St. Louis 
+    Metropolitan Police Department (SLMPD) crime data, which are available from
+    January 2008 onward as monthly CSV releases on their website 
+    (&lt;http:www.slmpd.org/Crimereports.shtml&gt;). Once data are validated and created 
+    (monthly data releases have varying numbers of columns 
+    as well as different column names and formats), 'compstatr' also provides 
+    functions for categorizing and mapping crimes in St. Louis. The categorization 
+    tools that are provided will also work with any police department that uses 5 
+    and 6 digit numeric codes to identify specific crimes. These data provide researchers
+    and policy makers detailed data for St. Louis, which in the last several years 
+    has had some of the highest or the highest violent crime rates in the United States.">
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -94,9 +94,11 @@
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
-<p>If the <code>sf</code> package is already installed, the development version of <code>compstatr</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/stlcsb"</span>)</a></code></pre></div>
+<p>If the <code>sf</code> package is already installed, the easiest way to get <code>compstatr</code> is to install it from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</a></code></pre></div>
+<p>The development version of <code>compstatr</code> can be accessed from GitHub with <code>remotes</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</a></code></pre></div>
 <p>Additional details, including some tips for installing <code>sf</code>, can be found in the <a href="articles/compstatr.html#installation">Get started article</a>.</p>
 </div>
 <div id="resources" class="section level2">

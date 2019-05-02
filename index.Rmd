@@ -21,11 +21,17 @@ knitr::opts_chunk$set(
 The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis's [Metropolitan Police Department](http://www.slmpd.org).
 
 ## Quick Start
-If the `sf` package is already installed, the development version of `compstatr` can be accessed from GitHub with `remotes`:
+If the `sf` package is already installed, the easiest way to get `compstatr` is to install it from CRAN:
+
+``` r
+install.packages("compstatr")
+```
+
+The development version of `compstatr` can be accessed from GitHub with `remotes`:
 
 ```r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/stlcsb")
+remotes::install_github("slu-openGIS/compstatr")
 ```
 
 Additional details, including some tips for installing `sf`, can be found in the [Get started article](articles/compstatr.html#installation).

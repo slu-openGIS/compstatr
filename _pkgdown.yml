@@ -34,6 +34,7 @@ reference:
   - title: "Spatial Data"
     desc: "Wrangle and Project Crimes"
     contents:
+    - cs_address
     - cs_replace0
     - cs_missingXY
     - cs_projectXY
@@ -41,4 +42,5 @@ reference:
   - title: "Sample Data"
     desc: "Example Data for Practicing Wrangling and Mapping"
     contents:
+    - cs_example
     - january2018

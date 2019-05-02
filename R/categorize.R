@@ -71,7 +71,7 @@
 #' @param newVar Name of output variable to be created with logical data
 #' @param crime A string describing the crime type to be identified
 #'
-#' @return A cope of the object with a logical vector that is \code{TRUE} if the given crime matches
+#' @return A copy of the object with a logical vector that is \code{TRUE} if the given crime matches
 #'     the category given in the function.
 #'
 #' @examples
