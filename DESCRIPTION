@@ -28,14 +28,17 @@ RoxygenNote: 6.1.1
 Imports: 
     dplyr,
     fs,
+    httr,
     lubridate,
     purrr,
     rlang,
     readr,
+    rvest,
     sf,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    xml2
 Suggests:
     testthat,
     knitr,
