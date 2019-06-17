@@ -9,7 +9,7 @@
 #'
 #' @return A year-list object ready for validation.
 #'
-#' @importFrom dplyr %>% as_tibble filter mutate
+#' @importFrom dplyr %>% as_tibble filter mutate mutate_all
 #' @importFrom httr content
 #' @importFrom purrr map
 #' @importFrom rvest html_form html_session
@@ -56,6 +56,16 @@ cs_get_data <- function(year, month){
       unlist(value) %>%
       purrr::map(~cs_download(value = .x, url = url, session = page, form = form)) -> out
 
+    # create list of months associated with year list object items
+    # out %>%
+    #  purrr::map(cs_identifyMonth) -> nameList
+
+    # convert list of months to vector
+    # nameVector <- unlist(nameList, recursive = TRUE, use.names = TRUE)
+
+    # apply vector to data
+    # names(out) <- nameVector
+
   } else if (missing(month) == FALSE){
 
     # store value
@@ -96,8 +106,11 @@ cs_download <- function(value, url, session, form){
   ))
 
   # generate output
-  out <- utils::read.csv(textConnection(httr::content(response$response, as = 'text')), stringsAsFactors = FALSE)
+  out <- utils::read.csv(textConnection(suppressMessages(httr::content(response$response, as = 'text'))), stringsAsFactors = FALSE)
   out <- dplyr::as_tibble(out)
+
+  # convert all columns to character (to match on disk workflow)
+  out <- dplyr::mutate_all(out, as.character)
 
   # return output
   return(out)
