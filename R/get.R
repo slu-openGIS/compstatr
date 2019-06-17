@@ -60,6 +60,11 @@ cs_get_data <- function(year, month, index){
       purrr::map(~cs_download(value = .x, url = url, session = page, form = form)) -> out
 
     # create list of months associated with year list object items
+    ## this needs to be fixed before deployment to master - the issue is that the scraped
+    ## versions of the data do no have the same variable names as the on disk versions.
+    ## The plan is to use janitor, already included in the DESCRIPTION, and apply
+    ## clean_names() to hopefully standardize variable names after import and/or download.
+
    # out %>%
    #  purrr::map(cs_identifyMonth) -> nameList
 
