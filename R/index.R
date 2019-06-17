@@ -44,7 +44,8 @@ cs_create_index <- function(){
   out <- dplyr::mutate(out, year = as.numeric(stringr::str_sub(date, -4)))
   out <- dplyr::mutate(out, date = paste(month, year))
   out <- dplyr::mutate(out, month = match(month, month.name))
-  out <- dplyr::select(out, page, row, year, month, date)
+  out <- dplyr::mutate(out, value = paste(page, row))
+  out <- dplyr::select(out, page, row, value, year, month, date)
 
   # return output
   return(out)

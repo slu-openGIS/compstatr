@@ -33,9 +33,6 @@ cs_get_data <- function(year, month){
     index <- dplyr::filter(index, year == x & month == y)
   }
 
-  # create value
-  index <- dplyr::mutate(index, value = paste(page, row))
-
   # url
   url <- "http://www.slmpd.org/CrimeReport.aspx"
 
@@ -57,14 +54,14 @@ cs_get_data <- function(year, month){
       purrr::map(~cs_download(value = .x, url = url, session = page, form = form)) -> out
 
     # create list of months associated with year list object items
-    # out %>%
-    #  purrr::map(cs_identifyMonth) -> nameList
+    out %>%
+      purrr::map(cs_identifyMonth) -> nameList
 
     # convert list of months to vector
-    # nameVector <- unlist(nameList, recursive = TRUE, use.names = TRUE)
+    nameVector <- unlist(nameList, recursive = TRUE, use.names = TRUE)
 
     # apply vector to data
-    # names(out) <- nameVector
+    names(out) <- nameVector
 
   } else if (missing(month) == FALSE){
 
@@ -106,7 +103,9 @@ cs_download <- function(value, url, session, form){
   ))
 
   # generate output
-  out <- utils::read.csv(textConnection(suppressMessages(httr::content(response$response, as = 'text'))), stringsAsFactors = FALSE)
+  out <- utils::read.csv(textConnection(
+    suppressMessages(httr::content(response$response, as = "text", encoding = "ISO-8859-1"))),
+    stringsAsFactors = FALSE)
   out <- dplyr::as_tibble(out)
 
   # convert all columns to character (to match on disk workflow)
