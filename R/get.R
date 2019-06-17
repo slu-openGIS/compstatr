@@ -5,7 +5,11 @@
 #' @usage cs_get_data(year, month)
 #'
 #' @param year A year value in the style \code{YYYY}
-#' @param month A month number
+#' @param month Optional; a month number
+#' @param index Optional; an index object created with \code{\link{cs_create_index}}.
+#'     Building the index prior to downloading data, especially if you are downloading
+#'     multiple years worth of data, will result in dramatically faster execution
+#'     times for this function.
 #'
 #' @return A year-list object ready for validation.
 #'
@@ -17,10 +21,12 @@
 #' @importFrom utils read.csv
 #'
 #' @export
-cs_get_data <- function(year, month){
+cs_get_data <- function(year, month, index){
 
-  # build index
-  index <- cs_create_index()
+  # optionally build index
+  if (missing(index)){
+    index <- cs_create_index()
+  }
 
   # rename year and month
   x <- year
