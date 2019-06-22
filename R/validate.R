@@ -268,15 +268,15 @@ cs_checkCodedMonth <- function(monthItem){
   # check to see if coded month values are identical
   if (length(monthItem) == 18){
 
-    monthVal <- length(unique(monthItem$MonthReportedtoMSHP))
+    monthVal <- length(unique(monthItem$month_reportedto_mshp))
 
   } else if (length(monthItem) == 20){
 
-    monthVal <- length(unique(monthItem$CodedMonth))
+    monthVal <- length(unique(monthItem$coded_month))
 
   } else if (length(monthItem) == 26){
 
-    monthVal <- length(unique(monthItem$`Coded Month`))
+    monthVal <- length(unique(monthItem$coded_month))
 
   }
 
@@ -306,10 +306,10 @@ cs_checkVarNames <- function(monthItem){
 
   if (ncol(monthItem) == 20){
 
-    validVars <- c("Complaint", "CodedMonth", "DateOccur", "FlagCrime", "FlagUnfounded",
-                   "FlagAdministrative", "Count", "FlagCleanup", "Crime", "District",
-                   "Description", "ILEADSAddress", "ILEADSStreet", "Neighborhood", "LocationName",
-                   "LocationComment", "CADAddress", "CADStreet", "XCoord", "YCoord")
+    validVars <- c("complaint", "coded_month", "date_occur", "flag_crime", "flag_unfounded",
+                   "flag_administrative", "count", "flag_cleanup", "crime", "district",
+                   "description", "ileads_address", "ileads_street", "neighborhood", "location_name",
+                   "location_comment", "cad_address", "cad_street", "x_coord", "y_coord")
 
     testVars <- colnames(monthItem)
 
@@ -423,15 +423,15 @@ cs_identifyYear <- function(monthItem){
 
   if (length(monthItem) == 18){
 
-    yearVal <- monthItem$MonthReportedtoMSHP[1]
+    yearVal <- monthItem$month_reportedto_mshp[1]
 
   } else if (length(monthItem) == 20){
 
-    yearVal <- monthItem$CodedMonth[1]
+    yearVal <- monthItem$coded_month[1]
 
   } else if (length(monthItem) == 26){
 
-    yearVal <- monthItem$`Coded Month`[1]
+    yearVal <- monthItem$coded_month[1]
 
   }
 

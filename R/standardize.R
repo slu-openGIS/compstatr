@@ -162,8 +162,23 @@ cs_std18 <- function(.data){
 
 }
 
-# standardize month with 26 variables
+# standardize month with 26 variables - NEW VERSION
 cs_std26 <- function(.data){
+
+  # undefined global variables
+  i_leads_add = i_leads_approve = beat = i_leads_asg = i_leads_type = date_crime_coded = NULL
+
+  # clean month
+  .data <- dplyr::select(.data, -i_leads_add, -i_leads_approve, -beat,
+                         -i_leads_asg, -i_leads_type, -date_crime_coded)
+
+  # return output
+  return(.data)
+
+}
+
+# standardize month with 26 variables - OLD VERSION
+cs_std26_old <- function(.data){
 
   # undefined global variables
   AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =

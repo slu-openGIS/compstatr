@@ -54,7 +54,7 @@
 cs_collapse <- function(.data){
 
   # undefined global variables
-  CodedMonth = DateOccur = CADAddress = Count = Crime = District = ILEADSAddress = Neighborhood = XCoord = YCoord = NULL
+  coded_month = date_occur = cad_address = count = crime = district = ileads_address = neighborhood = x_coord = y_coord = NULL
 
   # check for missing parameters
   if (missing(.data)) {
@@ -64,19 +64,19 @@ cs_collapse <- function(.data){
   # extract each month, collapse, and re-order
   purrr::map(.data, dplyr::as_tibble) %>%
     dplyr::bind_rows() %>%
-    dplyr::arrange(CodedMonth, DateOccur) -> out
+    dplyr::arrange(coded_month, date_occur) -> out
 
   # reformat variables
   out %>%
     dplyr::mutate(
-      Count = as.integer(Count),
-      Crime = as.integer(Crime),
-      District = as.integer(District),
-      ILEADSAddress = as.integer(ILEADSAddress),
-      Neighborhood = as.integer(Neighborhood),
-      CADAddress = as.integer(CADAddress),
-      XCoord = as.numeric(XCoord),
-      YCoord = as.numeric(YCoord)
+      count = as.integer(count),
+      crime = as.integer(crime),
+      district = as.integer(district),
+      ileads_address = suppressWarnings(as.numeric(ileads_address)),
+      neighborhood = as.integer(neighborhood),
+      cad_address = suppressWarnings(as.numeric(cad_address)),
+      x_coord = as.numeric(x_coord),
+      y_coord = as.numeric(y_coord)
     ) -> out
 
   # return combined object
@@ -151,10 +151,7 @@ cs_collapse <- function(.data){
 cs_combine <- function(type = "year", date, ...){
 
   # global bindings
-  ...date = ...time = NULL
-
-  # undefined global variables
-  DateOccur = time = dateTime = cs_year = NULL
+  date_occur = time = dateTime = cs_year = ...date = ...time = NULL
 
   # check missing parameters
   if (dplyr::is.tbl(type) == TRUE){
@@ -203,7 +200,7 @@ cs_combine <- function(type = "year", date, ...){
 
     # create temporary date varible, filter based on supplied year, then arrange
     results %>%
-      cs_parse_date(var = DateOccur, dateVar = ...date, timeVar = ...time, keepDateTime = TRUE) %>%
+      cs_parse_date(var = date_occur, dateVar = ...date, timeVar = ...time, keepDateTime = TRUE) %>%
       dplyr::filter(year(...date) == date) %>%
       dplyr::arrange(dateTime) %>%
       dplyr::mutate(cs_year = lubridate::year(dateTime)) %>%

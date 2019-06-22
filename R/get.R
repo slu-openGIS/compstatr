@@ -112,7 +112,7 @@ cs_download <- function(value, url, session, form){
   text <- response$response
   out <- utils::read.csv(textConnection(
     suppressMessages(httr::content(text, as = "text", encoding = "ISO-8859-1"))),
-    stringsAsFactors = FALSE)
+    stringsAsFactors = FALSE, na.strings=c(""," "))
   out <- dplyr::as_tibble(out)
 
   # convert all columns to character (to match on disk workflow)
@@ -120,6 +120,11 @@ cs_download <- function(value, url, session, form){
 
   # clean-up variable names
   out <- janitor::clean_names(out)
+
+  # search for i_complaint and correct
+  if ("i_complaint" %in% names(out) == TRUE){
+    out <- dplyr::rename(out, complaint = i_complaint)
+  }
 
   # return output
   return(out)
