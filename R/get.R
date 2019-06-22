@@ -60,19 +60,14 @@ cs_get_data <- function(year, month, index){
       purrr::map(~cs_download(value = .x, url = url, session = page, form = form)) -> out
 
     # create list of months associated with year list object items
-    ## this needs to be fixed before deployment to master - the issue is that the scraped
-    ## versions of the data do no have the same variable names as the on disk versions.
-    ## The plan is to use janitor, already included in the DESCRIPTION, and apply
-    ## clean_names() to hopefully standardize variable names after import and/or download.
-
-   # out %>%
-   #  purrr::map(cs_identifyMonth) -> nameList
+    out %>%
+      purrr::map(cs_identifyMonth) -> nameList
 
     # convert list of months to vector
-  #  nameVector <- unlist(nameList, recursive = TRUE, use.names = TRUE)
+    nameVector <- unlist(nameList, recursive = TRUE, use.names = TRUE)
 
     # apply vector to data
-   # names(out) <- nameVector
+    names(out) <- nameVector
 
   } else if (missing(month) == FALSE){
 
@@ -122,6 +117,9 @@ cs_download <- function(value, url, session, form){
 
   # convert all columns to character (to match on disk workflow)
   out <- dplyr::mutate_all(out, as.character)
+
+  # clean-up variable names
+  out <- janitor::clean_names(out)
 
   # return output
   return(out)

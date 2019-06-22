@@ -249,15 +249,15 @@ cs_identifyMonth <- function(.data, read = TRUE){
 
   if (length(.data) == 18){
 
-    monthVal <- .data$MonthReportedtoMSHP[1]
+    monthVal <- .data$month_reportedto_mshp[1]
 
   } else if (length(.data) == 20){
 
-    monthVal <- .data$CodedMonth[1]
+    monthVal <- .data$coded_month[1]
 
   } else if (length(.data) == 26){
 
-    monthVal <- .data$`Coded Month`[1]
+    monthVal <- .data$coded_month[1]
 
   }
 
