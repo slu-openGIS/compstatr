@@ -215,6 +215,10 @@ cs_load_year <- function(path){
   files %>%
     purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .), col_types = readr::cols(.default = readr::col_character()))))) -> out
 
+  # clean-up variable names
+  out %>%
+    purrr::map(janitor::clean_names) -> out
+
   # create list of months associated with year list object items
   out %>%
     purrr::map(cs_identifyMonth) -> nameList

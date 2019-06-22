@@ -9,7 +9,12 @@ cs_get_data(year, month)
 \arguments{
 \item{year}{A year value in the style \code{YYYY}}
 
-\item{month}{A month number}
+\item{month}{Optional; a month number}
+
+\item{index}{Optional; an index object created with \code{\link{cs_create_index}}.
+Building the index prior to downloading data, especially if you are downloading
+multiple years worth of data, will result in dramatically faster execution
+times for this function.}
 }
 \value{
 A year-list object ready for validation.
