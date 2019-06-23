@@ -20,7 +20,7 @@
 cs_create_index <- function(){
 
   # global bindings
-  filename = month = NULL
+  filename = month = value = NULL
 
   # url
   url <- "http://www.slmpd.org/CrimeReport.aspx"

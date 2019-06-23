@@ -2,7 +2,7 @@
 #'
 #' @description Downloads crime data from the SLMPD website.
 #'
-#' @usage cs_get_data(year, month)
+#' @usage cs_get_data(year, month, index)
 #'
 #' @param year A year value in the style \code{YYYY}
 #' @param month Optional; a month number
@@ -85,6 +85,9 @@ cs_get_data <- function(year, month, index){
 }
 
 cs_download <- function(value, url, session, form){
+
+  # global binding
+  i_complaint = NULL
 
   # parse value
   page <- stringr::word(value, 1)

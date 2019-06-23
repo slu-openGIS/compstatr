@@ -130,9 +130,15 @@ cs_standardize <- function(.data, month, config = 18){
 }
 
 # standardize month with 18 variables - NEW VERSION
-cs_st18 <- function(.data){
+cs_std18 <- function(.data){
 
   # undefined global variables
+  administrative_adjustment_indicator = cad_address = cad_street =
+    coded_month = complaint = count = crime = date_occur = date_occured =
+    description = district = flag_administrative = flag_cleanup = flag_crime =
+    flag_unfounded = ileads_address = ileads_street = location_comment =
+    location_name = month_reportedto_mshp = neighborhood =
+    new_crime_indicator = unfounded_crime_indicator = x_coord = y_coord = NULL
 
   # clean variable names
   .data <- dplyr::rename(.data,

@@ -4,7 +4,7 @@
 \alias{cs_get_data}
 \title{Download Crime Data from SLMPD}
 \usage{
-cs_get_data(year, month)
+cs_get_data(year, month, index)
 }
 \arguments{
 \item{year}{A year value in the style \code{YYYY}}
