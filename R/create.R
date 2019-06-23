@@ -255,11 +255,7 @@ cs_identifyMonth <- function(.data, read = TRUE){
 
     monthVal <- .data$month_reportedto_mshp[1]
 
-  } else if (length(.data) == 20){
-
-    monthVal <- .data$coded_month[1]
-
-  } else if (length(.data) == 26){
+  } else if (length(.data) == 20 | length(.data) == 26){
 
     monthVal <- .data$coded_month[1]
 

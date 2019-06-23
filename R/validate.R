@@ -425,11 +425,7 @@ cs_identifyYear <- function(monthItem){
 
     yearVal <- monthItem$month_reportedto_mshp[1]
 
-  } else if (length(monthItem) == 20){
-
-    yearVal <- monthItem$coded_month[1]
-
-  } else if (length(monthItem) == 26){
+  } else if (length(monthItem) == 20 | length(monthItem) == 26){
 
     yearVal <- monthItem$coded_month[1]
 
