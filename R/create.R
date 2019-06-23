@@ -215,6 +215,10 @@ cs_load_year <- function(path){
   files %>%
     purrr::map(~ suppressMessages(suppressWarnings(readr::read_csv(file.path(path, .), col_types = readr::cols(.default = readr::col_character()))))) -> out
 
+  # clean-up variable names
+  out %>%
+    purrr::map(janitor::clean_names) -> out
+
   # create list of months associated with year list object items
   out %>%
     purrr::map(cs_identifyMonth) -> nameList
@@ -249,15 +253,11 @@ cs_identifyMonth <- function(.data, read = TRUE){
 
   if (length(.data) == 18){
 
-    monthVal <- .data$MonthReportedtoMSHP[1]
+    monthVal <- .data$month_reportedto_mshp[1]
 
-  } else if (length(.data) == 20){
+  } else if (length(.data) == 20 | length(.data) == 26){
 
-    monthVal <- .data$CodedMonth[1]
-
-  } else if (length(.data) == 26){
-
-    monthVal <- .data$`Coded Month`[1]
+    monthVal <- .data$coded_month[1]
 
   }
 

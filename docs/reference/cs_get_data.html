@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Identify Missing Coordinates — cs_missingXY • compstatr</title>
+<title>Download Crime Data from SLMPD — cs_get_data • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Identify Missing Coordinates — cs_missingXY" />
+<meta property="og:title" content="Download Crime Data from SLMPD — cs_get_data" />
 
-<meta property="og:description" content="cs_missingXY compares X and Y coordinates and adds a
-    logical column that identifies observations that are missing coordinate data." />
+<meta property="og:description" content="Downloads crime data from the SLMPD website." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -108,53 +107,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Identify Missing Coordinates</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/spatial.R'><code>R/spatial.R</code></a></small>
-    <div class="hidden name"><code>cs_missingXY.Rd</code></div>
+    <h1>Download Crime Data from SLMPD</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/get.R'><code>R/get.R</code></a></small>
+    <div class="hidden name"><code>cs_get_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>cs_missingXY</code> compares X and Y coordinates and adds a
-    logical column that identifies observations that are missing coordinate data.</p>
+    <p>Downloads crime data from the SLMPD website.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cs_missingXY</span>(<span class='no'>.data</span>, <span class='no'>varX</span>, <span class='no'>varY</span>, <span class='no'>newVar</span>)</pre>
+    <pre class="usage"><span class='fu'>cs_get_data</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>index</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>A tibble or data frame</p></td>
+      <th>year</th>
+      <td><p>A year value in the style <code>YYYY</code></p></td>
     </tr>
     <tr>
-      <th>varX</th>
-      <td><p>Name of column containing x coordinate data</p></td>
+      <th>month</th>
+      <td><p>Optional; a month number</p></td>
     </tr>
     <tr>
-      <th>varY</th>
-      <td><p>Name of column containing y coordinate data</p></td>
-    </tr>
-    <tr>
-      <th>newVar</th>
-      <td><p>Name of new column that is <code>TRUE</code> if coordinate data are
-missing and <code>FALSE</code> otherwise.</p></td>
+      <th>index</th>
+      <td><p>Optional; an index object created with <code><a href='cs_create_index.html'>cs_create_index</a></code>.
+Building the index prior to downloading data, especially if you are downloading
+multiple years worth of data, will result in dramatically faster execution
+times for this function.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble or data frame with a logical vector appended to it.</p>
+    <p>A year-list object ready for validation.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># load example data</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-
-<span class='co'># identify missing x and y coordinates</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_missingXY</span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>XCoord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>YCoord</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>missingXY</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,9 +152,7 @@ missing and <code>FALSE</code> otherwise.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

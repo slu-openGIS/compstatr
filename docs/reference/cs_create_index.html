@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Identify Missing Coordinates — cs_missingXY • compstatr</title>
+<title>Create Index of Available Months — cs_create_index • compstatr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Identify Missing Coordinates — cs_missingXY" />
+<meta property="og:title" content="Create Index of Available Months — cs_create_index" />
 
-<meta property="og:description" content="cs_missingXY compares X and Y coordinates and adds a
-    logical column that identifies observations that are missing coordinate data." />
+<meta property="og:description" content="Constructs a table for finding a given table of crime data or a set of
+    tables (such as year to date or full year). This is largely needed for internal
+    use when downloading tables, but is exported for reference and troubleshooting." />
 
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -108,63 +109,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Identify Missing Coordinates</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/spatial.R'><code>R/spatial.R</code></a></small>
-    <div class="hidden name"><code>cs_missingXY.Rd</code></div>
+    <h1>Create Index of Available Months</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/R/index.R'><code>R/index.R</code></a></small>
+    <div class="hidden name"><code>cs_create_index.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>cs_missingXY</code> compares X and Y coordinates and adds a
-    logical column that identifies observations that are missing coordinate data.</p>
+    <p>Constructs a table for finding a given table of crime data or a set of
+    tables (such as year to date or full year). This is largely needed for internal
+    use when downloading tables, but is exported for reference and troubleshooting.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cs_missingXY</span>(<span class='no'>.data</span>, <span class='no'>varX</span>, <span class='no'>varY</span>, <span class='no'>newVar</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>.data</th>
-      <td><p>A tibble or data frame</p></td>
-    </tr>
-    <tr>
-      <th>varX</th>
-      <td><p>Name of column containing x coordinate data</p></td>
-    </tr>
-    <tr>
-      <th>varY</th>
-      <td><p>Name of column containing y coordinate data</p></td>
-    </tr>
-    <tr>
-      <th>newVar</th>
-      <td><p>Name of new column that is <code>TRUE</code> if coordinate data are
-missing and <code>FALSE</code> otherwise.</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='fu'>cs_create_index</span>()</pre>
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble or data frame with a logical vector appended to it.</p>
+    <p>A tibble with all available monthly crime tables, the <code>iframe</code> page
+    they appear on, and their row number.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># load example data</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
-
-<span class='co'># identify missing x and y coordinates</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_missingXY</span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>XCoord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>YCoord</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>missingXY</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

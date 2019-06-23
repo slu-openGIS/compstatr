@@ -18,7 +18,19 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
-The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis's [Metropolitan Police Department](http://www.slmpd.org).
+The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis' [Metropolitan Police Department](http://www.slmpd.org).
+
+## What's New?
+Version v0.2.0 is underway! This updated release of `compstatr` will introduce three new functions that enable users to access data directly from SLMPD's website without having to download individual data files first:
+
+  1. `cs_last_update()` - returns the date of the last available data release on SLMPD's website
+  2. `cs_create_index()` - creates an index of data sets available on SLMPD's website for scraping
+  3. `cs_get_data()` - scrapes either a single month or a full year worth of data from SLMPD's website
+
+These functions are only available on GitHub right now. In order to enable them, there is one breaking change for users - all variable names are standardize into `snake_case` at import. This will likely impact code that has been written using a prior version of `compstatr`.
+
+## What's on the Roadmap?
+Before v0.2.0 is officially released, the documentation for the package still needs to be updated to reflect both options for accessing SLMPD data. A vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD's.
 
 ## Quick Start
 If the `sf` package is already installed, the easiest way to get `compstatr` is to install it from CRAN:

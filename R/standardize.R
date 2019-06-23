@@ -129,8 +129,43 @@ cs_standardize <- function(.data, month, config = 18){
 
 }
 
-# standardize month with 18 variables
+# standardize month with 18 variables - NEW VERSION
 cs_std18 <- function(.data){
+
+  # undefined global variables
+  administrative_adjustment_indicator = cad_address = cad_street =
+    coded_month = complaint = count = crime = date_occur = date_occured =
+    description = district = flag_administrative = flag_cleanup = flag_crime =
+    flag_unfounded = ileads_address = ileads_street = location_comment =
+    location_name = month_reportedto_mshp = neighborhood =
+    new_crime_indicator = unfounded_crime_indicator = x_coord = y_coord = NULL
+
+  # clean variable names
+  .data <- dplyr::rename(.data,
+                         coded_month = month_reportedto_mshp,
+                         flag_crime = new_crime_indicator,
+                         flag_unfounded = unfounded_crime_indicator,
+                         flag_administrative = administrative_adjustment_indicator,
+                         date_occur = date_occured)
+
+  # add missing variables
+  .data <- dplyr::mutate(.data,
+                         complaint = as.character(NA),
+                         flag_cleanup = as.character(NA))
+
+  # re-order variables
+  .data <- dplyr::select(.data, complaint, coded_month, date_occur, flag_crime, flag_unfounded,
+                         flag_administrative, count, flag_cleanup, crime, district, description,
+                         ileads_address, ileads_street, neighborhood, location_name, location_comment,
+                         cad_address, cad_street, x_coord, y_coord)
+
+  # return output
+  return(.data)
+
+}
+
+# standardize month with 18 variables - OLD VERSION
+cs_std18_old <- function(.data){
 
   # undefined global variables
   AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
@@ -162,8 +197,23 @@ cs_std18 <- function(.data){
 
 }
 
-# standardize month with 26 variables
+# standardize month with 26 variables - NEW VERSION
 cs_std26 <- function(.data){
+
+  # undefined global variables
+  i_leads_add = i_leads_approve = beat = i_leads_asg = i_leads_type = date_crime_coded = NULL
+
+  # clean month
+  .data <- dplyr::select(.data, -i_leads_add, -i_leads_approve, -beat,
+                         -i_leads_asg, -i_leads_type, -date_crime_coded)
+
+  # return output
+  return(.data)
+
+}
+
+# standardize month with 26 variables - OLD VERSION
+cs_std26_old <- function(.data){
 
   # undefined global variables
   AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =

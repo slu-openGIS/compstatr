@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -90,15 +90,34 @@
 <a href="#compstatr" class="anchor"></a>compstatr <img src="reference/figures/logo.png" align="right">
 </h1></div>
 
-<p>The goal of <code>compstatr</code> is to provide a suite of tools for working with crime data made public by the City of St. Louis’s <a href="http://www.slmpd.org">Metropolitan Police Department</a>.</p>
+<p>The goal of <code>compstatr</code> is to provide a suite of tools for working with crime data made public by the City of St. Louis’ <a href="http://www.slmpd.org">Metropolitan Police Department</a>.</p>
+<div id="whats-new" class="section level2">
+<h2 class="hasAnchor">
+<a href="#whats-new" class="anchor"></a>What’s New?</h2>
+<p>Version v0.2.0 is underway! This updated release of <code>compstatr</code> will introduce three new functions that enable users to access data directly from SLMPD’s website without having to download individual data files first:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code><a href="reference/cs_last_update.html">cs_last_update()</a></code> - returns the date of the last available data release on SLMPD’s website</li>
+<li>
+<code><a href="reference/cs_create_index.html">cs_create_index()</a></code> - creates an index of data sets available on SLMPD’s website for scraping</li>
+<li>
+<code><a href="reference/cs_get_data.html">cs_get_data()</a></code> - scrapes either a single month or a full year worth of data from SLMPD’s website</li>
+</ol>
+<p>These functions are only available on GitHub right now. In order to enable them, there is one breaking change for users - all variable names are standardize into <code>snake_case</code> at import. This will likely impact code that has been written using a prior version of <code>compstatr</code>.</p>
+</div>
+<div id="whats-on-the-roadmap" class="section level2">
+<h2 class="hasAnchor">
+<a href="#whats-on-the-roadmap" class="anchor"></a>What’s on the Roadmap?</h2>
+<p>Before v0.2.0 is officially released, the documentation for the package still needs to be updated to reflect both options for accessing SLMPD data. A vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD’s.</p>
+</div>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>If the <code>sf</code> package is already installed, the easiest way to get <code>compstatr</code> is to install it from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</span></code></pre></div>
 <p>The development version of <code>compstatr</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</span></code></pre></div>
 <p>Additional details, including some tips for installing <code>sf</code>, can be found in the <a href="articles/compstatr.html#installation">Get started article</a>.</p>
 </div>
 <div id="resources" class="section level2">
@@ -129,6 +148,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=compstatr">https://​cloud.r-project.org/​package=compstatr</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/slu-openGIS/compstatr">https://​github.com/​slu-openGIS/​compstatr</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/slu-openGIS/compstatr">https://​github.com/​slu-openGIS/​compstatr</a>
