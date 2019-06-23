@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
-The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis's [Metropolitan Police Department](http://www.slmpd.org).
+The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis' [Metropolitan Police Department](http://www.slmpd.org).
 
 ## Motivation
 Among cities in the United States, St. Louis has the distinction of having the highest or one of the highest violent crime and homicide rates since 2010. It therefore presents an important site for social scientists, public health researchers, and health care providers as well as policy makers to understand the effects of violent crime on urban communities. 
@@ -28,6 +28,18 @@ Among cities in the United States, St. Louis has the distinction of having the h
 The City's crime data, however, are difficult to work with and present a number of challenges for researchers. These data are inconsistently organized, with all data before 2013 and some months of 2013 itself having eighteen variables. Beginning during 2013, most (but not all) months have twenty variables, many of which are named differently from their pre-2014 counterparts. These inconsistencies, and the fact that working with their data requires managing over 120 spreadsheets that each download with with a `.html` file extension, are the motivating force behind `compstatr`.
 
 We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files. The categorization tools that are provided will work with any police department that uses 5 and 6 digit numeric codes to identify specific crimes.
+
+## What's New?
+Version v0.2.0 is underway! This updated release of `compstatr` will introduce three new functions that enable users to access data directly from SLMPD's website without having to download individual data files first:
+
+  1. `cs_last_update()` - returns the date of the last available data release on SLMPD's website
+  2. `cs_create_index()` - creates an index of data sets available on SLMPD's website for scraping
+  3. `cs_get_data()` - scrapes either a single month or a full year worth of data from SLMPD's website
+
+These functions are only available on GitHub right now. In order to enable them, there is one breaking change for users - all variable names are standardize into `snake_case` at import. This will likely impact code that has been written using a prior version of `compstatr`.
+
+## What's on the Roadmap?
+Before v0.2.0 is officially released, the documentation for the package still needs to be updated to reflect both options for accessing SLMPD data. A vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD's.
 
 ## Installation
 The easiest way to get `compstatr` is to install it from CRAN:

@@ -14,7 +14,7 @@ status](https://codecov.io/gh/slu-openGIS/compstatr/branch/master/graph/badge.sv
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
 The goal of `compstatr` is to provide a suite of tools for working with
-crime data made public by the City of St. Louis’s [Metropolitan Police
+crime data made public by the City of St. Louis’ [Metropolitan Police
 Department](http://www.slmpd.org).
 
 ## Motivation
@@ -44,9 +44,43 @@ available [on their website](http://www.slmpd.org/Crimereports.shtml) as
 any police department that uses 5 and 6 digit numeric codes to identify
 specific crimes.
 
+## What’s New?
+
+Version v0.2.0 is underway\! This updated release of `compstatr` will
+introduce three new functions that enable users to access data directly
+from SLMPD’s website without having to download individual data files
+first:
+
+1.  `cs_last_update()` - returns the date of the last available data
+    release on SLMPD’s website
+2.  `cs_create_index()` - creates an index of data sets available on
+    SLMPD’s website for scraping
+3.  `cs_get_data()` - scrapes either a single month or a full year worth
+    of data from SLMPD’s website
+
+These functions are only available on GitHub right now. In order to
+enable them, there is one breaking change for users - all variable names
+are standardize into `snake_case` at import. This will likely impact
+code that has been written using a prior version of `compstatr`.
+
+## What’s on the Roadmap?
+
+Before v0.2.0 is officially released, the documentation for the package
+still needs to be updated to reflect both options for accessing SLMPD
+data. A vignette describing the scraping methodology is also planned
+because few resources are available online for scraping sites that are
+arranged like SLMPD’s.
+
 ## Installation
 
-You can install compstatr from Github with `remotes`:
+The easiest way to get `compstatr` is to install it from CRAN:
+
+``` r
+install.packages("compstatr")
+```
+
+The development version of `compstatr` can be accessed from GitHub with
+`remotes`:
 
 ``` r
 # install.packages("remotes")
@@ -223,9 +257,9 @@ projected:
 If you work with data from other police departments, the `cs_crime()`,
 `cs_crime_cat()`, and `cs_filter_crime()` functions may be useful for
 identifying, grouping, and subsetting by crime so long as they use a
-standard set of 5 and 6 digit codes based on the UCR system (e.g.
-`31111` (robbery with a firearm) or `142320` (malicious destruction of
-property)).
+standard set of 5 and 6 digit codes based on the UCR system
+(e.g. `31111` (robbery with a firearm) or `142320` (malicious
+destruction of property)).
 
 ## Acknowledgements
 

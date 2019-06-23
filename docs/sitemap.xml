@@ -13,6 +13,9 @@
     <loc>https://slu-openGIS.github.io/compstatr//reference/cs_combine.html</loc>
   </url>
   <url>
+    <loc>https://slu-openGIS.github.io/compstatr//reference/cs_create_index.html</loc>
+  </url>
+  <url>
     <loc>https://slu-openGIS.github.io/compstatr//reference/cs_crime.html</loc>
   </url>
   <url>
@@ -29,6 +32,12 @@
   </url>
   <url>
     <loc>https://slu-openGIS.github.io/compstatr//reference/cs_filter_crime.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/compstatr//reference/cs_get_data.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/compstatr//reference/cs_last_update.html</loc>
   </url>
   <url>
     <loc>https://slu-openGIS.github.io/compstatr//reference/cs_load_year.html</loc>
