@@ -129,7 +129,7 @@ cs_standardize <- function(.data, month, config = 18){
 
 }
 
-# standardize month with 18 variables - NEW VERSION
+# standardize month with 18 variables
 cs_std18 <- function(.data){
 
   # undefined global variables
@@ -164,40 +164,7 @@ cs_std18 <- function(.data){
 
 }
 
-# standardize month with 18 variables - OLD VERSION
-cs_std18_old <- function(.data){
-
-  # undefined global variables
-  AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
-    CADAddress = CADStreet = `Coded Month` = CodedMonth = Complaint = Count =
-    Crime = `Date Crime Coded` = `Date Occur` = DateOccur = DateOccured =
-    Description = District = `Flag Cleanup` = `Flag-Administrative` =
-    `Flag-Crime` = `Flag-Unfounded` = FlagAdministrative = FlagCleanup =
-    FlagCrime = FlagUnfounded = `ILEADS-Address` = `ILEADS-Street` =
-    ILEADSAddress = ILEADSStreet = `ILeads Add` = `ILeads Approve` =
-    `ILeads Asg` = `ILeads Type` = `Location Comment` = `Location Name` =
-    LocationComment = LocationName = MonthReportedtoMSHP = Neighborhood =
-    NewCrimeIndicator = UnfoundedCrimeIndicator = `X-Coord` = XCoord =
-    `Y-Coord` = YCoord = NULL
-
-  # clean month
-  .data %>%
-    dplyr::rename(CodedMonth = MonthReportedtoMSHP) %>%
-    dplyr::rename(FlagCrime = NewCrimeIndicator) %>%
-    dplyr::rename(FlagUnfounded = UnfoundedCrimeIndicator) %>%
-    dplyr::rename(FlagAdministrative = AdministrativeAdjustmentIndicator) %>%
-    dplyr::rename(DateOccur = DateOccured) %>%
-    dplyr::mutate(Complaint = as.character(NA)) %>%
-    dplyr::mutate(FlagCleanup = as.character(NA)) %>%
-    dplyr::select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded, FlagAdministrative, Count,
-           FlagCleanup, Crime, District, Description, ILEADSAddress, ILEADSStreet, Neighborhood,
-           LocationName, LocationComment, CADAddress, CADStreet, XCoord, YCoord) -> .data
-
-  return(.data)
-
-}
-
-# standardize month with 26 variables - NEW VERSION
+# standardize month with 26 variables
 cs_std26 <- function(.data){
 
   # undefined global variables
@@ -208,50 +175,6 @@ cs_std26 <- function(.data){
                          -i_leads_asg, -i_leads_type, -date_crime_coded)
 
   # return output
-  return(.data)
-
-}
-
-# standardize month with 26 variables - OLD VERSION
-cs_std26_old <- function(.data){
-
-  # undefined global variables
-  AdministrativeAdjustmentIndicator = Beat = `CAD-Address` = `CAD-Street` =
-    CADAddress = CADStreet = `Coded Month` = CodedMonth = Complaint = Count =
-    Crime = `Date Crime Coded` = `Date Occur` = DateOccur = DateOccured =
-    Description = District = `Flag Cleanup` = `Flag-Administrative` =
-    `Flag-Crime` = `Flag-Unfounded` = FlagAdministrative = FlagCleanup =
-    FlagCrime = FlagUnfounded = `ILEADS-Address` = `ILEADS-Street` =
-    ILEADSAddress = ILEADSStreet = `ILeads Add` = `ILeads Approve` =
-    `ILeads Asg` = `ILeads Type` = `Location Comment` = `Location Name` =
-    LocationComment = LocationName = MonthReportedtoMSHP = Neighborhood =
-    NewCrimeIndicator = UnfoundedCrimeIndicator = `X-Coord` = XCoord =
-    `Y-Coord` = YCoord = NULL
-
-  # clean month
-  .data %>%
-    dplyr::select(-`ILeads Add`, -`ILeads Approve`, -Beat, -`ILeads Asg`,
-           -`ILeads Type`, -`Date Crime Coded`) %>%
-    dplyr::rename(CodedMonth = `Coded Month`) %>%
-    dplyr::rename(DateOccur = `Date Occur`) %>%
-    dplyr::rename(FlagCrime = `Flag-Crime`) %>%
-    dplyr::rename(FlagUnfounded = `Flag-Unfounded`) %>%
-    dplyr::rename(FlagAdministrative = `Flag-Administrative`) %>%
-    dplyr::rename(FlagCleanup = `Flag Cleanup`) %>%
-    dplyr::rename(ILEADSAddress = `ILEADS-Address`) %>%
-    dplyr::rename(ILEADSStreet = `ILEADS-Street`) %>%
-    dplyr::rename(LocationName = `Location Name`) %>%
-    dplyr::rename(LocationComment = `Location Comment`) %>%
-    dplyr::rename(CADAddress = `CAD-Address`) %>%
-    dplyr::rename(CADStreet = `CAD-Street`) %>%
-    dplyr::rename(XCoord = `X-Coord`) %>%
-    dplyr::rename(YCoord = `Y-Coord`) %>%
-    dplyr::select(Complaint, CodedMonth, DateOccur, FlagCrime, FlagUnfounded,
-           FlagAdministrative, Count, FlagCleanup, Crime, District,
-           Description, ILEADSAddress, ILEADSStreet, Neighborhood,
-           LocationName, LocationComment, CADAddress, CADStreet,
-           XCoord, YCoord) -> .data
-
   return(.data)
 
 }
