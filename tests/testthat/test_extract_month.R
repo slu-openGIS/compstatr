@@ -37,13 +37,13 @@ result1 <- cs_extract_month(yearList13, month = "Feb")
 
 test_that("data is extracted correctly", {
   expect_equal("tbl_df" %in% class(result1), TRUE)
-  expect_equal(result1$MonthReportedtoMSHP[1], "2013-02")
+  expect_equal(result1$month_reportedto_mshp[1], "2013-02")
 })
 
 result2 <- cs_extract_month(yearList13, month = 10)
 
 test_that("data is extracted correctly", {
   expect_equal("tbl_df" %in% class(result2), TRUE)
-  expect_equal(result2$CodedMonth[1], "2013-10")
+  expect_equal(result2$coded_month[1], "2013-10")
 })
 
