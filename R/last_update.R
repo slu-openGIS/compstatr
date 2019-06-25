@@ -32,7 +32,19 @@ cs_last_update <- function(output = "string"){
   }
 
   # read website
-  webpage <- xml2::read_html("http://www.slmpd.org/CrimeReport.aspx")
+  try(webpage <- xml2::read_html("http://www.slmpd.org/CrimeReport.aspx"))
+
+  # return custom error for website down or inaccessible
+  if (class(webpage) == "try-error"){
+
+    error_type <- attr(webpage, "condition")
+
+    if (error_type$message = "Could not resolve host: www.slmpd.org"){
+      stop("The SLMPD website appears to be down or inaccessible. Check your internet connection and try again.")
+    } else{
+      stop(error_type$message)
+    }
+  }
 
   # store and process first table
   tbl <- rvest::html_nodes(webpage, "table")[[1]]
