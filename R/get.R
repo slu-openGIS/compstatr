@@ -18,7 +18,7 @@
 #' @importFrom httr content
 #' @importFrom purrr map
 #' @importFrom rvest html_form html_session
-#' @importFrom stringr word
+#' @importFrom stringr str_to_title word
 #' @importFrom utils read.csv
 #'
 #' @export
