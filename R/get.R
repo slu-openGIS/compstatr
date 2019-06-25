@@ -5,7 +5,8 @@
 #' @usage cs_get_data(year, month, index)
 #'
 #' @param year A year value in the style \code{YYYY}
-#' @param month Optional; a month number
+#' @param month Optional; a month number, name, or abbreviation - \code{1},
+#'     \code{"Jan"}, and \code{"January"} are all acceptible inputs.
 #' @param index Optional; an index object created with \code{\link{cs_create_index}}.
 #'     Building the index prior to downloading data, especially if you are downloading
 #'     multiple years worth of data, will result in dramatically faster execution
@@ -23,20 +24,62 @@
 #' @export
 cs_get_data <- function(year, month, index){
 
-  # optionally build index
-  if (missing(index)){
-    index <- cs_create_index()
+  # check parameters
+  if (is.numeric(year) == FALSE){
+    stop("The value for 'year' should be numeric.")
   }
 
-  # rename year and month
+  if (year < 2008){
+    stop("The earliest year data are available for is 2008.")
+  }
+
+
+  # optionally build index or, alternatively, validate index that is passed to function
+  if (missing(index)){
+
+    index <- cs_create_index()
+
+  } else {
+
+    index_names <- names(index)
+    valid_names <- c("page", "row", "value", "year", "month", "date")
+
+    if (all(index_names == valid_names) == FALSE){
+      stop("The index object is not properly formatted. It should be created with 'compstatr::cs_create_index()'.")
+    }
+
+  }
+
+  # rename year
   x <- year
 
   # subset index
   if (missing(month)){
+
+    # subset index only based on year
     index <- dplyr::filter(index, year == x)
+
   } else {
-    y <- month
+
+    # format month to numeric if necessary
+    if (is.numeric(month) == TRUE){
+
+      # rename
+      y <- month
+
+    } else if (is.numeric(month) == FALSE){
+
+      # convert to title case
+      y <- stringr::str_to_title(month)
+
+      # convert name or abbreviation to numeric
+      y <- cs_month(x = y)
+
+    }
+
+    # subset index based on month and year
     index <- dplyr::filter(index, year == x & month == y)
+
   }
 
   # url
@@ -127,6 +170,25 @@ cs_download <- function(value, url, session, form){
   # search for i_complaint and correct
   if ("i_complaint" %in% names(out) == TRUE){
     out <- dplyr::rename(out, complaint = i_complaint)
+  }
+
+  # return output
+  return(out)
+
+}
+
+cs_month <- function(x){
+
+  # identify output value
+  if (nchar(x) == 3){
+    out <- match(x, month.abb)
+  } else if (nchar(x) > 3){
+    out <- match(x, month.name)
+  }
+
+  # check for NA values
+  if (is.na(out) == TRUE){
+    stop("The input value for 'month' is not valid.")
   }
 
   # return output
