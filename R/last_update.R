@@ -26,6 +26,11 @@
 #' @export
 cs_last_update <- function(output = "string"){
 
+  # check arguments
+  if (output %in% c("string", "date") == FALSE){
+    stop("The only accepted arguments for 'cs_last_update' are 'string' and 'date'.")
+  }
+
   # read website
   webpage <- xml2::read_html("http://www.slmpd.org/CrimeReport.aspx")
 
