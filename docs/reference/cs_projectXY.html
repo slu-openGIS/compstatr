@@ -154,16 +154,16 @@ coordinate reference system</p></td>
 <span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
 
 <span class='co'># identify missing x and y coordinates</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_missingXY.html'>cs_missingXY</a></span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>XCoord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>YCoord</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>missingXY</span>)
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_missingXY.html'>cs_missingXY</a></span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>x_coord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>y_coord</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>missingXY</span>)
 
 <span class='co'># subset to remove missing data</span>
 <span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>testData</span>, <span class='no'>missingXY</span> <span class='kw'>==</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># project data</span>
-<span class='no'>testData_sf</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_projectXY</span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>XCoord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>YCoord</span>)
+<span class='no'>testData_sf</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_projectXY</span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>x_coord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>y_coord</span>)
 
 <span class='co'># project data and transform to new CRS</span>
-<span class='no'>testData_sf</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_projectXY</span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>XCoord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>YCoord</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fl'>4269</span>)</div></pre>
+<span class='no'>testData_sf</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_projectXY</span>(<span class='no'>testData</span>, <span class='kw'>varX</span> <span class='kw'>=</span> <span class='no'>x_coord</span>, <span class='kw'>varY</span> <span class='kw'>=</span> <span class='no'>y_coord</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fl'>4269</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

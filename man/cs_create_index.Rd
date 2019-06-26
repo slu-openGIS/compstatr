@@ -15,3 +15,11 @@ Constructs a table for finding a given table of crime data or a set of
     tables (such as year to date or full year). This is largely needed for internal
     use when downloading tables, but is exported for reference and troubleshooting.
 }
+\examples{
+# create index
+i <- cs_create_index()
+
+# preview of index object
+i
+
+}

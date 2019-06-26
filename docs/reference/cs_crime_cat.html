@@ -169,7 +169,7 @@ of descending UCR code (i.e. beginning with homicide, which has a UCR code of <c
 <span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='no'>january2018</span>
 
 <span class='co'># apply categories</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"numeric"</span>)
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"numeric"</span>)
 
 <span class='co'># preview categories</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>testData</span>$<span class='no'>crimeCat</span>)</div><div class='output co'>#&gt; 
@@ -178,7 +178,7 @@ of descending UCR code (i.e. beginning with homicide, which has a UCR code of <c
 #&gt;   17   18   20   21   22   24   25   26 
 #&gt;    9  160    1   15    6   55   50  679 </div><div class='input'>
 <span class='co'># apply categories</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"factor"</span>)
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"factor"</span>)
 
 <span class='co'># preview categories</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>testData</span>$<span class='no'>crimeCat</span>)</div><div class='output co'>#&gt; 
@@ -239,7 +239,7 @@ of descending UCR code (i.e. beginning with homicide, which has a UCR code of <c
 #&gt;                  Runaways-Persons under 18 
 #&gt;                                          0 </div><div class='input'>
 <span class='co'># apply categories</span>
-<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>Crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"string"</span>)
+<span class='no'>testData</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_crime_cat</span>(<span class='no'>testData</span>,<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>crime</span>, <span class='kw'>newVar</span> <span class='kw'>=</span> <span class='no'>crimeCat</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"string"</span>)
 
 <span class='co'># preview categories</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>testData</span>$<span class='no'>crimeCat</span>)</div><div class='output co'>#&gt; 

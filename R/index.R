@@ -16,6 +16,13 @@
 #' @importFrom tibble tibble
 #' @importFrom utils head
 #'
+#' @examples
+#' # create index
+#' i <- cs_create_index()
+#'
+#' # preview of index object
+#' i
+#'
 #' @export
 cs_create_index <- function(){
 

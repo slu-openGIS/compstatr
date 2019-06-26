@@ -21,6 +21,22 @@
 #' @importFrom stringr str_to_title word
 #' @importFrom utils read.csv
 #'
+#' @examples
+#' # create index
+#' i <- cs_create_index()
+#'
+#' # download single month
+#' may18 <- cs_get_data(year = 2018, month = "May", index = i)
+#'
+#' # preview single month
+#' may18
+#'
+#' # download full year
+#' yearList18 <- cs_get_data(year = 2018, index = i)
+#'
+#' # preview year list object
+#' yearList18
+#'
 #' @export
 cs_get_data <- function(year, month, index){
 

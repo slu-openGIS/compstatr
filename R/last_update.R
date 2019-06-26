@@ -19,9 +19,9 @@
 #' @importFrom xml2 read_html
 #'
 #' @examples
-#' \dontrun{
-#' last_update <- cs_last_update()
-#' }
+#' # obtain data of last update
+#' cs_last_update()
+#'
 #'
 #' @export
 cs_last_update <- function(output = "string"){

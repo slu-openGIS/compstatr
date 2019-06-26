@@ -119,8 +119,34 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-prepare-data" class="hasAnchor"><a href="#section-prepare-data" class="anchor"></a>Prepare Data</h2>
-          <p class="section-desc"><p>Create, Standardize, and Collapse Year-List Objects</p></p>
+          <h2 id="section-download" class="hasAnchor"><a href="#section-download" class="anchor"></a>Download</h2>
+          <p class="section-desc"><p>Scrape Data Tables Directly from the SLMPD Website</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="cs_last_update.html">cs_last_update()</a></code> </p>
+        </td>
+        <td><p>Date of Last Crime Data Update from SLMPD</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cs_create_index.html">cs_create_index()</a></code> </p>
+        </td>
+        <td><p>Create Index of Available Months</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cs_get_data.html">cs_get_data()</a></code> </p>
+        </td>
+        <td><p>Download Crime Data from SLMPD</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-load" class="hasAnchor"><a href="#section-load" class="anchor"></a>Load</h2>
+          <p class="section-desc"><p>Read Data Tables Downloaded Manually from the SLMPD Website</p></p>
         </th>
       </tr>
       <tr>
@@ -135,7 +161,15 @@
           <p><code><a href="cs_load_year.html">cs_load_year()</a></code> </p>
         </td>
         <td><p>Create Year List Object</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-validate-and-collapse" class="hasAnchor"><a href="#section-validate-and-collapse" class="anchor"></a>Validate and Collapse</h2>
+          <p class="section-desc"><p>Standardize and Collapse Year-List Objects</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="cs_validate.html">cs_validate()</a></code> </p>
@@ -175,7 +209,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-categorize-crimes" class="hasAnchor"><a href="#section-categorize-crimes" class="anchor"></a>Categorize Crimes</h2>
+          <h2 id="section-tidy" class="hasAnchor"><a href="#section-tidy" class="anchor"></a>Tidy</h2>
           <p class="section-desc"><p>Work with Crime Data, including non-SLMPD Data</p></p>
         </th>
       </tr>
@@ -203,15 +237,7 @@
           <p><code><a href="cs_filter_count.html">cs_filter_count()</a></code> </p>
         </td>
         <td><p>Remove Negative Counts</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-dates" class="hasAnchor"><a href="#section-dates" class="anchor"></a>Dates</h2>
-          <p class="section-desc"><p>Work with Date and Coded Month Data</p></p>
-        </th>
-      </tr>
-      <tr>
+      </tr><tr>
         
         <td>
           <p><code><a href="cs_parse_date.html">cs_parse_date()</a></code> </p>
@@ -227,7 +253,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-spatial-data" class="hasAnchor"><a href="#section-spatial-data" class="anchor"></a>Spatial Data</h2>
+          <h2 id="section-map" class="hasAnchor"><a href="#section-map" class="anchor"></a>Map</h2>
           <p class="section-desc"><p>Wrangle and Project Crimes</p></p>
         </th>
       </tr>
@@ -259,7 +285,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-sample-data" class="hasAnchor"><a href="#section-sample-data" class="anchor"></a>Sample Data</h2>
+          <h2 id="section-data" class="hasAnchor"><a href="#section-data" class="anchor"></a>Data</h2>
           <p class="section-desc"><p>Example Data for Practicing Wrangling and Mapping</p></p>
         </th>
       </tr>
@@ -283,11 +309,12 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-prepare-data">Prepare Data</a></li>
-      <li><a href="#section-categorize-crimes">Categorize Crimes</a></li>
-      <li><a href="#section-dates">Dates</a></li>
-      <li><a href="#section-spatial-data">Spatial Data</a></li>
-      <li><a href="#section-sample-data">Sample Data</a></li>
+      <li><a href="#section-download">Download</a></li>
+      <li><a href="#section-load">Load</a></li>
+      <li><a href="#section-validate-and-collapse">Validate and Collapse</a></li>
+      <li><a href="#section-tidy">Tidy</a></li>
+      <li><a href="#section-map">Map</a></li>
+      <li><a href="#section-data">Data</a></li>
     </ul>
   </div>
 </div>

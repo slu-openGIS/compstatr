@@ -21,8 +21,8 @@ Data are updated by SLMPD on their crime statistics
     last update.
 }
 \examples{
-\dontrun{
-last_update <- cs_last_update()
-}
+# obtain data of last update
+cs_last_update()
+
 
 }

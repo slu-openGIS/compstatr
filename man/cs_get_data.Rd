@@ -23,3 +23,20 @@ A year-list object ready for validation.
 \description{
 Downloads crime data from the SLMPD website.
 }
+\examples{
+# create index
+i <- cs_create_index()
+
+# download single month
+may18 <- cs_get_data(year = 2018, month = "May", index = i)
+
+# preview single month
+may18
+
+# download full year
+yearList18 <- cs_get_data(year = 2018, index = i)
+
+# preview year list object
+yearList18
+
+}
