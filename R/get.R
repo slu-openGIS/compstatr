@@ -25,6 +25,10 @@
 cs_get_data <- function(year, month, index){
 
   # check parameters
+  if (missing(year) == TRUE){
+    stop("A value for year must be given.")
+  }
+
   if (is.numeric(year) == FALSE){
     stop("The value for 'year' should be numeric.")
   }
@@ -33,19 +37,22 @@ cs_get_data <- function(year, month, index){
     stop("The earliest year data are available for is 2008.")
   }
 
-
   # optionally build index or, alternatively, validate index that is passed to function
-  if (missing(index)){
+  if (missing(index) == TRUE){
 
     index <- cs_create_index()
 
-  } else {
+  } else if (missing(index) == FALSE) {
+
+    if ("data.frame" %in% class(index) == FALSE){
+      stop("The index object is not properly formatted.")
+    }
 
     index_names <- names(index)
     valid_names <- c("page", "row", "value", "year", "month", "date")
 
     if (all(index_names == valid_names) == FALSE){
-      stop("The index object is not properly formatted. It should be created with 'compstatr::cs_create_index()'.")
+      stop("The index object is not properly formatted.")
     }
 
   }
