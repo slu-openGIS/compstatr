@@ -60,16 +60,15 @@ first:
 
 These functions are only available on GitHub right now. In order to
 enable them, there is one breaking change for users - all variable names
-are standardize into `snake_case` at import. This will likely impact
-code that has been written using a prior version of `compstatr`.
+are standardize into `snake_case` at import. This will impact code that
+has been written using a prior version of `compstatr`.
 
 ## What’s on the Roadmap?
 
-Before v0.2.0 is officially released, the documentation for the package
-still needs to be updated to reflect both options for accessing SLMPD
-data. A vignette describing the scraping methodology is also planned
-because few resources are available online for scraping sites that are
-arranged like SLMPD’s.
+Before v0.2.0 is officially released, a vignette describing the scraping
+methodology is also planned because few resources are available online
+for scraping sites that are arranged like SLMPD’s. Pre-built notebooks
+containing code for working with SLMPD data are also planned.
 
 ## Installation
 
@@ -89,22 +88,59 @@ remotes::install_github("slu-openGIS/compstatr")
 
 ## Usage
 
-### Data Preparation
-
-St. Louis data can be downloaded month-by-month from the St. Louis
-Metropolitan Police Department’s
-[website](http://www.slmpd.org/Crimereports.shtml). `compstatr` assumes
-that only one year of crime data (or less) is included in specific
-folders within your project. These next examples assume you have
-downloaded all of the data for 2017 and 2018, and saved them
-respectively in `data/raw/2017` and `data/raw/2018`. We’ll start with
-loading the `compstatr` package:
+We’ll start with loading the `compstatr` package:
 
 ``` r
 > library(compstatr)
 ```
 
-The function `cs_prep_data()` can be used to rename files, which will be
+### Data Access - Read Tables Directly into R
+
+As of version `v0.2.0`, data tables can be scraped and read directly
+into `R` without manually downloading them first. They are read from the
+St. Louis Metropolitan Police Department’s
+[website](http://www.slmpd.org/Crimereports.shtml) and imported directly
+as objects in `R`’s global environment. To identify the last available
+month:
+
+``` r
+> cs_last_update()
+[1] "May 2019"
+```
+
+To enable scraping, an index of the available data needs to be created.
+Doing this is optional but highly recommended to improve performance:
+
+``` r
+> # create index
+> i <- cs_create_index()
+```
+
+This index is used by `cs_get_data()` to find the requested table or
+tables, post a request via the SLMPD website’s form system, and then
+download your data:
+
+``` r
+> # download single month
+> may17 <- cs_get_data(year = 2017, month = "May", index = i)
+>
+> # download full year
+> yearList17 <- cs_get_data(year = 2017, index = i)
+```
+
+Once data are downloaded, they need to be validated and standardized
+before proceeding with analysis.
+
+### Data Access - Use Tables Downloaded Manually
+
+While scraping is now an option, St. Louis data can still be downloaded
+month-by-month from [SLMPD](http://www.slmpd.org/Crimereports.shtml).
+`compstatr` assumes that only one year of crime data (or less) is
+included in specific folders within your project. These next examples
+assume you have downloaded all of the data for 2017 and 2018, and saved
+them respectively in `data/raw/2017` and `data/raw/2018`.
+
+The function `cs_prep_data()` can be used to rename files, which may be
 downloaded with the wrong file extension (`January2018.csv.html`). Once
 downloaded you can load them into what we call year-list objects:
 
@@ -114,7 +150,13 @@ downloaded you can load them into what we call year-list objects:
 > yearList17 <- cs_load_year(path = "data/raw/2017")
 ```
 
-The SLMPD are inconsistently organized, and problems that need to be
+Once data are downloaded, they need to be validated and standardized
+before proceeding with analysis.
+
+### Data Preparation
+
+Both the data downloaded manually as well as the tables scraped from
+SLMPD’s website are inconsistently organized. Problems that need to be
 addressed prior to collapsing a year-list into a single object can be
 identified with `cs_validate()`:
 

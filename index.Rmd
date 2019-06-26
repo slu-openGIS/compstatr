@@ -30,7 +30,7 @@ Version v0.2.0 is underway! This updated release of `compstatr` will introduce t
 These functions are only available on GitHub right now. In order to enable them, there is one breaking change for users - all variable names are standardize into `snake_case` at import. This will likely impact code that has been written using a prior version of `compstatr`.
 
 ## What's on the Roadmap?
-Before v0.2.0 is officially released, the documentation for the package still needs to be updated to reflect both options for accessing SLMPD data. A vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD's.
+Before v0.2.0 is officially released, a vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD's. Pre-built notebooks containing code for working with SLMPD data are also planned.
 
 ## Quick Start
 If the `sf` package is already installed, the easiest way to get `compstatr` is to install it from CRAN:
