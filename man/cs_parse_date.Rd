@@ -30,6 +30,6 @@ Creates two columns. One contains month, day, and year and the other contains ho
 testData <- january2018
 
 # parse date occured
-testData <- cs_parse_date(testData, var = DateOccur, dateVar = dateOcc, timeVar = timeOcc)
+testData <- cs_parse_date(testData, var = date_occur, dateVar = dateOcc, timeVar = timeOcc)
 
 }

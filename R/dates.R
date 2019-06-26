@@ -18,7 +18,7 @@
 #' testData <- january2018
 #'
 #' # parse CodedMonth
-#' testData <- cs_parse_month(testData, var = CodedMonth, yearVar = reportYear,
+#' testData <- cs_parse_month(testData, var = coded_month, yearVar = reportYear,
 #'     monthVar = reportMonth)
 #'
 #' @importFrom dplyr %>%
@@ -90,7 +90,7 @@ cs_parse_month <- function(.data, var, yearVar, monthVar){
 #' testData <- january2018
 #'
 #' # parse date occured
-#' testData <- cs_parse_date(testData, var = DateOccur, dateVar = dateOcc, timeVar = timeOcc)
+#' testData <- cs_parse_date(testData, var = date_occur, dateVar = dateOcc, timeVar = timeOcc)
 #'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr %>%

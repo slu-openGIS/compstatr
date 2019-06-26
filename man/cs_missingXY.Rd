@@ -28,6 +28,6 @@ A tibble or data frame with a logical vector appended to it.
 testData <- january2018
 
 # identify missing x and y coordinates
-testData <- cs_missingXY(testData, varX = XCoord, varY = YCoord, newVar = missingXY)
+testData <- cs_missingXY(testData, varX = x_coord, varY = y_coord, newVar = missingXY)
 
 }

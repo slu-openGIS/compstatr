@@ -15,8 +15,8 @@
 #' testData <- january2018
 #'
 #' # replace 0s in the x and y coordinate variables
-#' testData <- cs_replace0(testData, var = XCoord)
-#' testData <- cs_replace0(testData, var = YCoord)
+#' testData <- cs_replace0(testData, var = x_coord)
+#' testData <- cs_replace0(testData, var = y_coord)
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
@@ -76,7 +76,7 @@ cs_replace0 <- function(.data, var){
 #' testData <- january2018
 #'
 #' # identify missing x and y coordinates
-#' testData <- cs_missingXY(testData, varX = XCoord, varY = YCoord, newVar = missingXY)
+#' testData <- cs_missingXY(testData, varX = x_coord, varY = y_coord, newVar = missingXY)
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
@@ -150,16 +150,16 @@ cs_missingXY <- function(.data, varX, varY, newVar){
 #' testData <- january2018
 #'
 #' # identify missing x and y coordinates
-#' testData <- cs_missingXY(testData, varX = XCoord, varY = YCoord, newVar = missingXY)
+#' testData <- cs_missingXY(testData, varX = x_coord, varY = y_coord, newVar = missingXY)
 #'
 #' # subset to remove missing data
 #' testData <- dplyr::filter(testData, missingXY == FALSE)
 #'
 #' # project data
-#' testData_sf <- cs_projectXY(testData, varX = XCoord, varY = YCoord)
+#' testData_sf <- cs_projectXY(testData, varX = x_coord, varY = y_coord)
 #'
 #' # project data and transform to new CRS
-#' testData_sf <- cs_projectXY(testData, varX = XCoord, varY = YCoord, crs = 4269)
+#' testData_sf <- cs_projectXY(testData, varX = x_coord, varY = y_coord, crs = 4269)
 #'
 #' @importFrom sf st_as_sf
 #' @importFrom sf st_transform

@@ -79,7 +79,7 @@
 #' testData <- january2018
 #'
 #' # add logical vector for violent crimes
-#' testData <- cs_crime(testData, var = Crime, newVar = violentCrimes, crime = "violent")
+#' testData <- cs_crime(testData, var = crime, newVar = violentCrimes, crime = "violent")
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=
@@ -293,19 +293,19 @@ cs_crime <- function(.data, var, newVar, crime){
 #' testData <- january2018
 #'
 #' # apply categories
-#' testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "numeric")
+#' testData <- cs_crime_cat(testData,var = crime, newVar = crimeCat, output = "numeric")
 #'
 #' # preview categories
 #' table(testData$crimeCat)
 #'
 #' # apply categories
-#' testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "factor")
+#' testData <- cs_crime_cat(testData,var = crime, newVar = crimeCat, output = "factor")
 #'
 #' # preview categories
 #' table(testData$crimeCat)
 #'
 #' # apply categories
-#' testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "string")
+#' testData <- cs_crime_cat(testData,var = crime, newVar = crimeCat, output = "string")
 #'
 #' # preview categories
 #' table(testData$crimeCat)

@@ -87,6 +87,6 @@ The categories used here are derived from the U.S. Federal
 testData <- january2018
 
 # subset data to retain only violent crimes
-testData <- cs_filter_crime(testData, var = Crime, crime = "violent")
+testData <- cs_filter_crime(testData, var = crime, crime = "violent")
 
 }

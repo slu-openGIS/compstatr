@@ -23,7 +23,7 @@ This function a specified column from the data frame and
 testData <- january2018
 
 # replace 0s in the x and y coordinate variables
-testData <- cs_replace0(testData, var = XCoord)
-testData <- cs_replace0(testData, var = YCoord)
+testData <- cs_replace0(testData, var = x_coord)
+testData <- cs_replace0(testData, var = y_coord)
 
 }

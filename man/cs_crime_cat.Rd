@@ -38,19 +38,19 @@ The categories used here are derived from the U.S. Federal
 testData <- january2018
 
 # apply categories
-testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "numeric")
+testData <- cs_crime_cat(testData,var = crime, newVar = crimeCat, output = "numeric")
 
 # preview categories
 table(testData$crimeCat)
 
 # apply categories
-testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "factor")
+testData <- cs_crime_cat(testData,var = crime, newVar = crimeCat, output = "factor")
 
 # preview categories
 table(testData$crimeCat)
 
 # apply categories
-testData <- cs_crime_cat(testData,var = Crime, newVar = crimeCat, output = "string")
+testData <- cs_crime_cat(testData,var = crime, newVar = crimeCat, output = "string")
 
 # preview categories
 table(testData$crimeCat)

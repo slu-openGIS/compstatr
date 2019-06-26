@@ -25,6 +25,6 @@ Removes the row that contains \code{-1} in a specified column, indicating that t
 testData <- january2018
 
 # subset data to remove negative counts
-testData <- cs_filter_count(testData, var = Count)
+testData <- cs_filter_count(testData, var = count)
 
 }

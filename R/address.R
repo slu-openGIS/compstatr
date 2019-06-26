@@ -22,7 +22,7 @@
 #' testData <- january2018
 #'
 #' # add concatenated address variable
-#' testData <- cs_address(testData, address = ILEADSAddress, street = ILEADSStreet, newVar = address)
+#' testData <- cs_address(testData, address = ileads_address, street = ileads_street, newVar = address)
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang :=

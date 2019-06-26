@@ -77,7 +77,7 @@
 #' testData <- january2018
 #'
 #' # subset data to retain only violent crimes
-#' testData <- cs_filter_crime(testData, var = Crime, crime = "violent")
+#' testData <- cs_filter_crime(testData, var = crime, crime = "violent")
 #'
 #' @importFrom dplyr filter
 #' @importFrom dplyr %>%
@@ -277,7 +277,7 @@ cs_filter_crime <- function(.data, var, crime){
 #' testData <- january2018
 #'
 #' # subset data to remove negative counts
-#' testData <- cs_filter_count(testData, var = Count)
+#' testData <- cs_filter_count(testData, var = count)
 #'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr filter

@@ -90,6 +90,6 @@ The categories used here are derived from the U.S. Federal
 testData <- january2018
 
 # add logical vector for violent crimes
-testData <- cs_crime(testData, var = Crime, newVar = violentCrimes, crime = "violent")
+testData <- cs_crime(testData, var = crime, newVar = violentCrimes, crime = "violent")
 
 }
