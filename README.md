@@ -206,7 +206,7 @@ need to be fixed month by month because there are some correct months,
 but years 2008 through 2012 can be fixed en masse:
 
 ``` r
-> yearList08 <- cs_standardize(yearList08, config = 18)
+> yearList08 <- cs_standardize(yearList08, config = 18, month = all)
 ```
 
 Once the data have been standardized, we can collapse them into a single
