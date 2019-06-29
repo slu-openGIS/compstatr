@@ -189,7 +189,7 @@ yearList17 <- cs_standardize(yearList17, month = "May", config = 26)
 For 2013 and prior years, there will be only 18 variables. The 2013 data need to be fixed month by month because there are some correct months, but years 2008 through 2012 can be fixed en masse:
 
 ```r
-> yearList08 <- cs_standardize(yearList08, config = 18)
+> yearList08 <- cs_standardize(yearList08, config = 18, month = "all")
 ```
 
 If there are more significant problems with a given month, `cs_extract_month()` can be used to pull a single month out of a year-list object. It can then be edited using `dplyr` or similar tools, and then replaced into the year-list object with `cs_replace_month()`. As of March 2019, there are no months of released data that require this. These functions are therefore provided as cautionary tools.
