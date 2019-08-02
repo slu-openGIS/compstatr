@@ -109,9 +109,9 @@
       <small>Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="compstatr-0-2-0-9000" class="section level1">
+    <div id="compstatr-0-2-0" class="section level1">
 <h1 class="page-header">
-<a href="#compstatr-0-2-0-9000" class="anchor"></a>compstatr 0.2.0.9000<small> Unreleased </small>
+<a href="#compstatr-0-2-0" class="anchor"></a>compstatr 0.2.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>add functionality for directly scraping crime data into <code>R</code>:
@@ -119,9 +119,11 @@
 <li>add <code>cs_last_update</code> - checks date of last data release by SLMPD</li>
 <li>add <code>cs_create_index</code> - creates a full tibble of available month tables</li>
 <li>add <code>cs_get_data</code> - downloads a month or year worth of crime tables</li>
+<li>There is one breaking change for users - to enable these functions, all variable names are standardized into <code>snake_case</code> at import. This will impact code that has been written using a prior version of <code>compstatr</code>.</li>
 </ul>
 </li>
-<li>update <code>README</code> and <code>index.Rmd</code> with “What’s New?” and “What’s on the Roadmap?” sections</li>
+<li>update <code>README</code> and <code>index.Rmd</code> with “What’s New?” sections</li>
+<li>remove <code>tibble</code> dependency</li>
 </ul>
 </div>
     <div id="compstatr-0-1-1" class="section level1">
@@ -167,7 +169,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#compstatr-0-2-0-9000">0.2.0.9000</a></li>
+        <li><a href="#compstatr-0-2-0">0.2.0</a></li>
         <li><a href="#compstatr-0-1-1">0.1.1</a></li>
         <li><a href="#compstatr-0-1-0">0.1.0</a></li>
       </ul>

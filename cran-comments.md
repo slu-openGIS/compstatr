@@ -1,34 +1,18 @@
 ## Release summary
-This is the second re-submission of our initial CRAN submission based on feedback from Matthias Sterrer and then Swetlana Herbrandt.
-
-The second resubmission made the following changes:
-
-1. Added a link to the `DESCRIPTION` file to the data source
-2. Ensured that the examples in `example.R` and `create.R` read from and write to a temporary directory
-3. add a function `cs_address()` to facilitate concatenation of street addresses prior to geocoding
-
-The first resubmission made the following changes:
-
-1. add executable examples for `cs_prep_year()`, `cs_load_year()`, and `cs_projectXY`
-2. in order to facilitate (1), we have added a `cs_example()` function for creating a sample year worth of `.csv` files
-3. clarify `DESCRIPTION` for package based on the feedback we recieved
-
-### Original summary
-This package is a compliment to an existing CRAN package, `stlcsb`, which provides access to non-emergency call data. Though this package is focused on St. Louis, it provides access to detailed data about a city with one of the highest violent crime rates in the United States, an issue of interest to researchers both within St. Louis and nationally. It also provides categorization tools that are more broadly applicable to police data from around the United States.
+This is an update to the current CRAN version, which adds a number of functions for scraping St. Louis crime data directly from the web. Three new functions (along with associated documentation and unit tests) are introduced. In addition, the 1 NOTE on the CRAN package check results page has been addressed by removing the `tibble` package from Imports.
 
 ## Test environments
-* local OS X install, R 3.5.2
-* ubuntu 14.04 (on Travis CI), R-release, R-oldrel, R-devel
-* macOS (on Travis CI), R-release, R-oldrel
-* windows i386 (on Appveyor), R-release, R-oldrel, R-devel
-* windows x64 (on Appveyor), R-release, R-oldrel, R-devel
+* local OS X install, R 3.6.1
+* Linux xenial distribution (on Travis CI): R-release, R-oldrel, R-devel, R-3.4.4, and R-3.3.3
+* macOS (on Travis CI): R-release, R-oldrel, R-3.4.4, and R-3.3.3
+* windows x64 (on Appveyor): R-release, R-patched, R-oldrel, R-devel, R-3.4.4, and R-3.3.3
+* windows i386 (on Appveyor): R-patched
 * winbuilder, R-release, R-oldrel, R-devel
 
-## R CMD check results
-* There were no ERRORs, WARNINGs, or NOTEs with local checks or on Travis CI/Appveyor.
+* r-hub not used because it lacks dependencies needed to build `sf` on Debian
 
-* winbuilder and `devtools::release()` both note that this is a new submission to CRAN
-* winbuilder identified one word that may be misspelled in the `DESCRIPTION` file - it is spelled correctly.
+## R CMD check results
+* There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
 
 ## Reverse dependencies
 Not applicable.
