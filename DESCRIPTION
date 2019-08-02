@@ -37,6 +37,7 @@ Imports:
     rvest,
     sf,
     stringr,
+    tibble,
     tidyr,
     xml2
 Suggests:

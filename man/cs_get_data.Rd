@@ -33,10 +33,12 @@ may18 <- cs_get_data(year = 2018, month = "May", index = i)
 # preview single month
 may18
 
+\donttest{
 # download full year
 yearList18 <- cs_get_data(year = 2018, index = i)
 
 # preview year list object
 yearList18
+}
 
 }

@@ -31,11 +31,13 @@
 #' # preview single month
 #' may18
 #'
+#' \donttest{
 #' # download full year
 #' yearList18 <- cs_get_data(year = 2018, index = i)
 #'
 #' # preview year list object
 #' yearList18
+#' }
 #'
 #' @export
 cs_get_data <- function(year, month, index){

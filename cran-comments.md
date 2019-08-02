@@ -1,5 +1,5 @@
 ## Release summary
-This is an update to the current CRAN version, which adds a number of functions for scraping St. Louis crime data directly from the web. Three new functions (along with associated documentation and unit tests) are introduced. In addition, the 1 NOTE on the CRAN package check results page has been addressed by removing the `tibble` package from Imports.
+This is an update to the current CRAN version, which adds a number of functions for scraping St. Louis crime data directly from the web. Three new functions (along with associated documentation and unit tests) are introduced. In addition, the 1 NOTE on the CRAN package check results page has been addressed a function from the `tibble` package is used in one of the new functions.
 
 ## Test environments
 * local OS X install, R 3.6.1
