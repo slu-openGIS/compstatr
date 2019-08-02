@@ -2,16 +2,24 @@
 
 language: R
 sudo: required
-cache: packages
+cache:
+  - packages
+  - ccache
+
+latex: false
+
+os:
+  - linux
+  - osx
+
+dist: xenial
 
 r:
   - oldrel
   - release
   - devel
-
-os:
-  - linux
-  - osx
+  - 3.4
+  - 3.3
 
 matrix:
   fast_finish: true
@@ -22,12 +30,16 @@ matrix:
 addons:
   postgresql: "9.6"
 
+before_install:
+  - chmod +x ./.travis/install.sh
+  - ./.travis/install.sh
+
 r_packages:
   - devtools
+  - lazyeval
 
-before_install:
-    - chmod +x ./.travis/install.sh
-    - ./.travis/install.sh
+before_cache:
+  - brew cleanup
 
 after_success:
   - dropdb postgis
