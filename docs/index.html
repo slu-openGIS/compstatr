@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -94,30 +94,25 @@
 <div id="whats-new" class="section level2">
 <h2 class="hasAnchor">
 <a href="#whats-new" class="anchor"></a>What’s New?</h2>
-<p>Version v0.2.0 is underway! This updated release of <code>compstatr</code> will introduce three new functions that enable users to access data directly from SLMPD’s website without having to download individual data files first:</p>
+<p>Version v0.2.0 is here! This updated release of <code>compstatr</code> introduces three new functions that enable users to access data directly from SLMPD’s website without having to download individual data files first:</p>
 <ol style="list-style-type: decimal">
 <li>
-<code><a href="reference/cs_last_update.html">cs_last_update()</a></code> - returns the date of the last available data release on SLMPD’s website</li>
+<code>cs_last_update()</code> - returns the date of the last available data release on SLMPD’s website</li>
 <li>
-<code><a href="reference/cs_create_index.html">cs_create_index()</a></code> - creates an index of data sets available on SLMPD’s website for scraping</li>
+<code>cs_create_index()</code> - creates an index of data sets available on SLMPD’s website for scraping</li>
 <li>
-<code><a href="reference/cs_get_data.html">cs_get_data()</a></code> - scrapes either a single month or a full year worth of data from SLMPD’s website</li>
+<code>cs_get_data()</code> - scrapes either a single month or a full year worth of data from SLMPD’s website</li>
 </ol>
-<p>These functions are only available on GitHub right now. In order to enable them, there is one breaking change for users - all variable names are standardize into <code>snake_case</code> at import. This will likely impact code that has been written using a prior version of <code>compstatr</code>.</p>
-</div>
-<div id="whats-on-the-roadmap" class="section level2">
-<h2 class="hasAnchor">
-<a href="#whats-on-the-roadmap" class="anchor"></a>What’s on the Roadmap?</h2>
-<p>Before v0.2.0 is officially released, a vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD’s. Pre-built notebooks containing code for working with SLMPD data are also planned.</p>
+<p>In order to enable them, there is one breaking change for users - all variable names are standardized into <code>snake_case</code> at import. This will impact code that has been written using a prior version of <code>compstatr</code>.</p>
 </div>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>If the <code>sf</code> package is already installed, the easiest way to get <code>compstatr</code> is to install it from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</a></code></pre></div>
 <p>The development version of <code>compstatr</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</a></code></pre></div>
 <p>Additional details, including some tips for installing <code>sf</code>, can be found in the <a href="articles/compstatr.html#installation">Get started article</a>.</p>
 </div>
 <div id="resources" class="section level2">

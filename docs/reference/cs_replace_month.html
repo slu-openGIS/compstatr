@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@ Acceptable inputs include, for example, "January", "january", "Jan",
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='cs_extract_month.html'>cs_extract_month</a></code></p></div>
+    <div class='dont-index'><p><code>cs_extract_month</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -155,7 +155,7 @@ Acceptable inputs include, for example, "January", "january", "Jan",
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
 
 <span class='co'># extract May</span>
-<span class='no'>may17</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_extract_month.html'>cs_extract_month</a></span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='no'>may17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_extract_month</span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='co'># replace</span>
 <span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_replace_month</span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>monthData</span> <span class='kw'>=</span> <span class='no'>may17</span>)

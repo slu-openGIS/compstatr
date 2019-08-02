@@ -30,16 +30,13 @@ The City's crime data, however, are difficult to work with and present a number 
 We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files. The categorization tools that are provided will work with any police department that uses 5 and 6 digit numeric codes to identify specific crimes.
 
 ## What's New?
-Version v0.2.0 is underway! This updated release of `compstatr` will introduce three new functions that enable users to access data directly from SLMPD's website without having to download individual data files first:
+Version v0.2.0 is here! This updated release of `compstatr` introduces three new functions that enable users to access data directly from SLMPD's website without having to download individual data files first:
 
   1. `cs_last_update()` - returns the date of the last available data release on SLMPD's website
   2. `cs_create_index()` - creates an index of data sets available on SLMPD's website for scraping
   3. `cs_get_data()` - scrapes either a single month or a full year worth of data from SLMPD's website
 
-These functions are only available on GitHub right now. In order to enable them, there is one breaking change for users - all variable names are standardize into `snake_case` at import. This will impact code that has been written using a prior version of `compstatr`.
-
-## What's on the Roadmap?
-Before v0.2.0 is officially released, a vignette describing the scraping methodology is also planned because few resources are available online for scraping sites that are arranged like SLMPD's. Pre-built notebooks containing code for working with SLMPD data are also planned.
+In order to enable them, there is one breaking change for users - all variable names are standardized into `snake_case` at import. This will impact code that has been written using a prior version of `compstatr`.
 
 ## Installation
 The easiest way to get `compstatr` is to install it from CRAN:

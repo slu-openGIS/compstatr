@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -161,12 +161,12 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/load'>load</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"testdata"</span>, <span class='st'>"yearList17.rda"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"compstatr"</span>, <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
 
 <span class='co'># validate</span>
-<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='fu'>cs_validate</span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='co'># standaridze May, which has 26 variables</span>
-<span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cs_standardize.html'>cs_standardize</a></span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>26</span>)
+<span class='no'>yearList17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_standardize</span>(<span class='no'>yearList17</span>, <span class='kw'>month</span> <span class='kw'>=</span> <span class='st'>"May"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>26</span>)
 
 <span class='co'># validate again to confirm fix</span>
-<span class='fu'><a href='cs_validate.html'>cs_validate</a></span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'>cs_validate</span>(<span class='no'>yearList17</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># collapse now that the data are valid</span>
 <span class='no'>crimeReports17</span> <span class='kw'>&lt;-</span> <span class='fu'>cs_collapse</span>(<span class='no'>yearList17</span>)</div></pre>
   </div>
