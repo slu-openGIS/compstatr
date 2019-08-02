@@ -1,7 +1,7 @@
 Package: compstatr
 Type: Package
 Title: Tools for St. Louis Crime Data
-Version: 0.2.0.9000
+Version: 0.2.0
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre")),
     person("Cree", "Foeller", ,"cree.foeller@slu.edu", c("aut")),
@@ -37,7 +37,6 @@ Imports:
     rvest,
     sf,
     stringr,
-    tibble,
     tidyr,
     xml2
 Suggests:
