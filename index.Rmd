@@ -57,4 +57,4 @@ In addition to instructions for installation, the main [Get started](articles/co
 We wish to thank Taylor Braswell for his significant efforts compiling Stata code early in this project. Taylor's code was used as a reference when developing this package, and many of the functions reflect issues that he worked to identify.
 
 ## Contributor Code of Conduct
-Please note that this project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://slu-opengis.github.io/compstatr/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms.
