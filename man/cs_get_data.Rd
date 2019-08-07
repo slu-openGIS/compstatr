@@ -24,6 +24,7 @@ A year-list object ready for validation.
 Downloads crime data from the SLMPD website.
 }
 \examples{
+\donttest{
 # create index
 i <- cs_create_index()
 
@@ -33,7 +34,6 @@ may18 <- cs_get_data(year = 2018, month = "May", index = i)
 # preview single month
 may18
 
-\donttest{
 # download full year
 yearList18 <- cs_get_data(year = 2018, index = i)
 

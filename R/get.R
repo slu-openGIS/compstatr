@@ -22,6 +22,7 @@
 #' @importFrom utils read.csv
 #'
 #' @examples
+#' \donttest{
 #' # create index
 #' i <- cs_create_index()
 #'
@@ -31,7 +32,6 @@
 #' # preview single month
 #' may18
 #'
-#' \donttest{
 #' # download full year
 #' yearList18 <- cs_get_data(year = 2018, index = i)
 #'
