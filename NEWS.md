@@ -6,7 +6,6 @@
     * add `cs_get_data` - downloads a month or year worth of crime tables
     * There is one breaking change for users - to enable these functions, all variable names are standardized into `snake_case` at import. This will impact code that has been written using a prior version of `compstatr`.
 * update `README` and `index.Rmd` with "What's New?" sections
-* remove `tibble` dependency
 
 # compstatr 0.1.1
 
