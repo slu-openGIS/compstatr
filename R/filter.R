@@ -111,6 +111,9 @@ cs_filter_crime <- function(.data, var, crime){
     var <- rlang::quo(!! rlang::sym(var))
   }
 
+  # ensure the crime variable is integer
+  .data <- dplyr::mutate(.data, !!var := as.integer(!!var))
+
   # convert to lower case
   crime <- tolower(crime)
 

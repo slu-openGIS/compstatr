@@ -123,7 +123,6 @@ cs_crime <- function(.data, var, newVar, crime){
   crime <- tolower(crime)
 
   #Appends the column with the proper crime code
-
   if (crime == "violent"){
 
     cleanData <- dplyr::mutate(.data, !!newVarN := ifelse(!!var <= 50000, TRUE, FALSE))
@@ -368,6 +367,9 @@ cs_crime_cat <- function(.data, var, newVar, output = c("string", "factor", "num
   }
 
   newVarN <- rlang::quo_name(rlang::enquo(newVar))
+
+  # ensure the crime variable is integer
+  .data <- dplyr::mutate(.data, !!var := as.integer(!!var))
 
   #Adds a new column with the numeric, string, or factor name
   if (output == "string" | output == "factor"){

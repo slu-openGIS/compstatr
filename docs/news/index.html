@@ -8,11 +8,13 @@
 
 <title>Changelog • compstatr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +32,11 @@
 
 
 
-<meta property="og:title" content="Changelog" />
 
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -63,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -85,7 +88,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/compstatr">
@@ -109,9 +111,17 @@
       <small>Source: <a href='https://github.com/slu-openGIS/compstatr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="compstatr-0-2-0" class="section level1">
+    <div id="compstatr-0219000" class="section level1">
 <h1 class="page-header">
-<a href="#compstatr-0-2-0" class="anchor"></a>compstatr 0.2.0<small> Unreleased </small>
+<a href="#compstatr-0219000" class="anchor"></a>compstatr 0.2.1.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li>address bug where categorize and filter functions failed when the <code>var</code> argument was not an integer variable</li>
+</ul>
+</div>
+    <div id="compstatr-020" class="section level1">
+<h1 class="page-header">
+<a href="#compstatr-020" class="anchor"></a>compstatr 0.2.0<small> 2019-08-07 </small>
 </h1>
 <ul>
 <li>add functionality for directly scraping crime data into <code>R</code>:
@@ -125,9 +135,9 @@
 <li>update <code>README</code> and <code>index.Rmd</code> with “What’s New?” sections</li>
 </ul>
 </div>
-    <div id="compstatr-0-1-1" class="section level1">
+    <div id="compstatr-011" class="section level1">
 <h1 class="page-header">
-<a href="#compstatr-0-1-1" class="anchor"></a>compstatr 0.1.1<small> 2019-04-24 </small>
+<a href="#compstatr-011" class="anchor"></a>compstatr 0.1.1<small> 2019-04-24 </small>
 </h1>
 <ul>
 <li><strong>initial CRAN submission</strong></li>
@@ -138,8 +148,8 @@
 </li>
 <li>in response to initial feedback from Matthias Sterrer (CRAN):
 <ul>
-<li>add <code>cs_example()</code> function for creating a sample year worth of <code>.csv</code> files</li>
-<li>add executable examples for <code>cs_prep_year()</code>, <code>cs_load_year()</code>, and <code>cs_projectXY</code>
+<li>add <code><a href="../reference/cs_example.html">cs_example()</a></code> function for creating a sample year worth of <code>.csv</code> files</li>
+<li>add executable examples for <code><a href="../reference/cs_prep_year.html">cs_prep_year()</a></code>, <code><a href="../reference/cs_load_year.html">cs_load_year()</a></code>, and <code>cs_projectXY</code>
 </li>
 <li>clarify <code>DESCRIPTION</code> for package</li>
 </ul>
@@ -150,12 +160,12 @@
 <li>ensured that the examples in <code>example.R</code> and <code>create.R</code> read from and write to a temporary directory</li>
 </ul>
 </li>
-<li>add a function <code>cs_address()</code> to facilitate concatenation of street addresses prior to geocoding</li>
+<li>add a function <code><a href="../reference/cs_address.html">cs_address()</a></code> to facilitate concatenation of street addresses prior to geocoding</li>
 </ul>
 </div>
-    <div id="compstatr-0-1-0" class="section level1">
+    <div id="compstatr-010" class="section level1">
 <h1 class="page-header">
-<a href="#compstatr-0-1-0" class="anchor"></a>compstatr 0.1.0<small> Unreleased </small>
+<a href="#compstatr-010" class="anchor"></a>compstatr 0.1.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
@@ -168,9 +178,10 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#compstatr-0-2-0">0.2.0</a></li>
-        <li><a href="#compstatr-0-1-1">0.1.1</a></li>
-        <li><a href="#compstatr-0-1-0">0.1.0</a></li>
+        <li><a href="#compstatr-0219000">0.2.1.9000</a></li>
+        <li><a href="#compstatr-020">0.2.0</a></li>
+        <li><a href="#compstatr-011">0.1.1</a></li>
+        <li><a href="#compstatr-010">0.1.0</a></li>
       </ul>
     </div>
   </div>

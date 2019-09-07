@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -94,25 +94,34 @@
 <div id="whats-new" class="section level2">
 <h2 class="hasAnchor">
 <a href="#whats-new" class="anchor"></a>What’s New?</h2>
+<div id="latest-github" class="section level3">
+<h3 class="hasAnchor">
+<a href="#latest-github" class="anchor"></a>Latest GitHub</h3>
+<p>The current GitHub version contains a bug fix, not available on CRAN yet, that addresses a failure where the categorize and filter functions don’t to work properly if the <code>var</code> column is not integer.</p>
+</div>
+<div id="latest-cran-release" class="section level3">
+<h3 class="hasAnchor">
+<a href="#latest-cran-release" class="anchor"></a>Latest CRAN Release</h3>
 <p>Version v0.2.0 is here! This updated release of <code>compstatr</code> introduces three new functions that enable users to access data directly from SLMPD’s website without having to download individual data files first:</p>
 <ol style="list-style-type: decimal">
 <li>
-<code>cs_last_update()</code> - returns the date of the last available data release on SLMPD’s website</li>
+<code><a href="reference/cs_last_update.html">cs_last_update()</a></code> - returns the date of the last available data release on SLMPD’s website</li>
 <li>
-<code>cs_create_index()</code> - creates an index of data sets available on SLMPD’s website for scraping</li>
+<code><a href="reference/cs_create_index.html">cs_create_index()</a></code> - creates an index of data sets available on SLMPD’s website for scraping</li>
 <li>
-<code>cs_get_data()</code> - scrapes either a single month or a full year worth of data from SLMPD’s website</li>
+<code><a href="reference/cs_get_data.html">cs_get_data()</a></code> - scrapes either a single month or a full year worth of data from SLMPD’s website</li>
 </ol>
 <p>In order to enable them, there is one breaking change for users - all variable names are standardized into <code>snake_case</code> at import. This will impact code that has been written using a prior version of <code>compstatr</code>.</p>
+</div>
 </div>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>If the <code>sf</code> package is already installed, the easiest way to get <code>compstatr</code> is to install it from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</span></code></pre></div>
 <p>The development version of <code>compstatr</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</span></code></pre></div>
 <p>Additional details, including some tips for installing <code>sf</code>, can be found in the <a href="articles/compstatr.html#installation">Get started article</a>.</p>
 </div>
 <div id="resources" class="section level2">
@@ -166,6 +175,7 @@
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
+
 
       <div class="dev-status">
 <h2>Dev status</h2>

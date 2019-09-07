@@ -8,11 +8,13 @@
 
 <title>Categorize Crime — cs_crime_cat • compstatr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,17 +32,17 @@
 
 
 
-<meta property="og:title" content="Categorize Crime — cs_crime_cat" />
 
+<meta property="og:title" content="Categorize Crime — cs_crime_cat" />
 <meta property="og:description" content="The SLMPD data contains 5 or 6 digit codes to refer to
     specific categories of crime. cs_crime_cat transforms these
     into either string, factor, or simplified numeric categories
     like &quot;murder&quot; or &quot;aggravated assault&quot;. This can be used
     on any police department's data where codes like 31111 (robbery with a firearm)
     or 142320 (malicious destruction of property) are used to identify crimes." />
-
 <meta property="og:image" content="https://slu-openGIS.github.io/compstatr/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -70,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">compstatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -92,7 +94,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/compstatr">
@@ -118,18 +119,16 @@
     </div>
 
     <div class="ref-description">
-    
     <p>The SLMPD data contains 5 or 6 digit codes to refer to
     specific categories of crime. <code>cs_crime_cat</code> transforms these
     into either string, factor, or simplified numeric categories
     like "murder" or "aggravated assault". This can be used
     on any police department's data where codes like <code>31111</code> (robbery with a firearm)
     or <code>142320</code> (malicious destruction of property) are used to identify crimes.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cs_crime_cat</span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='no'>newVar</span>, <span class='no'>output</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -153,16 +152,14 @@ homicide, <code>3</code> for aggravated assault, etc.). Factor output will be re
 of descending UCR code (i.e. beginning with homicide, which has a UCR code of <code>1</code>).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A copy of the object with the new output variable appended to it.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The categories used here are derived from the U.S. Federal
     Bureau of Investigation's Uniform Crime Reporting codes.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load example data</span>
@@ -297,11 +294,8 @@ of descending UCR code (i.e. beginning with homicide, which has a UCR code of <c
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

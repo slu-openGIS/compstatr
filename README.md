@@ -46,6 +46,14 @@ specific crimes.
 
 ## What’s New?
 
+### Latest GitHub
+
+The current GitHub version contains a bug fix, not available on CRAN
+yet, that addresses a failure where the categorize and filter functions
+don’t to work properly if the `var` column is not integer.
+
+### Latest CRAN Release
+
 Version v0.2.0 is here\! This updated release of `compstatr` introduces
 three new functions that enable users to access data directly from
 SLMPD’s website without having to download individual data files
@@ -291,9 +299,9 @@ projected:
 If you work with data from other police departments, the `cs_crime()`,
 `cs_crime_cat()`, and `cs_filter_crime()` functions may be useful for
 identifying, grouping, and subsetting by crime so long as they use a
-standard set of 5 and 6 digit codes based on the UCR system (e.g.
-`31111` (robbery with a firearm) or `142320` (malicious destruction of
-property)).
+standard set of 5 and 6 digit codes based on the UCR system
+(e.g. `31111` (robbery with a firearm) or `142320` (malicious
+destruction of property)).
 
 ## Acknowledgements
 

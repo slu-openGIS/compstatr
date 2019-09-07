@@ -1,3 +1,7 @@
+# compstatr 0.2.1.9000
+
+* address bug where categorize and filter functions failed when the `var` argument was not an integer variable
+
 # compstatr 0.2.0
 
 * add functionality for directly scraping crime data into `R`:

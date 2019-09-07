@@ -21,6 +21,10 @@ knitr::opts_chunk$set(
 The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis' [Metropolitan Police Department](http://www.slmpd.org).
 
 ## What's New?
+### Latest GitHub
+The current GitHub version contains a bug fix, not available on CRAN yet, that addresses a failure where the categorize and filter functions don't to work properly if the `var` column is not integer.
+
+### Latest CRAN Release
 Version v0.2.0 is here! This updated release of `compstatr` introduces three new functions that enable users to access data directly from SLMPD's website without having to download individual data files first:
 
   1. `cs_last_update()` - returns the date of the last available data release on SLMPD's website
