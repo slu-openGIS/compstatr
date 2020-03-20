@@ -33,5 +33,5 @@ results <- cs_projectXY(results, varX = x_coord, varY = y_coord, crs = 4269)
 test_that("correct output is returned on sample data", {
   expect_equal("sf" %in% class(results), TRUE)
   expect_equal(nrow(results), 3727)
-  expect_equal(st_crs(result)$epsg, 4269)
+  expect_equal(sf::st_crs(results)$epsg, 4269)
 })
