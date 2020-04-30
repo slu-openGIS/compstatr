@@ -4,7 +4,8 @@
 \name{january2018}
 \alias{january2018}
 \title{Crimes in St. Louis, January 2018}
-\format{A tibble with 3825 rows and 20 variables:
+\format{
+A tibble with 3825 rows and 20 variables:
 \describe{
   \item{complaint}{complaint record number}
   \item{coded_month}{year and month crime reported}
@@ -26,7 +27,8 @@
   \item{cad_street}{The Computer-Aided Dispatch street is the reported street by the 911 caller}
   \item{x_coord}{X-coordinates in the NAD83 format}
   \item{y_coord}{Y-coordinates in the NAD83 format}
-  }}
+  }
+}
 \source{
 \href{http://www.slmpd.org}{St. Louis Metropolitan Police Department}
 }

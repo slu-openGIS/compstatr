@@ -1,6 +1,8 @@
 # compstatr 0.2.1.9000
 
 * address bug where categorize and filter functions failed when the `var` argument was not an integer variable
+* address testing rules related to `epsg` values in new `sf` release
+* ensure that upcoming changes with `dplyr` and `tibble` do not impact package
 
 # compstatr 0.2.0
 

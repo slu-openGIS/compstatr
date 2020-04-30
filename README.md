@@ -52,24 +52,6 @@ The current GitHub version contains a bug fix, not available on CRAN
 yet, that addresses a failure where the categorize and filter functions
 don’t to work properly if the `var` column is not integer.
 
-### Latest CRAN Release
-
-Version v0.2.0 is here\! This updated release of `compstatr` introduces
-three new functions that enable users to access data directly from
-SLMPD’s website without having to download individual data files
-first:
-
-1.  `cs_last_update()` - returns the date of the last available data
-    release on SLMPD’s website
-2.  `cs_create_index()` - creates an index of data sets available on
-    SLMPD’s website for scraping
-3.  `cs_get_data()` - scrapes either a single month or a full year worth
-    of data from SLMPD’s website
-
-In order to enable them, there is one breaking change for users - all
-variable names are standardized into `snake_case` at import. This will
-impact code that has been written using a prior version of `compstatr`.
-
 ## Installation
 
 The easiest way to get `compstatr` is to install it from CRAN:
@@ -299,9 +281,9 @@ projected:
 If you work with data from other police departments, the `cs_crime()`,
 `cs_crime_cat()`, and `cs_filter_crime()` functions may be useful for
 identifying, grouping, and subsetting by crime so long as they use a
-standard set of 5 and 6 digit codes based on the UCR system
-(e.g. `31111` (robbery with a firearm) or `142320` (malicious
-destruction of property)).
+standard set of 5 and 6 digit codes based on the UCR system (e.g.
+`31111` (robbery with a firearm) or `142320` (malicious destruction of
+property)).
 
 ## Acknowledgements
 
