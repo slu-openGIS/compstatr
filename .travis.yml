@@ -15,11 +15,12 @@ os:
 dist: xenial
 
 r:
-  - oldrel
-  - release
   - devel
+  - release
+  - oldrel
+  - 3.5
   - 3.4
-  - 3.3
+  # - 3.3
 
 matrix:
   fast_finish: true
