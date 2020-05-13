@@ -5,7 +5,7 @@
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build
-Status](https://travis-ci.org/slu-openGIS/compstatr.svg?branch=master)](https://travis-ci.org/slu-openGIS/compstatr)
+Status](https://travis-ci.com/slu-openGIS/compstatr.svg?branch=master)](https://travis-ci.com/slu-openGIS/compstatr)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/compstatr?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/compstatr)
 [![Coverage
@@ -46,7 +46,7 @@ available [on their website](http://www.slmpd.org/Crimereports.shtml) as
 any police department that uses 5 and 6 digit numeric codes to identify
 specific crimes.
 
-## What’s New in v2.1?
+## What’s New in v0.2.1?
 
 Version v0.2.1 addresses a number of bugs, and returns `compstatr` to
 CRAN.
