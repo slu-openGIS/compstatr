@@ -1,4 +1,4 @@
-# compstatr 0.2.1.9000
+# compstatr 0.2.1
 
 * address bug where categorize and filter functions failed when the `var` argument was not an integer variable
 * address testing rules related to `epsg` values in new `sf` release

@@ -10,8 +10,10 @@ Status](https://travis-ci.org/slu-openGIS/compstatr.svg?branch=master)](https://
 Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/compstatr?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/compstatr)
 [![Coverage
 status](https://codecov.io/gh/slu-openGIS/compstatr/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/compstatr?branch=master)
+[![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
+[![cran
+checks](https://cranchecks.info/badges/worst/compstatr)](https://cran.r-project.org/web/checks/check_results_compstatr.html)
 [![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
 The goal of `compstatr` is to provide a suite of tools for working with
 crime data made public by the City of St. Louis’ [Metropolitan Police
@@ -44,13 +46,10 @@ available [on their website](http://www.slmpd.org/Crimereports.shtml) as
 any police department that uses 5 and 6 digit numeric codes to identify
 specific crimes.
 
-## What’s New?
+## What’s New in v2.1?
 
-### Latest GitHub
-
-The current GitHub version contains a bug fix, not available on CRAN
-yet, that addresses a failure where the categorize and filter functions
-don’t to work properly if the `var` column is not integer.
+Version v0.2.1 addresses a number of bugs, and returns `compstatr` to
+CRAN.
 
 ## Installation
 

@@ -17,8 +17,9 @@ knitr::opts_chunk$set(
 [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/compstatr.svg?branch=master)](https://travis-ci.org/slu-openGIS/compstatr)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/compstatr?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/compstatr)
 [![Coverage status](https://codecov.io/gh/slu-openGIS/compstatr/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/compstatr?branch=master)
+[![CRAN_status_badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
+[![cran checks](https://cranchecks.info/badges/worst/compstatr)](https://cran.r-project.org/web/checks/check_results_compstatr.html)
 [![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
 The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis' [Metropolitan Police Department](http://www.slmpd.org).
 
@@ -29,9 +30,8 @@ The City's crime data, however, are difficult to work with and present a number 
 
 We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files. The categorization tools that are provided will work with any police department that uses 5 and 6 digit numeric codes to identify specific crimes.
 
-## What's New?
-### Latest GitHub
-The current GitHub version contains a bug fix, not available on CRAN yet, that addresses a failure where the categorize and filter functions don't to work properly if the `var` column is not integer.
+## What's New in v0.2.1?
+Version v0.2.1 addresses a number of bugs, and returns `compstatr` to CRAN.
 
 ## Installation
 The easiest way to get `compstatr` is to install it from CRAN:

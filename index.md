@@ -1,37 +1,17 @@
----
-output: github_document
----
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "index-"
-)
-```
 
 # compstatr <img src="man/figures/logo.png" align="right" />
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/compstatr.svg?branch=master)](https://travis-ci.org/slu-openGIS/compstatr)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/compstatr?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/compstatr)
 [![Coverage status](https://codecov.io/gh/slu-openGIS/compstatr/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/compstatr?branch=master)
+[![CRAN_status_badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
+[![cran checks](https://cranchecks.info/badges/worst/compstatr)](https://cran.r-project.org/web/checks/check_results_compstatr.html)
 [![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/compstatr)](https://cran.r-project.org/package=compstatr)
 
 The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis' [Metropolitan Police Department](http://www.slmpd.org).
 
-## What's New?
-### Latest GitHub
-The current GitHub version contains a bug fix, not available on CRAN yet, that addresses a failure where the categorize and filter functions don't to work properly if the `var` column is not integer.
-
-### Latest CRAN Release
-Version v0.2.0 is here! This updated release of `compstatr` introduces three new functions that enable users to access data directly from SLMPD's website without having to download individual data files first:
-
-  1. `cs_last_update()` - returns the date of the last available data release on SLMPD's website
-  2. `cs_create_index()` - creates an index of data sets available on SLMPD's website for scraping
-  3. `cs_get_data()` - scrapes either a single month or a full year worth of data from SLMPD's website
-
-In order to enable them, there is one breaking change for users - all variable names are standardized into `snake_case` at import. This will impact code that has been written using a prior version of `compstatr`.
+## What's New in v0.2.1?
+Version v0.2.1 addresses a number of bugs, and returns `compstatr` to CRAN.
 
 ## Quick Start
 If the `sf` package is already installed, the easiest way to get `compstatr` is to install it from CRAN:
