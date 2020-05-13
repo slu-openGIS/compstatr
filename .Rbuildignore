@@ -12,5 +12,5 @@
 ^cran-comments\.md$
 ^README\.Rmd$
 ^README-.*\.png$
-^index\.Rmd$
+^index\.md$
 ^LICENSE$
