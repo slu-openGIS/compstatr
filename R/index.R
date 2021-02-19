@@ -45,6 +45,8 @@ cs_create_index <- function(){
   pages %>%
     purrr::map_df(~cs_get_table(url = url, session = page, form = form, page = .x)) -> out
 
+  out <- purrr::map_df(pages, ~cs_get_table(url = url, session = page, form = form, page = .x))
+
   # construct output
   out <- dplyr::mutate(out, date = stringr::str_sub(filename, 1, stringr::str_length(filename)-4))
   out <- dplyr::mutate(out, month = stringr::str_sub(date, 1, stringr::str_length(date)-4))
@@ -52,7 +54,7 @@ cs_create_index <- function(){
   out <- dplyr::mutate(out, date = paste(month, year))
   out <- dplyr::mutate(out, month = match(month, month.name))
   out <- dplyr::mutate(out, value = paste(page, row))
-  out <- dplyr::select(out, page, row, value, year, month, date)
+  out <- dplyr::select(out, page, row, value, year, month, date, empty)
 
   # return output
   return(out)
@@ -77,9 +79,11 @@ cs_get_table <- function(url, session, form, page){
 
   # create vector of file names
   vctr <- tbl$`Crime Detail`
+  vctr2 <- dplyr::pull(tbl[5]) # size of csv file
 
   # remove last two entries from vector
   vctr <- utils::head(vctr, -2)
+  vctr2 <- utils::head(vctr2, -2)
 
   # calculate law row position
   last <- length(vctr)+1
@@ -87,12 +91,14 @@ cs_get_table <- function(url, session, form, page){
   # construct output
   out <- tibble::tibble(
     filename = vctr,
+    size = vctr2,
     row = c(2:last)
   )
 
   out <- dplyr::mutate(out, row = formatC(row, width = 2, format = "d", flag = "0"))
+  out <- dplyr::mutate(out, empty = ifelse(size == "0 KB", TRUE, FALSE))
   out <- dplyr::mutate(out, page = page)
-  out <- dplyr::select(out, page, row, filename)
+  out <- dplyr::select(out, page, row, filename, empty)
 
   # return output
   return(out)
