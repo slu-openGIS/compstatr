@@ -17,9 +17,11 @@ Constructs a table for finding a given table of crime data or a set of
 }
 \examples{
 # create index
+\donttest{
 i <- cs_create_index()
 
 # preview of index object
 i
+}
 
 }

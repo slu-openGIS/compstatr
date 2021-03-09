@@ -42,6 +42,9 @@
 #' @export
 cs_get_data <- function(year, month, index){
 
+  # global bindings
+  empty = NULL
+
   # check parameters
   if (missing(year) == TRUE){
     stop("A value for year must be given.")
@@ -67,7 +70,7 @@ cs_get_data <- function(year, month, index){
     }
 
     index_names <- names(index)
-    valid_names <- c("page", "row", "value", "year", "month", "date")
+    valid_names <- c("page", "row", "value", "year", "month", "date", "empty")
 
     if (all(index_names == valid_names) == FALSE){
       stop("The index object is not properly formatted.")
@@ -83,6 +86,16 @@ cs_get_data <- function(year, month, index){
 
     # subset index only based on year
     index <- dplyr::filter(index, year == x)
+
+    # check for missing data
+    if (all(index$empty) == TRUE){
+      stop("Your request cannot be completed because no data are available for your specified timeframe.")
+    } else if (any(index$empty) == TRUE) {
+      n1 <- nrow(index)
+      index <- dplyr::filter(index, empty == FALSE)
+      n2 <- nrow(index)
+      warning(paste0("Due to data availability issues, ", n1-n2, " months worth of data could not be downloaded."))
+    }
 
   } else {
 
@@ -104,6 +117,11 @@ cs_get_data <- function(year, month, index){
 
     # subset index based on month and year
     index <- dplyr::filter(index, year == x & month == y)
+
+    # check for missing data
+    if (all(index$empty) == TRUE){
+      stop("Your request cannot be completed because no data are available for your specified timeframe.")
+    }
 
   }
 

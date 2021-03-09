@@ -10,8 +10,8 @@
 
 The goal of `compstatr` is to provide a suite of tools for working with crime data made public by the City of St. Louis' [Metropolitan Police Department](http://www.slmpd.org).
 
-## What's New in v0.2.1?
-Version v0.2.1 addresses a number of bugs, and returns `compstatr` to CRAN.
+## What's New in v0.2.2.9000?
+SLMPD is currently switching to NBIRS, and has not published data since December 2020. We have not been given a timeline for data availability. This current version of the package contains checks in `cs_get_data()` that will gracefully error if you attempt to download data that is listed in the `index` object but are not actually available on the website.
 
 ## Quick Start
 If the `sf` package is already installed, the easiest way to get `compstatr` is to install it from CRAN:

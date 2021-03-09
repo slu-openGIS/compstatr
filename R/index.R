@@ -18,16 +18,18 @@
 #'
 #' @examples
 #' # create index
+#' \donttest{
 #' i <- cs_create_index()
 #'
 #' # preview of index object
 #' i
+#' }
 #'
 #' @export
 cs_create_index <- function(){
 
   # global bindings
-  filename = month = value = NULL
+  filename = month = value = empty = NULL
 
   # url
   url <- "http://www.slmpd.org/CrimeReport.aspx"
@@ -65,7 +67,7 @@ cs_create_index <- function(){
 cs_get_table <- function(url, session, form, page){
 
   # global bindings
-  filename = NULL
+  filename = size = empty = NULL
 
   # update session to correct page
   if (page > 1){

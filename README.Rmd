@@ -30,8 +30,8 @@ The City's crime data, however, are difficult to work with and present a number 
 
 We therefore provide a set of tools for accessing, preparing, editing, and mapping St. Louis [Metropolitan Police Department](http://www.slmpd.org) (SLMPD) crime data, which are available [on their website](http://www.slmpd.org/Crimereports.shtml) as `.csv` files. The categorization tools that are provided will work with any police department that uses 5 and 6 digit numeric codes to identify specific crimes.
 
-## What's New in v0.2.1?
-Version v0.2.1 addresses a number of bugs, and returns `compstatr` to CRAN.
+## What's New in v0.2.2.9000?
+SLMPD is currently switching to NBIRS, and has not published data since December 2020. We have not been given a timeline for data availability. This current version of the package contains checks in `cs_get_data()` that will gracefully error if you attempt to download data that is listed in the `index` object but are not actually available on the website.
 
 ## Installation
 The easiest way to get `compstatr` is to install it from CRAN:
