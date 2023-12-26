@@ -3,7 +3,7 @@
 
 # compstatr <img src="man/figures/logo.png" align="right" />
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![lifecycle](https://img.shields.io/badge/lifecycle-deprecated-orage.svg)](https://www.tidyverse.org/lifecycle/#deprecated)
 [![Travis-CI Build
 Status](https://travis-ci.com/slu-openGIS/compstatr.svg?branch=master)](https://travis-ci.com/slu-openGIS/compstatr)
 [![AppVeyor Build
@@ -15,9 +15,10 @@ status](https://codecov.io/gh/slu-openGIS/compstatr/branch/master/graph/badge.sv
 checks](https://cranchecks.info/badges/worst/compstatr)](https://cran.r-project.org/web/checks/check_results_compstatr.html)
 [![DOI](https://zenodo.org/badge/105331568.svg)](https://zenodo.org/badge/latestdoi/105331568)
 
-The goal of `compstatr` is to provide a suite of tools for working with
+The goal of `compstatr` was to provide a suite of tools for working with
 crime data made public by the City of St. Louis’ [Metropolitan Police
-Department](http://www.slmpd.org).
+Department](http://www.slmpd.org). SLMPD ended access to their detailed 
+crime files in 2021, and this package was removed from CRAN on 2021-10-31.
 
 ## Motivation
 
