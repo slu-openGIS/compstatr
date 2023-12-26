@@ -3,7 +3,7 @@
 
 # compstatr <img src="man/figures/logo.png" align="right" />
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-deprecated-orage.svg)](https://www.tidyverse.org/lifecycle/#deprecated)
+[![lifecycle](https://img.shields.io/badge/lifecycle-deprecated-orange.svg)](https://www.tidyverse.org/lifecycle/#deprecated)
 [![Travis-CI Build
 Status](https://travis-ci.com/slu-openGIS/compstatr.svg?branch=master)](https://travis-ci.com/slu-openGIS/compstatr)
 [![AppVeyor Build
